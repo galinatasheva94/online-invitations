@@ -18,8 +18,8 @@
         body {
             margin: 0;
             font-family: Georgia, "Times New Roman", serif;
-            background: #f4eee5;
-            color: #40372f;
+            background: #f3ebe0;
+            color: #44392f;
             overflow-x: hidden;
         }
 
@@ -31,23 +31,24 @@
             position: fixed;
             inset: 0;
             z-index: 100;
-            background:
-                radial-gradient(
-                    circle at center,
-                    #fbf8f3 0%,
-                    #f1e8dc 70%,
-                    #e8dccd 100%
-                );
 
             display: flex;
             align-items: center;
             justify-content: center;
 
+            background:
+                radial-gradient(
+                    circle at center,
+                    #fcfaf6 0%,
+                    #f3ebe7 55%,
+                    #e7d9c9 100%
+                );
+
             overflow: hidden;
 
             transition:
-                opacity 1s ease,
-                visibility 1s ease;
+                opacity 1.4s ease,
+                visibility 1.4s ease;
         }
 
         .opening.finished {
@@ -57,66 +58,71 @@
         }
 
         /* =====================================================
-           FLOWERS
+           DECORATION
         ===================================================== */
 
         .flower {
             position: absolute;
-            color: rgba(130, 105, 82, 0.18);
-            font-size: 70px;
+            color: rgba(130, 105, 82, 0.16);
             pointer-events: none;
-            animation: floatingFlower 6s ease-in-out infinite;
+
+            animation:
+                floatFlower 8s ease-in-out infinite;
         }
 
         .flower-1 {
-            top: 9%;
+            top: 8%;
             left: 9%;
+            font-size: 70px;
         }
 
         .flower-2 {
-            top: 17%;
+            top: 14%;
             right: 10%;
-            font-size: 55px;
-            animation-delay: 1s;
+            font-size: 52px;
+            animation-delay: 1.5s;
         }
 
         .flower-3 {
-            bottom: 13%;
-            left: 13%;
+            bottom: 12%;
+            left: 12%;
             font-size: 55px;
-            animation-delay: 2s;
-        }
-
-        .flower-4 {
-            bottom: 10%;
-            right: 12%;
-            font-size: 75px;
             animation-delay: 3s;
         }
 
-        @keyframes floatingFlower {
+        .flower-4 {
+            bottom: 9%;
+            right: 11%;
+            font-size: 72px;
+            animation-delay: 4.5s;
+        }
+
+        @keyframes floatFlower {
 
             0%, 100% {
-                transform: translateY(0) rotate(0deg);
+                transform:
+                    translateY(0)
+                    rotate(0deg);
             }
 
             50% {
-                transform: translateY(-12px) rotate(5deg);
+                transform:
+                    translateY(-12px)
+                    rotate(5deg);
             }
         }
 
         /* =====================================================
-           ENVELOPE CONTAINER
+           ENVELOPE AREA
         ===================================================== */
 
         .envelope-container {
             position: relative;
+
             width: 440px;
-            max-width: 88vw;
-            height: 540px;
+            height: 600px;
 
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
@@ -126,97 +132,107 @@
         ===================================================== */
 
         .envelope {
-            position: relative;
+            position: absolute;
 
             width: 380px;
-            max-width: 82vw;
             height: 250px;
 
-            perspective: 1200px;
+            left: 50%;
+            top: 50%;
 
-            z-index: 5;
+            transform:
+                translate(-50%, -50%);
+
+            z-index: 10;
 
             transition:
-                transform 1.3s cubic-bezier(.22, .61, .36, 1);
+                transform 1.2s ease,
+                opacity 1.2s ease;
         }
 
         /* =====================================================
-           LETTER
+           FOLDED LETTER
 
-           ВАЖНО:
-           Писмото е зад предната част на плика.
-           То не може да се вижда преди отваряне.
+           Това е малкият сгънат лист.
+           Целият е вътре в плика.
         ===================================================== */
 
-        .letter {
+        .folded-letter {
             position: absolute;
 
-            width: 320px;
-            height: 420px;
+            width: 190px;
+            height: 125px;
 
             left: 50%;
-            bottom: 8px;
+            top: 50%;
 
             transform:
-                translateX(-50%)
-                translateY(25px)
-                scale(0.78);
-
-            transform-origin: center bottom;
+                translate(-50%, -42%);
 
             background:
                 linear-gradient(
-                    rgba(255,255,255,0.98),
-                    rgba(250,246,239,0.98)
+                    135deg,
+                    #fffefb,
+                    #f7f2ea
                 );
 
-            border: 1px solid rgba(116, 94, 72, 0.22);
-
             box-shadow:
-                0 15px 35px rgba(60, 44, 30, 0.15);
+                0 5px 18px
+                rgba(70, 50, 30, 0.14);
 
             z-index: 2;
 
-            padding: 55px 35px;
-
-            text-align: center;
+            overflow: hidden;
 
             transition:
-                transform 1.7s cubic-bezier(.16, 1, .3, 1),
-                box-shadow 1.2s ease;
+                transform 1.5s
+                cubic-bezier(.22, .61, .36, 1),
+                width 1.5s ease,
+                height 1.5s ease,
+                box-shadow 1.5s ease;
         }
 
-        .letter::before {
+        /*
+            Леко очертание на сгъвката
+        */
+
+        .folded-letter::after {
             content: "";
 
             position: absolute;
-            inset: 15px;
 
-            border:
-                1px solid rgba(143, 113, 83, 0.35);
+            left: 50%;
+            top: 0;
+            bottom: 0;
 
-            pointer-events: none;
+            width: 1px;
+
+            background:
+                rgba(130, 105, 80, 0.16);
         }
 
-        .letter-content {
-            position: relative;
-            z-index: 2;
+        .folded-letter-content {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transition:
+                opacity 0.8s ease;
         }
 
-        .letter-small {
-            font-size: 12px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-
-            color: #92765a;
-
-            margin-bottom: 30px;
-        }
-
-        .letter-names {
-            font-size: 34px;
-            color: #493d32;
-            line-height: 1.25;
+        .folded-letter-names {
+            font-size: 16px;
+            color: #655545;
+            letter-spacing: 1px;
         }
 
         /* =====================================================
@@ -228,17 +244,20 @@
 
             inset: 0;
 
-            background: #d7c2aa;
+            background: #d8c2a9;
 
             border-radius: 4px;
 
             box-shadow:
-                0 25px 60px rgba(67, 49, 34, 0.18),
-                0 5px 15px rgba(67, 49, 34, 0.12);
+                0 25px 60px
+                rgba(67, 49, 34, 0.2),
+
+                0 5px 15px
+                rgba(67, 49, 34, 0.12);
+
+            z-index: 4;
 
             overflow: hidden;
-
-            z-index: 3;
         }
 
         .envelope-body::before {
@@ -255,43 +274,13 @@
                     rgba(115, 88, 64, 0.12) 50%,
                     transparent 50.5%
                 ),
+
                 linear-gradient(
                     225deg,
                     transparent 49.5%,
                     rgba(115, 88, 64, 0.12) 50%,
                     transparent 50.5%
                 );
-        }
-
-        /*
-            Долният преден триъгълник на плика.
-            Той покрива писмото, докато пликът е затворен.
-        */
-
-        .envelope-front {
-            position: absolute;
-
-            left: 0;
-            bottom: 0;
-
-            width: 100%;
-            height: 150px;
-
-            background: #d7c2aa;
-
-            clip-path: polygon(
-                0 0,
-                50% 48%,
-                100% 0,
-                100% 100%,
-                0 100%
-            );
-
-            z-index: 6;
-
-            transition:
-                opacity 0.7s ease,
-                transform 0.8s ease;
         }
 
         /* =====================================================
@@ -301,11 +290,11 @@
         .envelope-flap {
             position: absolute;
 
-            top: 0;
             left: 0;
+            top: 0;
 
             width: 100%;
-            height: 150px;
+            height: 155px;
 
             background: #dfccb6;
 
@@ -318,14 +307,46 @@
 
             transform-origin: top center;
 
-            transform: rotateX(0deg);
+            transform:
+                rotateX(0deg);
 
             z-index: 8;
 
             transition:
-                transform 0.95s cubic-bezier(.4, 0, .2, 1);
+                transform 1.1s
+                cubic-bezier(.45, .05, .2, 1);
 
             backface-visibility: hidden;
+        }
+
+        /* =====================================================
+           FRONT PART OF ENVELOPE
+        ===================================================== */
+
+        .envelope-front {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 155px;
+
+            background: #d8c2a9;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    50% 48%,
+                    100% 0,
+                    100% 100%,
+                    0 100%
+                );
+
+            z-index: 7;
+
+            transition:
+                opacity 1s ease;
         }
 
         /* =====================================================
@@ -335,38 +356,37 @@
         .seal {
             position: absolute;
 
-            z-index: 10;
-
             left: 50%;
-            top: 125px;
+            top: 126px;
 
-            width: 82px;
-            height: 82px;
+            width: 84px;
+            height: 84px;
 
             transform:
                 translate(-50%, -50%);
 
             border-radius: 50%;
 
+            z-index: 15;
+
             background:
                 radial-gradient(
                     circle at 35% 30%,
-                    #9d8061 0%,
-                    #775b41 60%,
-                    #60462f 100%
+                    #a18464 0%,
+                    #795d42 60%,
+                    #60472f 100%
                 );
 
             box-shadow:
-                0 8px 18px rgba(67, 45, 29, 0.28),
-                inset 0 2px 4px rgba(255,255,255,0.15);
+                0 8px 20px
+                rgba(67, 45, 29, 0.3),
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+                inset 0 2px 5px
+                rgba(255,255,255,0.15);
 
             transition:
-                transform 0.55s ease,
-                opacity 0.55s ease;
+                transform 0.8s ease,
+                opacity 0.8s ease;
         }
 
         .seal::before {
@@ -377,7 +397,8 @@
             inset: 5px;
 
             border:
-                1px solid rgba(255,255,255,0.22);
+                1px solid
+                rgba(255,255,255,0.23);
 
             border-radius: 50%;
         }
@@ -391,7 +412,7 @@
             border: none;
             background: transparent;
 
-            color: #f7efe5;
+            color: #f9f1e7;
 
             font-family:
                 Georgia,
@@ -400,11 +421,9 @@
 
             font-size: 12px;
 
-            letter-spacing: 1.5px;
+            letter-spacing: 1.8px;
 
             cursor: pointer;
-
-            padding: 0;
 
             text-transform: uppercase;
         }
@@ -418,21 +437,21 @@
         }
 
         /* =====================================================
-           OPENING TEXT
+           INSTRUCTION
         ===================================================== */
 
         .opening-text {
             position: absolute;
 
-            top: calc(50% + 175px);
-
             left: 0;
             right: 0;
+
+            top: calc(50% + 185px);
 
             text-align: center;
 
             transition:
-                opacity 0.5s ease;
+                opacity 0.8s ease;
         }
 
         .opening-instruction {
@@ -442,18 +461,24 @@
 
             text-transform: uppercase;
 
-            color: #8c7560;
-
-            opacity: 0.75;
+            color: #8d7660;
         }
 
         /* =====================================================
-           OPENING ANIMATION
+           PHASE 1
+           OPEN SEAL + FLAP
         ===================================================== */
 
-        /*
-            1. Капакът се отваря.
-        */
+        .envelope-container.opened
+        .seal {
+
+            transform:
+                translate(-50%, -50%)
+                scale(0.2)
+                rotate(25deg);
+
+            opacity: 0;
+        }
 
         .envelope-container.opened
         .envelope-flap {
@@ -462,89 +487,6 @@
                 rotateX(180deg);
         }
 
-        /*
-            2. Печатът изчезва.
-        */
-
-        .envelope-container.opened
-        .seal {
-
-            transform:
-                translate(-50%, -50%)
-                scale(0.25)
-                rotate(25deg);
-
-            opacity: 0;
-        }
-
-        /*
-            3. Предната част на плика се отдръпва.
-
-            Писмото вече може да започне
-            да излиза от него.
-        */
-
-        .envelope-container.opened
-        .envelope-front {
-
-            opacity: 0;
-
-            transform:
-                translateY(35px);
-        }
-
-        /*
-            4. Писмото излиза нагоре.
-
-            В първия момент движението е сравнително
-            бавно, след това се ускорява плавно.
-        */
-
-        .envelope-container.opened
-        .letter {
-
-            transform:
-                translateX(-50%)
-                translateY(-155px)
-                scale(1.05);
-
-            box-shadow:
-                0 30px 70px rgba(60, 44, 30, 0.24);
-
-            z-index: 7;
-        }
-
-        /*
-            5. След това писмото продължава напред
-            и се превръща във визуален мост към
-            самата покана.
-        */
-
-        .envelope-container.final-open
-        .letter {
-
-            transform:
-                translateX(-50%)
-                translateY(-270px)
-                scale(1.28);
-        }
-
-        /*
-            Пликът леко се отдалечава.
-        */
-
-        .envelope-container.final-open
-        .envelope {
-
-            transform:
-                translateY(35px)
-                scale(0.88);
-        }
-
-        /*
-            Инструкцията изчезва.
-        */
-
         .envelope-container.opened
         .opening-text {
 
@@ -552,20 +494,125 @@
         }
 
         /* =====================================================
-           MAIN INVITATION
+           PHASE 2
+           FOLDED LETTER COMES OUT
+        ===================================================== */
+
+        .envelope-container.letter-out
+        .folded-letter {
+
+            transform:
+                translate(-50%, -180px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(60, 44, 30, 0.18);
+        }
+
+        .envelope-container.letter-out
+        .folded-letter-content {
+
+            opacity: 1;
+        }
+
+        .envelope-container.letter-out
+        .envelope-front {
+
+            opacity: 0;
+        }
+
+        /* =====================================================
+           PHASE 3
+           FIRST FOLD OPENS
+        ===================================================== */
+
+        .envelope-container.unfold-one
+        .folded-letter {
+
+            width: 320px;
+            height: 250px;
+
+            transform:
+                translate(-50%, -180px);
+        }
+
+        /* =====================================================
+           PHASE 4
+           FULL PAGE OPENS
+        ===================================================== */
+
+        .envelope-container.unfold-two
+        .folded-letter {
+
+            width: 520px;
+            height: 650px;
+
+            transform:
+                translate(-50%, -300px);
+
+            box-shadow:
+                0 35px 90px
+                rgba(60, 44, 30, 0.22);
+        }
+
+        .envelope-container.unfold-two
+        .folded-letter::after {
+
+            opacity: 0;
+        }
+
+        /* =====================================================
+           PHASE 5
+           PAGE BECOMES INVITATION
+        ===================================================== */
+
+        .envelope-container.page-open
+        .folded-letter {
+
+            width: 100vw;
+            height: 100vh;
+
+            transform:
+                translate(-50%, -50%);
+
+            top: 50%;
+
+            background:
+                #faf7f1;
+
+            box-shadow: none;
+
+            z-index: 50;
+        }
+
+        .envelope-container.page-open
+        .folded-letter-content {
+
+            opacity: 0;
+        }
+
+        .envelope-container.page-open
+        .envelope {
+
+            opacity: 0;
+        }
+
+        /* =====================================================
+           MAIN CONTENT
         ===================================================== */
 
         .main-content {
+
             position: relative;
 
             opacity: 0;
 
             transform:
-                translateY(35px);
+                translateY(25px);
 
             transition:
-                opacity 1.2s ease,
-                transform 1.2s ease;
+                opacity 1.5s ease,
+                transform 1.5s ease;
         }
 
         .main-content.visible {
@@ -575,6 +622,10 @@
             transform:
                 translateY(0);
         }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
 
         .hero {
 
@@ -656,7 +707,6 @@
         .line {
 
             width: 80px;
-
             height: 1px;
 
             background: #b49a7e;
@@ -676,7 +726,8 @@
         }
 
         .message p {
-            margin: 0 0 15px;
+            margin:
+                0 0 15px;
         }
 
         /* =====================================================
@@ -688,7 +739,8 @@
             padding:
                 110px 25px;
 
-            background: #eee3d5;
+            background:
+                #eee3d5;
 
             text-align: center;
         }
@@ -773,7 +825,8 @@
 
             text-align: center;
 
-            background: #f8f4ee;
+            background:
+                #f8f4ee;
         }
 
         .rsvp-text {
@@ -807,16 +860,6 @@
             letter-spacing: 2px;
 
             font-size: 12px;
-
-            transition:
-                all 0.3s ease;
-        }
-
-        .rsvp-button:hover {
-
-            background: #9a8064;
-
-            color: white;
         }
 
         /* =====================================================
@@ -830,9 +873,11 @@
 
             text-align: center;
 
-            background: #e6d9ca;
+            background:
+                #e6d9ca;
 
-            color: #806b56;
+            color:
+                #806b56;
 
             font-size: 13px;
 
@@ -866,7 +911,7 @@
 
             font-size: 20px;
 
-            z-index: 50;
+            z-index: 60;
 
             opacity: 0;
 
@@ -874,8 +919,6 @@
 
             transition:
                 opacity 0.5s ease;
-
-            cursor: pointer;
         }
 
         .music-button.visible {
@@ -891,31 +934,24 @@
 
         @media (max-width: 700px) {
 
+            .envelope-container {
+
+                width: 100vw;
+            }
+
             .envelope {
 
                 width: 330px;
                 height: 215px;
             }
 
-            .letter {
+            .folded-letter {
 
-                width: 275px;
-                height: 365px;
-
-                padding:
-                    45px 25px;
+                width: 165px;
+                height: 108px;
             }
 
-            .letter-names {
-
-                font-size: 28px;
-            }
-
-            .envelope-flap {
-
-                height: 130px;
-            }
-
+            .envelope-flap,
             .envelope-front {
 
                 height: 130px;
@@ -929,39 +965,31 @@
                 height: 72px;
             }
 
-            .envelope-container.opened
-            .letter {
+            .envelope-container.letter-out
+            .folded-letter {
 
                 transform:
-                    translateX(-50%)
-                    translateY(-125px)
-                    scale(1.02);
+                    translate(-50%, -145px);
             }
 
-            .envelope-container.final-open
-            .letter {
+            .envelope-container.unfold-one
+            .folded-letter {
+
+                width: 270px;
+                height: 215px;
 
                 transform:
-                    translateX(-50%)
-                    translateY(-215px)
-                    scale(1.08);
+                    translate(-50%, -145px);
             }
 
-            .opening-text {
+            .envelope-container.unfold-two
+            .folded-letter {
 
-                top:
-                    calc(50% + 155px);
-            }
+                width: 370px;
+                height: 560px;
 
-            .detail-grid {
-
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-
-                padding:
-                    80px 20px;
+                transform:
+                    translate(-50%, -260px);
             }
 
             .names {
@@ -973,6 +1001,11 @@
 
                 font-size: 16px;
             }
+
+            .detail-grid {
+
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -980,103 +1013,179 @@
 
 <body>
 
-    <!-- =====================================================
-         OPENING
-    ===================================================== -->
 
-    <section
-        class="opening"
-        id="opening">
+<!-- =========================================================
+     OPENING
+========================================================= -->
 
-        <div class="flower flower-1">✿</div>
-        <div class="flower flower-2">❀</div>
-        <div class="flower flower-3">✿</div>
-        <div class="flower flower-4">❀</div>
+<section
+    class="opening"
+    id="opening">
 
 
-        <div
-            class="envelope-container"
-            id="envelopeContainer">
+    <div class="flower flower-1">✿</div>
+    <div class="flower flower-2">❀</div>
+    <div class="flower flower-3">✿</div>
+    <div class="flower flower-4">❀</div>
 
 
-            <div
-                class="envelope"
-                id="envelope">
+    <div
+        class="envelope-container"
+        id="envelopeContainer">
 
 
-                <!-- =================================================
-                     LETTER
-                ================================================= -->
+        <!-- =================================================
+             ENVELOPE
+        ================================================= -->
 
-                <div class="letter">
+        <div class="envelope">
 
-                    <div class="letter-content">
 
-                        <div class="letter-small">
-                            Сватбена покана
-                        </div>
+            <!-- =================================================
+                 FOLDED LETTER
 
-                        <div
-                            class="letter-names"
-                            id="letterNames">
+                 Това е реално сгънатото писмо.
+            ================================================= -->
 
-                            Галина & Мартин
+            <div class="folded-letter">
 
-                        </div>
+                <div
+                    class="folded-letter-content">
+
+                    <div
+                        class="folded-letter-names"
+                        id="letterNames">
+
+                        Галина & Мартин
 
                     </div>
 
                 </div>
 
-
-                <!-- =================================================
-                     ENVELOPE BODY
-                ================================================= -->
-
-                <div class="envelope-body"></div>
-
-
-                <!-- =================================================
-                     FRONT OF ENVELOPE
-                ================================================= -->
-
-                <div class="envelope-front"></div>
-
-
-                <!-- =================================================
-                     FLAP
-                ================================================= -->
-
-                <div class="envelope-flap"></div>
-
-
-                <!-- =================================================
-                     SEAL
-                ================================================= -->
-
-                <div class="seal">
-
-                    <button
-                        class="seal-button"
-                        id="openButton"
-                        type="button">
-
-                        ОТВОРИ
-
-                    </button>
-
-                </div>
-
             </div>
 
 
-            <div class="opening-text">
+            <!-- =================================================
+                 ENVELOPE BODY
+            ================================================= -->
 
-                <div class="opening-instruction">
-                    За вас е тази покана
-                </div>
+            <div class="envelope-body"></div>
+
+
+            <!-- =================================================
+                 FRONT
+            ================================================= -->
+
+            <div class="envelope-front"></div>
+
+
+            <!-- =================================================
+                 FLAP
+            ================================================= -->
+
+            <div class="envelope-flap"></div>
+
+
+            <!-- =================================================
+                 SEAL
+            ================================================= -->
+
+            <div class="seal">
+
+                <button
+                    class="seal-button"
+                    id="openButton"
+                    type="button">
+
+                    ОТВОРИ
+
+                </button>
 
             </div>
+
+        </div>
+
+
+        <div class="opening-text">
+
+            <div class="opening-instruction">
+
+                За вас е тази покана
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN INVITATION
+========================================================= -->
+
+<div
+    class="main-content"
+    id="mainContent">
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-small">
+
+            С радост ви каним да споделите
+
+        </div>
+
+
+        <h1
+            class="names"
+            id="previewBride">
+
+            Галина
+
+        </h1>
+
+
+        <div class="ampersand">
+
+            &
+
+        </div>
+
+
+        <h1
+            class="names"
+            id="previewGroom">
+
+            Мартин
+
+        </h1>
+
+
+        <div
+            class="date"
+            id="previewDate">
+
+            12 ЮНИ 2027
+
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div
+            class="message"
+            id="previewMessage">
+
+            Ще бъдем щастливи да споделим
+            този специален ден с вас.
 
         </div>
 
@@ -1084,426 +1193,434 @@
 
 
     <!-- =====================================================
-         MAIN INVITATION
+         DETAILS
     ===================================================== -->
 
-    <div
-        class="main-content"
-        id="mainContent">
+    <section class="details">
+
+        <h2 class="section-title">
+
+            Нашият специален ден
+
+        </h2>
 
 
-        <section class="hero">
-
-            <div class="hero-small">
-                С радост ви каним да споделите
-            </div>
+        <div class="detail-grid">
 
 
-            <h1
-                class="names"
-                id="previewBride">
+            <div class="detail-card">
 
-                Галина
+                <div class="detail-icon">
+                    ♡
+                </div>
 
-            </h1>
+                <div class="detail-label">
 
-
-            <div class="ampersand">
-                &
-            </div>
-
-
-            <h1
-                class="names"
-                id="previewGroom">
-
-                Мартин
-
-            </h1>
-
-
-            <div
-                class="date"
-                id="previewDate">
-
-                12 ЮНИ 2027
-
-            </div>
-
-
-            <div class="line"></div>
-
-
-            <div
-                class="message"
-                id="previewMessage">
-
-                Ще бъдем щастливи да споделим
-                този специален ден с вас.
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             DETAILS
-        ===================================================== -->
-
-        <section class="details">
-
-            <h2 class="section-title">
-                Нашият специален ден
-            </h2>
-
-
-            <div class="detail-grid">
-
-
-                <div class="detail-card">
-
-                    <div class="detail-icon">
-                        ♡
-                    </div>
-
-                    <div class="detail-label">
-                        Дата
-                    </div>
-
-                    <div
-                        class="detail-value"
-                        id="detailDate">
-
-                        12 ЮНИ 2027
-
-                    </div>
+                    Дата
 
                 </div>
 
+                <div
+                    class="detail-value"
+                    id="detailDate">
 
-                <div class="detail-card">
-
-                    <div class="detail-icon">
-                        ✦
-                    </div>
-
-                    <div class="detail-label">
-                        Място
-                    </div>
-
-                    <div
-                        class="detail-value"
-                        id="detailVenue">
-
-                        РЕЗИДЕНЦИЯ ТЕРА
-
-                    </div>
+                    12 ЮНИ 2027
 
                 </div>
-
-
-                <div class="detail-card">
-
-                    <div class="detail-icon">
-                        ⌂
-                    </div>
-
-                    <div class="detail-label">
-                        Град
-                    </div>
-
-                    <div
-                        class="detail-value"
-                        id="detailCity">
-
-                        ГР. СОФИЯ
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             RSVP
-        ===================================================== -->
-
-        <section class="rsvp">
-
-            <h2 class="section-title">
-                Ще дойдете ли?
-            </h2>
-
-
-            <div class="rsvp-text">
-
-                Ще се радваме да бъдете част
-                от нашия специален ден.
-                Очакваме вашия отговор.
 
             </div>
 
 
-            <a
-                href="#"
-                class="rsvp-button">
+            <div class="detail-card">
 
-                ПОТВЪРДИ ПРИСЪСТВИЕ
+                <div class="detail-icon">
+                    ✦
+                </div>
 
-            </a>
+                <div class="detail-label">
 
-        </section>
+                    Място
+
+                </div>
+
+                <div
+                    class="detail-value"
+                    id="detailVenue">
+
+                    РЕЗИДЕНЦИЯ ТЕРА
+
+                </div>
+
+            </div>
 
 
-        <!-- =====================================================
-             FOOTER
-        ===================================================== -->
+            <div class="detail-card">
 
-        <footer>
+                <div class="detail-icon">
+                    ⌂
+                </div>
 
-            Създадено с любов от „ВАШАТА ПОКАНА“
+                <div class="detail-label">
 
-        </footer>
+                    Град
 
-    </div>
+                </div>
+
+                <div
+                    class="detail-value"
+                    id="detailCity">
+
+                    ГР. СОФИЯ
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
 
 
     <!-- =====================================================
-         MUSIC
+         RSVP
     ===================================================== -->
 
-    <button
-        class="music-button"
-        id="musicButton">
+    <section class="rsvp">
 
-        ♪
+        <h2 class="section-title">
 
-    </button>
+            Ще дойдете ли?
 
+        </h2>
 
-    <script>
 
-        /* =====================================================
-           READ PERSONALIZATION
-        ===================================================== */
+        <div class="rsvp-text">
 
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
+            Ще се радваме да бъдете част
+            от нашия специален ден.
+            Очакваме вашия отговор.
 
+        </div>
 
-        const bride =
-            params.get("bride")
-            || "Галина";
 
+        <a
+            href="#"
+            class="rsvp-button">
 
-        const groom =
-            params.get("groom")
-            || "Мартин";
+            ПОТВЪРДИ ПРИСЪСТВИЕ
 
+        </a>
 
-        const date =
-            params.get("date")
-            || "12 ЮНИ 2027";
+    </section>
 
 
-        const venue =
-            params.get("venue")
-            || "РЕЗИДЕНЦИЯ ТЕРА";
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
 
+    <footer>
 
-        const city =
-            params.get("city")
-            || "ГР. СОФИЯ";
+        Създадено с любов от „ВАШАТА ПОКАНА“
 
+    </footer>
 
-        const message =
-            params.get("message")
-            ||
-            "Ще бъдем щастливи да споделим този специален ден с вас.";
+</div>
 
 
-        /* =====================================================
-           PERSONALIZED CONTENT
-        ===================================================== */
+<!-- =========================================================
+     MUSIC
+========================================================= -->
 
-        document.getElementById(
-            "letterNames"
-        ).textContent =
-            bride + " & " + groom;
+<button
+    class="music-button"
+    id="musicButton">
 
+    ♪
 
-        document.getElementById(
-            "previewBride"
-        ).textContent =
-            bride;
+</button>
 
 
-        document.getElementById(
-            "previewGroom"
-        ).textContent =
-            groom;
+<script>
 
+    /* =====================================================
+       URL PARAMETERS
+    ===================================================== */
 
-        document.getElementById(
-            "previewDate"
-        ).textContent =
-            date;
-
-
-        document.getElementById(
-            "detailDate"
-        ).textContent =
-            date;
-
-
-        document.getElementById(
-            "detailVenue"
-        ).textContent =
-            venue;
-
-
-        document.getElementById(
-            "detailCity"
-        ).textContent =
-            city;
-
-
-        const messageElement =
-            document.getElementById(
-                "previewMessage"
-            );
-
-
-        messageElement.innerHTML =
-            message
-                .split(/\n\s*\n/)
-                .map(function(paragraph) {
-
-                    return "<p>" +
-                        paragraph +
-                        "</p>";
-
-                })
-                .join("");
-
-
-        /* =====================================================
-           OPEN ENVELOPE
-        ===================================================== */
-
-        const openButton =
-            document.getElementById(
-                "openButton"
-            );
-
-
-        const envelopeContainer =
-            document.getElementById(
-                "envelopeContainer"
-            );
-
-
-        const opening =
-            document.getElementById(
-                "opening"
-            );
-
-
-        const mainContent =
-            document.getElementById(
-                "mainContent"
-            );
-
-
-        const musicButton =
-            document.getElementById(
-                "musicButton"
-            );
-
-
-        openButton.addEventListener(
-            "click",
-            function() {
-
-                /*
-                    ЕТАП 1
-                    Отваряме плика.
-                */
-
-                envelopeContainer
-                    .classList
-                    .add("opened");
-
-
-                /*
-                    ЕТАП 2
-                    Писмото излиза нагоре.
-                */
-
-                setTimeout(
-                    function() {
-
-                        envelopeContainer
-                            .classList
-                            .add("final-open");
-
-                    },
-                    850
-                );
-
-
-                /*
-                    ЕТАП 3
-                    Завършваме прехода.
-                */
-
-                setTimeout(
-                    function() {
-
-                        opening
-                            .classList
-                            .add("finished");
-
-
-                        mainContent
-                            .classList
-                            .add("visible");
-
-
-                        musicButton
-                            .classList
-                            .add("visible");
-
-                    },
-                    1800
-                );
-
-            }
+    const params =
+        new URLSearchParams(
+            window.location.search
         );
 
 
-        /* =====================================================
-           MUSIC BUTTON
-        ===================================================== */
+    const bride =
+        params.get("bride")
+        || "Галина";
 
-        musicButton.addEventListener(
-            "click",
-            function() {
 
-                alert(
-                    "Тук по-късно ще добавим музиката към поканата."
-                );
+    const groom =
+        params.get("groom")
+        || "Мартин";
 
-            }
+
+    const date =
+        params.get("date")
+        || "12 ЮНИ 2027";
+
+
+    const venue =
+        params.get("venue")
+        || "РЕЗИДЕНЦИЯ ТЕРА";
+
+
+    const city =
+        params.get("city")
+        || "ГР. СОФИЯ";
+
+
+    const message =
+        params.get("message")
+        ||
+        "Ще бъдем щастливи да споделим този специален ден с вас.";
+
+
+    /* =====================================================
+       PERSONALIZATION
+    ===================================================== */
+
+    document.getElementById(
+        "letterNames"
+    ).textContent =
+        bride + " & " + groom;
+
+
+    document.getElementById(
+        "previewBride"
+    ).textContent =
+        bride;
+
+
+    document.getElementById(
+        "previewGroom"
+    ).textContent =
+        groom;
+
+
+    document.getElementById(
+        "previewDate"
+    ).textContent =
+        date;
+
+
+    document.getElementById(
+        "detailDate"
+    ).textContent =
+        date;
+
+
+    document.getElementById(
+        "detailVenue"
+    ).textContent =
+        venue;
+
+
+    document.getElementById(
+        "detailCity"
+    ).textContent =
+        city;
+
+
+    document.getElementById(
+        "previewMessage"
+    ).innerHTML =
+
+        message
+            .split(/\n\s*\n/)
+            .map(function(paragraph) {
+
+                return "<p>" +
+                    paragraph +
+                    "</p>";
+
+            })
+            .join("");
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const openButton =
+        document.getElementById(
+            "openButton"
         );
 
-    </script>
+
+    const envelopeContainer =
+        document.getElementById(
+            "envelopeContainer"
+        );
+
+
+    const opening =
+        document.getElementById(
+            "opening"
+        );
+
+
+    const mainContent =
+        document.getElementById(
+            "mainContent"
+        );
+
+
+    const musicButton =
+        document.getElementById(
+            "musicButton"
+        );
+
+
+    /* =====================================================
+       OPEN ANIMATION
+    ===================================================== */
+
+    openButton.addEventListener(
+        "click",
+        function() {
+
+            /*
+                ФАЗА 1
+                Печатът изчезва
+                и капакът започва
+                бавно да се отваря.
+            */
+
+            envelopeContainer
+                .classList
+                .add("opened");
+
+
+            /*
+                ФАЗА 2
+                Изчакваме капакът да се
+                отвори достатъчно.
+
+                След това малкото
+                сгънато писмо започва
+                да излиза.
+            */
+
+            setTimeout(
+                function() {
+
+                    envelopeContainer
+                        .classList
+                        .add("letter-out");
+
+                },
+                1000
+            );
+
+
+            /*
+                ФАЗА 3
+                Първата сгъвка
+                се отваря.
+            */
+
+            setTimeout(
+                function() {
+
+                    envelopeContainer
+                        .classList
+                        .add("unfold-one");
+
+                },
+                2600
+            );
+
+
+            /*
+                ФАЗА 4
+                Листът се разгъва
+                почти до цял размер.
+            */
+
+            setTimeout(
+                function() {
+
+                    envelopeContainer
+                        .classList
+                        .add("unfold-two");
+
+                },
+                4000
+            );
+
+
+            /*
+                ФАЗА 5
+                Листът заема екрана.
+            */
+
+            setTimeout(
+                function() {
+
+                    envelopeContainer
+                        .classList
+                        .add("page-open");
+
+                },
+                5200
+            );
+
+
+            /*
+                ФАЗА 6
+                Поканата се показва
+                много плавно.
+            */
+
+            setTimeout(
+                function() {
+
+                    opening
+                        .classList
+                        .add("finished");
+
+
+                    mainContent
+                        .classList
+                        .add("visible");
+
+
+                    musicButton
+                        .classList
+                        .add("visible");
+
+                },
+                6200
+            );
+
+        });
+
+
+    /* =====================================================
+       MUSIC
+    ===================================================== */
+
+    musicButton.addEventListener(
+        "click",
+        function() {
+
+            alert(
+                "Тук по-късно ще добавим музиката към поканата."
+            );
+
+        }
+    );
+
+</script>
 
 </body>
 </html>
