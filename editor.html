@@ -703,7 +703,7 @@
             </div>
 
 
-            <div class="invitation">
+           <div class="invitation" id="invitationPreview">
 
 
                 <div class="invitation-title">
@@ -812,8 +812,7 @@
 
 <script>    const params = new URLSearchParams(window.location.search);
     const design = params.get("design");
- if (design === "minimal-garden") {
-        document.getElementById("previewLabel").textContent = "Преглед · Minimal Garden";
+    const invitationPreview = document.getElementById("invitationPreview");
 
     /*
        Тук започва JavaScript.
@@ -823,7 +822,6 @@
        текста в поканата.
     */
 
-
     const bride = document.getElementById("bride");
     const groom = document.getElementById("groom");
     const date = document.getElementById("date");
@@ -831,7 +829,9 @@
     const city = document.getElementById("city");
     const message = document.getElementById("message");
 
-
+    if (design === "minimal-garden") {
+    invitationPreview.classList.add("design-minimal-garden");
+    }
 
     bride.addEventListener(
         "input",
