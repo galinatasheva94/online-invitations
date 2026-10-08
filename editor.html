@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Персонализирай поканата | Вашата покана</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background: #f4efe8;
+
+            color: #463d35;
+
+        }
+
+
+        /* HEADER */
+
+        header {
+
+            padding: 25px 6%;
+
+            background: #f8f4ee;
+
+            border-bottom:
+                1px solid #e4dbcf;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .logo {
+
+            font-size: 21px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        header a {
+
+            text-decoration: none;
+
+            color: #463d35;
+
+            font-size: 14px;
+
+        }
+
+
+        /* PAGE */
+
+        .page {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 60px 25px 100px;
+
+        }
+
+
+        .page-title {
+
+            text-align: center;
+
+            margin-bottom: 60px;
+
+        }
+
+
+        .eyebrow {
+
+            font-size: 12px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        h1 {
+
+            font-size: 44px;
+
+            font-weight: normal;
+
+            margin: 0;
+
+        }
+
+
+        .page-description {
+
+            max-width: 600px;
+
+            margin: 20px auto 0;
+
+            color: #71665b;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* EDITOR */
+
+        .editor {
+
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 60px;
+
+            align-items: start;
+
+        }
+
+
+        /* FORM */
+
+        .form {
+
+            background: #fffdf9;
+
+            padding: 40px;
+
+            border:
+                1px solid #e1d7ca;
+
+        }
+
+
+        .form h2 {
+
+            font-size: 28px;
+
+            font-weight: normal;
+
+            margin-top: 0;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .field {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .field label {
+
+            display: block;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .field input,
+
+        .field textarea {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border:
+                1px solid #cfc2b4;
+
+            background: #fff;
+
+            color: #463d35;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        .field input:focus,
+
+        .field textarea:focus {
+
+            border-color:
+                #806b4f;
+
+        }
+
+
+        .field textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+
+        }
+
+
+        .save-button {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            background: #55483d;
+
+            color: white;
+
+            font-family:
+                Georgia,
+                serif;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+        }
+
+
+        .save-button:hover {
+
+            background: #746455;
+
+        }
+
+
+        /* PREVIEW */
+
+        .preview-area {
+
+            position: sticky;
+
+            top: 30px;
+
+        }
+
+
+        .preview-label {
+
+            text-align: center;
+
+            font-size: 12px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .invitation {
+
+            background: #fbf7ef;
+
+            min-height: 700px;
+
+            padding: 60px 45px;
+
+            border:
+                1px solid #b9a17f;
+
+            box-shadow:
+                0 20px 50px
+                rgba(70, 55, 40, 0.12);
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .invitation:before,
+
+        .invitation:after {
+
+            content: "✿";
+
+            position: absolute;
+
+            font-size: 100px;
+
+            color: #9b9b7d;
+
+            opacity: 0.35;
+
+        }
+
+
+        .invitation:before {
+
+            top: -25px;
+
+            left: -15px;
+
+        }
+
+
+        .invitation:after {
+
+            bottom: -25px;
+
+            right: -15px;
+
+        }
+
+
+        .invitation-title {
+
+            font-size: 12px;
+
+            letter-spacing: 5px;
+
+        }
+
+
+        .heart {
+
+            margin: 25px 0;
+
+            color: #a48655;
+
+            font-size: 22px;
+
+        }
+
+
+        .names {
+
+            font-size: 50px;
+
+            line-height: 1.1;
+
+            font-weight: normal;
+
+            margin: 0;
+
+        }
+
+
+        .ampersand {
+
+            font-size: 30px;
+
+            color: #a48655;
+
+            margin: 10px 0;
+
+            font-style: italic;
+
+        }
+
+
+        .date {
+
+            margin-top: 35px;
+
+            font-size: 17px;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        .line {
+
+            width: 90px;
+
+            height: 1px;
+
+            background: #b69a6d;
+
+            margin: 22px auto;
+
+        }
+
+
+        .invitation-text {
+
+            max-width: 430px;
+
+            margin: 30px auto;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+
+        }
+
+
+        .location {
+
+            margin-top: 30px;
+
+            letter-spacing: 2px;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+        }
+
+
+        .rsvp {
+
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 13px 25px;
+
+            border:
+                1px solid #806b4f;
+
+            letter-spacing: 2px;
+
+            font-size: 11px;
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .editor {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .preview-area {
+
+                position: static;
+
+                order: -1;
+
+            }
+
+            .form {
+
+                max-width: 650px;
+
+                margin: auto;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .page {
+
+                padding-left: 15px;
+
+                padding-right: 15px;
+
+            }
+
+            h1 {
+
+                font-size: 35px;
+
+            }
+
+            .form {
+
+                padding: 25px;
+
+            }
+
+            .invitation {
+
+                padding: 45px 25px;
+
+            }
+
+            .names {
+
+                font-size: 40px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        ВАШАТА ПОКАНА
+    </div>
+
+    <a href="designs.html">
+        ← Към дизайните
+    </a>
+
+</header>
+
+
+
+<main class="page">
+
+
+    <div class="page-title">
+
+        <div class="eyebrow">
+            Вашата покана
+        </div>
+
+        <h1>
+            Персонализирайте
+            своята покана
+        </h1>
+
+        <p class="page-description">
+
+            Въведете вашите данни
+            и вижте как ще изглежда
+            поканата ви.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="editor">
+
+
+        <!-- FORM -->
+
+        <div class="form">
+
+            <h2>
+                Вашите данни
+            </h2>
+
+
+            <div class="field">
+
+                <label>
+                    Име на булката
+                </label>
+
+                <input
+                    type="text"
+                    id="bride"
+                    value="Галина"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Име на младоженеца
+                </label>
+
+                <input
+                    type="text"
+                    id="groom"
+                    value="Мартин"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Дата
+                </label>
+
+                <input
+                    type="text"
+                    id="date"
+                    value="12 ЮНИ 2027"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Място
+                </label>
+
+                <input
+                    type="text"
+                    id="venue"
+                    value="РЕЗИДЕНЦИЯ ТЕРА"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Град
+                </label>
+
+                <input
+                    type="text"
+                    id="city"
+                    value="ГР. СОФИЯ"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Вашият текст
+                </label>
+
+                <textarea id="message">С радост ви каним да споделите нашия специален ден с нас.
+
+Ще се радваме да бъдете част от този незабравим момент.</textarea>
+
+            </div>
+
+
+            <button
+                class="save-button"
+                onclick="showMessage()">
+
+                ЗАПАЗИ ПОКАНАТА
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- PREVIEW -->
+
+        <div class="preview-area">
+
+            <div class="preview-label">
+                Преглед на поканата
+            </div>
+
+
+            <div class="invitation">
+
+
+                <div class="invitation-title">
+
+                    СВАТБЕНА ПОКАНА
+
+                </div>
+
+
+                <div class="heart">
+
+                    ─── ♥ ───
+
+                </div>
+
+
+                <h2
+                    class="names"
+                    id="previewBride">
+
+                    Галина
+
+                </h2>
+
+
+                <div class="ampersand">
+
+                    &
+
+                </div>
+
+
+                <h2
+                    class="names"
+                    id="previewGroom">
+
+                    Мартин
+
+                </h2>
+
+
+                <div
+                    class="date"
+                    id="previewDate">
+
+                    12 ЮНИ 2027
+
+                </div>
+
+
+                <div class="line"></div>
+
+
+                <div
+                    class="invitation-text"
+                    id="previewMessage">
+
+                    <p>
+                        С радост ви каним да споделите
+                        нашия специален ден с нас.
+                    </p>
+
+                    <p>
+                        Ще се радваме да бъдете част
+                        от този незабравим момент.
+                    </p>
+
+                </div>
+
+
+                <div class="location">
+
+                    📍<br>
+
+                    <span id="previewCity">
+                        ГР. СОФИЯ
+                    </span>
+
+                    <br>
+
+                    <span id="previewVenue">
+                        РЕЗИДЕНЦИЯ ТЕРА
+                    </span>
+
+                </div>
+
+
+                <div class="rsvp">
+
+                    ПОТВЪРДИ ПРИСЪСТВИЕ
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+    /*
+       Тук започва JavaScript.
+
+       Той следи какво въвеждате
+       във формата и променя
+       текста в поканата.
+    */
+
+
+    const bride =
+        document.getElementById("bride");
+
+
+    const groom =
+        document.getElementById("groom");
+
+
+    const date =
+        document.getElementById("date");
+
+
+    const venue =
+        document.getElementById("venue");
+
+
+    const city =
+        document.getElementById("city");
+
+
+    const message =
+        document.getElementById("message");
+
+
+
+    bride.addEventListener(
+        "input",
+        function() {
+
+            document.getElementById(
+                "previewBride"
+            ).textContent = this.value;
+
+        }
+    );
+
+
+
+    groom.addEventListener(
+        "input",
+        function() {
+
+            document.getElementById(
+                "previewGroom"
+            ).textContent = this.value;
+
+        }
+    );
+
+
+
+    date.addEventListener(
+        "input",
+        function() {
+
+            document.getElementById(
+                "previewDate"
+            ).textContent = this.value;
+
+        }
+    );
+
+
+
+    venue.addEventListener(
+        "input",
+        function() {
+
+            document.getElementById(
+                "previewVenue"
+            ).textContent = this.value;
+
+        }
+    );
+
+
+
+    city.addEventListener(
+        "input",
+        function() {
+
+            document.getElementById(
+                "previewCity"
+            ).textContent = this.value;
+
+        }
+    );
+
+
+
+    message.addEventListener(
+        "input",
+        function() {
+
+            const text =
+                this.value
+                .replace(/\n/g, "<br>");
+
+            document.getElementById(
+                "previewMessage"
+            ).innerHTML = text;
+
+        }
+    );
+
+
+
+    function showMessage() {
+
+        alert(
+            "Поканата е запазена като демонстрация!"
+        );
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
