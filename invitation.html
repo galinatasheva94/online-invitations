@@ -23,6 +23,11 @@
             color: #463d35;
         }
 
+
+        /* ========================================
+           OPENING SCREEN
+        ======================================== */
+
         .opening {
             min-height: 100vh;
 
@@ -41,135 +46,82 @@
                 );
 
             position: relative;
+
             overflow: hidden;
+
+            transition:
+                opacity 1s ease,
+                visibility 1s ease;
         }
 
-        .opening-content {
-            position: relative;
-            z-index: 2;
 
-            max-width: 700px;
-            padding: 40px 25px;
-
-            animation:
-                openingAppear 1.5s ease-out;
-        }
-
-        @keyframes openingAppear {
-
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        }
-
-        .opening-eyebrow {
-            font-size: 12px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-
-        .opening h1 {
-            font-size: 68px;
-            font-weight: normal;
-            line-height: 1.05;
-            margin: 0;
-        }
-
-        .opening-ampersand {
-            font-size: 32px;
-            color: #a48655;
-            margin: 18px 0;
-            font-style: italic;
-        }
-
-        .opening-date {
-            margin-top: 35px;
-            font-size: 17px;
-            letter-spacing: 4px;
-        }
-
-        .opening-line {
-            width: 90px;
-            height: 1px;
-            background: #b69a6d;
-            margin: 30px auto;
-        }
-
-        .open-button {
-            display: inline-block;
-
-            margin-top: 30px;
-
-            padding: 17px 35px;
-
-            border: 1px solid #806b4f;
-
-            color: #463d35;
-
-            text-decoration: none;
-
-            letter-spacing: 2px;
-
-            font-size: 12px;
-
-            transition: 0.3s;
-        }
-
-        .open-button:hover {
-            background: #55483d;
-            color: white;
-        }
-
-        .flower {
-            position: absolute;
-            color: #9b9b7d;
-            opacity: 0.3;
+        .opening.hidden {
+            opacity: 0;
+            visibility: hidden;
             pointer-events: none;
         }
 
+
+        /* ========================================
+           DECORATION
+        ======================================== */
+
+        .flower {
+            position: absolute;
+
+            color: #9b9b7d;
+
+            opacity: 0.3;
+
+            pointer-events: none;
+
+            user-select: none;
+        }
+
+
         .flower-1 {
-            top: -30px;
-            left: -20px;
-            font-size: 150px;
+            top: -35px;
+            left: -25px;
+
+            font-size: 160px;
 
             animation:
-                floatFlower 6s ease-in-out infinite;
+                floatFlower 7s ease-in-out infinite;
         }
+
 
         .flower-2 {
-            top: 20%;
+            top: 15%;
             right: 8%;
-            font-size: 50px;
+
+            font-size: 55px;
 
             animation:
-                floatFlower 7s ease-in-out infinite reverse;
+                floatFlower 6s ease-in-out infinite reverse;
         }
 
+
         .flower-3 {
-            bottom: -40px;
-            right: -20px;
-            font-size: 150px;
+            bottom: -45px;
+            right: -25px;
+
+            font-size: 160px;
 
             animation:
                 floatFlower 8s ease-in-out infinite;
         }
 
+
         .flower-4 {
-            bottom: 18%;
+            bottom: 15%;
             left: 8%;
+
             font-size: 45px;
 
             animation:
                 floatFlower 6s ease-in-out infinite reverse;
         }
+
 
         @keyframes floatFlower {
 
@@ -188,41 +140,428 @@
 
         }
 
-        .invitation {
+
+        /* ========================================
+           ENVELOPE
+        ======================================== */
+
+        .envelope-container {
+            position: relative;
+
+            z-index: 5;
+
+            width: min(440px, 90vw);
+
+            animation:
+                envelopeAppear 1.2s ease-out;
+        }
+
+
+        @keyframes envelopeAppear {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(30px)
+                    scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        .envelope {
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 1.55;
+
+            background: #eee4d6;
+
+            border:
+                1px solid #d1c0aa;
+
+            box-shadow:
+                0 25px 70px
+                rgba(70, 55, 40, 0.18);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.8s ease;
+        }
+
+
+        .envelope:hover {
+            transform:
+                translateY(-5px);
+        }
+
+
+        /* долна част на плика */
+
+        .envelope::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left:
+                calc(min(440px, 90vw) / 2)
+                solid transparent;
+
+            border-right:
+                calc(min(440px, 90vw) / 2)
+                solid transparent;
+
+            border-bottom:
+                200px solid #e5d7c5;
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        /* капак */
+
+        .envelope-flap {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 0;
+            height: 0;
+
+            border-left:
+                calc(min(440px, 90vw) / 2)
+                solid transparent;
+
+            border-right:
+                calc(min(440px, 90vw) / 2)
+                solid transparent;
+
+            border-top:
+                180px solid #d9c6ad;
+
+            z-index: 4;
+
+            transform-origin: top center;
+
+            transition:
+                transform 1s cubic-bezier(
+                    .65,
+                    .05,
+                    .36,
+                    1
+                );
+        }
+
+
+        /* писмо */
+
+        .letter {
+            position: absolute;
+
+            left: 7%;
+            right: 7%;
+
+            bottom: 8%;
+
+            height: 84%;
+
+            background: #fffdf9;
+
+            border:
+                1px solid #e2d8cb;
+
+            z-index: 1;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            transition:
+                transform 1.2s
+                cubic-bezier(
+                    .65,
+                    .05,
+                    .36,
+                    1
+                );
+
+            box-shadow:
+                0 8px 25px
+                rgba(70, 55, 40, 0.08);
+        }
+
+
+        .letter-content {
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        .letter-small {
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            color: #806b4f;
+        }
+
+
+        .letter-names {
+            margin-top: 15px;
+
+            font-size: 29px;
+
+            font-weight: normal;
+        }
+
+
+        /* печат */
+
+        .seal {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 68px;
+            height: 68px;
+
+            border-radius: 50%;
+
+            background: #9c8060;
+
+            color: #fffaf2;
+
+            z-index: 6;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 24px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(70, 55, 40, 0.2);
+
+            transition:
+                opacity 0.5s ease,
+                transform 0.5s ease;
+        }
+
+
+        /* ========================================
+           OPENED STATE
+        ======================================== */
+
+        .envelope-container.opened
+        .envelope-flap {
+
+            transform:
+                rotateX(180deg);
+        }
+
+
+        .envelope-container.opened
+        .letter {
+
+            transform:
+                translateY(-58%);
+        }
+
+
+        .envelope-container.opened
+        .seal {
+
+            opacity: 0;
+
+            transform:
+                translate(-50%, -50%)
+                scale(0.5);
+        }
+
+
+        .opening-text {
+
+            margin-top: 35px;
+
+            animation:
+                textAppear 1s
+                ease-out 0.8s both;
+        }
+
+
+        @keyframes textAppear {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+
+        .opening-instruction {
+
+            font-size: 12px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: #71665b;
+        }
+
+
+        .open-button {
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            padding: 14px 28px;
+
+            border:
+                1px solid #806b4f;
+
+            background:
+                rgba(255,255,255,0.4);
+
+            color: #463d35;
+
+            font-family: Georgia, serif;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .open-button:hover {
+
+            background: #55483d;
+
+            color: white;
+        }
+
+
+        /* ========================================
+           MAIN INVITATION
+        ======================================== */
+
+        .main-content {
+
+            opacity: 0;
+
+            transform:
+                translateY(40px);
+
+            transition:
+                opacity 1.4s ease,
+                transform 1.4s ease;
+
+            pointer-events: none;
+        }
+
+
+        .main-content.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+            pointer-events: auto;
+        }
+
+
+        .hero {
+
             min-height: 100vh;
 
-            padding: 110px 25px;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
 
             text-align: center;
 
             background: #fbf7ef;
 
             position: relative;
+
             overflow: hidden;
         }
 
-        .invitation-inner {
-            max-width: 850px;
-            margin: auto;
+
+        .hero-inner {
+
+            max-width: 900px;
+
+            padding: 80px 25px;
 
             position: relative;
+
             z-index: 2;
         }
 
-        .invitation-title {
+
+        .hero-title {
+
             font-size: 13px;
-            letter-spacing: 5px;
+
+            letter-spacing: 6px;
+
             margin-bottom: 35px;
         }
 
+
         .heart {
+
             color: #a48655;
+
             font-size: 25px;
+
             margin-bottom: 25px;
 
             animation:
-                heartPulse 3s ease-in-out infinite;
+                heartPulse 3s
+                ease-in-out infinite;
         }
+
 
         @keyframes heartPulse {
 
@@ -237,66 +576,110 @@
 
         }
 
+
         .names {
-            font-size: 64px;
+
+            font-size: clamp(
+                48px,
+                8vw,
+                75px
+            );
+
             font-weight: normal;
+
             line-height: 1.05;
+
             margin: 0;
         }
 
+
         .ampersand {
-            font-size: 34px;
+
+            font-size: 35px;
+
             color: #a48655;
+
             margin: 15px 0;
+
             font-style: italic;
         }
 
+
         .date {
+
             margin-top: 45px;
+
             font-size: 18px;
+
             letter-spacing: 5px;
         }
 
+
         .line {
+
             width: 100px;
+
             height: 1px;
+
             background: #b69a6d;
+
             margin: 30px auto;
         }
 
+
         .message {
+
             max-width: 600px;
+
             margin: 40px auto;
 
             line-height: 1.9;
+
             font-size: 17px;
 
             color: #71665b;
         }
 
+
+        /* ========================================
+           DETAILS
+        ======================================== */
+
         .details {
-            padding: 100px 25px;
+
+            padding: 110px 25px;
 
             background: #eee7dd;
 
             text-align: center;
         }
 
+
         .eyebrow {
+
             font-size: 12px;
+
             letter-spacing: 5px;
+
             text-transform: uppercase;
         }
 
+
         .details h2 {
+
             font-size: 40px;
+
             font-weight: normal;
+
             margin-top: 20px;
         }
 
+
         .detail-grid {
+
             max-width: 900px;
-            margin: 50px auto 0;
+
+            margin: 55px auto 0;
 
             display: grid;
 
@@ -306,35 +689,68 @@
             gap: 25px;
         }
 
+
         .detail {
+
             background: #faf8f4;
 
             padding: 40px 25px;
 
             border:
                 1px solid #e2d9cd;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
         }
 
+
+        .detail:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(70, 55, 40, 0.1);
+        }
+
+
         .detail-icon {
+
             font-size: 32px;
+
             color: #a48655;
+
             margin-bottom: 20px;
         }
 
+
         .detail h3 {
+
             font-size: 20px;
+
             font-weight: normal;
-            margin-bottom: 10px;
         }
 
+
         .detail p {
+
             color: #71665b;
+
             line-height: 1.6;
+
             font-size: 15px;
         }
 
+
+        /* ========================================
+           RSVP
+        ======================================== */
+
         .rsvp-section {
-            padding: 110px 25px;
+
+            padding: 120px 25px;
 
             text-align: center;
 
@@ -343,35 +759,48 @@
             color: white;
         }
 
+
         .rsvp-section h2 {
+
             font-size: 42px;
+
             font-weight: normal;
-            margin-top: 0;
         }
 
+
         .rsvp-section p {
+
             max-width: 550px;
-            margin: 0 auto 35px;
+
+            margin:
+                0 auto 35px;
 
             line-height: 1.7;
+
             opacity: 0.85;
         }
 
+
         .rsvp-button {
+
             display: inline-block;
 
             padding: 16px 32px;
 
             background: #f8f4ee;
+
             color: #463d35;
 
             text-decoration: none;
 
             letter-spacing: 2px;
+
             font-size: 12px;
         }
 
+
         footer {
+
             padding: 30px 20px;
 
             text-align: center;
@@ -383,26 +812,72 @@
             font-size: 13px;
         }
 
+
+        /* ========================================
+           MUSIC BUTTON
+        ======================================== */
+
+        .music-button {
+
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid #b69a6d;
+
+            background: #fffdf9;
+
+            color: #806b4f;
+
+            cursor: pointer;
+
+            z-index: 50;
+
+            display: none;
+
+            font-size: 18px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(70,55,40,0.15);
+        }
+
+
+        .music-button.visible {
+            display: block;
+        }
+
+
+        /* ========================================
+           MOBILE
+        ======================================== */
+
         @media (max-width: 750px) {
 
-            .opening h1 {
-                font-size: 48px;
-            }
-
-            .names {
-                font-size: 48px;
-            }
-
             .detail-grid {
+
                 grid-template-columns: 1fr;
             }
 
-            .invitation {
-                padding-top: 80px;
-                padding-bottom: 80px;
+            .details h2 {
+
+                font-size: 32px;
+            }
+
+            .rsvp-section h2 {
+
+                font-size: 34px;
             }
 
         }
+
 
     </style>
 </head>
@@ -411,7 +886,14 @@
 <body>
 
 
-<section class="opening">
+<!-- ========================================
+     OPENING
+======================================== -->
+
+<section
+    class="opening"
+    id="opening"
+>
 
 
     <div class="flower flower-1">
@@ -431,45 +913,59 @@
     </div>
 
 
-    <div class="opening-content">
+    <div class="envelope-container" id="envelopeContainer">
 
-        <div class="opening-eyebrow">
-            Заповядайте на нашия специален ден
+
+        <div class="envelope">
+
+
+            <div class="letter">
+
+                <div class="letter-content">
+
+                    <div class="letter-small">
+                        Сватбена покана
+                    </div>
+
+                    <div
+                        class="letter-names"
+                        id="letterNames"
+                    >
+                        Галина & Мартин
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="envelope-flap"></div>
+
+
+            <div class="seal">
+                ♥
+            </div>
+
+
         </div>
 
 
-        <h1 id="openingBride">
-            Галина
-        </h1>
+        <div class="opening-text">
+
+            <div class="opening-instruction">
+                За вас е тази покана
+            </div>
 
 
-        <div class="opening-ampersand">
-            &
+            <button
+                class="open-button"
+                id="openButton"
+            >
+                ОТВОРИ ПОКАНАТА
+            </button>
+
         </div>
 
-
-        <h1 id="openingGroom">
-            Мартин
-        </h1>
-
-
-        <div
-            class="opening-date"
-            id="openingDate"
-        >
-            12 ЮНИ 2027
-        </div>
-
-
-        <div class="opening-line"></div>
-
-
-        <a
-            href="#invitation"
-            class="open-button"
-        >
-            ОТВОРИ ПОКАНАТА
-        </a>
 
     </div>
 
@@ -477,204 +973,255 @@
 
 
 
-<section
-    class="invitation"
-    id="invitation"
+<!-- ========================================
+     MAIN CONTENT
+======================================== -->
+
+<div
+    class="main-content"
+    id="mainContent"
 >
 
 
-    <div class="invitation-inner">
+    <section class="hero">
 
 
-        <div class="invitation-title">
-            СВАТБЕНА ПОКАНА
+        <div class="flower flower-1">
+            ✿
+        </div>
+
+        <div class="flower flower-2">
+            ❀
         </div>
 
 
-        <div class="heart">
-            ─── ♥ ───
-        </div>
+        <div class="hero-inner">
 
 
-        <h2
-            class="names"
-            id="previewBride"
-        >
-            Галина
-        </h2>
-
-
-        <div class="ampersand">
-            &
-        </div>
-
-
-        <h2
-            class="names"
-            id="previewGroom"
-        >
-            Мартин
-        </h2>
-
-
-        <div
-            class="date"
-            id="previewDate"
-        >
-            12 ЮНИ 2027
-        </div>
-
-
-        <div class="line"></div>
-
-
-        <div
-            class="message"
-            id="previewMessage"
-        >
-
-            <p>
-                С радост ви каним да споделите
-                нашия специален ден с нас.
-            </p>
-
-            <p>
-                Ще се радваме да бъдете част
-                от този незабравим момент.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<section class="details">
-
-
-    <div class="eyebrow">
-        НАШИЯТ ДЕН
-    </div>
-
-
-    <h2>
-        Ще се радваме да бъдете с нас
-    </h2>
-
-
-    <div class="detail-grid">
-
-
-        <div class="detail">
-
-            <div class="detail-icon">
-                ♡
+            <div class="hero-title">
+                СВАТБЕНА ПОКАНА
             </div>
 
-            <h3>
-                Кога
-            </h3>
 
-            <p id="detailDate">
+            <div class="heart">
+                ─── ♥ ───
+            </div>
+
+
+            <h1
+                class="names"
+                id="previewBride"
+            >
+                Галина
+            </h1>
+
+
+            <div class="ampersand">
+                &
+            </div>
+
+
+            <h1
+                class="names"
+                id="previewGroom"
+            >
+                Мартин
+            </h1>
+
+
+            <div
+                class="date"
+                id="previewDate"
+            >
                 12 ЮНИ 2027
-            </p>
-
-            <p>
-                Начало: 17:00 ч.
-            </p>
-
-        </div>
-
-
-        <div class="detail">
-
-            <div class="detail-icon">
-                ⌖
             </div>
 
-            <h3>
-                Къде
-            </h3>
 
-            <p id="detailVenue">
-                РЕЗИДЕНЦИЯ ТЕРА
-            </p>
-
-            <p id="detailCity">
-                ГР. СОФИЯ
-            </p>
-
-        </div>
+            <div class="line"></div>
 
 
-        <div class="detail">
+            <div
+                class="message"
+                id="previewMessage"
+            >
 
-            <div class="detail-icon">
-                ✦
+                <p>
+                    С радост ви каним да споделите
+                    нашия специален ден с нас.
+                </p>
+
+                <p>
+                    Ще се радваме да бъдете част
+                    от този незабравим момент.
+                </p>
+
             </div>
 
-            <h3>
-                Облекло
-            </h3>
 
-            <p>
-                Елегантно
-            </p>
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         DETAILS
+    ======================================== -->
+
+    <section class="details">
+
+
+        <div class="eyebrow">
+            НАШИЯТ ДЕН
+        </div>
+
+
+        <h2>
+            Ще се радваме да бъдете с нас
+        </h2>
+
+
+        <div class="detail-grid">
+
+
+            <div class="detail">
+
+                <div class="detail-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    Кога
+                </h3>
+
+                <p id="detailDate">
+                    12 ЮНИ 2027
+                </p>
+
+                <p>
+                    Начало: 17:00 ч.
+                </p>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-icon">
+                    ⌖
+                </div>
+
+                <h3>
+                    Къде
+                </h3>
+
+                <p id="detailVenue">
+                    РЕЗИДЕНЦИЯ ТЕРА
+                </p>
+
+                <p id="detailCity">
+                    ГР. СОФИЯ
+                </p>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Облекло
+                </h3>
+
+                <p>
+                    Елегантно
+                </p>
+
+            </div>
+
 
         </div>
 
 
-    </div>
-
-</section>
+    </section>
 
 
 
-<section class="rsvp-section">
+    <!-- ========================================
+         RSVP
+    ======================================== -->
+
+    <section class="rsvp-section">
 
 
-    <h2>
-        Ще бъдете ли с нас?
-    </h2>
+        <h2>
+            Ще бъдете ли с нас?
+        </h2>
 
 
-    <p>
-        Моля, потвърдете присъствието си,
-        за да можем да се погрижим за
-        всеки детайл от нашия специален ден.
-    </p>
+        <p>
+            Моля, потвърдете присъствието си,
+            за да можем да се погрижим за
+            всеки детайл от нашия специален ден.
+        </p>
 
 
-    <a
-        href="#"
-        class="rsvp-button"
-        onclick="return false;"
-    >
-        ПОТВЪРДИ ПРИСЪСТВИЕ
-    </a>
+        <a
+            href="#"
+            class="rsvp-button"
+            onclick="return false;"
+        >
+            ПОТВЪРДИ ПРИСЪСТВИЕ
+        </a>
 
 
-</section>
+    </section>
 
 
 
-<footer>
+    <footer>
 
-    © 2026 Вашата покана
+        © 2026 Вашата покана
 
-</footer>
+    </footer>
+
+
+</div>
+
+
+
+<!-- ========================================
+     MUSIC
+======================================== -->
+
+<button
+    class="music-button"
+    id="musicButton"
+>
+    ♪
+</button>
+
+
+<!-- Скрит аудио елемент.
+     По-късно ще добавим реална музика. -->
+
+<audio
+    id="music"
+    loop
+>
+</audio>
 
 
 
 <script>
 
 
-    /* =========================
-       ВЗЕМАМЕ ДАННИТЕ ОТ URL
-    ========================= */
+    /* ========================================
+       ДАННИ ОТ URL
+    ======================================== */
 
     const params =
         new URLSearchParams(
@@ -702,15 +1249,11 @@
 
 
 
-    /* =========================
-       ПОПЪЛВАМЕ ИМЕНАТА
-    ========================= */
+    /* ========================================
+       ИМЕНА
+    ======================================== */
 
     if (bride) {
-
-        document.getElementById(
-            "openingBride"
-        ).textContent = bride;
 
         document.getElementById(
             "previewBride"
@@ -722,30 +1265,33 @@
     if (groom) {
 
         document.getElementById(
-            "openingGroom"
-        ).textContent = groom;
-
-        document.getElementById(
             "previewGroom"
         ).textContent = groom;
 
     }
 
 
+    if (bride && groom) {
 
-    /* =========================
+        document.getElementById(
+            "letterNames"
+        ).textContent =
+            bride + " & " + groom;
+
+    }
+
+
+
+    /* ========================================
        ДАТА
-    ========================= */
+    ======================================== */
 
     if (date) {
 
         document.getElementById(
-            "openingDate"
-        ).textContent = date;
-
-        document.getElementById(
             "previewDate"
         ).textContent = date;
+
 
         document.getElementById(
             "detailDate"
@@ -755,9 +1301,9 @@
 
 
 
-    /* =========================
+    /* ========================================
        МЯСТО
-    ========================= */
+    ======================================== */
 
     if (venue) {
 
@@ -778,9 +1324,9 @@
 
 
 
-    /* =========================
+    /* ========================================
        ТЕКСТ
-    ========================= */
+    ======================================== */
 
     if (message) {
 
@@ -811,6 +1357,162 @@
                 .join("");
 
     }
+
+
+
+    /* ========================================
+       OPENING ANIMATION
+    ======================================== */
+
+    const openButton =
+        document.getElementById(
+            "openButton"
+        );
+
+
+    const envelopeContainer =
+        document.getElementById(
+            "envelopeContainer"
+        );
+
+
+    const opening =
+        document.getElementById(
+            "opening"
+        );
+
+
+    const mainContent =
+        document.getElementById(
+            "mainContent"
+        );
+
+
+    const musicButton =
+        document.getElementById(
+            "musicButton"
+        );
+
+
+    openButton.addEventListener(
+        "click",
+        function () {
+
+
+            envelopeContainer.classList.add(
+                "opened"
+            );
+
+
+            /*
+             * Изчакваме анимацията
+             * на плика.
+             */
+
+            setTimeout(
+                function () {
+
+                    opening.classList.add(
+                        "hidden"
+                    );
+
+                    mainContent.classList.add(
+                        "visible"
+                    );
+
+                    musicButton.classList.add(
+                        "visible"
+                    );
+
+
+                    /*
+                     * Преместваме страницата
+                     * към началото на поканата.
+                     */
+
+                    setTimeout(
+                        function () {
+
+                            document
+                                .getElementById(
+                                    "mainContent"
+                                )
+                                .scrollIntoView({
+                                    behavior: "smooth"
+                                });
+
+                        },
+                        300
+                    );
+
+                },
+                1100
+            );
+
+        }
+    );
+
+
+
+    /* ========================================
+       MUSIC BUTTON
+    ======================================== */
+
+    const music =
+        document.getElementById(
+            "music"
+        );
+
+
+    let musicPlaying = false;
+
+
+    musicButton.addEventListener(
+        "click",
+        function () {
+
+            /*
+             * В момента няма зареден
+             * музикален файл.
+             *
+             * По-късно ще добавим:
+             *
+             * music.src = "music/song.mp3";
+             */
+
+            if (!music.src) {
+
+                alert(
+                    "Тук ще добавим музиката към поканата."
+                );
+
+                return;
+
+            }
+
+
+            if (musicPlaying) {
+
+                music.pause();
+
+                musicButton.textContent =
+                    "♪";
+
+                musicPlaying = false;
+
+            } else {
+
+                music.play();
+
+                musicButton.textContent =
+                    "Ⅱ";
+
+                musicPlaying = true;
+
+            }
+
+        }
+    );
 
 
 </script>
