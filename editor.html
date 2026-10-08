@@ -696,7 +696,7 @@
 
         <!-- PREVIEW -->
 
-        <div class="preview-area">
+        <div class="preview-area" id="previewLabel">
 
             <div class="preview-label">
                 Преглед на поканата
@@ -810,8 +810,10 @@
 
 
 
-<script>
-
+<script>    const params = new URLSearchParams(window.location.search);
+    const design = params.get("design");
+ if (design === "minimal-garden") {
+        document.getElementById("previewLabel").textContent = "Преглед · Minimal Garden";
 
     /*
        Тук започва JavaScript.
@@ -822,28 +824,12 @@
     */
 
 
-    const bride =
-        document.getElementById("bride");
-
-
-    const groom =
-        document.getElementById("groom");
-
-
-    const date =
-        document.getElementById("date");
-
-
-    const venue =
-        document.getElementById("venue");
-
-
-    const city =
-        document.getElementById("city");
-
-
-    const message =
-        document.getElementById("message");
+    const bride = document.getElementById("bride");
+    const groom = document.getElementById("groom");
+    const date = document.getElementById("date");
+    const venue = document.getElementById("venue");
+    const city = document.getElementById("city");
+    const message = document.getElementById("message");
 
 
 
@@ -932,7 +918,7 @@
     function showMessage() {
 
         alert(
-            "Поканата е запазена като демонстрация!"
+            "Поканата е запазена като чернова!"
         );
 
     }
