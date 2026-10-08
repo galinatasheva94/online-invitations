@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -14,6 +13,10 @@
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -24,15 +27,26 @@ html {
 
 body {
     margin: 0;
-    background: #eee5d9;
-    color: #332b26;
+    background: #eee6db;
+    color: #403a35;
     font-family: "Montserrat", sans-serif;
-    font-weight: 400;
+    overflow-x: hidden;
 }
 
-/* =====================================================
-   OPENING
-===================================================== */
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   OPENING SCREEN
+========================================================= */
 
 .opening {
     position: fixed;
@@ -43,14 +57,12 @@ body {
     align-items: center;
     justify-content: center;
 
-    overflow: hidden;
-
     background:
         radial-gradient(
-            ellipse at center,
-            #f8f2e9 0%,
-            #eee4d7 70%,
-            #e5d8c8 100%
+            circle at center,
+            #faf7f1 0%,
+            #f3ece2 48%,
+            #e8ddd0 100%
         );
 
     transition:
@@ -64,1130 +76,684 @@ body {
     pointer-events: none;
 }
 
-/* =====================================================
-   DECORATIVE RIBBONS
-===================================================== */
+
+/* =========================================================
+   RIBBONS
+========================================================= */
 
 .ribbon {
     position: absolute;
+    top: -10%;
+    width: 28vw;
+    max-width: 430px;
+    min-width: 230px;
+    height: 120vh;
+
+    opacity: 0.92;
     pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(92,70,57,.12),
+            rgba(255,255,255,.28) 25%,
+            rgba(126,91,71,.22) 50%,
+            rgba(255,255,255,.16) 75%,
+            rgba(92,70,57,.14)
+        );
+
+    box-shadow:
+        inset 8px 0 18px rgba(70,45,35,.08),
+        inset -8px 0 18px rgba(70,45,35,.08);
+}
+
+.ribbon.left {
+    left: -9%;
+    transform: rotate(8deg);
+    animation: ribbonLeft 2.4s ease forwards;
+}
+
+.ribbon.right {
+    right: -9%;
+    transform: rotate(-8deg);
+    animation: ribbonRight 2.4s ease forwards;
+}
+
+.ribbon::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+
+    width: 100%;
+    height: 170px;
+
+    background: inherit;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        82% 38%,
+        100% 100%,
+        50% 70%,
+        0 100%,
+        18% 38%
+    );
+}
+
+@keyframes ribbonLeft {
+    from {
+        transform: translateX(-80px) rotate(8deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) rotate(8deg);
+        opacity: .92;
+    }
+}
+
+@keyframes ribbonRight {
+    from {
+        transform: translateX(80px) rotate(-8deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) rotate(-8deg);
+        opacity: .92;
+    }
+}
+
+
+/* =========================================================
+   FLORAL PLACEHOLDERS
+   ---------------------------------------------------------
+   These are intentionally prepared as image containers.
+   Later we replace the source files with realistic flowers.
+========================================================= */
+
+.floral {
+    position: absolute;
     z-index: 2;
 
-    width: 105px;
-    height: 125%;
-
-    opacity: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(143,104,89,.04),
-            rgba(255,247,239,.58) 18%,
-            rgba(191,149,132,.72) 46%,
-            rgba(245,222,210,.75) 67%,
-            rgba(139,100,84,.08)
-        );
-
-    box-shadow:
-        0 0 30px rgba(96,65,53,.10);
-}
-
-.ribbon-left {
-    left: -45px;
-    top: -12%;
-
-    transform:
-        rotate(10deg)
-        translateX(-130px);
-
-    animation:
-        ribbonLeft
-        2.5s
-        cubic-bezier(.2,.7,.2,1)
-        .1s
-        forwards;
-}
-
-.ribbon-right {
-    right: -45px;
-    top: -12%;
-
-    transform:
-        rotate(-10deg)
-        translateX(130px);
-
-    animation:
-        ribbonRight
-        2.5s
-        cubic-bezier(.2,.7,.2,1)
-        .2s
-        forwards;
-}
-
-/* ribbon folds */
-
-.ribbon-left::before,
-.ribbon-right::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(255,255,255,.42) 28%,
-            transparent 39%,
-            rgba(112,73,60,.13) 57%,
-            transparent 70%
-        );
-}
-
-/* loose tails */
-
-.ribbon-tail {
-    position: absolute;
-    z-index: 3;
-
-    width: 150px;
-    height: 270px;
-
-    opacity: 0;
-
-    background:
-        linear-gradient(
-            120deg,
-            rgba(255,247,240,.2),
-            rgba(198,155,137,.82) 48%,
-            rgba(238,208,193,.65)
-        );
-
-    filter:
-        drop-shadow(
-            0 10px 15px rgba(90,60,48,.13)
-        );
-}
-
-.ribbon-tail-left {
-    left: 3%;
-    bottom: -70px;
-
-    transform:
-        rotate(19deg)
-        translateY(100px);
-
-    clip-path: polygon(
-        18% 0,
-        85% 8%,
-        64% 30%,
-        100% 53%,
-        53% 100%,
-        37% 65%,
-        0 84%,
-        20% 43%
-    );
-
-    animation:
-        tailIn
-        2.6s
-        ease
-        .35s
-        forwards;
-}
-
-.ribbon-tail-right {
-    right: 3%;
-    top: -70px;
-
-    transform:
-        rotate(-19deg)
-        translateY(-100px);
-
-    clip-path: polygon(
-        15% 0,
-        82% 0,
-        100% 45%,
-        64% 35%,
-        84% 73%,
-        43% 100%,
-        29% 58%,
-        0 72%,
-        22% 31%
-    );
-
-    animation:
-        tailIn
-        2.6s
-        ease
-        .45s
-        forwards;
-}
-
-/* =====================================================
-   BOTANICAL COMPOSITIONS
-===================================================== */
-
-.botanical {
-    position: absolute;
-    z-index: 4;
-
-    width: 390px;
-    height: 440px;
+    width: min(420px, 34vw);
+    height: min(520px, 44vw);
 
     pointer-events: none;
 
     opacity: 0;
-}
-
-.botanical-left {
-    left: -55px;
-    bottom: -50px;
-
-    transform:
-        translate(-130px, 100px)
-        rotate(-7deg);
 
     animation:
-        botanicalLeft
-        3s
-        cubic-bezier(.2,.7,.2,1)
-        .15s
-        forwards;
+        floralAppear 2.8s ease forwards;
 }
 
-.botanical-right {
-    right: -55px;
-    top: -50px;
+.floral img {
+    width: 100%;
+    height: 100%;
 
-    transform:
-        translate(130px, -100px)
-        rotate(173deg);
+    object-fit: contain;
 
-    animation:
-        botanicalRight
-        3s
-        cubic-bezier(.2,.7,.2,1)
-        .25s
-        forwards;
+    display: block;
 }
 
-/* stems */
+.floral.opening-left {
+    left: -4%;
+    bottom: -2%;
 
-.stem {
-    position: absolute;
-
-    width: 3px;
-    height: 310px;
-
-    border-radius: 100%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #75806a,
-            #4e6049 60%,
-            rgba(78,96,73,.15)
-        );
-
-    transform-origin: bottom;
+    animation-delay: .15s;
 }
 
-.stem.one {
-    left: 110px;
-    bottom: 0;
-    transform: rotate(-28deg);
+.floral.opening-right {
+    right: -4%;
+    top: -2%;
+
+    animation-delay: .35s;
 }
 
-.stem.two {
-    left: 160px;
-    bottom: 0;
-    height: 350px;
-    transform: rotate(-7deg);
+@keyframes floralAppear {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(30px)
+            scale(.94);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
-.stem.three {
-    left: 205px;
-    bottom: 8px;
-    height: 280px;
-    transform: rotate(19deg);
-}
 
-.stem.four {
-    left: 245px;
-    bottom: 5px;
-    height: 230px;
-    transform: rotate(33deg);
-}
-
-/* leaves */
-
-.leaf {
-    position: absolute;
-
-    width: 66px;
-    height: 29px;
-
-    border-radius:
-        100% 0 100% 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            #a3ad91,
-            #617256 58%,
-            #4e6049
-        );
-
-    box-shadow:
-        inset 5px 3px 8px rgba(255,255,255,.22),
-        2px 4px 7px rgba(58,73,52,.12);
-}
-
-.leaf::after {
-    content: "";
-
-    position: absolute;
-
-    left: 8px;
-    top: 14px;
-
-    width: 51px;
-    height: 1px;
-
-    background:
-        rgba(240,241,224,.42);
-}
-
-.leaf.a {
-    left: 65px;
-    bottom: 115px;
-    transform: rotate(-38deg);
-}
-
-.leaf.b {
-    left: 103px;
-    bottom: 185px;
-    transform: rotate(31deg);
-}
-
-.leaf.c {
-    left: 151px;
-    bottom: 90px;
-    transform: rotate(-23deg);
-}
-
-.leaf.d {
-    left: 188px;
-    bottom: 160px;
-    transform: rotate(39deg);
-}
-
-.leaf.e {
-    left: 230px;
-    bottom: 103px;
-    transform: rotate(-28deg);
-}
-
-.leaf.f {
-    left: 257px;
-    bottom: 192px;
-    transform: rotate(29deg);
-}
-
-/* =====================================================
-   FULLER FLOWERS
-===================================================== */
-
-.flower {
-    position: absolute;
-
-    width: 100px;
-    height: 100px;
-
-    filter:
-        drop-shadow(
-            0 9px 12px rgba(89,59,48,.15)
-        );
-}
-
-.flower .petal {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 48px;
-    height: 68px;
-
-    transform-origin: 50% 90%;
-
-    border-radius:
-        55%
-        55%
-        48%
-        48%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f3d9d4 0%,
-            #d99b9a 45%,
-            #b86f75 100%
-        );
-
-    box-shadow:
-        inset 4px 4px 9px rgba(255,255,255,.30),
-        inset -4px -5px 8px rgba(108,55,58,.12);
-}
-
-.flower .p1 {
-    transform:
-        translate(-50%, -87%)
-        rotate(0deg);
-}
-
-.flower .p2 {
-    transform:
-        translate(-50%, -87%)
-        rotate(72deg);
-}
-
-.flower .p3 {
-    transform:
-        translate(-50%, -87%)
-        rotate(144deg);
-}
-
-.flower .p4 {
-    transform:
-        translate(-50%, -87%)
-        rotate(216deg);
-}
-
-.flower .p5 {
-    transform:
-        translate(-50%, -87%)
-        rotate(288deg);
-}
-
-.flower .inner {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 50px;
-    height: 50px;
-
-    transform:
-        translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #c99652 0 12%,
-            #8e5b3e 15% 22%,
-            #e1b86e 25% 31%,
-            transparent 34%
-        );
-}
-
-.flower.big {
-    left: 48px;
-    bottom: 200px;
-
-    transform:
-        rotate(-13deg)
-        scale(1.18);
-}
-
-.flower.medium {
-    left: 175px;
-    bottom: 225px;
-
-    transform:
-        rotate(15deg)
-        scale(.82);
-}
-
-.flower.small {
-    left: 235px;
-    bottom: 130px;
-
-    transform:
-        rotate(-8deg)
-        scale(.58);
-}
-
-/* smaller darker flower */
-
-.flower.deep {
-    left: 125px;
-    bottom: 285px;
-
-    transform:
-        rotate(18deg)
-        scale(.55);
-}
-
-.flower.deep .petal {
-    background:
-        linear-gradient(
-            135deg,
-            #d59a9a,
-            #9b515d
-        );
-}
-
-/* =====================================================
-   SMALL BLOSSOMS
-===================================================== */
-
-.blossom {
-    position: absolute;
-
-    width: 18px;
-    height: 18px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #d8b56e 0 15%,
-            #a96570 18% 50%,
-            #dba8a4 55% 100%
-        );
-
-    box-shadow:
-        0 3px 5px rgba(90,55,45,.12);
-}
-
-.blossom.a {
-    left: 255px;
-    bottom: 270px;
-}
-
-.blossom.b {
-    left: 295px;
-    bottom: 220px;
-    transform: scale(.7);
-}
-
-.blossom.c {
-    left: 90px;
-    bottom: 260px;
-    transform: scale(.65);
-}
-
-.blossom.d {
-    left: 215px;
-    bottom: 315px;
-    transform: scale(.55);
-}
-
-/* =====================================================
-   BOW
-===================================================== */
-
-.bow {
-    position: absolute;
-
-    left: 132px;
-    bottom: 73px;
-
-    width: 115px;
-    height: 75px;
-
-    transform: rotate(-8deg);
-}
-
-.bow-left,
-.bow-right {
-    position: absolute;
-
-    top: 10px;
-
-    width: 66px;
-    height: 47px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #f3d8ce,
-            #bf887b 55%,
-            #a96e68
-        );
-
-    border-radius:
-        75% 25% 70% 30%;
-
-    box-shadow:
-        inset 5px 3px 8px rgba(255,255,255,.28),
-        3px 5px 9px rgba(85,54,45,.15);
-}
-
-.bow-left {
-    left: 0;
-    transform: rotate(21deg);
-}
-
-.bow-right {
-    right: 0;
-    transform:
-        scaleX(-1)
-        rotate(21deg);
-}
-
-.bow-knot {
-    position: absolute;
-
-    left: 50%;
-    top: 19px;
-
-    width: 27px;
-    height: 27px;
-
-    transform:
-        translateX(-50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 28%,
-            #f6e4db,
-            #bc8477 70%
-        );
-
-    box-shadow:
-        0 4px 8px rgba(82,52,43,.18);
-}
-
-/* =====================================================
-   OPENING TEXT
-===================================================== */
+/* =========================================================
+   OPENING CONTENT
+========================================================= */
 
 .opening-content {
     position: relative;
     z-index: 10;
 
-    width: min(750px, 90vw);
-
-    padding: 35px;
+    width: min(760px, 88vw);
 
     text-align: center;
-}
 
-.opening-small {
-    margin-bottom: 25px;
-
-    color: #66564c;
-
-    font-size: 11px;
-    font-weight: 500;
-
-    letter-spacing: 5px;
-    text-transform: uppercase;
-
-    opacity: 0;
+    padding: 40px 20px;
 
     animation:
-        fadeUp
-        1.4s
-        ease
-        .6s
-        forwards;
+        openingContent 1.8s ease forwards;
+}
+
+@keyframes openingContent {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.opening-kicker {
+    margin-bottom: 25px;
+
+    font-size: 14px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+
+    color: #76685d;
 }
 
 .opening-names {
     margin: 0;
 
-    color: #302722;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(58px, 8vw, 108px);
+    font-weight: 500;
+    line-height: .85;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        clamp(62px, 9vw, 110px);
-
-    font-weight: 600;
-
-    line-height: .82;
-
-    text-shadow:
-        0 1px 0 rgba(255,255,255,.4);
-
-    opacity: 0;
-
-    animation:
-        namesIn
-        1.9s
-        cubic-bezier(.2,.7,.2,1)
-        .4s
-        forwards;
+    color: #453b35;
 }
 
 .opening-names span {
     display: block;
 }
 
-.opening-amp {
-    margin: 17px 0;
+.opening-and {
+    margin: 8px 0;
 
-    font-size: .36em;
-    font-weight: 500;
-
-    color: #956d60;
+    font-size: .48em;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .opening-date {
-    margin-top: 38px;
+    margin-top: 35px;
 
-    color: #493c35;
+    font-size: 15px;
+    letter-spacing: .24em;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 29px;
-    font-weight: 600;
-
-    letter-spacing: 3px;
-
-    opacity: 0;
-
-    animation:
-        fadeUp
-        1.4s
-        ease
-        1s
-        forwards;
+    color: #66584e;
 }
 
 .opening-location {
-    margin-top: 10px;
+    margin-top: 12px;
 
-    color: #67584f;
+    font-size: 15px;
+    letter-spacing: .13em;
 
-    font-size: 11px;
-    font-weight: 500;
-
-    letter-spacing: 4px;
-    text-transform: uppercase;
-
-    opacity: 0;
-
-    animation:
-        fadeUp
-        1.4s
-        ease
-        1.15s
-        forwards;
+    color: #77685d;
 }
 
-/* =====================================================
-   OPEN BUTTON
-===================================================== */
-
 .open-button {
-    margin-top: 48px;
+    margin-top: 45px;
 
-    padding:
-        17px 40px;
+    padding: 15px 35px;
 
-    border:
-        1px solid
-        #7f6458;
+    border: 1px solid rgba(96,75,62,.45);
+    border-radius: 100px;
 
-    background:
-        rgba(255,250,245,.40);
+    background: rgba(255,255,255,.28);
 
-    color: #453830;
+    color: #504239;
 
-    font-family:
-        "Montserrat",
-        sans-serif;
-
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
-
-    letter-spacing: 3px;
-
-    cursor: pointer;
+    letter-spacing: .2em;
+    text-transform: uppercase;
 
     transition:
-        all .35s ease;
-
-    opacity: 0;
-
-    animation:
-        fadeUp
-        1.4s
-        ease
-        1.35s
-        forwards;
+        background .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
 }
 
 .open-button:hover {
-    background: #493930;
-    border-color: #493930;
-    color: #fff;
+    background: rgba(255,255,255,.7);
 
-    transform:
-        translateY(-3px);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(65,45,30,.10);
 }
 
-/* =====================================================
-   MAIN
-===================================================== */
 
-.main {
+/* =========================================================
+   MAIN SITE
+========================================================= */
+
+.site {
     display: none;
 
-    opacity: 0;
+    position: relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f1e9de 0%,
+            #eee6db 100%
+        );
 }
 
-.main.visible {
+.site.visible {
     display: block;
-
-    animation:
-        pageReveal
-        1.4s
-        ease
-        forwards;
 }
+
+
+/* =========================================================
+   PERMANENT FLORAL DECORATION
+========================================================= */
+
+.site-floral {
+    position: absolute;
+
+    width: min(340px, 30vw);
+    height: 450px;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    opacity: .92;
+}
+
+.site-floral img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.site-floral.left {
+    left: -90px;
+}
+
+.site-floral.right {
+    right: -90px;
+}
+
+.site-floral.top-left {
+    top: 40px;
+}
+
+.site-floral.top-right {
+    top: 40px;
+}
+
+.site-floral.middle-left {
+    top: 900px;
+}
+
+.site-floral.middle-right {
+    top: 1450px;
+}
+
+.site-floral.bottom-left {
+    top: 2200px;
+}
+
+.site-floral.bottom-right {
+    top: 2700px;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 .section {
-    max-width: 1050px;
+    position: relative;
+    z-index: 5;
+
+    width: min(1050px, 90vw);
 
     margin: 0 auto;
 
-    padding:
-        115px 30px;
+    padding: 115px 30px;
 }
 
-/* =====================================================
+.section-inner {
+    position: relative;
+    z-index: 10;
+}
+
+
+/* =========================================================
    HERO
-===================================================== */
+========================================================= */
 
 .hero {
-    min-height: 90vh;
+    min-height: 100vh;
 
     display: flex;
-    flex-direction: column;
-
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     text-align: center;
+
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    top: 80px;
+    left: 50%;
+
+    width: 1px;
+    height: 100px;
+
+    background: rgba(100,80,65,.25);
 }
 
 .hero-label {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 
-    color: #6b5a50;
-
-    font-size: 10px;
-    font-weight: 600;
-
-    letter-spacing: 5px;
+    font-size: 14px;
+    letter-spacing: .27em;
     text-transform: uppercase;
+
+    color: #78695e;
 }
 
 .hero-names {
     margin: 0;
 
-    color: #302722;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(68px, 9vw, 120px);
+    line-height: .85;
+    font-weight: 500;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        clamp(65px, 9vw, 115px);
-
-    font-weight: 600;
-
-    line-height: .82;
+    color: #453a34;
 }
 
 .hero-names span {
     display: block;
 }
 
-.hero-amp {
-    margin: 18px 0;
-
-    color: #956d60;
-
-    font-size: .35em;
-    font-weight: 500;
+.hero-and {
+    font-style: italic;
+    font-size: .48em;
 }
 
 .hero-date {
-    margin-top: 42px;
+    margin-top: 38px;
 
-    color: #453830;
+    font-size: 16px;
+    letter-spacing: .24em;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 32px;
-    font-weight: 600;
-
-    letter-spacing: 3px;
+    color: #66594f;
 }
 
-.hero-place {
-    margin-top: 9px;
 
-    color: #68594f;
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
 
-    font-size: 10px;
-    font-weight: 500;
-
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-.message {
-    max-width: 650px;
-
-    margin:
-        48px auto 0;
-
-    color: #51443c;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 24px;
-    font-weight: 500;
-
-    line-height: 1.65;
-}
-
-/* =====================================================
-   HEADINGS
-===================================================== */
-
-.section-title {
-    margin-bottom: 55px;
-
-    color: #342b26;
-
-    text-align: center;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 57px;
-    font-weight: 600;
-}
-
-.section-subtitle {
-    margin-top: -40px;
-    margin-bottom: 55px;
-
-    color: #6e5d53;
-
-    text-align: center;
-
-    font-size: 10px;
-    font-weight: 500;
-
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-/* =====================================================
-   STORY
-===================================================== */
-
-.story {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 45px;
-}
-
-.story-item {
-    text-align: center;
-}
-
-.story-date {
-    margin-bottom: 12px;
-
-    color: #966e61;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 29px;
-    font-weight: 600;
-}
-
-.story-title {
-    margin-bottom: 13px;
-
-    color: #3d332d;
+.eyebrow {
+    margin-bottom: 15px;
 
     font-size: 13px;
     font-weight: 600;
 
-    letter-spacing: 1px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+
+    color: #8b7567;
+}
+
+.section-title {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(46px, 6vw, 70px);
+    line-height: .95;
+    font-weight: 500;
+
+    color: #463b34;
+}
+
+.section-intro {
+    max-width: 680px;
+
+    margin: 25px auto 0;
+
+    font-size: 18px;
+    line-height: 1.8;
+
+    color: #655a52;
+}
+
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.story {
+    text-align: center;
 }
 
 .story-text {
-    color: #665950;
+    max-width: 720px;
 
-    font-size: 12px;
-    font-weight: 400;
+    margin: 40px auto 0;
 
-    line-height: 1.8;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 25px;
+    line-height: 1.55;
+
+    color: #51463f;
 }
 
-/* =====================================================
+.story-message {
+    margin-top: 30px;
+
+    white-space: pre-line;
+
+    font-size: 18px;
+    line-height: 1.85;
+
+    color: #665b53;
+}
+
+
+/* =========================================================
+   DECORATIVE LINE
+========================================================= */
+
+.ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+    margin: 45px auto;
+}
+
+.ornament::before,
+.ornament::after {
+    content: "";
+
+    width: 75px;
+    height: 1px;
+
+    background: rgba(111,87,70,.35);
+}
+
+.ornament-symbol {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 22px;
+
+    color: #866c5c;
+}
+
+
+/* =========================================================
    PROGRAM
-===================================================== */
+========================================================= */
 
 .program {
-    max-width: 760px;
-
-    margin: 0 auto;
-}
-
-.program-item {
-    display: grid;
-
-    grid-template-columns:
-        150px 1fr;
-
-    gap: 35px;
-
-    padding:
-        30px 0;
-
-    border-bottom:
-        1px solid
-        rgba(91,72,62,.22);
-}
-
-.program-time {
-    color: #916c5e;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 26px;
-    font-weight: 600;
-}
-
-.program-content h3 {
-    margin:
-        0 0 8px;
-
-    color: #3b302a;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    letter-spacing: 1px;
-}
-
-.program-content p {
-    margin: 0;
-
-    color: #6a5b52;
-
-    font-size: 11px;
-    font-weight: 400;
-
-    line-height: 1.7;
-}
-
-/* =====================================================
-   DRESS CODE
-===================================================== */
-
-.dress {
-    max-width: 650px;
-
-    margin: 0 auto;
-
     text-align: center;
 }
 
-.dress p {
-    color: #51443c;
+.program-list {
+    max-width: 760px;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 25px;
-    font-weight: 500;
-
-    line-height: 1.7;
+    margin: 55px auto 0;
 }
 
-/* =====================================================
+.program-item {
+    position: relative;
+
+    padding: 32px 0;
+
+    border-top: 1px solid rgba(95,75,62,.18);
+}
+
+.program-item:last-child {
+    border-bottom: 1px solid rgba(95,75,62,.18);
+}
+
+.program-time {
+    margin-bottom: 10px;
+
+    font-size: 15px;
+    letter-spacing: .12em;
+
+    color: #8a705e;
+}
+
+.program-title {
+    margin-bottom: 10px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 32px;
+    line-height: 1;
+
+    color: #4a3d35;
+}
+
+.program-place {
+    font-size: 17px;
+    line-height: 1.7;
+
+    color: #6b6058;
+}
+
+
+/* =========================================================
+   DRESS CODE
+========================================================= */
+
+.dress-code {
+    text-align: center;
+}
+
+.dress-box {
+    max-width: 750px;
+
+    margin: 50px auto 0;
+
+    padding: 50px 40px;
+
+    border: 1px solid rgba(95,75,62,.2);
+
+    background: rgba(255,255,255,.24);
+}
+
+.dress-main {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 35px;
+    line-height: 1.3;
+
+    color: #4a3e37;
+}
+
+.dress-description {
+    margin-top: 20px;
+
+    font-size: 18px;
+    line-height: 1.8;
+
+    color: #685d55;
+}
+
+
+/* =========================================================
    FAQ
-===================================================== */
+========================================================= */
 
 .faq {
-    max-width: 700px;
+    max-width: 800px;
 
     margin: 0 auto;
 }
 
 .faq-item {
-    border-bottom:
-        1px solid
-        rgba(91,72,62,.22);
+    border-top: 1px solid rgba(95,75,62,.2);
+}
+
+.faq-item:last-child {
+    border-bottom: 1px solid rgba(95,75,62,.2);
 }
 
 .faq-question {
-    padding: 23px 0;
+    width: 100%;
 
     display: flex;
-
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    cursor: pointer;
+    padding: 25px 0;
 
-    color: #3c312b;
+    border: 0;
 
-    font-size: 12px;
-    font-weight: 600;
+    background: none;
 
-    letter-spacing: 1px;
+    text-align: left;
+
+    color: #4b4038;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 25px;
 }
 
-.faq-question span {
-    color: #916c5e;
+.faq-icon {
+    font-size: 24px;
+    font-weight: 400;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size: 27px;
-
-    transition:
-        transform .3s ease;
+    transition: transform .3s ease;
 }
 
 .faq-answer {
@@ -1195,540 +761,368 @@ body {
 
     overflow: hidden;
 
-    color: #665950;
+    transition:
+        max-height .4s ease,
+        padding .4s ease;
 
-    font-size: 11px;
-    font-weight: 400;
-
+    font-size: 17px;
     line-height: 1.8;
 
-    transition:
-        max-height .45s ease,
-        padding .45s ease;
+    color: #685d55;
 }
 
-.faq-item.active .faq-answer {
-    max-height: 200px;
+.faq-item.open .faq-answer {
+    max-height: 300px;
 
-    padding-bottom: 23px;
+    padding-bottom: 25px;
 }
 
-.faq-item.active
-.faq-question span {
+.faq-item.open .faq-icon {
     transform: rotate(45deg);
 }
 
-/* =====================================================
+
+/* =========================================================
    RSVP
-===================================================== */
+========================================================= */
 
 .rsvp {
     text-align: center;
 }
 
-.rsvp p {
-    max-width: 570px;
+.rsvp-box {
+    max-width: 760px;
 
-    margin:
-        0 auto 35px;
+    margin: 50px auto 0;
 
-    color: #51443c;
+    padding: 55px 40px;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
+    background: rgba(255,255,255,.28);
 
-    font-size: 24px;
-    font-weight: 500;
+    border: 1px solid rgba(95,75,62,.2);
+}
 
-    line-height: 1.6;
+.rsvp-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 36px;
+
+    color: #493d35;
+}
+
+.rsvp-text {
+    margin-top: 20px;
+
+    font-size: 18px;
+    line-height: 1.8;
+
+    color: #665b53;
 }
 
 .rsvp-button {
     display: inline-block;
 
-    padding:
-        16px 38px;
+    margin-top: 30px;
 
-    border:
-        1px solid
-        #795e52;
+    padding: 15px 32px;
 
-    color: #493930;
+    border: 1px solid #756253;
+
+    color: #504239;
 
     text-decoration: none;
 
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
 
-    letter-spacing: 3px;
-
-    transition:
-        background .3s ease,
-        color .3s ease;
+    transition: all .3s ease;
 }
 
 .rsvp-button:hover {
-    background: #493930;
-    color: white;
+    background: #504239;
+
+    color: #fff;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
 
-footer {
-    padding:
-        70px 30px;
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    position: relative;
+    z-index: 10;
+
+    padding: 100px 20px 70px;
 
     text-align: center;
 
-    border-top:
-        1px solid
-        rgba(91,72,62,.20);
+    border-top: 1px solid rgba(95,75,62,.16);
 }
 
 .footer-names {
-    color: #342b26;
+    font-family: "Cormorant Garamond", serif;
 
-    font-family:
-        "Cormorant Garamond",
-        serif;
+    font-size: 55px;
 
-    font-size: 39px;
-    font-weight: 600;
+    color: #4a3e37;
 }
 
 .footer-date {
-    margin-top: 8px;
+    margin-top: 12px;
 
-    color: #6c5c52;
+    font-size: 14px;
+    letter-spacing: .2em;
 
-    font-size: 9px;
-    font-weight: 500;
-
-    letter-spacing: 3px;
+    color: #806f62;
 }
 
-/* =====================================================
-   ANIMATIONS
-===================================================== */
+.footer-small {
+    margin-top: 45px;
 
-@keyframes ribbonLeft {
+    font-size: 13px;
 
-    0% {
-        opacity: 0;
-
-        transform:
-            rotate(10deg)
-            translateX(-130px);
-    }
-
-    100% {
-        opacity: .85;
-
-        transform:
-            rotate(10deg)
-            translateX(0);
-    }
+    color: #8a7b70;
 }
 
-@keyframes ribbonRight {
 
-    0% {
-        opacity: 0;
+/* =========================================================
+   FLORAL DIVIDERS
+========================================================= */
 
-        transform:
-            rotate(-10deg)
-            translateX(130px);
-    }
+.floral-divider {
+    position: relative;
 
-    100% {
-        opacity: .85;
+    height: 230px;
 
-        transform:
-            rotate(-10deg)
-            translateX(0);
-    }
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes tailIn {
+.floral-divider::before {
+    content: "";
 
-    0% {
-        opacity: 0;
-    }
+    width: 130px;
+    height: 1px;
 
-    100% {
-        opacity: .78;
-    }
+    background: rgba(95,75,62,.28);
 }
 
-@keyframes botanicalLeft {
+.floral-divider::after {
+    content: "✦";
 
-    0% {
-        opacity: 0;
+    position: absolute;
 
-        transform:
-            translate(-130px,100px)
-            rotate(-7deg);
-    }
+    font-family: "Cormorant Garamond", serif;
 
-    100% {
-        opacity: 1;
+    font-size: 25px;
 
-        transform:
-            translate(0,0)
-            rotate(-7deg);
-    }
+    color: #896e5e;
 }
 
-@keyframes botanicalRight {
 
-    0% {
-        opacity: 0;
-
-        transform:
-            translate(130px,-100px)
-            rotate(173deg);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translate(0,0)
-            rotate(173deg);
-    }
-}
-
-@keyframes namesIn {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translateY(35px);
-
-        filter: blur(5px);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-        filter: blur(0);
-    }
-}
-
-@keyframes fadeUp {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translateY(20px);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-}
-
-@keyframes pageReveal {
-
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media (max-width: 700px) {
 
-    .opening-names {
-        font-size: 64px;
+    .ribbon {
+        width: 32vw;
+        min-width: 110px;
     }
 
-    .opening-date {
-        font-size: 23px;
-    }
-
-    .botanical {
-        width: 275px;
+    .floral {
+        width: 260px;
         height: 330px;
     }
 
-    .botanical-left {
+    .floral.opening-left {
         left: -100px;
-        bottom: -70px;
+        bottom: -10px;
     }
 
-    .botanical-right {
+    .floral.opening-right {
         right: -100px;
-        top: -70px;
+        top: -10px;
     }
 
-    .ribbon {
-        width: 70px;
+    .opening-content {
+        padding: 30px 15px;
     }
 
-    .story {
-        grid-template-columns: 1fr;
-        gap: 45px;
+    .opening-kicker {
+        font-size: 11px;
+        letter-spacing: .18em;
     }
 
-    .program-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
+    .opening-names {
+        font-size: 65px;
+    }
+
+    .opening-date,
+    .opening-location {
+        font-size: 12px;
+    }
+
+    .open-button {
+        margin-top: 35px;
+
+        padding: 14px 25px;
+    }
+
+    .site-floral {
+        width: 190px;
+        height: 300px;
+
+        opacity: .55;
+    }
+
+    .site-floral.left {
+        left: -110px;
+    }
+
+    .site-floral.right {
+        right: -110px;
+    }
+
+    .site-floral.middle-left {
+        top: 850px;
+    }
+
+    .site-floral.middle-right {
+        top: 1450px;
+    }
+
+    .site-floral.bottom-left {
+        top: 2200px;
+    }
+
+    .site-floral.bottom-right {
+        top: 2800px;
     }
 
     .section {
-        padding:
-            85px 22px;
+        width: 92vw;
+
+        padding: 85px 15px;
     }
 
-    .section-title {
-        font-size: 47px;
+    .section-intro {
+        font-size: 16px;
+        line-height: 1.7;
     }
 
-    .hero-names {
-        font-size: 67px;
+    .story-text {
+        font-size: 22px;
     }
 
+    .story-message {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    .program-title {
+        font-size: 27px;
+    }
+
+    .program-place {
+        font-size: 15px;
+    }
+
+    .dress-box {
+        padding: 40px 25px;
+    }
+
+    .dress-main {
+        font-size: 29px;
+    }
+
+    .dress-description {
+        font-size: 16px;
+    }
+
+    .faq-question {
+        font-size: 22px;
+    }
+
+    .faq-answer {
+        font-size: 16px;
+    }
+
+    .rsvp-box {
+        padding: 40px 25px;
+    }
+
+    .rsvp-title {
+        font-size: 31px;
+    }
+
+    .rsvp-text {
+        font-size: 16px;
+    }
+
+    .footer-names {
+        font-size: 45px;
+    }
 }
 
 </style>
 </head>
 
+
 <body>
 
 
-<!-- =====================================================
-     OPENING SCREEN
-===================================================== -->
+<!-- =======================================================
+     OPENING
+======================================================= -->
 
-<section
-    class="opening"
-    id="opening"
->
+<section class="opening" id="opening">
 
-    <div class="ribbon ribbon-left"></div>
-    <div class="ribbon ribbon-right"></div>
-
-    <div class="ribbon-tail ribbon-tail-left"></div>
-    <div class="ribbon-tail ribbon-tail-right"></div>
+    <div class="ribbon left"></div>
+    <div class="ribbon right"></div>
 
 
-    <!-- LEFT BOTANICAL -->
+    <!--
+        LATER:
+        images/flowers/opening-left.png
+        images/flowers/opening-right.png
+    -->
 
-    <div class="botanical botanical-left">
-
-        <div class="stem one"></div>
-        <div class="stem two"></div>
-        <div class="stem three"></div>
-        <div class="stem four"></div>
-
-        <div class="leaf a"></div>
-        <div class="leaf b"></div>
-        <div class="leaf c"></div>
-        <div class="leaf d"></div>
-        <div class="leaf e"></div>
-        <div class="leaf f"></div>
-
-
-        <div class="flower big">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="flower medium">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="flower small">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="flower deep">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="blossom a"></div>
-        <div class="blossom b"></div>
-        <div class="blossom c"></div>
-        <div class="blossom d"></div>
-
-
-        <div class="bow">
-
-            <div class="bow-left"></div>
-            <div class="bow-right"></div>
-
-            <div class="bow-knot"></div>
-
-        </div>
-
+    <div class="floral opening-left">
+        <img
+            src="images/flowers/opening-left.png"
+            alt=""
+        >
     </div>
 
-
-    <!-- RIGHT BOTANICAL -->
-
-    <div class="botanical botanical-right">
-
-        <div class="stem one"></div>
-        <div class="stem two"></div>
-        <div class="stem three"></div>
-        <div class="stem four"></div>
-
-        <div class="leaf a"></div>
-        <div class="leaf b"></div>
-        <div class="leaf c"></div>
-        <div class="leaf d"></div>
-        <div class="leaf e"></div>
-        <div class="leaf f"></div>
-
-
-        <div class="flower big">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="flower medium">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="flower small">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="flower deep">
-
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-
-            <div class="inner"></div>
-
-        </div>
-
-
-        <div class="blossom a"></div>
-        <div class="blossom b"></div>
-        <div class="blossom c"></div>
-        <div class="blossom d"></div>
-
-
-        <div class="bow">
-
-            <div class="bow-left"></div>
-            <div class="bow-right"></div>
-
-            <div class="bow-knot"></div>
-
-        </div>
-
+    <div class="floral opening-right">
+        <img
+            src="images/flowers/opening-right.png"
+            alt=""
+        >
     </div>
 
-
-    <!-- CENTER -->
 
     <div class="opening-content">
 
-        <div class="opening-small">
-            с радост ви каним
+        <div class="opening-kicker">
+            Нашият специален ден
         </div>
 
-
         <h1 class="opening-names">
+            <span id="openingBride">Галина</span>
 
-            <span id="openingBride">
-                Галина
-            </span>
+            <span class="opening-and">&amp;</span>
 
-            <span class="opening-amp">
-                &amp;
-            </span>
-
-            <span id="openingGroom">
-                Мартин
-            </span>
-
+            <span id="openingGroom">Мартин</span>
         </h1>
-
 
         <div
             class="opening-date"
@@ -1737,7 +1131,6 @@ footer {
             12 ЮНИ 2027
         </div>
 
-
         <div
             class="opening-location"
             id="openingLocation"
@@ -1745,12 +1138,11 @@ footer {
             РЕЗИДЕНЦИЯ ТЕРА · ГР. СОФИЯ
         </div>
 
-
         <button
             class="open-button"
             id="openButton"
         >
-            ОТВОРИ ПОКАНАТА
+            Отвори поканата
         </button>
 
     </div>
@@ -1758,133 +1150,103 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     MAIN INVITATION
-===================================================== -->
+
+<!-- =======================================================
+     MAIN SITE
+======================================================= -->
 
 <main
-    class="main"
-    id="main"
+    class="site"
+    id="site"
 >
 
 
-    <!-- HERO -->
+    <!-- ===================================================
+         PERMANENT FLORAL DECORATIONS
+    ==================================================== -->
+
+    <!--
+        По-късно тук ще поставим истинските прозрачни
+        флорални композиции.
+    -->
+
+    <div class="site-floral left top-left">
+        <img
+            src="images/flowers/site-left-1.png"
+            alt=""
+        >
+    </div>
+
+    <div class="site-floral right top-right">
+        <img
+            src="images/flowers/site-right-1.png"
+            alt=""
+        >
+    </div>
+
+    <div class="site-floral left middle-left">
+        <img
+            src="images/flowers/site-left-2.png"
+            alt=""
+        >
+    </div>
+
+    <div class="site-floral right middle-right">
+        <img
+            src="images/flowers/site-right-2.png"
+            alt=""
+        >
+    </div>
+
+    <div class="site-floral left bottom-left">
+        <img
+            src="images/flowers/site-left-3.png"
+            alt=""
+        >
+    </div>
+
+    <div class="site-floral right bottom-right">
+        <img
+            src="images/flowers/site-right-3.png"
+            alt=""
+        >
+    </div>
+
+
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
 
     <section class="section hero">
 
-        <div class="hero-label">
-            нашата специална покана
-        </div>
+        <div class="section-inner">
 
-
-        <h2 class="hero-names">
-
-            <span id="previewBride">
-                Галина
-            </span>
-
-            <span class="hero-amp">
-                &amp;
-            </span>
-
-            <span id="previewGroom">
-                Мартин
-            </span>
-
-        </h2>
-
-
-        <div
-            class="hero-date"
-            id="previewDate"
-        >
-            12 ЮНИ 2027
-        </div>
-
-
-        <div class="hero-place">
-            РЕЗИДЕНЦИЯ ТЕРА · ГР. СОФИЯ
-        </div>
-
-
-        <div
-            class="message"
-            id="previewMessage"
-        >
-            Ще се радваме да споделите с нас
-            един от най-специалните дни
-            в живота ни.
-        </div>
-
-    </section>
-
-
-    <!-- STORY -->
-
-    <section class="section">
-
-        <h2 class="section-title">
-            Нашата история
-        </h2>
-
-        <div class="section-subtitle">
-            едно начало, една любов, едно семейство
-        </div>
-
-
-        <div class="story">
-
-            <div class="story-item">
-
-                <div class="story-date">
-                    Началото
-                </div>
-
-                <div class="story-title">
-                    Първата среща
-                </div>
-
-                <div class="story-text">
-                    Всичко започна с една среща,
-                    която промени всичко.
-                </div>
-
+            <div class="hero-label">
+                Началото на нашата семейна приказка
             </div>
 
+            <h2 class="hero-names">
 
-            <div class="story-item">
+                <span id="previewBride">
+                    Галина
+                </span>
 
-                <div class="story-date">
-                    Заедно
-                </div>
+                <span class="hero-and">
+                    &amp;
+                </span>
 
-                <div class="story-title">
-                    Нашите моменти
-                </div>
+                <span id="previewGroom">
+                    Мартин
+                </span>
 
-                <div class="story-text">
-                    Малките моменти се превърнаха
-                    в най-големите ни спомени.
-                </div>
+            </h2>
 
-            </div>
-
-
-            <div class="story-item">
-
-                <div class="story-date">
-                    Днес
-                </div>
-
-                <div class="story-title">
-                    Нашият специален ден
-                </div>
-
-                <div class="story-text">
-                    Искаме да го споделим именно
-                    с хората, които обичаме.
-                </div>
-
+            <div
+                class="hero-date"
+                id="previewDate"
+            >
+                12 ЮНИ 2027
             </div>
 
         </div>
@@ -1892,100 +1254,128 @@ footer {
     </section>
 
 
-    <!-- PROGRAM -->
 
-    <section class="section">
-
-        <h2 class="section-title">
-            Сватбена програма
-        </h2>
+    <div class="floral-divider"></div>
 
 
-        <div class="program">
+
+    <!-- ===================================================
+         STORY
+    ==================================================== -->
+
+    <section class="section story">
+
+        <div class="section-inner">
+
+            <div class="eyebrow">
+                Нашата история
+            </div>
+
+            <h2 class="section-title">
+                Един ден,
+                който искаме да споделим
+            </h2>
+
+            <div class="ornament">
+                <div class="ornament-symbol">✦</div>
+            </div>
+
+            <div
+                class="story-text"
+                id="previewMessage"
+            >
+                Ще се радваме да споделите с нас
+                един от най-специалните дни в живота ни.
+            </div>
+
+        </div>
+
+    </section>
 
 
-            <div class="program-item">
 
-                <div class="program-time">
-                    14:00
-                </div>
+    <div class="floral-divider"></div>
 
-                <div class="program-content">
 
-                    <h3>
-                        Църковен брак
-                    </h3>
 
-                    <p>
-                        Храм „Света Троица“
-                    </p>
+    <!-- ===================================================
+         PROGRAM
+    ==================================================== -->
 
-                </div>
+    <section class="section program">
 
+        <div class="section-inner">
+
+            <div class="eyebrow">
+                Сватбена програма
+            </div>
+
+            <h2 class="section-title">
+                Ще бъдем заедно
+            </h2>
+
+            <div class="section-intro">
+                Запазете датата и елате да отпразнуваме
+                този специален ден заедно.
             </div>
 
 
-            <div class="program-item">
+            <div class="program-list">
 
-                <div class="program-time">
-                    17:30
-                </div>
+                <div class="program-item">
 
-                <div class="program-content">
+                    <div class="program-time">
+                        17:30 — 18:00
+                    </div>
 
-                    <h3>
+                    <div class="program-title">
                         Ще си кажем „Да“..
-                    </h3>
+                    </div>
 
-                    <p id="detailVenue">
+                    <div
+                        class="program-place"
+                        id="detailVenue"
+                    >
                         РЕЗИДЕНЦИЯ ТЕРА
-                    </p>
+                    </div>
 
-                    <p id="detailCity">
+                </div>
+
+
+                <div class="program-item">
+
+                    <div class="program-time">
+                        18:00 — 18:45
+                    </div>
+
+                    <div class="program-title">
+                        Welcome drink
+                        и снимки
+                    </div>
+
+                    <div
+                        class="program-place"
+                        id="detailCity"
+                    >
                         ГР. СОФИЯ
-                    </p>
+                    </div>
 
                 </div>
 
-            </div>
 
+                <div class="program-item">
 
-            <div class="program-item">
+                    <div class="program-time">
+                        19:00
+                    </div>
 
-                <div class="program-time">
-                    18:00
-                </div>
-
-                <div class="program-content">
-
-                    <h3>
-                        Welcome drink и снимки
-                    </h3>
-
-                    <p>
-                        Нека празникът започне.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="program-item">
-
-                <div class="program-time">
-                    19:00
-                </div>
-
-                <div class="program-content">
-
-                    <h3>
+                    <div class="program-title">
                         Официална вечеря
-                    </h3>
+                    </div>
 
-                    <p>
-                        Очакваме ви на празничната вечеря.
-                    </p>
+                    <div class="program-place">
+                        Бална зала
+                    </div>
 
                 </div>
 
@@ -1996,152 +1386,219 @@ footer {
     </section>
 
 
-    <!-- DRESS CODE -->
+
+    <div class="floral-divider"></div>
+
+
+
+    <!-- ===================================================
+         DRESS CODE
+    ==================================================== -->
+
+    <section class="section dress-code">
+
+        <div class="section-inner">
+
+            <div class="eyebrow">
+                Dress Code
+            </div>
+
+            <h2 class="section-title">
+                Облечете се
+                за празник
+            </h2>
+
+            <div class="dress-box">
+
+                <div class="dress-main">
+                    Елегантно,
+                    красиво и с настроение.
+                </div>
+
+                <div class="dress-description">
+                    Изберете тоалет, в който се чувствате
+                    прекрасно и който ще допринесе за
+                    празничната атмосфера на деня.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="floral-divider"></div>
+
+
+
+    <!-- ===================================================
+         FAQ
+    ==================================================== -->
 
     <section class="section">
 
-        <h2 class="section-title">
-            Dress Code
-        </h2>
+        <div class="section-inner">
 
-        <div class="dress">
+            <div class="eyebrow">
+                Въпроси и Отговори
+            </div>
 
-            <p>
-                Облечете се така, че да се чувствате
-                красиви, уверени и готови да празнувате
-                с нас до късно.
-            </p>
+            <h2 class="section-title">
+                Преди да дойдете
+            </h2>
+
+            <div class="ornament">
+                <div class="ornament-symbol">✦</div>
+            </div>
+
+
+            <div class="faq">
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            Къде ще се проведе празникът?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+                        Празникът ще се проведе в
+                        <span id="faqVenue">
+                            Резиденция Тера
+                        </span>,
+                        <span id="faqCity">
+                            гр. София
+                        </span>.
+                    </div>
+
+                </div>
+
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            Има ли определен дрескод?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+                        Дрескодът е елегантен и празничен.
+                        Най-важното е да се чувствате
+                        добре и да празнувате с нас.
+                    </div>
+
+                </div>
+
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            До кога да потвърдим?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+                        Моля, потвърдете присъствието си
+                        чрез формата за потвърждение.
+                    </div>
+
+                </div>
+
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- FAQ -->
 
-    <section class="section">
-
-        <h2 class="section-title">
-            Въпроси и Отговори
-        </h2>
+    <div class="floral-divider"></div>
 
 
-        <div class="faq">
 
-
-            <div class="faq-item">
-
-                <div class="faq-question">
-
-                    <div>
-                        Има ли дрескод?
-                    </div>
-
-                    <span>
-                        +
-                    </span>
-
-                </div>
-
-                <div class="faq-answer">
-                    Да — заложете на елегантна,
-                    празнична визия.
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <div class="faq-question">
-
-                    <div>
-                        До кога да потвърдим?
-                    </div>
-
-                    <span>
-                        +
-                    </span>
-
-                </div>
-
-                <div class="faq-answer">
-                    Моля, потвърдете присъствието си
-                    до посочената в поканата дата.
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
-
-                <div class="faq-question">
-
-                    <div>
-                        Мога ли да доведа придружител?
-                    </div>
-
-                    <span>
-                        +
-                    </span>
-
-                </div>
-
-                <div class="faq-answer">
-                    Моля, отбележете това във формата
-                    за потвърждение.
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- RSVP -->
+    <!-- ===================================================
+         RSVP
+    ==================================================== -->
 
     <section class="section rsvp">
 
-        <h2 class="section-title">
-            Ще бъдете ли с нас?
-        </h2>
+        <div class="section-inner">
 
-        <p>
-            За нас ще бъде истинска радост
-            да споделим този специален ден
-            именно с вас.
-        </p>
+            <div class="eyebrow">
+                RSVP
+            </div>
 
-        <a
-            href="#"
-            class="rsvp-button"
-        >
-            ПОТВЪРДИ ПРИСЪСТВИЕ
-        </a>
+            <h2 class="section-title">
+                Ще бъдете ли с нас?
+            </h2>
+
+            <div class="rsvp-box">
+
+                <div class="rsvp-title">
+                    Очакваме вашия отговор
+                </div>
+
+                <div class="rsvp-text">
+                    Потвърдете присъствието си,
+                    за да можем да подготвим
+                    празника с внимание към всеки детайл.
+                </div>
+
+                <a
+                    href="#"
+                    class="rsvp-button"
+                    id="rsvpButton"
+                >
+                    Потвърди присъствие
+                </a>
+
+            </div>
+
+        </div>
 
     </section>
 
 
-    <!-- FOOTER -->
 
-    <footer>
+    <!-- ===================================================
+         FOOTER
+    ==================================================== -->
 
-        <div class="footer-names">
+    <footer class="footer">
 
-            <span id="footerBride">
-                Галина
-            </span>
-
-            &amp;
-
-            <span id="footerGroom">
-                Мартин
-            </span>
-
+        <div
+            class="footer-names"
+            id="footerNames"
+        >
+            Галина &amp; Мартин
         </div>
-
 
         <div
             class="footer-date"
@@ -2150,169 +1607,199 @@ footer {
             12 ЮНИ 2027
         </div>
 
+        <div class="footer-small">
+            С любов и благодарност
+        </div>
+
     </footer>
+
 
 </main>
 
 
+
 <script>
 
-/* =====================================================
-   PERSONALIZATION
-===================================================== */
+/* =========================================================
+   READ URL PARAMETERS
+========================================================= */
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
+const params = new URLSearchParams(
+    window.location.search
+);
 
 const bride =
-    params.get("bride") ||
-    "Галина";
+    params.get("bride") || "Галина";
 
 const groom =
-    params.get("groom") ||
-    "Мартин";
+    params.get("groom") || "Мартин";
 
 const date =
-    params.get("date") ||
-    "12 ЮНИ 2027";
+    params.get("date") || "12 ЮНИ 2027";
 
 const venue =
-    params.get("venue") ||
-    "РЕЗИДЕНЦИЯ ТЕРА";
+    params.get("venue") || "РЕЗИДЕНЦИЯ ТЕРА";
 
 const city =
-    params.get("city") ||
-    "ГР. СОФИЯ";
+    params.get("city") || "ГР. СОФИЯ";
 
 const message =
     params.get("message") ||
     "Ще се радваме да споделите с нас един от най-специалните дни в живота ни.";
 
 
-/* =====================================================
+/* =========================================================
    OPENING
-===================================================== */
+========================================================= */
 
-document
-    .getElementById("openingBride")
-    .textContent = bride;
+document.getElementById("openingBride").textContent =
+    bride;
 
-document
-    .getElementById("openingGroom")
-    .textContent = groom;
+document.getElementById("openingGroom").textContent =
+    groom;
 
-document
-    .getElementById("openingDate")
-    .textContent = date;
+document.getElementById("openingDate").textContent =
+    date;
 
-document
-    .getElementById("openingLocation")
-    .textContent =
-        venue + " · " + city;
+document.getElementById("openingLocation").textContent =
+    venue + " · " + city;
 
 
-/* =====================================================
-   MAIN
-===================================================== */
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 
-document
-    .getElementById("previewBride")
-    .textContent = bride;
+document.getElementById("previewBride").textContent =
+    bride;
 
-document
-    .getElementById("previewGroom")
-    .textContent = groom;
+document.getElementById("previewGroom").textContent =
+    groom;
 
-document
-    .getElementById("previewDate")
-    .textContent = date;
+document.getElementById("previewDate").textContent =
+    date;
 
-document
-    .getElementById("detailVenue")
-    .textContent = venue;
+document.getElementById("detailVenue").textContent =
+    venue;
 
-document
-    .getElementById("detailCity")
-    .textContent = city;
+document.getElementById("detailCity").textContent =
+    city;
 
-document
-    .getElementById("previewMessage")
-    .textContent = message;
+document.getElementById("previewMessage").textContent =
+    message;
 
-document
-    .getElementById("footerBride")
-    .textContent = bride;
+document.getElementById("faqVenue").textContent =
+    venue;
 
-document
-    .getElementById("footerGroom")
-    .textContent = groom;
+document.getElementById("faqCity").textContent =
+    city;
 
-document
-    .getElementById("footerDate")
-    .textContent = date;
+document.getElementById("footerNames").textContent =
+    bride + " & " + groom;
+
+document.getElementById("footerDate").textContent =
+    date;
 
 
-/* =====================================================
+/* =========================================================
    OPEN INVITATION
-===================================================== */
+========================================================= */
 
-document
-    .getElementById("openButton")
-    .addEventListener(
-        "click",
-        function() {
+const opening =
+    document.getElementById("opening");
 
-            const opening =
-                document.getElementById("opening");
+const site =
+    document.getElementById("site");
 
-            const main =
-                document.getElementById("main");
-
-            opening.classList.add("hidden");
-
-            setTimeout(
-                function() {
-
-                    main.classList.add("visible");
-
-                },
-                700
-            );
-
-        }
-    );
+const openButton =
+    document.getElementById("openButton");
 
 
-/* =====================================================
+openButton.addEventListener(
+    "click",
+    function () {
+
+        opening.classList.add("hidden");
+
+        setTimeout(
+            function () {
+
+                site.classList.add("visible");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "instant"
+                });
+
+            },
+            700
+        );
+
+    }
+);
+
+
+/* =========================================================
    FAQ
-===================================================== */
+========================================================= */
 
-document
-    .querySelectorAll(".faq-question")
-    .forEach(
-        function(question) {
+const faqItems =
+    document.querySelectorAll(".faq-item");
 
-            question.addEventListener(
-                "click",
-                function() {
 
-                    const item =
-                        question.parentElement;
+faqItems.forEach(
+    function (item) {
 
-                    item.classList.toggle(
-                        "active"
-                    );
+        const question =
+            item.querySelector(".faq-question");
 
+        question.addEventListener(
+            "click",
+            function () {
+
+                const alreadyOpen =
+                    item.classList.contains("open");
+
+
+                faqItems.forEach(
+                    function (otherItem) {
+                        otherItem.classList.remove("open");
+                    }
+                );
+
+
+                if (!alreadyOpen) {
+                    item.classList.add("open");
                 }
-            );
 
-        }
-    );
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+const rsvpButton =
+    document.getElementById("rsvpButton");
+
+
+rsvpButton.addEventListener(
+    "click",
+    function (event) {
+
+        event.preventDefault();
+
+        alert(
+            "Тук ще бъде формата за потвърждение на присъствие."
+        );
+
+    }
+);
 
 </script>
 
 </body>
 </html>
-```
