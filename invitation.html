@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -8,7 +9,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -22,14 +24,14 @@ html {
 
 body {
     margin: 0;
-    background: #f7f3eb;
-    color: #403a34;
+    background: #eee5d9;
+    color: #332b26;
     font-family: "Montserrat", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /* =====================================================
-   OPENING SCREEN
+   OPENING
 ===================================================== */
 
 .opening {
@@ -41,11 +43,15 @@ body {
     align-items: center;
     justify-content: center;
 
-    background:
-        radial-gradient(circle at 50% 45%, rgba(255,255,255,.75), transparent 48%),
-        #f7f3eb;
-
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #f8f2e9 0%,
+            #eee4d7 70%,
+            #e5d8c8 100%
+        );
 
     transition:
         opacity 1.2s ease,
@@ -59,207 +65,208 @@ body {
 }
 
 /* =====================================================
-   SATIN RIBBONS
+   DECORATIVE RIBBONS
 ===================================================== */
 
 .ribbon {
     position: absolute;
-    z-index: 1;
     pointer-events: none;
+    z-index: 2;
+
+    width: 105px;
+    height: 125%;
 
     opacity: 0;
 
     background:
         linear-gradient(
             90deg,
-            rgba(203,180,160,.05) 0%,
-            rgba(255,255,255,.55) 20%,
-            rgba(221,199,182,.75) 48%,
-            rgba(255,255,255,.35) 72%,
-            rgba(194,168,148,.08) 100%
+            rgba(143,104,89,.04),
+            rgba(255,247,239,.58) 18%,
+            rgba(191,149,132,.72) 46%,
+            rgba(245,222,210,.75) 67%,
+            rgba(139,100,84,.08)
         );
 
     box-shadow:
-        0 0 18px rgba(160,135,115,.08);
+        0 0 30px rgba(96,65,53,.10);
 }
-
-/* left vertical ribbon */
 
 .ribbon-left {
-    left: -20px;
-    top: -8%;
-    width: 95px;
-    height: 120%;
+    left: -45px;
+    top: -12%;
 
     transform:
-        rotate(9deg)
-        translateX(-80px);
+        rotate(10deg)
+        translateX(-130px);
 
-    clip-path: polygon(
-        24% 0,
-        100% 0,
-        80% 14%,
-        92% 27%,
-        70% 41%,
-        87% 57%,
-        67% 73%,
-        81% 88%,
-        52% 100%,
-        0 100%,
-        18% 84%,
-        5% 70%,
-        25% 53%,
-        9% 38%,
-        27% 20%
-    );
-
-    animation: ribbonLeftIn 2.3s cubic-bezier(.2,.7,.2,1) .15s forwards;
+    animation:
+        ribbonLeft
+        2.5s
+        cubic-bezier(.2,.7,.2,1)
+        .1s
+        forwards;
 }
-
-/* right vertical ribbon */
 
 .ribbon-right {
-    right: -20px;
-    top: -8%;
-    width: 95px;
-    height: 120%;
+    right: -45px;
+    top: -12%;
 
     transform:
-        rotate(-9deg)
-        translateX(80px);
+        rotate(-10deg)
+        translateX(130px);
 
-    clip-path: polygon(
-        0 0,
-        76% 0,
-        100% 20%,
-        82% 38%,
-        95% 53%,
-        73% 70%,
-        87% 84%,
-        48% 100%,
-        19% 100%,
-        33% 88%,
-        20% 73%,
-        30% 57%,
-        13% 41%,
-        25% 27%,
-        0 14%
-    );
-
-    animation: ribbonRightIn 2.3s cubic-bezier(.2,.7,.2,1) .25s forwards;
+    animation:
+        ribbonRight
+        2.5s
+        cubic-bezier(.2,.7,.2,1)
+        .2s
+        forwards;
 }
 
-/* smaller loose ribbon tails */
+/* ribbon folds */
+
+.ribbon-left::before,
+.ribbon-right::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,.42) 28%,
+            transparent 39%,
+            rgba(112,73,60,.13) 57%,
+            transparent 70%
+        );
+}
+
+/* loose tails */
 
 .ribbon-tail {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
 
-    width: 125px;
-    height: 250px;
+    width: 150px;
+    height: 270px;
 
     opacity: 0;
 
     background:
         linear-gradient(
-            105deg,
-            rgba(225,207,193,.15),
-            rgba(255,255,255,.65) 35%,
-            rgba(207,184,165,.7) 55%,
-            rgba(247,239,232,.2)
+            120deg,
+            rgba(255,247,240,.2),
+            rgba(198,155,137,.82) 48%,
+            rgba(238,208,193,.65)
         );
 
-    filter: drop-shadow(0 8px 12px rgba(120,90,70,.08));
+    filter:
+        drop-shadow(
+            0 10px 15px rgba(90,60,48,.13)
+        );
 }
 
 .ribbon-tail-left {
-    left: 6%;
-    bottom: -40px;
+    left: 3%;
+    bottom: -70px;
 
     transform:
-        rotate(18deg)
-        translateY(80px);
+        rotate(19deg)
+        translateY(100px);
 
     clip-path: polygon(
-        20% 0,
-        88% 6%,
-        66% 28%,
-        100% 52%,
-        55% 100%,
-        38% 66%,
-        0 83%,
-        20% 42%
+        18% 0,
+        85% 8%,
+        64% 30%,
+        100% 53%,
+        53% 100%,
+        37% 65%,
+        0 84%,
+        20% 43%
     );
 
-    animation: tailIn 2.4s cubic-bezier(.2,.7,.2,1) .35s forwards;
+    animation:
+        tailIn
+        2.6s
+        ease
+        .35s
+        forwards;
 }
 
 .ribbon-tail-right {
-    right: 6%;
-    top: -40px;
+    right: 3%;
+    top: -70px;
 
     transform:
-        rotate(-18deg)
-        translateY(-80px);
+        rotate(-19deg)
+        translateY(-100px);
 
     clip-path: polygon(
-        12% 0,
-        80% 0,
+        15% 0,
+        82% 0,
         100% 45%,
-        63% 34%,
-        82% 73%,
-        42% 100%,
-        30% 58%,
+        64% 35%,
+        84% 73%,
+        43% 100%,
+        29% 58%,
         0 72%,
-        22% 32%
+        22% 31%
     );
 
-    animation: tailIn 2.4s cubic-bezier(.2,.7,.2,1) .45s forwards;
+    animation:
+        tailIn
+        2.6s
+        ease
+        .45s
+        forwards;
 }
 
 /* =====================================================
-   BOTANICAL ELEMENTS
+   BOTANICAL COMPOSITIONS
 ===================================================== */
 
 .botanical {
     position: absolute;
-    z-index: 3;
+    z-index: 4;
 
-    width: 330px;
-    height: 390px;
-
-    opacity: 0;
+    width: 390px;
+    height: 440px;
 
     pointer-events: none;
+
+    opacity: 0;
 }
 
 .botanical-left {
-    left: -45px;
-    bottom: -45px;
+    left: -55px;
+    bottom: -50px;
 
     transform:
-        translate(-100px, 80px)
+        translate(-130px, 100px)
         rotate(-7deg);
 
     animation:
-        botanicalLeftIn
-        2.8s
+        botanicalLeft
+        3s
         cubic-bezier(.2,.7,.2,1)
         .15s
         forwards;
 }
 
 .botanical-right {
-    right: -45px;
-    top: -45px;
+    right: -55px;
+    top: -50px;
 
     transform:
-        translate(100px, -80px)
+        translate(130px, -100px)
         rotate(173deg);
 
     animation:
-        botanicalRightIn
-        2.8s
+        botanicalRight
+        3s
         cubic-bezier(.2,.7,.2,1)
         .25s
         forwards;
@@ -269,39 +276,48 @@ body {
 
 .stem {
     position: absolute;
-    width: 2px;
-    height: 260px;
+
+    width: 3px;
+    height: 310px;
+
+    border-radius: 100%;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(92,111,80,.05),
-            rgba(92,111,80,.65),
-            rgba(92,111,80,.12)
+            #75806a,
+            #4e6049 60%,
+            rgba(78,96,73,.15)
         );
 
     transform-origin: bottom;
-    border-radius: 100%;
 }
 
 .stem.one {
-    left: 105px;
-    bottom: 10px;
-    transform: rotate(-29deg);
+    left: 110px;
+    bottom: 0;
+    transform: rotate(-28deg);
 }
 
 .stem.two {
-    left: 145px;
-    bottom: 2px;
-    height: 300px;
-    transform: rotate(-9deg);
+    left: 160px;
+    bottom: 0;
+    height: 350px;
+    transform: rotate(-7deg);
 }
 
 .stem.three {
-    left: 180px;
-    bottom: 18px;
-    height: 240px;
-    transform: rotate(17deg);
+    left: 205px;
+    bottom: 8px;
+    height: 280px;
+    transform: rotate(19deg);
+}
+
+.stem.four {
+    left: 245px;
+    bottom: 5px;
+    height: 230px;
+    transform: rotate(33deg);
 }
 
 /* leaves */
@@ -309,82 +325,90 @@ body {
 .leaf {
     position: absolute;
 
-    width: 54px;
-    height: 23px;
+    width: 66px;
+    height: 29px;
 
-    border-radius: 100% 0 100% 0;
+    border-radius:
+        100% 0 100% 0;
 
     background:
         linear-gradient(
             135deg,
-            #9eaa91,
-            #68785f
+            #a3ad91,
+            #617256 58%,
+            #4e6049
         );
 
-    opacity: .85;
-
     box-shadow:
-        inset 3px 2px 5px rgba(255,255,255,.25);
+        inset 5px 3px 8px rgba(255,255,255,.22),
+        2px 4px 7px rgba(58,73,52,.12);
 }
 
 .leaf::after {
     content: "";
+
     position: absolute;
 
-    left: 7px;
-    top: 10px;
+    left: 8px;
+    top: 14px;
 
-    width: 42px;
+    width: 51px;
     height: 1px;
 
-    background: rgba(255,255,255,.35);
-
-    transform: rotate(-3deg);
+    background:
+        rgba(240,241,224,.42);
 }
 
 .leaf.a {
-    left: 63px;
-    bottom: 112px;
-    transform: rotate(-39deg);
+    left: 65px;
+    bottom: 115px;
+    transform: rotate(-38deg);
 }
 
 .leaf.b {
-    left: 113px;
-    bottom: 172px;
-    transform: rotate(28deg);
+    left: 103px;
+    bottom: 185px;
+    transform: rotate(31deg);
 }
 
 .leaf.c {
-    left: 146px;
-    bottom: 88px;
-    transform: rotate(-22deg);
+    left: 151px;
+    bottom: 90px;
+    transform: rotate(-23deg);
 }
 
 .leaf.d {
     left: 188px;
-    bottom: 145px;
-    transform: rotate(36deg);
+    bottom: 160px;
+    transform: rotate(39deg);
 }
 
 .leaf.e {
-    left: 218px;
-    bottom: 82px;
+    left: 230px;
+    bottom: 103px;
     transform: rotate(-28deg);
 }
 
+.leaf.f {
+    left: 257px;
+    bottom: 192px;
+    transform: rotate(29deg);
+}
+
 /* =====================================================
-   FLOWERS
+   FULLER FLOWERS
 ===================================================== */
 
 .flower {
     position: absolute;
 
-    width: 82px;
-    height: 82px;
+    width: 100px;
+    height: 100px;
 
-    filter: drop-shadow(
-        0 7px 8px rgba(120,90,70,.10)
-    );
+    filter:
+        drop-shadow(
+            0 9px 12px rgba(89,59,48,.15)
+        );
 }
 
 .flower .petal {
@@ -393,188 +417,287 @@ body {
     left: 50%;
     top: 50%;
 
-    width: 39px;
-    height: 56px;
+    width: 48px;
+    height: 68px;
 
     transform-origin: 50% 90%;
 
     border-radius:
         55%
         55%
-        50%
-        50%;
+        48%
+        48%;
 
     background:
         linear-gradient(
-            145deg,
-            #fff9f5,
-            #ead3cf
+            135deg,
+            #f3d9d4 0%,
+            #d99b9a 45%,
+            #b86f75 100%
         );
 
     box-shadow:
-        inset 2px 2px 7px rgba(255,255,255,.6);
+        inset 4px 4px 9px rgba(255,255,255,.30),
+        inset -4px -5px 8px rgba(108,55,58,.12);
 }
 
 .flower .p1 {
-    transform: translate(-50%, -85%) rotate(0deg);
+    transform:
+        translate(-50%, -87%)
+        rotate(0deg);
 }
 
 .flower .p2 {
-    transform: translate(-50%, -85%) rotate(72deg);
+    transform:
+        translate(-50%, -87%)
+        rotate(72deg);
 }
 
 .flower .p3 {
-    transform: translate(-50%, -85%) rotate(144deg);
+    transform:
+        translate(-50%, -87%)
+        rotate(144deg);
 }
 
 .flower .p4 {
-    transform: translate(-50%, -85%) rotate(216deg);
+    transform:
+        translate(-50%, -87%)
+        rotate(216deg);
 }
 
 .flower .p5 {
-    transform: translate(-50%, -85%) rotate(288deg);
+    transform:
+        translate(-50%, -87%)
+        rotate(288deg);
 }
 
-.flower .center {
+.flower .inner {
     position: absolute;
 
     left: 50%;
     top: 50%;
 
-    width: 19px;
-    height: 19px;
+    width: 50px;
+    height: 50px;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            #d9b888 0 25%,
-            #b58b58 27% 42%,
-            transparent 45%
+            #c99652 0 12%,
+            #8e5b3e 15% 22%,
+            #e1b86e 25% 31%,
+            transparent 34%
         );
 }
 
 .flower.big {
-    left: 68px;
-    bottom: 188px;
-    transform: rotate(-15deg) scale(1.15);
+    left: 48px;
+    bottom: 200px;
+
+    transform:
+        rotate(-13deg)
+        scale(1.18);
+}
+
+.flower.medium {
+    left: 175px;
+    bottom: 225px;
+
+    transform:
+        rotate(15deg)
+        scale(.82);
 }
 
 .flower.small {
-    left: 178px;
-    bottom: 216px;
-    transform: rotate(18deg) scale(.7);
+    left: 235px;
+    bottom: 130px;
+
+    transform:
+        rotate(-8deg)
+        scale(.58);
 }
 
-.flower.tiny {
-    left: 225px;
-    bottom: 138px;
-    transform: rotate(-8deg) scale(.52);
+/* smaller darker flower */
+
+.flower.deep {
+    left: 125px;
+    bottom: 285px;
+
+    transform:
+        rotate(18deg)
+        scale(.55);
+}
+
+.flower.deep .petal {
+    background:
+        linear-gradient(
+            135deg,
+            #d59a9a,
+            #9b515d
+        );
 }
 
 /* =====================================================
-   RIBBON BOW
+   SMALL BLOSSOMS
+===================================================== */
+
+.blossom {
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #d8b56e 0 15%,
+            #a96570 18% 50%,
+            #dba8a4 55% 100%
+        );
+
+    box-shadow:
+        0 3px 5px rgba(90,55,45,.12);
+}
+
+.blossom.a {
+    left: 255px;
+    bottom: 270px;
+}
+
+.blossom.b {
+    left: 295px;
+    bottom: 220px;
+    transform: scale(.7);
+}
+
+.blossom.c {
+    left: 90px;
+    bottom: 260px;
+    transform: scale(.65);
+}
+
+.blossom.d {
+    left: 215px;
+    bottom: 315px;
+    transform: scale(.55);
+}
+
+/* =====================================================
+   BOW
 ===================================================== */
 
 .bow {
     position: absolute;
 
-    left: 135px;
-    bottom: 80px;
+    left: 132px;
+    bottom: 73px;
 
-    width: 90px;
-    height: 60px;
+    width: 115px;
+    height: 75px;
 
-    transform: rotate(-9deg);
+    transform: rotate(-8deg);
 }
 
 .bow-left,
 .bow-right {
     position: absolute;
 
-    top: 6px;
+    top: 10px;
 
-    width: 54px;
-    height: 38px;
+    width: 66px;
+    height: 47px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.55),
-            rgba(213,188,171,.85)
+            #f3d8ce,
+            #bf887b 55%,
+            #a96e68
         );
 
-    border-radius: 75% 25% 70% 30%;
+    border-radius:
+        75% 25% 70% 30%;
 
     box-shadow:
-        inset 4px 2px 7px rgba(255,255,255,.4);
+        inset 5px 3px 8px rgba(255,255,255,.28),
+        3px 5px 9px rgba(85,54,45,.15);
 }
 
 .bow-left {
     left: 0;
-    transform: rotate(22deg);
+    transform: rotate(21deg);
 }
 
 .bow-right {
     right: 0;
-    transform: scaleX(-1) rotate(22deg);
+    transform:
+        scaleX(-1)
+        rotate(21deg);
 }
 
 .bow-knot {
     position: absolute;
 
     left: 50%;
-    top: 17px;
+    top: 19px;
 
-    width: 23px;
-    height: 23px;
+    width: 27px;
+    height: 27px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border-radius: 50%;
 
     background:
         radial-gradient(
-            circle at 35% 30%,
-            #fff,
-            #d2b5a1 70%
+            circle at 35% 28%,
+            #f6e4db,
+            #bc8477 70%
         );
 
     box-shadow:
-        0 3px 7px rgba(120,90,70,.15);
+        0 4px 8px rgba(82,52,43,.18);
 }
 
 /* =====================================================
-   OPENING CONTENT
+   OPENING TEXT
 ===================================================== */
 
 .opening-content {
     position: relative;
     z-index: 10;
 
-    text-align: center;
+    width: min(750px, 90vw);
 
-    max-width: 680px;
-    padding: 40px 30px;
+    padding: 35px;
+
+    text-align: center;
 }
 
 .opening-small {
-    margin-bottom: 22px;
+    margin-bottom: 25px;
+
+    color: #66564c;
 
     font-size: 11px;
+    font-weight: 500;
+
     letter-spacing: 5px;
     text-transform: uppercase;
-
-    color: #81756b;
 
     opacity: 0;
 
     animation:
         fadeUp
-        1.5s
+        1.4s
         ease
         .6s
         forwards;
@@ -583,12 +706,21 @@ body {
 .opening-names {
     margin: 0;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(58px, 9vw, 105px);
-    font-weight: 400;
-    line-height: .85;
+    color: #302722;
 
-    color: #423b35;
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(62px, 9vw, 110px);
+
+    font-weight: 600;
+
+    line-height: .82;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.4);
 
     opacity: 0;
 
@@ -596,7 +728,7 @@ body {
         namesIn
         1.9s
         cubic-bezier(.2,.7,.2,1)
-        .45s
+        .4s
         forwards;
 }
 
@@ -605,98 +737,113 @@ body {
 }
 
 .opening-amp {
-    display: block;
+    margin: 17px 0;
 
-    margin: 14px 0;
+    font-size: .36em;
+    font-weight: 500;
 
-    font-size: .38em;
-    font-weight: 300;
-
-    color: #9b8879;
+    color: #956d60;
 }
 
 .opening-date {
-    margin-top: 35px;
+    margin-top: 38px;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 27px;
+    color: #493c35;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 29px;
+    font-weight: 600;
+
     letter-spacing: 3px;
-
-    color: #62584f;
 
     opacity: 0;
 
     animation:
         fadeUp
-        1.5s
+        1.4s
         ease
         1s
         forwards;
 }
 
 .opening-location {
-    margin-top: 9px;
+    margin-top: 10px;
 
-    font-size: 10px;
+    color: #67584f;
+
+    font-size: 11px;
+    font-weight: 500;
+
     letter-spacing: 4px;
     text-transform: uppercase;
-
-    color: #81756b;
 
     opacity: 0;
 
     animation:
         fadeUp
-        1.5s
+        1.4s
         ease
         1.15s
         forwards;
 }
 
 /* =====================================================
-   BUTTON
+   OPEN BUTTON
 ===================================================== */
 
 .open-button {
     margin-top: 48px;
 
-    padding: 16px 37px;
+    padding:
+        17px 40px;
 
-    border: 1px solid rgba(135,116,101,.55);
-    background: rgba(255,255,255,.28);
+    border:
+        1px solid
+        #7f6458;
 
-    color: #50463d;
+    background:
+        rgba(255,250,245,.40);
 
-    font-family: "Montserrat", sans-serif;
+    color: #453830;
+
+    font-family:
+        "Montserrat",
+        sans-serif;
+
     font-size: 10px;
+    font-weight: 600;
+
     letter-spacing: 3px;
 
     cursor: pointer;
 
     transition:
-        background .35s ease,
-        color .35s ease,
-        transform .35s ease;
+        all .35s ease;
 
     opacity: 0;
 
     animation:
         fadeUp
-        1.5s
+        1.4s
         ease
         1.35s
         forwards;
 }
 
 .open-button:hover {
-    background: #544a41;
-    color: white;
+    background: #493930;
+    border-color: #493930;
+    color: #fff;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-3px);
 }
 
 /* =====================================================
-   MAIN INVITATION
+   MAIN
 ===================================================== */
 
 .main {
@@ -710,7 +857,7 @@ body {
 
     animation:
         pageReveal
-        1.5s
+        1.4s
         ease
         forwards;
 }
@@ -721,9 +868,12 @@ body {
     margin: 0 auto;
 
     padding:
-        110px
-        30px;
+        115px 30px;
 }
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero {
     min-height: 90vh;
@@ -740,23 +890,30 @@ body {
 .hero-label {
     margin-bottom: 25px;
 
+    color: #6b5a50;
+
     font-size: 10px;
+    font-weight: 600;
+
     letter-spacing: 5px;
     text-transform: uppercase;
-
-    color: #8b7d70;
 }
 
 .hero-names {
     margin: 0;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(60px, 9vw, 110px);
-    font-weight: 400;
+    color: #302722;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(65px, 9vw, 115px);
+
+    font-weight: 600;
 
     line-height: .82;
-
-    color: #433c35;
 }
 
 .hero-names span {
@@ -764,44 +921,57 @@ body {
 }
 
 .hero-amp {
-    margin: 17px 0;
+    margin: 18px 0;
+
+    color: #956d60;
 
     font-size: .35em;
-    color: #9c8777;
+    font-weight: 500;
 }
 
 .hero-date {
-    margin-top: 40px;
+    margin-top: 42px;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 30px;
+    color: #453830;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 32px;
+    font-weight: 600;
 
     letter-spacing: 3px;
 }
 
 .hero-place {
-    margin-top: 8px;
+    margin-top: 9px;
+
+    color: #68594f;
 
     font-size: 10px;
+    font-weight: 500;
+
     letter-spacing: 3px;
     text-transform: uppercase;
-
-    color: #807369;
 }
 
 .message {
-    max-width: 620px;
+    max-width: 650px;
 
     margin:
-        45px
-        auto
-        0;
+        48px auto 0;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 23px;
+    color: #51443c;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 24px;
+    font-weight: 500;
+
     line-height: 1.65;
-
-    color: #5a5048;
 }
 
 /* =====================================================
@@ -811,26 +981,31 @@ body {
 .section-title {
     margin-bottom: 55px;
 
+    color: #342b26;
+
     text-align: center;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 53px;
-    font-weight: 400;
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
-    color: #463e36;
+    font-size: 57px;
+    font-weight: 600;
 }
 
 .section-subtitle {
     margin-top: -40px;
     margin-bottom: 55px;
 
+    color: #6e5d53;
+
     text-align: center;
 
     font-size: 10px;
+    font-weight: 500;
+
     letter-spacing: 4px;
     text-transform: uppercase;
-
-    color: #95877b;
 }
 
 /* =====================================================
@@ -853,24 +1028,34 @@ body {
 .story-date {
     margin-bottom: 12px;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 27px;
+    color: #966e61;
 
-    color: #9a806d;
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 29px;
+    font-weight: 600;
 }
 
 .story-title {
     margin-bottom: 13px;
 
+    color: #3d332d;
+
     font-size: 13px;
+    font-weight: 600;
+
     letter-spacing: 1px;
 }
 
 .story-text {
-    font-size: 12px;
-    line-height: 1.8;
+    color: #665950;
 
-    color: #776c63;
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1.8;
 }
 
 /* =====================================================
@@ -887,35 +1072,37 @@ body {
     display: grid;
 
     grid-template-columns:
-        150px
-        1fr;
+        150px 1fr;
 
     gap: 35px;
 
     padding:
-        30px
-        0;
+        30px 0;
 
     border-bottom:
         1px solid
-        rgba(110,95,80,.15);
+        rgba(91,72,62,.22);
 }
 
 .program-time {
-    font-family: "Cormorant Garamond", serif;
+    color: #916c5e;
 
-    font-size: 24px;
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
-    color: #927966;
+    font-size: 26px;
+    font-weight: 600;
 }
 
 .program-content h3 {
     margin:
-        0 0
-        8px;
+        0 0 8px;
+
+    color: #3b302a;
 
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 600;
 
     letter-spacing: 1px;
 }
@@ -923,10 +1110,12 @@ body {
 .program-content p {
     margin: 0;
 
-    font-size: 11px;
-    line-height: 1.7;
+    color: #6a5b52;
 
-    color: #7c7168;
+    font-size: 11px;
+    font-weight: 400;
+
+    line-height: 1.7;
 }
 
 /* =====================================================
@@ -942,12 +1131,16 @@ body {
 }
 
 .dress p {
-    font-family: "Cormorant Garamond", serif;
+    color: #51443c;
 
-    font-size: 24px;
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 25px;
+    font-weight: 500;
+
     line-height: 1.7;
-
-    color: #62574e;
 }
 
 /* =====================================================
@@ -963,7 +1156,7 @@ body {
 .faq-item {
     border-bottom:
         1px solid
-        rgba(110,95,80,.18);
+        rgba(91,72,62,.22);
 }
 
 .faq-question {
@@ -976,14 +1169,22 @@ body {
 
     cursor: pointer;
 
+    color: #3c312b;
+
     font-size: 12px;
+    font-weight: 600;
+
     letter-spacing: 1px;
 }
 
 .faq-question span {
-    font-family: "Cormorant Garamond", serif;
+    color: #916c5e;
 
-    font-size: 25px;
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 27px;
 
     transition:
         transform .3s ease;
@@ -994,10 +1195,12 @@ body {
 
     overflow: hidden;
 
-    font-size: 11px;
-    line-height: 1.8;
+    color: #665950;
 
-    color: #7b7067;
+    font-size: 11px;
+    font-weight: 400;
+
+    line-height: 1.8;
 
     transition:
         max-height .45s ease,
@@ -1007,9 +1210,7 @@ body {
 .faq-item.active .faq-answer {
     max-height: 200px;
 
-    padding:
-        0 0
-        23px;
+    padding-bottom: 23px;
 }
 
 .faq-item.active
@@ -1026,32 +1227,40 @@ body {
 }
 
 .rsvp p {
-    max-width: 560px;
+    max-width: 570px;
 
     margin:
-        0 auto
-        35px;
+        0 auto 35px;
 
-    font-family: "Cormorant Garamond", serif;
+    color: #51443c;
 
-    font-size: 23px;
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 24px;
+    font-weight: 500;
+
     line-height: 1.6;
 }
 
 .rsvp-button {
     display: inline-block;
 
-    padding: 15px 35px;
+    padding:
+        16px 38px;
 
     border:
         1px solid
-        #9a897a;
+        #795e52;
 
-    color: #554b42;
+    color: #493930;
 
     text-decoration: none;
 
     font-size: 10px;
+    font-weight: 600;
+
     letter-spacing: 3px;
 
     transition:
@@ -1060,7 +1269,7 @@ body {
 }
 
 .rsvp-button:hover {
-    background: #554b42;
+    background: #493930;
     color: white;
 }
 
@@ -1070,65 +1279,75 @@ body {
 
 footer {
     padding:
-        65px 30px;
+        70px 30px;
 
     text-align: center;
 
     border-top:
         1px solid
-        rgba(110,95,80,.15);
+        rgba(91,72,62,.20);
 }
 
 .footer-names {
-    font-family: "Cormorant Garamond", serif;
+    color: #342b26;
 
-    font-size: 35px;
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 39px;
+    font-weight: 600;
 }
 
 .footer-date {
     margin-top: 8px;
 
+    color: #6c5c52;
+
     font-size: 9px;
+    font-weight: 500;
 
     letter-spacing: 3px;
-
-    color: #8d8076;
 }
 
 /* =====================================================
    ANIMATIONS
 ===================================================== */
 
-@keyframes ribbonLeftIn {
+@keyframes ribbonLeft {
 
     0% {
         opacity: 0;
+
         transform:
-            rotate(9deg)
-            translateX(-80px);
+            rotate(10deg)
+            translateX(-130px);
     }
 
     100% {
-        opacity: .72;
+        opacity: .85;
+
         transform:
-            rotate(9deg)
+            rotate(10deg)
             translateX(0);
     }
 }
 
-@keyframes ribbonRightIn {
+@keyframes ribbonRight {
 
     0% {
         opacity: 0;
+
         transform:
-            rotate(-9deg)
-            translateX(80px);
+            rotate(-10deg)
+            translateX(130px);
     }
 
     100% {
-        opacity: .72;
+        opacity: .85;
+
         transform:
-            rotate(-9deg)
+            rotate(-10deg)
             translateX(0);
     }
 }
@@ -1140,40 +1359,44 @@ footer {
     }
 
     100% {
-        opacity: .55;
+        opacity: .78;
     }
 }
 
-@keyframes botanicalLeftIn {
+@keyframes botanicalLeft {
 
     0% {
         opacity: 0;
+
         transform:
-            translate(-100px, 80px)
+            translate(-130px,100px)
             rotate(-7deg);
     }
 
     100% {
         opacity: 1;
+
         transform:
-            translate(0, 0)
+            translate(0,0)
             rotate(-7deg);
     }
 }
 
-@keyframes botanicalRightIn {
+@keyframes botanicalRight {
 
     0% {
         opacity: 0;
+
         transform:
-            translate(100px, -80px)
+            translate(130px,-100px)
             rotate(173deg);
     }
 
     100% {
         opacity: 1;
+
         transform:
-            translate(0, 0)
+            translate(0,0)
             rotate(173deg);
     }
 }
@@ -1182,15 +1405,19 @@ footer {
 
     0% {
         opacity: 0;
+
         transform:
             translateY(35px);
+
         filter: blur(5px);
     }
 
     100% {
         opacity: 1;
+
         transform:
             translateY(0);
+
         filter: blur(0);
     }
 }
@@ -1199,12 +1426,14 @@ footer {
 
     0% {
         opacity: 0;
+
         transform:
             translateY(20px);
     }
 
     100% {
         opacity: 1;
+
         transform:
             translateY(0);
     }
@@ -1227,37 +1456,31 @@ footer {
 
 @media (max-width: 700px) {
 
-    .botanical {
-        width: 245px;
-        height: 300px;
-    }
-
-    .botanical-left {
-        left: -85px;
-        bottom: -60px;
-    }
-
-    .botanical-right {
-        right: -85px;
-        top: -60px;
-    }
-
-    .ribbon-left,
-    .ribbon-right {
-        width: 65px;
-    }
-
-    .opening-content {
-        padding:
-            30px 20px;
-    }
-
     .opening-names {
-        font-size: 62px;
+        font-size: 64px;
     }
 
     .opening-date {
         font-size: 23px;
+    }
+
+    .botanical {
+        width: 275px;
+        height: 330px;
+    }
+
+    .botanical-left {
+        left: -100px;
+        bottom: -70px;
+    }
+
+    .botanical-right {
+        right: -100px;
+        top: -70px;
+    }
+
+    .ribbon {
+        width: 70px;
     }
 
     .story {
@@ -1272,11 +1495,15 @@ footer {
 
     .section {
         padding:
-            80px 22px;
+            85px 22px;
     }
 
     .section-title {
-        font-size: 45px;
+        font-size: 47px;
+    }
+
+    .hero-names {
+        font-size: 67px;
     }
 
 }
@@ -1286,115 +1513,198 @@ footer {
 
 <body>
 
+
 <!-- =====================================================
-     OPENING
+     OPENING SCREEN
 ===================================================== -->
 
-<section class="opening" id="opening">
+<section
+    class="opening"
+    id="opening"
+>
 
-    <!-- satin ribbons -->
     <div class="ribbon ribbon-left"></div>
     <div class="ribbon ribbon-right"></div>
 
     <div class="ribbon-tail ribbon-tail-left"></div>
     <div class="ribbon-tail ribbon-tail-right"></div>
 
+
     <!-- LEFT BOTANICAL -->
+
     <div class="botanical botanical-left">
 
         <div class="stem one"></div>
         <div class="stem two"></div>
         <div class="stem three"></div>
+        <div class="stem four"></div>
 
         <div class="leaf a"></div>
         <div class="leaf b"></div>
         <div class="leaf c"></div>
         <div class="leaf d"></div>
         <div class="leaf e"></div>
+        <div class="leaf f"></div>
+
 
         <div class="flower big">
+
             <div class="petal p1"></div>
             <div class="petal p2"></div>
             <div class="petal p3"></div>
             <div class="petal p4"></div>
             <div class="petal p5"></div>
-            <div class="center"></div>
+
+            <div class="inner"></div>
+
         </div>
+
+
+        <div class="flower medium">
+
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+
+            <div class="inner"></div>
+
+        </div>
+
 
         <div class="flower small">
+
             <div class="petal p1"></div>
             <div class="petal p2"></div>
             <div class="petal p3"></div>
             <div class="petal p4"></div>
             <div class="petal p5"></div>
-            <div class="center"></div>
+
+            <div class="inner"></div>
+
         </div>
 
-        <div class="flower tiny">
+
+        <div class="flower deep">
+
             <div class="petal p1"></div>
             <div class="petal p2"></div>
             <div class="petal p3"></div>
             <div class="petal p4"></div>
             <div class="petal p5"></div>
-            <div class="center"></div>
+
+            <div class="inner"></div>
+
         </div>
+
+
+        <div class="blossom a"></div>
+        <div class="blossom b"></div>
+        <div class="blossom c"></div>
+        <div class="blossom d"></div>
+
 
         <div class="bow">
+
             <div class="bow-left"></div>
             <div class="bow-right"></div>
+
             <div class="bow-knot"></div>
+
         </div>
 
     </div>
 
+
     <!-- RIGHT BOTANICAL -->
+
     <div class="botanical botanical-right">
 
         <div class="stem one"></div>
         <div class="stem two"></div>
         <div class="stem three"></div>
+        <div class="stem four"></div>
 
         <div class="leaf a"></div>
         <div class="leaf b"></div>
         <div class="leaf c"></div>
         <div class="leaf d"></div>
         <div class="leaf e"></div>
+        <div class="leaf f"></div>
+
 
         <div class="flower big">
+
             <div class="petal p1"></div>
             <div class="petal p2"></div>
             <div class="petal p3"></div>
             <div class="petal p4"></div>
             <div class="petal p5"></div>
-            <div class="center"></div>
+
+            <div class="inner"></div>
+
         </div>
+
+
+        <div class="flower medium">
+
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+
+            <div class="inner"></div>
+
+        </div>
+
 
         <div class="flower small">
+
             <div class="petal p1"></div>
             <div class="petal p2"></div>
             <div class="petal p3"></div>
             <div class="petal p4"></div>
             <div class="petal p5"></div>
-            <div class="center"></div>
+
+            <div class="inner"></div>
+
         </div>
 
-        <div class="flower tiny">
+
+        <div class="flower deep">
+
             <div class="petal p1"></div>
             <div class="petal p2"></div>
             <div class="petal p3"></div>
             <div class="petal p4"></div>
             <div class="petal p5"></div>
-            <div class="center"></div>
+
+            <div class="inner"></div>
+
         </div>
+
+
+        <div class="blossom a"></div>
+        <div class="blossom b"></div>
+        <div class="blossom c"></div>
+        <div class="blossom d"></div>
+
 
         <div class="bow">
+
             <div class="bow-left"></div>
             <div class="bow-right"></div>
+
             <div class="bow-knot"></div>
+
         </div>
 
     </div>
 
+
+    <!-- CENTER -->
 
     <div class="opening-content">
 
@@ -1402,27 +1712,44 @@ footer {
             с радост ви каним
         </div>
 
+
         <h1 class="opening-names">
-            <span id="openingBride">Галина</span>
 
-            <span class="opening-amp">&amp;</span>
+            <span id="openingBride">
+                Галина
+            </span>
 
-            <span id="openingGroom">Мартин</span>
+            <span class="opening-amp">
+                &amp;
+            </span>
+
+            <span id="openingGroom">
+                Мартин
+            </span>
+
         </h1>
 
-        <div class="opening-date"
-             id="openingDate">
+
+        <div
+            class="opening-date"
+            id="openingDate"
+        >
             12 ЮНИ 2027
         </div>
 
-        <div class="opening-location"
-             id="openingLocation">
+
+        <div
+            class="opening-location"
+            id="openingLocation"
+        >
             РЕЗИДЕНЦИЯ ТЕРА · ГР. СОФИЯ
         </div>
 
+
         <button
             class="open-button"
-            id="openButton">
+            id="openButton"
+        >
             ОТВОРИ ПОКАНАТА
         </button>
 
@@ -1435,7 +1762,11 @@ footer {
      MAIN INVITATION
 ===================================================== -->
 
-<main class="main" id="main">
+<main
+    class="main"
+    id="main"
+>
+
 
     <!-- HERO -->
 
@@ -1444,6 +1775,7 @@ footer {
         <div class="hero-label">
             нашата специална покана
         </div>
+
 
         <h2 class="hero-names">
 
@@ -1461,22 +1793,27 @@ footer {
 
         </h2>
 
-        <div class="hero-date"
-             id="previewDate">
+
+        <div
+            class="hero-date"
+            id="previewDate"
+        >
             12 ЮНИ 2027
         </div>
+
 
         <div class="hero-place">
             РЕЗИДЕНЦИЯ ТЕРА · ГР. СОФИЯ
         </div>
 
-        <div class="message"
-             id="previewMessage">
 
+        <div
+            class="message"
+            id="previewMessage"
+        >
             Ще се радваме да споделите с нас
             един от най-специалните дни
             в живота ни.
-
         </div>
 
     </section>
@@ -1493,6 +1830,7 @@ footer {
         <div class="section-subtitle">
             едно начало, една любов, едно семейство
         </div>
+
 
         <div class="story">
 
@@ -1513,6 +1851,7 @@ footer {
 
             </div>
 
+
             <div class="story-item">
 
                 <div class="story-date">
@@ -1529,6 +1868,7 @@ footer {
                 </div>
 
             </div>
+
 
             <div class="story-item">
 
@@ -1560,7 +1900,9 @@ footer {
             Сватбена програма
         </h2>
 
+
         <div class="program">
+
 
             <div class="program-item">
 
@@ -1683,6 +2025,7 @@ footer {
             Въпроси и Отговори
         </h2>
 
+
         <div class="faq">
 
 
@@ -1701,10 +2044,8 @@ footer {
                 </div>
 
                 <div class="faq-answer">
-
                     Да — заложете на елегантна,
                     празнична визия.
-
                 </div>
 
             </div>
@@ -1725,10 +2066,8 @@ footer {
                 </div>
 
                 <div class="faq-answer">
-
                     Моля, потвърдете присъствието си
                     до посочената в поканата дата.
-
                 </div>
 
             </div>
@@ -1749,10 +2088,8 @@ footer {
                 </div>
 
                 <div class="faq-answer">
-
                     Моля, отбележете това във формата
                     за потвърждение.
-
                 </div>
 
             </div>
@@ -1777,8 +2114,10 @@ footer {
             именно с вас.
         </p>
 
-        <a href="#"
-           class="rsvp-button">
+        <a
+            href="#"
+            class="rsvp-button"
+        >
             ПОТВЪРДИ ПРИСЪСТВИЕ
         </a>
 
@@ -1803,8 +2142,11 @@ footer {
 
         </div>
 
-        <div class="footer-date"
-             id="footerDate">
+
+        <div
+            class="footer-date"
+            id="footerDate"
+        >
             12 ЮНИ 2027
         </div>
 
@@ -1816,7 +2158,7 @@ footer {
 <script>
 
 /* =====================================================
-   READ PERSONALIZATION
+   PERSONALIZATION
 ===================================================== */
 
 const params =
@@ -1853,16 +2195,20 @@ const message =
    OPENING
 ===================================================== */
 
-document.getElementById("openingBride")
+document
+    .getElementById("openingBride")
     .textContent = bride;
 
-document.getElementById("openingGroom")
+document
+    .getElementById("openingGroom")
     .textContent = groom;
 
-document.getElementById("openingDate")
+document
+    .getElementById("openingDate")
     .textContent = date;
 
-document.getElementById("openingLocation")
+document
+    .getElementById("openingLocation")
     .textContent =
         venue + " · " + city;
 
@@ -1871,31 +2217,40 @@ document.getElementById("openingLocation")
    MAIN
 ===================================================== */
 
-document.getElementById("previewBride")
+document
+    .getElementById("previewBride")
     .textContent = bride;
 
-document.getElementById("previewGroom")
+document
+    .getElementById("previewGroom")
     .textContent = groom;
 
-document.getElementById("previewDate")
+document
+    .getElementById("previewDate")
     .textContent = date;
 
-document.getElementById("detailVenue")
+document
+    .getElementById("detailVenue")
     .textContent = venue;
 
-document.getElementById("detailCity")
+document
+    .getElementById("detailCity")
     .textContent = city;
 
-document.getElementById("previewMessage")
+document
+    .getElementById("previewMessage")
     .textContent = message;
 
-document.getElementById("footerBride")
+document
+    .getElementById("footerBride")
     .textContent = bride;
 
-document.getElementById("footerGroom")
+document
+    .getElementById("footerGroom")
     .textContent = groom;
 
-document.getElementById("footerDate")
+document
+    .getElementById("footerDate")
     .textContent = date;
 
 
@@ -1905,23 +2260,29 @@ document.getElementById("footerDate")
 
 document
     .getElementById("openButton")
-    .addEventListener("click", function() {
+    .addEventListener(
+        "click",
+        function() {
 
-        const opening =
-            document.getElementById("opening");
+            const opening =
+                document.getElementById("opening");
 
-        const main =
-            document.getElementById("main");
+            const main =
+                document.getElementById("main");
 
-        opening.classList.add("hidden");
+            opening.classList.add("hidden");
 
-        setTimeout(function() {
+            setTimeout(
+                function() {
 
-            main.classList.add("visible");
+                    main.classList.add("visible");
 
-        }, 700);
+                },
+                700
+            );
 
-    });
+        }
+    );
 
 
 /* =====================================================
@@ -1930,25 +2291,28 @@ document
 
 document
     .querySelectorAll(".faq-question")
-    .forEach(function(question) {
+    .forEach(
+        function(question) {
 
-        question.addEventListener(
-            "click",
-            function() {
+            question.addEventListener(
+                "click",
+                function() {
 
-                const item =
-                    question.parentElement;
+                    const item =
+                        question.parentElement;
 
-                item.classList.toggle(
-                    "active"
-                );
+                    item.classList.toggle(
+                        "active"
+                    );
 
-            }
-        );
+                }
+            );
 
-    });
+        }
+    );
 
 </script>
 
 </body>
 </html>
+```
