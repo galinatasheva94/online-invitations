@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Дизайни | Вашата покана</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f8f4ee;
+            color: #463d35;
+        }
+
+        nav {
+            padding: 25px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f4ee;
+        }
+
+        .logo {
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: #463d35;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 20px 50px;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: normal;
+            margin: 0 0 20px;
+        }
+
+        .header p {
+            max-width: 600px;
+            margin: auto;
+            color: #71665b;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .design-area {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        /* INVITATION */
+
+        .invitation {
+            background: #fbf7ef;
+            min-height: 760px;
+            padding: 55px 55px;
+            border: 1px solid #b9a17f;
+            box-shadow: 0 20px 50px rgba(70, 55, 40, 0.12);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitation:before,
+        .invitation:after {
+            content: "✿";
+            position: absolute;
+            font-size: 90px;
+            color: #9b9b7d;
+            opacity: 0.45;
+        }
+
+        .invitation:before {
+            top: -20px;
+            left: -15px;
+        }
+
+        .invitation:after {
+            bottom: -20px;
+            right: -15px;
+        }
+
+        .invitation-title {
+            font-size: 13px;
+            letter-spacing: 5px;
+            margin-top: 20px;
+        }
+
+        .heart {
+            margin: 25px 0;
+            color: #a48655;
+            font-size: 24px;
+        }
+
+        .names {
+            font-size: 54px;
+            line-height: 1.1;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .ampersand {
+            font-size: 32px;
+            color: #a48655;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        .date {
+            margin-top: 40px;
+            font-size: 18px;
+            letter-spacing: 4px;
+        }
+
+        .line {
+            width: 100px;
+            height: 1px;
+            background: #b69a6d;
+            margin: 22px auto;
+        }
+
+        .invitation-text {
+            max-width: 450px;
+            margin: 35px auto;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .location {
+            margin-top: 35px;
+            letter-spacing: 3px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .rsvp {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 15px 28px;
+            border: 1px solid #806b4f;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        /* INFO */
+
+        .info h2 {
+            font-size: 38px;
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        .info p {
+            color: #71665b;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 14px;
+            background: #eee6da;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .personalize {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 16px 30px;
+            background: #55483d;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        .personalize:hover {
+            background: #746455;
+        }
+
+        footer {
+            background: #463d35;
+            color: #d8cec1;
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 850px) {
+
+            .design-area {
+                grid-template-columns: 1fr;
+            }
+
+            .invitation {
+                max-width: 650px;
+                margin: auto;
+            }
+
+            .info {
+                text-align: center;
+                max-width: 600px;
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            .invitation {
+                padding: 45px 25px;
+                min-height: 650px;
+            }
+
+            .names {
+                font-size: 42px;
+            }
+
+            .date {
+                font-size: 15px;
+            }
+
+            .invitation-text {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            ВАШАТА ПОКАНА
+        </div>
+
+        <a href="index.html">
+            ← Начало
+        </a>
+
+    </nav>
+
+
+    <header class="header">
+
+        <div class="eyebrow">
+            Изберете своя дизайн
+        </div>
+
+        <h1>
+            Покани, създадени с внимание
+        </h1>
+
+        <p>
+            Изберете визията, която най-много ви допада.
+            След това ще добавите вашите имена,
+            дата, място и всички важни детайли.
+        </p>
+
+    </header>
+
+
+    <main class="design-area">
+
+
+        <!-- ПРЕГЛЕД НА ПОКАНАТА -->
+
+        <div class="invitation">
+
+            <div class="invitation-title">
+                СВАТБЕНА ПОКАНА
+            </div>
+
+            <div class="heart">
+                ─── ♥ ───
+            </div>
+
+            <h2 class="names">
+                Галина
+            </h2>
+
+            <div class="ampersand">
+                &
+            </div>
+
+            <h2 class="names">
+                Мартин
+            </h2>
+
+            <div class="date">
+                12 ЮНИ 2027
+            </div>
+
+            <div class="line"></div>
+
+            <div class="invitation-text">
+
+                <p>
+                    С радост ви каним да споделите
+                    нашия специален ден с нас.
+                </p>
+
+                <p>
+                    Ще се радваме да бъдете част
+                    от този незабравим момент.
+                </p>
+
+            </div>
+
+            <div class="location">
+
+                📍<br>
+
+                ГР. СОФИЯ<br>
+                РЕЗИДЕНЦИЯ ТЕРА
+
+            </div>
+
+            <div class="rsvp">
+                ПОТВЪРДИ ПРИСЪСТВИЕ
+            </div>
+
+        </div>
+
+
+        <!-- ИНФОРМАЦИЯ ЗА ДИЗАЙНА -->
+
+        <div class="info">
+
+            <div class="eyebrow">
+                Дизайн 01
+            </div>
+
+            <h2>
+                Minimal Garden
+            </h2>
+
+            <p>
+                Нежен и елегантен дизайн в топли
+                кремави тонове, допълнен с деликатни
+                флорални мотиви и фини златисти акценти.
+            </p>
+
+            <p>
+                Подходящ за сватби, годежи и други
+                романтични събития.
+            </p>
+
+            <div class="tag">
+                СВАТБА · ЕЛЕГАНТЕН · РОМАНТИЧЕН
+            </div>
+
+            <br>
+
+            <a href="#" class="personalize">
+                ПЕРСОНАЛИЗИРАЙ
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 Вашата покана · Онлайн покани
+    </footer>
+
+</body>
+</html>
