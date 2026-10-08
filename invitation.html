@@ -12,23 +12,63 @@
 
 <style>
 
+/* =========================================================
+   ОСНОВНИ
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background: #f8f5ee;
-    color: #4c4037;
+    margin: 0;
+    background: #f7f3eb;
+    color: #51473f;
     font-family: "Montserrat", sans-serif;
     overflow-x: hidden;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+:root {
+    --cream: #f7f3eb;
+    --cream-dark: #eee7dc;
+    --brown: #51473f;
+    --brown-soft: #75675b;
+    --green: #7f8870;
+    --green-light: #aeb49a;
+    --gold: #b39a72;
+    --rose: #d8c4b9;
+}
+
+
+/* =========================================================
+   ФИНА ХАРТИЕНА ТЕКСТУРА
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+
+    opacity: .16;
+
+    background-image:
+        radial-gradient(
+            rgba(80,65,50,.12) .6px,
+            transparent .6px
+        );
+
+    background-size: 8px 8px;
 }
 
 
@@ -40,22 +80,27 @@ body {
     position: fixed;
     inset: 0;
     z-index: 100;
-    background:
-        radial-gradient(circle at center, rgba(255,255,255,.7), transparent 55%),
-        #f8f5ee;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.75),
+            transparent 58%
+        ),
+        var(--cream);
+
     overflow: hidden;
 
     transition:
-        opacity 1.8s ease,
-        visibility 1.8s ease;
+        opacity 1.6s ease,
+        visibility 1.6s ease;
 }
 
-.opening.finished {
+.opening.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -63,58 +108,39 @@ body {
 
 
 /* =========================================================
-   ФИНА ХАРТИЕНА ТЕКСТУРА
+   ЦЕНТЪР НА НАЧАЛНИЯ ЕКРАН
 ========================================================= */
 
-.paper-texture {
-    position: absolute;
-    inset: 0;
-
-    opacity: .25;
-
-    background-image:
-        radial-gradient(rgba(100,80,60,.08) .7px, transparent .7px);
-
-    background-size: 7px 7px;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   ЦЕНТРАЛНО СЪДЪРЖАНИЕ
-========================================================= */
-
-.opening-content {
+.opening-center {
     position: relative;
-    z-index: 10;
+    z-index: 20;
 
-    width: min(650px, 90vw);
+    width: min(720px, 90vw);
 
     text-align: center;
 
-    padding: 40px 25px;
+    padding: 50px 25px;
 }
 
 
 /* малък надпис */
 
-.opening-small {
-    margin-bottom: 20px;
+.opening-kicker {
+    margin-bottom: 24px;
 
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 400;
+
     letter-spacing: 5px;
     text-transform: uppercase;
 
-    color: #927d69;
+    color: #948272;
 
     opacity: 0;
     transform: translateY(12px);
 
-    animation:
-        textAppear 1.4s ease forwards;
-
-    animation-delay: 2.7s;
+    animation: fadeUp 1.3s ease forwards;
+    animation-delay: 1.8s;
 }
 
 
@@ -125,106 +151,102 @@ body {
 
     font-family: "Cormorant Garamond", serif;
 
-    font-size: clamp(55px, 10vw, 100px);
+    font-size: clamp(70px, 11vw, 120px);
 
     font-weight: 400;
 
-    line-height: .9;
-
-    color: #514239;
+    line-height: .78;
 
     letter-spacing: -2px;
 
+    color: var(--brown);
+
     opacity: 0;
-    transform: translateY(18px);
 
     animation:
-        namesAppear 2s cubic-bezier(.2,.8,.2,1) forwards;
+        namesIn 2s cubic-bezier(.2,.8,.2,1) forwards;
 
-    animation-delay: 2.1s;
+    animation-delay: 1.1s;
 }
 
+.opening-names span {
+    display: block;
+}
 
-/* & */
-
-.opening-amp {
+.opening-names .amp {
     display: block;
 
-    margin: 7px 0 3px;
+    margin: 13px 0;
 
-    font-family: "Cormorant Garamond", serif;
+    font-size: .43em;
 
-    font-size: 40px;
+    line-height: 1;
 
-    color: #a88d72;
+    color: var(--gold);
 
-    opacity: 0;
-
-    animation:
-        ampAppear 1.5s ease forwards;
-
-    animation-delay: 2.4s;
+    letter-spacing: 0;
 }
 
 
 /* дата */
 
 .opening-date {
-    margin-top: 30px;
+    margin-top: 38px;
 
-    font-size: 12px;
+    font-size: 11px;
 
     letter-spacing: 5px;
 
-    color: #806d5c;
+    color: var(--brown-soft);
 
     opacity: 0;
+    transform: translateY(10px);
 
-    animation:
-        textAppear 1.4s ease forwards;
-
-    animation-delay: 3.2s;
+    animation: fadeUp 1.2s ease forwards;
+    animation-delay: 2.5s;
 }
 
 
 /* място */
 
-.opening-place {
-    margin-top: 11px;
+.opening-location {
+    margin-top: 12px;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 3px;
 
-    color: #9b8875;
-
     text-transform: uppercase;
+
+    color: #9b8b7c;
 
     opacity: 0;
 
-    animation:
-        textAppear 1.4s ease forwards;
-
-    animation-delay: 3.5s;
+    animation: fadeUp 1.2s ease forwards;
+    animation-delay: 2.8s;
 }
 
 
 /* бутон */
 
-.open-button {
+.opening-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     margin-top: 48px;
 
-    padding: 15px 34px;
+    min-width: 190px;
+
+    padding: 15px 25px;
 
     background: transparent;
 
-    border: 1px solid rgba(126,103,82,.55);
+    border: 1px solid rgba(100,82,66,.45);
 
-    color: #655447;
+    color: var(--brown);
 
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 3px;
 
@@ -232,10 +254,8 @@ body {
 
     opacity: 0;
 
-    animation:
-        buttonAppear 1.5s ease forwards;
-
-    animation-delay: 4s;
+    animation: fadeUp 1.2s ease forwards;
+    animation-delay: 3.2s;
 
     transition:
         background .4s ease,
@@ -243,439 +263,216 @@ body {
         transform .4s ease;
 }
 
-.open-button:hover {
-    background: #695748;
-    color: #fff;
+.opening-button:hover {
+    background: var(--brown);
+    color: white;
 
     transform: translateY(-2px);
 }
 
 
 /* =========================================================
-   ЦВЕТЯ
+   ЛЕНТИ
 ========================================================= */
 
-.flower-composition {
+.ribbon {
     position: absolute;
 
-    width: 430px;
-    height: 430px;
-
-    pointer-events: none;
-}
-
-
-/* ЛЯВО */
-
-.flower-left {
-    left: -90px;
-    bottom: -80px;
-
-    transform-origin: bottom left;
-
-    opacity: 0;
-
-    animation:
-        flowerLeftAppear 3s cubic-bezier(.2,.7,.2,1) forwards;
-
-    animation-delay: .2s;
-}
-
-
-/* ДЯСНО */
-
-.flower-right {
-    right: -100px;
-    top: -80px;
-
-    transform-origin: top right;
-
-    opacity: 0;
-
-    animation:
-        flowerRightAppear 3s cubic-bezier(.2,.7,.2,1) forwards;
-
-    animation-delay: .7s;
-}
-
-
-/* клонки */
-
-.branch {
-    position: absolute;
-
-    width: 3px;
-
-    height: 280px;
+    width: 2px;
 
     background:
         linear-gradient(
             to bottom,
             transparent,
-            #8d9070 20%,
-            #7f8466 100%
+            rgba(179,154,114,.7),
+            transparent
         );
 
-    border-radius: 50%;
+    opacity: 0;
 
-    transform-origin: bottom center;
+    animation:
+        ribbonIn 2.5s ease forwards;
+
+    pointer-events: none;
 }
 
+.ribbon.left {
+    left: 18%;
 
-/* лява основна клонка */
-
-.flower-left .branch.one {
-    left: 190px;
-    bottom: 20px;
-
-    transform:
-        rotate(-28deg);
-}
-
-
-/* лява втора */
-
-.flower-left .branch.two {
-    left: 250px;
-    bottom: 5px;
-
-    height: 220px;
+    top: -10%;
+    height: 120%;
 
     transform:
         rotate(12deg);
+
+    animation-delay: .4s;
 }
 
+.ribbon.right {
+    right: 18%;
 
-/* дясна основна */
-
-.flower-right .branch.one {
-    right: 190px;
-    top: 20px;
-
-    height: 280px;
-
-    transform:
-        rotate(28deg);
-}
-
-
-/* дясна втора */
-
-.flower-right .branch.two {
-    right: 250px;
-    top: 10px;
-
-    height: 220px;
+    top: -10%;
+    height: 120%;
 
     transform:
         rotate(-12deg);
+
+    animation-delay: .7s;
 }
 
 
-/* =========================================================
-   ЛИСТА
-========================================================= */
+/* по-широки ленти */
 
-.leaf {
+.ribbon-wide {
     position: absolute;
 
-    width: 46px;
-    height: 20px;
+    width: 55px;
+    height: 150vh;
 
-    background: #9ca184;
+    top: -25vh;
 
-    border-radius: 100% 0 100% 0;
-
-    opacity: .78;
-
-    transform-origin: left center;
-}
-
-
-/* лява */
-
-.flower-left .leaf.l1 {
-    left: 125px;
-    bottom: 135px;
-    transform: rotate(-20deg);
-}
-
-.flower-left .leaf.l2 {
-    left: 165px;
-    bottom: 185px;
-    transform: rotate(25deg);
-}
-
-.flower-left .leaf.l3 {
-    left: 225px;
-    bottom: 115px;
-    transform: rotate(-35deg);
-}
-
-.flower-left .leaf.l4 {
-    left: 280px;
-    bottom: 165px;
-    transform: rotate(25deg);
-}
-
-.flower-left .leaf.l5 {
-    left: 200px;
-    bottom: 65px;
-    transform: rotate(-45deg);
-}
-
-
-/* дясна */
-
-.flower-right .leaf.l1 {
-    right: 125px;
-    top: 135px;
-    transform: rotate(160deg);
-}
-
-.flower-right .leaf.l2 {
-    right: 165px;
-    top: 185px;
-    transform: rotate(205deg);
-}
-
-.flower-right .leaf.l3 {
-    right: 225px;
-    top: 115px;
-    transform: rotate(145deg);
-}
-
-.flower-right .leaf.l4 {
-    right: 280px;
-    top: 165px;
-    transform: rotate(205deg);
-}
-
-.flower-right .leaf.l5 {
-    right: 200px;
-    top: 65px;
-    transform: rotate(135deg);
-}
-
-
-/* =========================================================
-   ЦВЕТНИ ГЛАВИ
-========================================================= */
-
-.flower {
-    position: absolute;
-
-    width: 72px;
-    height: 72px;
-}
-
-
-/* венчелистчета */
-
-.petal {
-    position: absolute;
-
-    width: 34px;
-    height: 48px;
-
-    left: 19px;
-    top: 12px;
-
-    border-radius: 70% 30% 70% 30%;
+    opacity: 0;
 
     background:
-        radial-gradient(
-            ellipse at 50% 80%,
-            #d9c6b7 0%,
-            #eadcd0 55%,
-            #f1e7df 100%
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(220,205,186,.18),
+            rgba(255,255,255,.22),
+            transparent
         );
 
-    transform-origin: 50% 90%;
+    pointer-events: none;
+
+    animation:
+        ribbonWideIn 3s ease forwards;
 }
 
+.ribbon-wide.left {
+    left: 4%;
 
-/* различни завъртания */
+    transform: rotate(10deg);
 
-.petal:nth-child(1) {
-    transform: rotate(0deg);
+    animation-delay: .3s;
 }
 
-.petal:nth-child(2) {
-    transform: rotate(72deg);
-}
+.ribbon-wide.right {
+    right: 4%;
 
-.petal:nth-child(3) {
-    transform: rotate(144deg);
-}
+    transform: rotate(-10deg);
 
-.petal:nth-child(4) {
-    transform: rotate(216deg);
-}
-
-.petal:nth-child(5) {
-    transform: rotate(288deg);
-}
-
-
-/* център */
-
-.flower-center {
-    position: absolute;
-
-    left: 30px;
-    top: 30px;
-
-    width: 14px;
-    height: 14px;
-
-    border-radius: 50%;
-
-    background: #b59a6e;
-
-    box-shadow:
-        0 0 0 5px rgba(181,154,110,.12);
-}
-
-
-/* цветя - позиции */
-
-.flower-left .f1 {
-    left: 65px;
-    bottom: 55px;
-    transform: rotate(-18deg) scale(.9);
-}
-
-.flower-left .f2 {
-    left: 150px;
-    bottom: 145px;
-    transform: rotate(12deg) scale(1.15);
-}
-
-.flower-left .f3 {
-    left: 265px;
-    bottom: 205px;
-    transform: rotate(-20deg) scale(.75);
-}
-
-.flower-left .f4 {
-    left: 315px;
-    bottom: 85px;
-    transform: rotate(25deg) scale(.85);
-}
-
-
-.flower-right .f1 {
-    right: 65px;
-    top: 55px;
-    transform: rotate(162deg) scale(.9);
-}
-
-.flower-right .f2 {
-    right: 150px;
-    top: 145px;
-    transform: rotate(192deg) scale(1.15);
-}
-
-.flower-right .f3 {
-    right: 265px;
-    top: 205px;
-    transform: rotate(160deg) scale(.75);
-}
-
-.flower-right .f4 {
-    right: 315px;
-    top: 85px;
-    transform: rotate(205deg) scale(.85);
+    animation-delay: .6s;
 }
 
 
 /* =========================================================
-   АНИМАЦИИ
+   БОТАНИЧЕСКИ SVG КОМПОЗИЦИИ
 ========================================================= */
 
-@keyframes flowerLeftAppear {
+.botanical {
+    position: absolute;
 
-    0% {
-        opacity: 0;
-        transform: scale(.7) rotate(-8deg);
-    }
+    width: min(380px, 38vw);
 
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-    }
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation:
+        botanicalIn 2.8s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.botanical.left {
+    left: -25px;
+    bottom: -35px;
+
+    transform-origin: bottom left;
+
+    animation-delay: .25s;
+}
+
+.botanical.right {
+    right: -25px;
+    top: -35px;
+
+    transform:
+        scaleX(-1);
+
+    transform-origin: top right;
+
+    animation-delay: .55s;
+}
+
+.botanical svg {
+    width: 100%;
+    height: auto;
+
+    overflow: visible;
 }
 
 
-@keyframes flowerRightAppear {
+/* =========================================================
+   АНИМАЦИИ НА НАЧАЛОТО
+========================================================= */
 
-    0% {
-        opacity: 0;
-        transform: scale(.7) rotate(8deg);
-    }
+@keyframes fadeUp {
 
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-    }
-}
-
-
-@keyframes namesAppear {
-
-    0% {
-        opacity: 0;
-        transform: translateY(25px);
-        letter-spacing: 8px;
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        letter-spacing: -2px;
-    }
-}
-
-
-@keyframes ampAppear {
-
-    0% {
-        opacity: 0;
-        transform: scale(.7);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-@keyframes textAppear {
-
-    0% {
+    from {
         opacity: 0;
         transform: translateY(12px);
     }
 
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+@keyframes namesIn {
 
-@keyframes buttonAppear {
-
-    0% {
+    from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(25px) scale(.96);
     }
 
-    100% {
+    to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes botanicalIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.78) translateY(25px);
+    }
+
+    to {
+        opacity: .92;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes ribbonIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .8;
+    }
+}
+
+@keyframes ribbonWideIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
 
@@ -685,134 +482,531 @@ body {
 ========================================================= */
 
 .main-content {
-    min-height: 100vh;
-
     opacity: 0;
 
     transition:
         opacity 1.5s ease;
 }
 
-
 .main-content.visible {
     opacity: 1;
 }
 
 
-/* първа секция */
+/* =========================================================
+   HERO
+========================================================= */
 
-.invitation-hero {
+.hero {
+    position: relative;
+
     min-height: 100vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    text-align: center;
-
-    padding: 60px 25px;
-
-    position: relative;
-
-    background: #f8f5ee;
-}
-
-
-.invitation-inner {
-    width: min(650px, 90vw);
-}
-
-
-.invitation-small {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #927d69;
-    text-transform: uppercase;
-}
-
-
-.invitation-names {
-    margin: 25px 0 15px;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: clamp(60px, 11vw, 105px);
-
-    font-weight: 400;
-
-    line-height: .9;
-
-    color: #514239;
-}
-
-
-.invitation-date {
-    font-size: 12px;
-    letter-spacing: 5px;
-    color: #806d5c;
-}
-
-
-.invitation-message {
-    max-width: 540px;
-
-    margin: 50px auto 0;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: 23px;
-
-    line-height: 1.6;
-
-    color: #65564b;
-}
-
-
-/* детайли */
-
-.details {
-    min-height: 60vh;
-
     padding: 100px 25px;
 
     text-align: center;
 
-    background: #eee9df;
+    overflow: hidden;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 5;
+
+    width: min(720px, 90vw);
 }
 
 
-.details-title {
+/* декоративна линия */
+
+.ornament-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.ornament-line::before,
+.ornament-line::after {
+    content: "";
+
+    width: 55px;
+    height: 1px;
+
+    background: rgba(166,140,105,.5);
+}
+
+.ornament-line span {
+    color: var(--gold);
+
+    font-size: 14px;
+}
+
+
+/* hero надпис */
+
+.hero-kicker {
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #948272;
+}
+
+
+/* hero имена */
+
+.hero-names {
+    margin: 28px 0;
+
     font-family: "Cormorant Garamond", serif;
 
-    font-size: 44px;
+    font-size: clamp(65px, 10vw, 110px);
 
     font-weight: 400;
 
-    margin-bottom: 45px;
+    line-height: .85;
+
+    color: var(--brown);
+}
+
+.hero-names .amp {
+    display: inline-block;
+
+    margin: 0 12px;
+
+    font-size: .48em;
+
+    color: var(--gold);
+
+    vertical-align: middle;
 }
 
 
-.detail {
-    margin: 25px 0;
+/* дата */
+
+.hero-date {
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: #75675b;
 }
 
 
-.detail-label {
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #9a8673;
-}
+/* послание */
 
+.hero-message {
+    max-width: 580px;
 
-.detail-value {
-    margin-top: 7px;
+    margin: 55px auto 0;
 
     font-family: "Cormorant Garamond", serif;
 
     font-size: 25px;
 
-    color: #514239;
+    line-height: 1.55;
+
+    color: #65594f;
+}
+
+
+/* =========================================================
+   ДЕКОРАТИВЕН ПРЕХОД
+========================================================= */
+
+.section-divider {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 30px 0;
+}
+
+.section-divider span {
+    color: var(--gold);
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   СЕКЦИЯ
+========================================================= */
+
+.section {
+    position: relative;
+
+    padding: 110px 25px;
+
+    text-align: center;
+}
+
+.section.alt {
+    background: var(--cream-dark);
+}
+
+.section-inner {
+    width: min(850px, 92vw);
+
+    margin: 0 auto;
+}
+
+
+/* заглавия */
+
+.section-kicker {
+    margin-bottom: 15px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #9b8978;
+}
+
+.section-title {
+    margin: 0;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(43px, 7vw, 68px);
+
+    font-weight: 400;
+
+    color: var(--brown);
+
+    line-height: 1;
+}
+
+.section-intro {
+    max-width: 600px;
+
+    margin: 25px auto 0;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 22px;
+
+    line-height: 1.55;
+
+    color: #75675c;
+}
+
+
+/* =========================================================
+   НАШАТА ИСТОРИЯ
+========================================================= */
+
+.story {
+    max-width: 650px;
+
+    margin: 65px auto 0;
+
+    text-align: left;
+}
+
+.story-item {
+    position: relative;
+
+    padding: 0 0 45px 35px;
+
+    border-left: 1px solid rgba(140,119,96,.35);
+}
+
+.story-item:last-child {
+    border-left-color: transparent;
+}
+
+.story-item::before {
+    content: "";
+
+    position: absolute;
+
+    left: -4px;
+    top: 4px;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+}
+
+.story-date {
+    margin-bottom: 8px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: #a18e7b;
+
+    text-transform: uppercase;
+}
+
+.story-title {
+    margin-bottom: 7px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 27px;
+
+    color: var(--brown);
+}
+
+.story-text {
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color: #756960;
+}
+
+
+/* =========================================================
+   ПРОГРАМА
+========================================================= */
+
+.program {
+    margin-top: 65px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 1px;
+
+    background: rgba(130,110,90,.22);
+}
+
+.program-item {
+    padding: 45px 25px;
+
+    background: var(--cream);
+
+    min-height: 250px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.program-time {
+    margin-bottom: 15px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: var(--gold);
+}
+
+.program-title {
+    margin-bottom: 12px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 28px;
+
+    color: var(--brown);
+}
+
+.program-place {
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    color: #786d63;
+}
+
+
+/* =========================================================
+   DRESS CODE
+========================================================= */
+
+.dress-code {
+    max-width: 650px;
+
+    margin: 50px auto 0;
+
+    padding: 55px 30px;
+
+    border-top: 1px solid rgba(130,110,90,.3);
+    border-bottom: 1px solid rgba(130,110,90,.3);
+}
+
+.dress-code-text {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 27px;
+
+    line-height: 1.5;
+
+    color: var(--brown);
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq {
+    max-width: 700px;
+
+    margin: 60px auto 0;
+
+    text-align: left;
+}
+
+.faq-item {
+    border-top: 1px solid rgba(130,110,90,.25);
+}
+
+.faq-item:last-child {
+    border-bottom: 1px solid rgba(130,110,90,.25);
+}
+
+.faq-question {
+    padding: 23px 5px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 23px;
+
+    color: var(--brown);
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.faq-question span {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 15px;
+
+    color: var(--gold);
+}
+
+.faq-answer {
+    display: none;
+
+    padding: 0 5px 25px;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    color: #786d63;
+}
+
+.faq-item.open .faq-answer {
+    display: block;
+}
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp {
+    min-height: 70vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #e9e2d7;
+}
+
+.rsvp-inner {
+    width: min(650px, 90vw);
+
+    text-align: center;
+}
+
+.rsvp-button {
+    display: inline-block;
+
+    margin-top: 35px;
+
+    padding: 16px 35px;
+
+    border: 1px solid rgba(90,73,58,.5);
+
+    color: var(--brown);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    transition:
+        background .4s ease,
+        color .4s ease;
+}
+
+.rsvp-button:hover {
+    background: var(--brown);
+
+    color: white;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    padding: 80px 25px;
+
+    text-align: center;
+
+    background: var(--brown);
+
+    color: #eee6dc;
+}
+
+.footer-names {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 52px;
+
+    font-weight: 400;
+}
+
+.footer-date {
+    margin-top: 15px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    opacity: .7;
 }
 
 
@@ -820,36 +1014,83 @@ body {
    МОБИЛЕН
 ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
-    .flower-composition {
-        width: 300px;
-        height: 300px;
+    .botanical {
+        width: 290px;
     }
 
-    .flower-left {
-        left: -125px;
-        bottom: -70px;
+    .botanical.left {
+        left: -90px;
+        bottom: -25px;
     }
 
-    .flower-right {
-        right: -135px;
-        top: -70px;
+    .botanical.right {
+        right: -90px;
+        top: -25px;
     }
+
+    .ribbon.left {
+        left: 9%;
+    }
+
+    .ribbon.right {
+        right: 9%;
+    }
+
+    .program {
+        grid-template-columns: 1fr;
+    }
+
+    .program-item {
+        min-height: 200px;
+    }
+
+    .hero-message {
+        font-size: 22px;
+    }
+
+}
+
+@media (max-width: 520px) {
 
     .opening-names {
-        font-size: clamp(52px, 16vw, 78px);
+        font-size: 62px;
     }
 
     .opening-date {
         letter-spacing: 3px;
     }
 
+    .botanical {
+        width: 230px;
+    }
+
+    .botanical.left {
+        left: -80px;
+        bottom: -10px;
+    }
+
+    .botanical.right {
+        right: -80px;
+        top: -10px;
+    }
+
+    .hero-names {
+        font-size: 62px;
+    }
+
+    .hero-names .amp {
+        display: block;
+
+        margin: 12px 0;
+    }
+
 }
 
 
 /* =========================================================
-   НАМАЛЕНО ДВИЖЕНИЕ
+   REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -877,154 +1118,322 @@ body {
 
 <section class="opening" id="opening">
 
-    <div class="paper-texture"></div>
+
+    <!-- фини ленти -->
+
+    <div class="ribbon left"></div>
+    <div class="ribbon right"></div>
+
+    <div class="ribbon-wide left"></div>
+    <div class="ribbon-wide right"></div>
 
 
-    <!-- ЛЯВА ЦВЕТНА КОМПОЗИЦИЯ -->
+    <!-- ==================================================
+         ЛЯВА БОТАНИЧЕСКА КОМПОЗИЦИЯ
+    ================================================== -->
 
-    <div class="flower-composition flower-left">
+    <div class="botanical left">
 
-        <div class="branch one"></div>
-        <div class="branch two"></div>
+        <svg viewBox="0 0 420 420"
+             xmlns="http://www.w3.org/2000/svg">
 
-        <div class="leaf l1"></div>
-        <div class="leaf l2"></div>
-        <div class="leaf l3"></div>
-        <div class="leaf l4"></div>
-        <div class="leaf l5"></div>
+            <!-- стъбла -->
 
+            <path
+                d="M55 410 C90 320 115 250 180 170 C220 120 260 90 310 45"
+                fill="none"
+                stroke="#7f8870"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
 
-        <div class="flower f1">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
+            <path
+                d="M115 410 C135 330 150 280 150 220 C150 160 175 115 225 65"
+                fill="none"
+                stroke="#90977c"
+                stroke-width="1.5"
+                stroke-linecap="round"
+            />
 
-
-        <div class="flower f2">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
-
-
-        <div class="flower f3">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
+            <path
+                d="M185 390 C205 320 245 275 300 235 C335 210 355 175 365 135"
+                fill="none"
+                stroke="#7f8870"
+                stroke-width="1.5"
+                stroke-linecap="round"
+            />
 
 
-        <div class="flower f4">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
+            <!-- листа -->
+
+            <g fill="#9da58a">
+
+                <ellipse
+                    cx="130"
+                    cy="300"
+                    rx="28"
+                    ry="10"
+                    transform="rotate(-35 130 300)"
+                />
+
+                <ellipse
+                    cx="157"
+                    cy="250"
+                    rx="28"
+                    ry="10"
+                    transform="rotate(28 157 250)"
+                />
+
+                <ellipse
+                    cx="190"
+                    cy="195"
+                    rx="31"
+                    ry="11"
+                    transform="rotate(-30 190 195)"
+                />
+
+                <ellipse
+                    cx="235"
+                    cy="135"
+                    rx="30"
+                    ry="10"
+                    transform="rotate(30 235 135)"
+                />
+
+                <ellipse
+                    cx="255"
+                    cy="290"
+                    rx="30"
+                    ry="10"
+                    transform="rotate(-30 255 290)"
+                />
+
+                <ellipse
+                    cx="305"
+                    cy="235"
+                    rx="30"
+                    ry="10"
+                    transform="rotate(30 305 235)"
+                />
+
+            </g>
+
+
+            <!-- цветя -->
+
+            <g
+                fill="#e3d2c7"
+                stroke="#c6aa9c"
+                stroke-width="1"
+            >
+
+                <circle cx="88" cy="305" r="20"/>
+                <circle cx="106" cy="287" r="20"/>
+                <circle cx="130" cy="290" r="20"/>
+                <circle cx="136" cy="315" r="20"/>
+                <circle cx="110" cy="323" r="20"/>
+
+                <circle cx="208" cy="153" r="19"/>
+                <circle cx="227" cy="135" r="19"/>
+                <circle cx="250" cy="141" r="19"/>
+                <circle cx="250" cy="164" r="19"/>
+                <circle cx="226" cy="172" r="19"/>
+
+                <circle cx="300" cy="230" r="15"/>
+                <circle cx="315" cy="216" r="15"/>
+                <circle cx="333" cy="222" r="15"/>
+                <circle cx="331" cy="241" r="15"/>
+                <circle cx="313" cy="247" r="15"/>
+
+            </g>
+
+
+            <!-- центрове -->
+
+            <g fill="#b39a72">
+
+                <circle cx="113" cy="306" r="7"/>
+                <circle cx="229" cy="153" r="7"/>
+                <circle cx="316" cy="231" r="5"/>
+
+            </g>
+
+        </svg>
 
     </div>
 
 
+    <!-- ==================================================
+         ДЯСНА БОТАНИЧЕСКА КОМПОЗИЦИЯ
+    ================================================== -->
 
-    <!-- ДЯСНА ЦВЕТНА КОМПОЗИЦИЯ -->
+    <div class="botanical right">
 
-    <div class="flower-composition flower-right">
+        <svg viewBox="0 0 420 420"
+             xmlns="http://www.w3.org/2000/svg">
 
-        <div class="branch one"></div>
-        <div class="branch two"></div>
+            <path
+                d="M55 410 C90 320 115 250 180 170 C220 120 260 90 310 45"
+                fill="none"
+                stroke="#7f8870"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
 
-        <div class="leaf l1"></div>
-        <div class="leaf l2"></div>
-        <div class="leaf l3"></div>
-        <div class="leaf l4"></div>
-        <div class="leaf l5"></div>
+            <path
+                d="M115 410 C135 330 150 280 150 220 C150 160 175 115 225 65"
+                fill="none"
+                stroke="#90977c"
+                stroke-width="1.5"
+                stroke-linecap="round"
+            />
 
+            <path
+                d="M185 390 C205 320 245 275 300 235 C335 210 355 175 365 135"
+                fill="none"
+                stroke="#7f8870"
+                stroke-width="1.5"
+                stroke-linecap="round"
+            />
 
-        <div class="flower f1">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
+            <g fill="#9da58a">
 
+                <ellipse
+                    cx="130"
+                    cy="300"
+                    rx="28"
+                    ry="10"
+                    transform="rotate(-35 130 300)"
+                />
 
-        <div class="flower f2">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
+                <ellipse
+                    cx="157"
+                    cy="250"
+                    rx="28"
+                    ry="10"
+                    transform="rotate(28 157 250)"
+                />
 
+                <ellipse
+                    cx="190"
+                    cy="195"
+                    rx="31"
+                    ry="11"
+                    transform="rotate(-30 190 195)"
+                />
 
-        <div class="flower f3">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
+                <ellipse
+                    cx="235"
+                    cy="135"
+                    rx="30"
+                    ry="10"
+                    transform="rotate(30 235 135)"
+                />
 
+                <ellipse
+                    cx="255"
+                    cy="290"
+                    rx="30"
+                    ry="10"
+                    transform="rotate(-30 255 290)"
+                />
 
-        <div class="flower f4">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="flower-center"></div>
-        </div>
+                <ellipse
+                    cx="305"
+                    cy="235"
+                    rx="30"
+                    ry="10"
+                    transform="rotate(30 305 235)"
+                />
+
+            </g>
+
+            <g
+                fill="#e3d2c7"
+                stroke="#c6aa9c"
+                stroke-width="1"
+            >
+
+                <circle cx="88" cy="305" r="20"/>
+                <circle cx="106" cy="287" r="20"/>
+                <circle cx="130" cy="290" r="20"/>
+                <circle cx="136" cy="315" r="20"/>
+                <circle cx="110" cy="323" r="20"/>
+
+                <circle cx="208" cy="153" r="19"/>
+                <circle cx="227" cy="135" r="19"/>
+                <circle cx="250" cy="141" r="19"/>
+                <circle cx="250" cy="164" r="19"/>
+                <circle cx="226" cy="172" r="19"/>
+
+                <circle cx="300" cy="230" r="15"/>
+                <circle cx="315" cy="216" r="15"/>
+                <circle cx="333" cy="222" r="15"/>
+                <circle cx="331" cy="241" r="15"/>
+                <circle cx="313" cy="247" r="15"/>
+
+            </g>
+
+            <g fill="#b39a72">
+
+                <circle cx="113" cy="306" r="7"/>
+                <circle cx="229" cy="153" r="7"/>
+                <circle cx="316" cy="231" r="5"/>
+
+            </g>
+
+        </svg>
 
     </div>
 
 
+    <!-- ==================================================
+         ЦЕНТР
+    ================================================== -->
 
-    <!-- ЦЕНТЪР -->
+    <div class="opening-center">
 
-    <div class="opening-content">
-
-        <div class="opening-small">
+        <div class="opening-kicker">
             нашият специален ден
         </div>
 
 
         <h1 class="opening-names">
-            <span id="openingBride">Галина</span>
 
-            <span class="opening-amp">&amp;</span>
+            <span id="openingBride">
+                Галина
+            </span>
 
-            <span id="openingGroom">Мартин</span>
+            <span class="amp">
+                &amp;
+            </span>
+
+            <span id="openingGroom">
+                Мартин
+            </span>
+
         </h1>
 
 
-        <div class="opening-date" id="openingDate">
+        <div
+            class="opening-date"
+            id="openingDate"
+        >
             12 ЮНИ 2027
         </div>
 
 
-        <div class="opening-place">
-            Резиденция Тера · гр. София
+        <div
+            class="opening-location"
+            id="openingLocation"
+        >
+            РЕЗИДЕНЦИЯ ТЕРА · ГР. СОФИЯ
         </div>
 
 
         <button
-            class="open-button"
-            id="openInvitation"
+            class="opening-button"
+            id="openButton"
             type="button"
         >
             ОТВОРИ ПОКАНАТА
@@ -1037,44 +1446,52 @@ body {
 
 
 <!-- ======================================================
-     ОСНОВНА ПОКАНА
+     ОСНОВНО СЪДЪРЖАНИЕ
 ====================================================== -->
 
-<main class="main-content" id="mainContent">
+<main
+    class="main-content"
+    id="mainContent"
+>
 
 
-    <section class="invitation-hero">
+    <!-- ==================================================
+         HERO
+    ================================================== -->
 
-        <div class="invitation-inner">
+    <section class="hero">
 
-            <div class="invitation-small">
-                с радост ви каним
+        <div class="hero-inner">
+
+            <div class="ornament-line">
+                <span>✦</span>
             </div>
 
 
-            <div class="invitation-names">
+            <div class="hero-kicker">
+                Началото на нашата семейна приказка
+            </div>
+
+
+            <h2 class="hero-names">
 
                 <span id="previewBride">
                     Галина
                 </span>
 
-                <br>
-
-                <span>
+                <span class="amp">
                     &amp;
                 </span>
-
-                <br>
 
                 <span id="previewGroom">
                     Мартин
                 </span>
 
-            </div>
+            </h2>
 
 
             <div
-                class="invitation-date"
+                class="hero-date"
                 id="previewDate"
             >
                 12 ЮНИ 2027
@@ -1082,7 +1499,7 @@ body {
 
 
             <div
-                class="invitation-message"
+                class="hero-message"
                 id="previewMessage"
             >
                 Ще се радваме да споделите с нас
@@ -1095,61 +1512,370 @@ body {
 
 
 
-    <section class="details">
+    <!-- ==================================================
+         НАШАТА ИСТОРИЯ
+    ================================================== -->
 
-        <div class="details-title">
-            Нашият ден
-        </div>
+    <section class="section alt">
 
+        <div class="section-inner">
 
-        <div class="detail">
-
-            <div class="detail-label">
-                Дата
+            <div class="section-kicker">
+                нашето пътуване
             </div>
 
-            <div
-                class="detail-value"
-                id="detailDate"
-            >
-                12 ЮНИ 2027
+            <h2 class="section-title">
+                Нашата история
+            </h2>
+
+            <div class="section-intro">
+                Няколко малки момента, които ни доведоха
+                до този голям ден.
             </div>
 
-        </div>
+
+            <div class="story">
+
+                <div class="story-item">
+
+                    <div class="story-date">
+                        Първата среща
+                    </div>
+
+                    <div class="story-title">
+                        И всичко започна...
+                    </div>
+
+                    <div class="story-text">
+                        Тук можете да разкажете вашата история —
+                        от първата среща до предложението.
+                    </div>
+
+                </div>
 
 
-        <div class="detail">
+                <div class="story-item">
 
-            <div class="detail-label">
-                Място
-            </div>
+                    <div class="story-date">
+                        Един специален момент
+                    </div>
 
-            <div
-                class="detail-value"
-                id="detailVenue"
-            >
-                РЕЗИДЕНЦИЯ ТЕРА
-            </div>
+                    <div class="story-title">
+                        Заедно
+                    </div>
 
-        </div>
+                    <div class="story-text">
+                        Любими пътувания, общ дом, малки
+                        приключения и всички моменти,
+                        които са ви направили семейство.
+                    </div>
+
+                </div>
 
 
-        <div class="detail">
+                <div class="story-item">
 
-            <div class="detail-label">
-                Град
-            </div>
+                    <div class="story-date">
+                        И тя каза „ДА“
+                    </div>
 
-            <div
-                class="detail-value"
-                id="detailCity"
-            >
-                ГР. СОФИЯ
+                    <div class="story-title">
+                        А сега...
+                    </div>
+
+                    <div class="story-text">
+                        Идва нашият специален ден.
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
     </section>
+
+
+
+    <!-- ==================================================
+         ПРОГРАМА
+    ================================================== -->
+
+    <section class="section">
+
+        <div class="section-inner">
+
+            <div class="section-kicker">
+                бъдете с нас
+            </div>
+
+            <h2 class="section-title">
+                Сватбена програма
+            </h2>
+
+            <div class="section-intro">
+                Очакваме ви, за да споделим заедно
+                най-важните моменти от нашия ден.
+            </div>
+
+
+            <div class="program">
+
+
+                <div class="program-item">
+
+                    <div class="program-time">
+                        14:00 часа
+                    </div>
+
+                    <div class="program-title">
+                        Църковен брак
+                    </div>
+
+                    <div class="program-place">
+                        Храм „Света Троица“<br>
+                        гр. София
+                    </div>
+
+                </div>
+
+
+                <div class="program-item">
+
+                    <div class="program-time">
+                        17:30 часа
+                    </div>
+
+                    <div class="program-title">
+                        Ще си кажем „Да“..
+                    </div>
+
+                    <div class="program-place">
+                        <span id="detailVenue">
+                            Резиденция Тера
+                        </span>
+                        <br>
+                        <span id="detailCity">
+                            гр. София
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="program-item">
+
+                    <div class="program-time">
+                        19:00 часа
+                    </div>
+
+                    <div class="program-title">
+                        Официална вечеря
+                    </div>
+
+                    <div class="program-place">
+                        Резиденция Тера
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         DRESS CODE
+    ================================================== -->
+
+    <section class="section alt">
+
+        <div class="section-inner">
+
+            <div class="section-kicker">
+                за нашия празник
+            </div>
+
+            <h2 class="section-title">
+                Dress Code
+            </h2>
+
+
+            <div class="dress-code">
+
+                <div class="dress-code-text">
+                    Тук бъдещите младоженци могат
+                    да споделят своя дрескод,
+                    цветова палитра или малка закачка
+                    към гостите.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         FAQ
+    ================================================== -->
+
+    <section class="section">
+
+        <div class="section-inner">
+
+            <div class="section-kicker">
+                полезна информация
+            </div>
+
+            <h2 class="section-title">
+                Въпроси и отговори
+            </h2>
+
+
+            <div class="faq">
+
+
+                <div class="faq-item">
+
+                    <div class="faq-question">
+                        До кога трябва да потвърдя присъствието си?
+                        <span>+</span>
+                    </div>
+
+                    <div class="faq-answer">
+                        Моля, потвърдете присъствието си до
+                        посочената в поканата дата.
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <div class="faq-question">
+                        Какво да ви подаря?
+                        <span>+</span>
+                    </div>
+
+                    <div class="faq-answer">
+                        Тук младоженците могат да добавят
+                        предпочитанията си за подаръци.
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <div class="faq-question">
+                        Има ли паркинг?
+                        <span>+</span>
+                    </div>
+
+                    <div class="faq-answer">
+                        Добавете информация за паркинга,
+                        транспорта или такси.
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <div class="faq-question">
+                        Има ли дрескод?
+                        <span>+</span>
+                    </div>
+
+                    <div class="faq-answer">
+                        Тук може да бъде описан дрескодът
+                        и цветовете на събитието.
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         RSVP
+    ================================================== -->
+
+    <section class="section rsvp">
+
+        <div class="rsvp-inner">
+
+            <div class="section-kicker">
+                ще бъдете ли с нас?
+            </div>
+
+            <h2 class="section-title">
+                Потвърдете присъствието си
+            </h2>
+
+            <div class="section-intro">
+                Означавате много за нас и ще се радваме
+                да бъдете част от нашия празник.
+            </div>
+
+
+            <a
+                href="#"
+                class="rsvp-button"
+                onclick="return false;"
+            >
+                ФОРМА ЗА ПОТВЪРЖДЕНИЕ
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-names">
+
+            <span id="footerBride">
+                Галина
+            </span>
+
+            &amp;
+
+            <span id="footerGroom">
+                Мартин
+            </span>
+
+        </div>
+
+
+        <div
+            class="footer-date"
+            id="footerDate"
+        >
+            12 ЮНИ 2027
+        </div>
+
+    </footer>
+
 
 </main>
 
@@ -1158,12 +1884,13 @@ body {
 <script>
 
 /* =========================================================
-   ПОЛУЧАВАМЕ ДАННИТЕ ОТ EDITOR
+   ПАРАМЕТРИ ОТ EDITOR.HTML
 ========================================================= */
 
-const params = new URLSearchParams(
-    window.location.search
-);
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
 
 
 const bride =
@@ -1197,109 +1924,197 @@ const message =
 
 
 /* =========================================================
-   ПОПЪЛВАМЕ НАЧАЛНИЯ ЕКРАН
+   НАЧАЛО
 ========================================================= */
 
-document.getElementById("openingBride").textContent =
-    bride;
+document.getElementById(
+    "openingBride"
+).textContent = bride;
 
 
-document.getElementById("openingGroom").textContent =
-    groom;
+document.getElementById(
+    "openingGroom"
+).textContent = groom;
 
 
-document.getElementById("openingDate").textContent =
-    date;
+document.getElementById(
+    "openingDate"
+).textContent = date;
 
 
-document.querySelector(".opening-place").textContent =
+document.getElementById(
+    "openingLocation"
+).textContent =
     venue + " · " + city;
 
 
 /* =========================================================
-   ПОПЪЛВАМЕ ОСНОВНАТА ПОКАНА
+   HERO
 ========================================================= */
 
-document.getElementById("previewBride").textContent =
-    bride;
+document.getElementById(
+    "previewBride"
+).textContent = bride;
 
 
-document.getElementById("previewGroom").textContent =
-    groom;
+document.getElementById(
+    "previewGroom"
+).textContent = groom;
 
 
-document.getElementById("previewDate").textContent =
-    date;
+document.getElementById(
+    "previewDate"
+).textContent = date;
 
 
-document.getElementById("detailDate").textContent =
-    date;
+/* =========================================================
+   ДЕТАЙЛИ
+========================================================= */
+
+document.getElementById(
+    "detailVenue"
+).textContent = venue;
 
 
-document.getElementById("detailVenue").textContent =
-    venue;
+document.getElementById(
+    "detailCity"
+).textContent = city;
 
 
-document.getElementById("detailCity").textContent =
-    city;
-
-
-/* съобщението може да има два абзаца */
+/* =========================================================
+   СЪОБЩЕНИЕ
+========================================================= */
 
 const messageElement =
-    document.getElementById("previewMessage");
+    document.getElementById(
+        "previewMessage"
+    );
 
 
-const paragraphs =
-    message.split(/\n\s*\n/);
+const messageParagraphs =
+    message
+        .split(/\n\s*\n/)
+        .map(text => text.trim())
+        .filter(Boolean);
 
 
 messageElement.innerHTML =
-    paragraphs
-        .map(text => text.trim())
-        .filter(Boolean)
+    messageParagraphs
+        .map(text => text)
         .join("<br><br>");
 
 
 
 /* =========================================================
-   ОТВАРЯНЕ
+   FOOTER
+========================================================= */
+
+document.getElementById(
+    "footerBride"
+).textContent = bride;
+
+
+document.getElementById(
+    "footerGroom"
+).textContent = groom;
+
+
+document.getElementById(
+    "footerDate"
+).textContent = date;
+
+
+
+/* =========================================================
+   ОТВАРЯНЕ НА ПОКАНАТА
 ========================================================= */
 
 const openButton =
-    document.getElementById("openInvitation");
+    document.getElementById(
+        "openButton"
+    );
 
 
 const opening =
-    document.getElementById("opening");
+    document.getElementById(
+        "opening"
+    );
 
 
 const mainContent =
-    document.getElementById("mainContent");
+    document.getElementById(
+        "mainContent"
+    );
 
 
 openButton.addEventListener(
     "click",
     function () {
 
-        opening.classList.add("finished");
+        opening.classList.add(
+            "hidden"
+        );
+
 
         setTimeout(
             function () {
 
-                mainContent.classList.add("visible");
+                mainContent.classList.add(
+                    "visible"
+                );
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "instant"
-                });
+                window.scrollTo(
+                    0,
+                    0
+                );
 
             },
-            800
+            500
         );
 
     }
 );
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+document
+    .querySelectorAll(".faq-question")
+    .forEach(
+        question => {
+
+            question.addEventListener(
+                "click",
+                function () {
+
+                    const item =
+                        this.parentElement;
+
+                    item.classList.toggle(
+                        "open"
+                    );
+
+
+                    const symbol =
+                        this.querySelector(
+                            "span"
+                        );
+
+
+                    symbol.textContent =
+                        item.classList.contains(
+                            "open"
+                        )
+                            ? "−"
+                            : "+";
+
+                }
+            );
+
+        }
+    );
 
 </script>
 
