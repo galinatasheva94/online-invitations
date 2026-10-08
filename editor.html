@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html lang="bg">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Персонализирай поканата | Вашата покана</title>
-
 
     <style>
 
@@ -17,378 +12,368 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-
+            font-family: Georgia, "Times New Roman", serif;
             background: #f4efe8;
-
             color: #463d35;
-
         }
 
-
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
-
             padding: 25px 6%;
-
             background: #f8f4ee;
-
-            border-bottom:
-                1px solid #e4dbcf;
-
+            border-bottom: 1px solid #e4dbcf;
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
         }
-
 
         .logo {
-
             font-size: 21px;
-
             letter-spacing: 2px;
-
         }
-
 
         header a {
-
             text-decoration: none;
-
             color: #463d35;
-
             font-size: 14px;
-
         }
 
 
-        /* PAGE */
+        /* =========================
+           PAGE
+        ========================= */
 
         .page {
-
             max-width: 1200px;
-
             margin: auto;
-
             padding: 60px 25px 100px;
-
         }
-
 
         .page-title {
-
             text-align: center;
-
             margin-bottom: 60px;
-
         }
-
 
         .eyebrow {
-
             font-size: 12px;
-
             letter-spacing: 5px;
-
             text-transform: uppercase;
-
             margin-bottom: 20px;
-
         }
-
 
         h1 {
-
             font-size: 44px;
-
             font-weight: normal;
-
             margin: 0;
-
         }
-
 
         .page-description {
-
             max-width: 600px;
-
             margin: 20px auto 0;
-
             color: #71665b;
-
             line-height: 1.7;
-
         }
 
 
-        /* EDITOR */
+        /* =========================
+           EDITOR
+        ========================= */
 
         .editor {
-
             display: grid;
-
-            grid-template-columns:
-                0.8fr 1.2fr;
-
+            grid-template-columns: 0.8fr 1.2fr;
             gap: 60px;
-
             align-items: start;
-
         }
 
 
-        /* FORM */
+        /* =========================
+           FORM
+        ========================= */
 
         .form {
-
             background: #fffdf9;
-
             padding: 40px;
-
-            border:
-                1px solid #e1d7ca;
-
+            border: 1px solid #e1d7ca;
         }
-
 
         .form h2 {
-
             font-size: 28px;
-
             font-weight: normal;
-
             margin-top: 0;
-
             margin-bottom: 30px;
-
         }
-
 
         .field {
-
             margin-bottom: 25px;
-
         }
-
 
         .field label {
-
             display: block;
-
             font-size: 14px;
-
             margin-bottom: 8px;
-
         }
-
 
         .field input,
-
         .field textarea {
-
             width: 100%;
-
             padding: 13px 14px;
-
-            border:
-                1px solid #cfc2b4;
-
+            border: 1px solid #cfc2b4;
             background: #fff;
-
             color: #463d35;
-
-            font-family:
-                Arial,
-                sans-serif;
-
+            font-family: Arial, sans-serif;
             font-size: 15px;
-
             outline: none;
-
         }
-
 
         .field input:focus,
-
         .field textarea:focus {
-
-            border-color:
-                #806b4f;
-
+            border-color: #806b4f;
         }
-
 
         .field textarea {
-
             min-height: 120px;
-
             resize: vertical;
-
         }
-
 
         .save-button {
-
             width: 100%;
-
             padding: 16px;
-
             border: none;
-
             background: #55483d;
-
             color: white;
-
-            font-family:
-                Georgia,
-                serif;
-
+            font-family: Georgia, serif;
             letter-spacing: 2px;
-
             cursor: pointer;
-
         }
-
 
         .save-button:hover {
-
             background: #746455;
-
         }
 
 
-        /* PREVIEW */
+        /* =========================
+           PREVIEW AREA
+        ========================= */
 
         .preview-area {
-
             position: sticky;
-
             top: 30px;
-
         }
-
 
         .preview-label {
-
             text-align: center;
-
             font-size: 12px;
-
             letter-spacing: 4px;
-
             text-transform: uppercase;
-
             margin-bottom: 20px;
-
         }
 
 
+        /* =========================
+           INVITATION
+        ========================= */
+
         .invitation {
-
             background: #fbf7ef;
-
             min-height: 700px;
-
             padding: 60px 45px;
 
-            border:
-                1px solid #b9a17f;
+            border: 1px solid #b9a17f;
 
             box-shadow:
-                0 20px 50px
-                rgba(70, 55, 40, 0.12);
+                0 20px 50px rgba(70, 55, 40, 0.12);
 
             text-align: center;
 
             position: relative;
-
             overflow: hidden;
+        }
+
+        .invitation-content {
+            position: relative;
+            z-index: 2;
+
+            animation:
+                invitationAppear 1.2s ease-out;
+        }
+
+        @keyframes invitationAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
         }
 
 
-        .invitation:before,
+        /* =========================
+           FLOWERS
+        ========================= */
 
-        .invitation:after {
-
-            content: "✿";
-
+        .flower {
             position: absolute;
-
-            font-size: 100px;
 
             color: #9b9b7d;
 
             opacity: 0.35;
 
+            z-index: 1;
+
+            pointer-events: none;
         }
 
-
-        .invitation:before {
-
-            top: -25px;
-
+        .flower-1 {
+            top: -20px;
             left: -15px;
 
+            font-size: 100px;
+
+            animation:
+                floatFlower 5s ease-in-out infinite;
         }
 
+        .flower-2 {
+            top: 80px;
+            right: 25px;
 
-        .invitation:after {
+            font-size: 35px;
 
+            opacity: 0.25;
+
+            animation:
+                floatFlower 6s ease-in-out infinite reverse;
+        }
+
+        .flower-3 {
             bottom: -25px;
-
             right: -15px;
 
+            font-size: 100px;
+
+            animation:
+                floatFlower 7s ease-in-out infinite;
         }
 
+        .flower-4 {
+            bottom: 100px;
+            left: 25px;
+
+            font-size: 30px;
+
+            opacity: 0.25;
+
+            animation:
+                floatFlower 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatFlower {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-8px)
+                    rotate(4deg);
+            }
+
+        }
+
+
+        /* =========================
+           INVITATION CONTENT
+        ========================= */
 
         .invitation-title {
-
             font-size: 12px;
-
             letter-spacing: 5px;
-
         }
 
-
         .heart {
-
             margin: 25px 0;
 
             color: #a48655;
 
             font-size: 22px;
 
+            animation:
+                heartPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes heartPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+
         }
 
 
+        /* =========================
+           NAMES
+        ========================= */
+
         .names {
-
             font-size: 50px;
-
             line-height: 1.1;
 
             font-weight: normal;
 
             margin: 0;
 
+            animation:
+                nameAppear 1s ease-out both;
+        }
+
+        #previewBride {
+            animation-delay: 0.2s;
+        }
+
+        #previewGroom {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes nameAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
         }
 
 
-        .ampersand {
+        /* =========================
+           AMPERSAND
+        ========================= */
 
+        .ampersand {
             font-size: 30px;
 
             color: #a48655;
@@ -396,36 +381,41 @@
             margin: 10px 0;
 
             font-style: italic;
-
         }
 
 
-        .date {
+        /* =========================
+           DATE
+        ========================= */
 
+        .date {
             margin-top: 35px;
 
             font-size: 17px;
 
             letter-spacing: 3px;
-
         }
 
 
+        /* =========================
+           LINE
+        ========================= */
+
         .line {
-
             width: 90px;
-
             height: 1px;
 
             background: #b69a6d;
 
             margin: 22px auto;
-
         }
 
 
-        .invitation-text {
+        /* =========================
+           TEXT
+        ========================= */
 
+        .invitation-text {
             max-width: 430px;
 
             margin: 30px auto;
@@ -433,12 +423,14 @@
             line-height: 1.8;
 
             font-size: 15px;
-
         }
 
 
-        .location {
+        /* =========================
+           LOCATION
+        ========================= */
 
+        .location {
             margin-top: 30px;
 
             letter-spacing: 2px;
@@ -446,52 +438,58 @@
             font-size: 13px;
 
             line-height: 1.8;
+        }
 
+        .location-icon {
+            display: block;
+
+            font-size: 24px;
+
+            color: #a48655;
+
+            margin-bottom: 5px;
         }
 
 
-        .rsvp {
+        /* =========================
+           RSVP
+        ========================= */
 
+        .rsvp {
             display: inline-block;
 
             margin-top: 30px;
 
             padding: 13px 25px;
 
-            border:
-                1px solid #806b4f;
+            border: 1px solid #806b4f;
 
             letter-spacing: 2px;
 
             font-size: 11px;
-
         }
 
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 850px) {
 
             .editor {
-
                 grid-template-columns: 1fr;
-
             }
 
             .preview-area {
-
                 position: static;
 
                 order: -1;
-
             }
 
             .form {
-
                 max-width: 650px;
 
                 margin: auto;
-
             }
 
         }
@@ -500,41 +498,29 @@
         @media (max-width: 600px) {
 
             .page {
-
                 padding-left: 15px;
-
                 padding-right: 15px;
-
             }
 
             h1 {
-
                 font-size: 35px;
-
             }
 
             .form {
-
                 padding: 25px;
-
             }
 
             .invitation {
-
                 padding: 45px 25px;
-
             }
 
             .names {
-
                 font-size: 40px;
-
             }
 
         }
 
     </style>
-
 </head>
 
 
@@ -554,7 +540,6 @@
 </header>
 
 
-
 <main class="page">
 
 
@@ -570,21 +555,20 @@
         </h1>
 
         <p class="page-description">
-
             Въведете вашите данни
             и вижте как ще изглежда
             поканата ви.
-
         </p>
 
     </div>
 
 
-
     <div class="editor">
 
 
-        <!-- FORM -->
+        <!-- =========================
+             FORM
+        ========================= -->
 
         <div class="form">
 
@@ -683,159 +667,209 @@
 
             <button
                 class="save-button"
-                onclick="showMessage()">
-
+                onclick="showMessage()"
+            >
                 ЗАПАЗИ ПОКАНАТА
-
             </button>
-
 
         </div>
 
 
 
-        <!-- PREVIEW -->
+        <!-- =========================
+             PREVIEW
+        ========================= -->
 
-        <div class="preview-area" id="previewLabel">
+        <div class="preview-area">
 
             <div class="preview-label">
                 Преглед на поканата
             </div>
 
 
-           <div class="invitation" id="invitationPreview">
+            <div
+                class="invitation"
+                id="invitationPreview"
+            >
 
 
-                <div class="invitation-title">
+                <div class="flower flower-1">
+                    ✿
+                </div>
 
-                    СВАТБЕНА ПОКАНА
+                <div class="flower flower-2">
+                    ❀
+                </div>
 
+                <div class="flower flower-3">
+                    ✿
+                </div>
+
+                <div class="flower flower-4">
+                    ❀
                 </div>
 
 
-                <div class="heart">
+                <div class="invitation-content">
 
-                    ─── ♥ ───
+
+                    <div class="invitation-title">
+                        СВАТБЕНА ПОКАНА
+                    </div>
+
+
+                    <div class="heart">
+                        ─── ♥ ───
+                    </div>
+
+
+                    <h2
+                        class="names"
+                        id="previewBride"
+                    >
+                        Галина
+                    </h2>
+
+
+                    <div class="ampersand">
+                        &
+                    </div>
+
+
+                    <h2
+                        class="names"
+                        id="previewGroom"
+                    >
+                        Мартин
+                    </h2>
+
+
+                    <div
+                        class="date"
+                        id="previewDate"
+                    >
+                        12 ЮНИ 2027
+                    </div>
+
+
+                    <div class="line"></div>
+
+
+                    <div
+                        class="invitation-text"
+                        id="previewMessage"
+                    >
+
+                        <p>
+                            С радост ви каним да споделите
+                            нашия специален ден с нас.
+                        </p>
+
+                        <p>
+                            Ще се радваме да бъдете част
+                            от този незабравим момент.
+                        </p>
+
+                    </div>
+
+
+                    <div class="location">
+
+                        <span class="location-icon">
+                            ⌖
+                        </span>
+
+                        <span id="previewCity">
+                            ГР. СОФИЯ
+                        </span>
+
+                        <br>
+
+                        <span id="previewVenue">
+                            РЕЗИДЕНЦИЯ ТЕРА
+                        </span>
+
+                    </div>
+
+
+                    <div class="rsvp">
+                        ПОТВЪРДИ ПРИСЪСТВИЕ
+                    </div>
+
 
                 </div>
-
-
-                <h2
-                    class="names"
-                    id="previewBride">
-
-                    Галина
-
-                </h2>
-
-
-                <div class="ampersand">
-
-                    &
-
-                </div>
-
-
-                <h2
-                    class="names"
-                    id="previewGroom">
-
-                    Мартин
-
-                </h2>
-
-
-                <div
-                    class="date"
-                    id="previewDate">
-
-                    12 ЮНИ 2027
-
-                </div>
-
-
-                <div class="line"></div>
-
-
-                <div
-                    class="invitation-text"
-                    id="previewMessage">
-
-                    <p>
-                        С радост ви каним да споделите
-                        нашия специален ден с нас.
-                    </p>
-
-                    <p>
-                        Ще се радваме да бъдете част
-                        от този незабравим момент.
-                    </p>
-
-                </div>
-
-
-                <div class="location">
-
-                    📍<br>
-
-                    <span id="previewCity">
-                        ГР. СОФИЯ
-                    </span>
-
-                    <br>
-
-                    <span id="previewVenue">
-                        РЕЗИДЕНЦИЯ ТЕРА
-                    </span>
-
-                </div>
-
-
-                <div class="rsvp">
-
-                    ПОТВЪРДИ ПРИСЪСТВИЕ
-
-                </div>
-
 
             </div>
 
         </div>
 
-
     </div>
-
 
 </main>
 
 
 
-<script>    const params = new URLSearchParams(window.location.search);
-    const design = params.get("design");
-    const invitationPreview = document.getElementById("invitationPreview");
+<script>
 
-    /*
-       Тук започва JavaScript.
 
-       Той следи какво въвеждате
-       във формата и променя
-       текста в поканата.
-    */
+    /* =========================
+       SELECTED DESIGN
+    ========================= */
 
-    const bride = document.getElementById("bride");
-    const groom = document.getElementById("groom");
-    const date = document.getElementById("date");
-    const venue = document.getElementById("venue");
-    const city = document.getElementById("city");
-    const message = document.getElementById("message");
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const design =
+        params.get("design");
+
+
+    const invitationPreview =
+        document.getElementById(
+            "invitationPreview"
+        );
+
 
     if (design === "minimal-garden") {
-    invitationPreview.classList.add("design-minimal-garden");
+
+        invitationPreview.classList.add(
+            "design-minimal-garden"
+        );
+
     }
+
+
+
+    /* =========================
+       FORM ELEMENTS
+    ========================= */
+
+    const bride =
+        document.getElementById("bride");
+
+    const groom =
+        document.getElementById("groom");
+
+    const date =
+        document.getElementById("date");
+
+    const venue =
+        document.getElementById("venue");
+
+    const city =
+        document.getElementById("city");
+
+    const message =
+        document.getElementById("message");
+
+
+
+    /* =========================
+       LIVE BRIDE
+    ========================= */
 
     bride.addEventListener(
         "input",
-        function() {
+        function () {
 
             document.getElementById(
                 "previewBride"
@@ -846,9 +880,13 @@
 
 
 
+    /* =========================
+       LIVE GROOM
+    ========================= */
+
     groom.addEventListener(
         "input",
-        function() {
+        function () {
 
             document.getElementById(
                 "previewGroom"
@@ -859,9 +897,13 @@
 
 
 
+    /* =========================
+       LIVE DATE
+    ========================= */
+
     date.addEventListener(
         "input",
-        function() {
+        function () {
 
             document.getElementById(
                 "previewDate"
@@ -872,9 +914,13 @@
 
 
 
+    /* =========================
+       LIVE VENUE
+    ========================= */
+
     venue.addEventListener(
         "input",
-        function() {
+        function () {
 
             document.getElementById(
                 "previewVenue"
@@ -885,9 +931,13 @@
 
 
 
+    /* =========================
+       LIVE CITY
+    ========================= */
+
     city.addEventListener(
         "input",
-        function() {
+        function () {
 
             document.getElementById(
                 "previewCity"
@@ -898,13 +948,19 @@
 
 
 
+    /* =========================
+       LIVE MESSAGE
+    ========================= */
+
     message.addEventListener(
         "input",
-        function() {
+        function () {
 
             const text =
-                this.value
-                .replace(/\n/g, "<br>");
+                this.value.replace(
+                    /\n/g,
+                    "<br>"
+                );
 
             document.getElementById(
                 "previewMessage"
@@ -914,6 +970,10 @@
     );
 
 
+
+    /* =========================
+       SAVE BUTTON
+    ========================= */
 
     function showMessage() {
 
@@ -928,5 +988,4 @@
 
 
 </body>
-
 </html>
