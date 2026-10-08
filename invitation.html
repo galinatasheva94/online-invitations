@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Галина & Мартин | Нашият специален ден</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f8f4ee;
+            color: #463d35;
+        }
+
+
+        /* =========================
+           INTRO / OPENING
+        ========================= */
+
+        .opening {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    #eee4d7 0%,
+                    #f8f4ee 45%,
+                    #f8f4ee 100%
+                );
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .opening-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 700px;
+
+            padding: 40px 25px;
+
+            animation: openingAppear 1.5s ease-out;
+        }
+
+        @keyframes openingAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .opening-eyebrow {
+            font-size: 12px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 30px;
+        }
+
+
+        .opening h1 {
+            font-size: 68px;
+
+            font-weight: normal;
+
+            line-height: 1.05;
+
+            margin: 0;
+        }
+
+
+        .opening-ampersand {
+            font-size: 32px;
+
+            color: #a48655;
+
+            margin: 18px 0;
+
+            font-style: italic;
+        }
+
+
+        .opening-date {
+            margin-top: 35px;
+
+            font-size: 17px;
+
+            letter-spacing: 4px;
+        }
+
+
+        .opening-line {
+            width: 90px;
+
+            height: 1px;
+
+            background: #b69a6d;
+
+            margin: 30px auto;
+        }
+
+
+        .open-button {
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 17px 35px;
+
+            border: 1px solid #806b4f;
+
+            color: #463d35;
+
+            text-decoration: none;
+
+            letter-spacing: 2px;
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+        .open-button:hover {
+            background: #55483d;
+
+            color: white;
+        }
+
+
+        /* =========================
+           FLOWERS
+        ========================= */
+
+        .flower {
+            position: absolute;
+
+            color: #9b9b7d;
+
+            opacity: 0.3;
+
+            pointer-events: none;
+        }
+
+        .flower-1 {
+            top: -30px;
+            left: -20px;
+
+            font-size: 150px;
+
+            animation:
+                floatFlower 6s ease-in-out infinite;
+        }
+
+        .flower-2 {
+            top: 20%;
+            right: 8%;
+
+            font-size: 50px;
+
+            animation:
+                floatFlower 7s ease-in-out infinite reverse;
+        }
+
+        .flower-3 {
+            bottom: -40px;
+            right: -20px;
+
+            font-size: 150px;
+
+            animation:
+                floatFlower 8s ease-in-out infinite;
+        }
+
+        .flower-4 {
+            bottom: 18%;
+            left: 8%;
+
+            font-size: 45px;
+
+            animation:
+                floatFlower 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatFlower {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-12px)
+                    rotate(5deg);
+            }
+
+        }
+
+
+        /* =========================
+           INVITATION
+        ========================= */
+
+        .invitation {
+            min-height: 100vh;
+
+            padding: 110px 25px;
+
+            text-align: center;
+
+            background: #fbf7ef;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .invitation-inner {
+            max-width: 850px;
+
+            margin: auto;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .invitation-title {
+            font-size: 13px;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .heart {
+            color: #a48655;
+
+            font-size: 25px;
+
+            margin-bottom: 25px;
+
+            animation:
+                heartPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes heartPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+
+        }
+
+
+        .names {
+            font-size: 64px;
+
+            font-weight: normal;
+
+            line-height: 1.05;
+
+            margin: 0;
+        }
+
+
+        .ampersand {
+            font-size: 34px;
+
+            color: #a48655;
+
+            margin: 15px 0;
+
+            font-style: italic;
+        }
+
+
+        .date {
+            margin-top: 45px;
+
+            font-size: 18px;
+
+            letter-spacing: 5px;
+        }
+
+
+        .line {
+            width: 100px;
+
+            height: 1px;
+
+            background: #b69a6d;
+
+            margin: 30px auto;
+        }
+
+
+        .message {
+            max-width: 600px;
+
+            margin: 40px auto;
+
+            line-height: 1.9;
+
+            font-size: 17px;
+
+            color: #71665b;
+        }
+
+
+        /* =========================
+           DETAILS
+        ========================= */
+
+        .details {
+            padding: 100px 25px;
+
+            background: #eee7dd;
+
+            text-align: center;
+        }
+
+
+        .details h2 {
+            font-size: 40px;
+
+            font-weight: normal;
+
+            margin-top: 0;
+        }
+
+
+        .detail-grid {
+            max-width: 900px;
+
+            margin: 50px auto 0;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .detail {
+            background: #faf8f4;
+
+            padding: 40px 25px;
+
+            border:
+                1px solid #e2d9cd;
+        }
+
+
+        .detail-icon {
+            font-size: 32px;
+
+            color: #a48655;
+
+            margin-bottom: 20px;
+        }
+
+
+        .detail h3 {
+            font-size: 20px;
+
+            font-weight: normal;
+
+            margin-bottom: 10px;
+        }
+
+
+        .detail p {
+            color: #71665b;
+
+            line-height: 1.6;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           RSVP
+        ========================= */
+
+        .rsvp-section {
+            padding: 110px 25px;
+
+            text-align: center;
+
+            background: #55483d;
+
+            color: white;
+        }
+
+
+        .rsvp-section h2 {
+            font-size: 42px;
+
+            font-weight: normal;
+
+            margin-top: 0;
+        }
+
+
+        .rsvp-section p {
+            max-width: 550px;
+
+            margin:
+                0 auto 35px;
+
+            line-height: 1.7;
+
+            opacity: 0.85;
+        }
+
+
+        .rsvp-button {
+            display: inline-block;
+
+            padding: 16px 32px;
+
+            background: #f8f4ee;
+
+            color: #463d35;
+
+            text-decoration: none;
+
+            letter-spacing: 2px;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: #463d35;
+
+            color: #d8cec1;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .opening h1 {
+                font-size: 48px;
+            }
+
+            .names {
+                font-size: 48px;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .invitation {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     OPENING
+========================= -->
+
+<section class="opening">
+
+    <div class="flower flower-1">
+        ✿
+    </div>
+
+    <div class="flower flower-2">
+        ❀
+    </div>
+
+    <div class="flower flower-3">
+        ✿
+    </div>
+
+    <div class="flower flower-4">
+        ❀
+    </div>
+
+
+    <div class="opening-content">
+
+        <div class="opening-eyebrow">
+            Заповядайте на нашия специален ден
+        </div>
+
+
+        <h1>
+            Галина
+        </h1>
+
+
+        <div class="opening-ampersand">
+            &
+        </div>
+
+
+        <h1>
+            Мартин
+        </h1>
+
+
+        <div class="opening-date">
+            12 ЮНИ 2027
+        </div>
+
+
+        <div class="opening-line"></div>
+
+
+        <a
+            href="#invitation"
+            class="open-button"
+        >
+            ОТВОРИ ПОКАНАТА
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MAIN INVITATION
+========================= -->
+
+<section
+    class="invitation"
+    id="invitation"
+>
+
+    <div class="invitation-inner">
+
+
+        <div class="invitation-title">
+            СВАТБЕНА ПОКАНА
+        </div>
+
+
+        <div class="heart">
+            ─── ♥ ───
+        </div>
+
+
+        <h2 class="names">
+            Галина
+        </h2>
+
+
+        <div class="ampersand">
+            &
+        </div>
+
+
+        <h2 class="names">
+            Мартин
+        </h2>
+
+
+        <div class="date">
+            12 ЮНИ 2027
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div class="message">
+
+            <p>
+                С радост ви каним да споделите
+                нашия специален ден с нас.
+            </p>
+
+            <p>
+                Ще се радваме да бъдете част
+                от този незабравим момент.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     DETAILS
+========================= -->
+
+<section class="details">
+
+    <div class="eyebrow">
+        НАШИЯТ ДЕН
+    </div>
+
+
+    <h2>
+        Ще се радваме да бъдете с нас
+    </h2>
+
+
+    <div class="detail-grid">
+
+
+        <div class="detail">
+
+            <div class="detail-icon">
+                ♡
+            </div>
+
+            <h3>
+                Кога
+            </h3>
+
+            <p>
+                12 юни 2027 г.
+            </p>
+
+            <p>
+                Начало: 17:00 ч.
+            </p>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-icon">
+                ⌖
+            </div>
+
+            <h3>
+                Къде
+            </h3>
+
+            <p>
+                Резиденция Тера
+            </p>
+
+            <p>
+                гр. София
+            </p>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="detail-icon">
+                ✦
+            </div>
+
+            <h3>
+                Облекло
+            </h3>
+
+            <p>
+                Елегантно
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     RSVP
+========================= -->
+
+<section class="rsvp-section">
+
+    <h2>
+        Ще бъдете ли с нас?
+    </h2>
+
+
+    <p>
+        Моля, потвърдете присъствието си,
+        за да можем да се погрижим за
+        всеки детайл от нашия специален ден.
+    </p>
+
+
+    <a
+        href="#"
+        class="rsvp-button"
+    >
+        ПОТВЪРДИ ПРИСЪСТВИЕ
+    </a>
+
+</section>
+
+
+
+<footer>
+
+    © 2026 Вашата покана
+
+</footer>
+
+
+</body>
+</html>
