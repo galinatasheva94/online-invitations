@@ -3,376 +3,164 @@
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Видео покани | Вашата покана</title>
-<meta name="description" content="Разгледайте елегантни персонализирани видео покани за вашите специални моменти.">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог видео покани | Вашата покана</title>
 <style>
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    background: #f8f4ee;
-    color: #463d35;
-}
-
-nav {
-    padding: 24px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.logo {
-    font-size: 19px;
-    letter-spacing: 2px;
-}
-
-nav a {
-    color: #463d35;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.hero {
-    text-align: center;
-    padding: 65px 20px 45px;
-}
-
-.eyebrow {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #8b765e;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-weight: normal;
-    font-size: clamp(34px, 5vw, 50px);
-    line-height: 1.2;
-    margin: 0 0 20px;
-}
-
-.hero p {
-    max-width: 590px;
-    margin: auto;
-    color: #71665b;
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-.catalog {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px 25px 90px;
-}
-
-.catalog-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 15px;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ded2c3;
-}
-
-.catalog-heading h2 {
-    font-weight: normal;
-    font-size: 27px;
-    margin: 0;
-}
-
-.catalog-heading span {
-    color: #827568;
-    font-size: 13px;
-}
-
-.products {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 28px;
-    align-items: start;
-}
-
-.product-card {
-    min-width: 0;
-}
-
-.video-wrap {
-    background: #eee7dd;
-    padding: 9px;
-    border: 1px solid #e0d3c3;
-}
-
-.video-wrap video {
-    display: block;
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    object-fit: contain;
-    background: #e8e3df;
-}
-
-.product-info {
-    padding: 19px 3px 10px;
-}
-
-.product-type {
-    color: #8b765e;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.product-info h3 {
-    font-weight: normal;
-    font-size: 25px;
-    margin: 0 0 10px;
-}
-
-.product-info p {
-    color: #71665b;
-    font-size: 14px;
-    line-height: 1.8;
-    margin: 0 0 17px;
-}
-
-.product-note {
-    font-size: 12px;
-    color: #827568;
-    border-top: 1px solid #ded2c3;
-    padding-top: 13px;
-    margin-top: 15px;
-}
-
-.coming-soon {
-    aspect-ratio: 9 / 16;
-    background: #eee7dd;
-    border: 1px solid #e0d3c3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    color: #8b765e;
-}
-
-.coming-soon .flower {
-    font-size: 48px;
-    margin-bottom: 18px;
-}
-
-.coming-soon h3 {
-    font-weight: normal;
-    font-size: 23px;
-    margin: 0 0 12px;
-}
-
-.coming-soon p {
-    font-size: 13px;
-    line-height: 1.7;
-    margin: 0;
-}
-
-.how-it-works {
-    border-top: 1px solid #e4d9cc;
-    padding: 65px 25px 80px;
-    text-align: center;
-}
-
-.how-it-works h2 {
-    font-size: 32px;
-    font-weight: normal;
-    margin: 0 0 18px;
-}
-
-.how-intro {
-    color: #71665b;
-    line-height: 1.8;
-    max-width: 580px;
-    margin: 0 auto 35px;
-}
-
-.steps {
-    max-width: 1000px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.step-number {
-    color: #a48655;
-    font-size: 24px;
-    margin-bottom: 12px;
-}
-
-.step h3 {
-    font-weight: normal;
-    font-size: 19px;
-}
-
-.step p {
-    color: #71665b;
-    font-size: 14px;
-    line-height: 1.8;
-}
-
-footer {
-    background: #463d35;
-    color: #d8cec1;
-    text-align: center;
-    padding: 28px 20px;
-    font-size: 12px;
-    line-height: 1.8;
-}
-
-@media (max-width: 850px) {
-    .products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 22px;
-    }
-}
-
-@media (max-width: 560px) {
-    nav { padding: 20px; }
-    .logo { font-size: 15px; letter-spacing: 1px; }
-    nav a { font-size: 12px; }
-
-    .hero { padding: 48px 22px 35px; }
-
-    .catalog { padding: 15px 17px 60px; }
-
-    .catalog-heading {
-        align-items: baseline;
-        flex-wrap: wrap;
-    }
-
-    .catalog-heading h2 { font-size: 24px; }
-
-    .products {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        max-width: 420px;
-        margin: auto;
-    }
-
-    .steps {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .how-it-works { padding: 50px 25px 60px; }
+*{box-sizing:border-box}
+body{margin:0;background:#f8f4ee;color:#463d35;font-family:Georgia,"Times New Roman",serif}
+nav{padding:24px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.logo{font-size:19px;letter-spacing:2px}
+nav a{color:inherit;text-decoration:none;font-size:14px}
+.hero{text-align:center;padding:65px 20px 45px}
+.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#92775b;margin-bottom:20px}
+h1{font-size:clamp(34px,5vw,50px);font-weight:normal;line-height:1.2;margin:0 0 20px}
+.hero p{max-width:590px;margin:auto;color:#71665b;line-height:1.8}
+.catalog{max-width:1200px;margin:auto;padding:25px 25px 90px}
+.section-heading{border-bottom:1px solid #ded2c3;padding-bottom:15px;margin-bottom:28px}
+.section-heading h2{font-size:28px;font-weight:normal;margin:0}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:start}
+.card{min-width:0}
+.preview{position:relative;background:#eae3da;border:1px solid #e0d3c3;padding:8px;overflow:hidden}
+.preview video{display:block;width:100%;aspect-ratio:9/16;object-fit:contain;background:#f1eff0}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(40,30,35,.10);opacity:0;transition:opacity .25s;pointer-events:none}
+.preview:hover .play-overlay,.preview:focus-within .play-overlay{opacity:1}
+.play-button{pointer-events:auto;border:1px solid rgba(255,255,255,.9);border-radius:50%;width:72px;height:72px;background:rgba(70,61,53,.72);color:white;font-size:28px;cursor:pointer;display:grid;place-items:center}
+.preview.is-playing .play-overlay{opacity:1}
+.preview.is-playing .play-button{font-size:22px}
+.card-info{padding:19px 3px}
+.card-type{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#92775b;margin-bottom:10px}
+.card h3{font-size:25px;font-weight:normal;margin:0 0 10px}
+.card p{font-size:14px;color:#71665b;line-height:1.8;margin:0 0 16px}
+.order-button{display:block;text-align:center;text-decoration:none;background:#55483d;color:white;padding:16px 12px;font-family:Arial,sans-serif;font-size:11px;letter-spacing:2px;margin-top:20px;transition:background .2s}
+.order-button:hover{background:#796653}
+.card-note{font-size:12px;color:#887a6b;line-height:1.6;margin-top:12px}
+.coming-soon{aspect-ratio:9/16;background:#eee7dd;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;color:#8b765e;border:1px solid #e0d3c3}
+.coming-soon .flower{font-size:48px;margin-bottom:15px}
+.coming-soon h3{font-size:24px;font-weight:normal;margin:0 0 12px}
+.coming-soon p{font-size:13px;line-height:1.8}
+.how{text-align:center;border-top:1px solid #e4d9cc;padding:65px 25px 80px}
+.how h2{font-size:32px;font-weight:normal;margin:0 0 30px}
+.steps{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.step-number{font-size:24px;color:#a48655}
+.step h3{font-size:19px;font-weight:normal}
+.step p{font-size:14px;color:#71665b;line-height:1.8}
+footer{background:#463d35;color:#d8cec1;text-align:center;padding:28px 20px;font-size:12px}
+@media(max-width:850px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}}
+@media(max-width:560px){
+ nav{padding:20px}.logo{font-size:15px;letter-spacing:1px}nav a{font-size:12px}
+ .hero{padding:45px 22px 30px}.catalog{padding:15px 17px 60px}
+ .products{grid-template-columns:1fr;max-width:420px;margin:auto;gap:30px}
+ .play-overlay{opacity:1;background:transparent}
+ .play-button{width:60px;height:60px}
+ .steps{grid-template-columns:1fr;gap:20px}
 }
 </style>
 </head>
-
 <body>
-
 <nav>
-    <div class="logo">ВАШАТА ПОКАНА</div>
-    <a href="index.html">← Начало</a>
+  <div class="logo">ВАШАТА ПОКАНА</div>
+  <a href="index.html">← Начало</a>
 </nav>
 
 <header class="hero">
-    <div class="eyebrow">Нашата колекция</div>
-    <h1>Видео покани за вашите<br>специални моменти</h1>
-    <p>
-        Разгледайте дизайните и пуснете видеото директно в каталога.
-        Изберете любимата си визия за вашия незабравим ден.
-    </p>
+  <div class="eyebrow">Нашата колекция</div>
+  <h1>Изберете своята<br>видео покана</h1>
+  <p>Разгледайте дизайните, пуснете видеото и изберете визията, която разказва вашата история.</p>
 </header>
 
 <main>
 <section class="catalog">
+  <div class="section-heading"><h2>Сватбени покани</h2></div>
 
-    <div class="catalog-heading">
-        <h2>Сватбени покани</h2>
-        <span>Колекция 01</span>
-    </div>
+  <div class="products">
+    <article class="card">
+      <div class="preview">
+        <video class="invitation-video" poster="images/purple-white-wedding.jpg"
+               preload="none" playsinline controls
+               aria-label="Преглед на видео поканата Лилава нежност">
+          <source src="videos/Purple%20White%20Wedding.mp4" type="video/mp4">
+          Вашият браузър не поддържа видео.
+        </video>
+        <div class="play-overlay">
+          <button class="play-button" type="button" aria-label="Пусни поканата">▶</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-type">Дизайн 01 · Сватба</div>
+        <h3>Лилава нежност</h3>
+        <p>Романтична видео покана с нежни лилави цветя и елегантни детайли.</p>
+        <div class="card-note">Персонализира се с имената, датата, мястото и текста за вашата сватба.</div>
+        <a class="order-button" href="order.html?design=purple-white-wedding">ПОРЪЧАЙ</a>
+      </div>
+    </article>
 
-    <div class="products">
-
-        <!-- ПРОДУКТ 01 -->
-        <article class="product-card">
-            <div class="video-wrap">
-                <video controls playsinline preload="metadata"
-                       aria-label="Видео покана Лилава нежност">
-                    <source src="videos/Purple%20White%20Wedding.mp4"
-                            type="video/mp4">
-                    Браузърът ви не поддържа видео.
-                </video>
-            </div>
-
-            <div class="product-info">
-                <div class="product-type">Дизайн 01 · Сватба</div>
-                <h3>Лилава нежност</h3>
-                <p>
-                    Романтична видео покана с нежни лилави цветя
-                    и елегантни детайли.
-                </p>
-                <div class="product-note">
-                    Персонализира се с вашите имена, дата,
-                    място и текст.
-                </div>
-            </div>
-        </article>
-
-        <!-- МЯСТО ЗА СЛЕДВАЩ ПРОДУКТ -->
-        <article class="product-card">
-            <div class="coming-soon">
-                <div class="flower">✿</div>
-                <h3>Съвсем скоро</h3>
-                <p>Още красиви дизайни ще бъдат добавени в колекцията.</p>
-            </div>
-            <div class="product-info">
-                <div class="product-type">Дизайн 02</div>
-                <h3>Следващата покана</h3>
-                <p>Нова визия, създадена с внимание към детайла.</p>
-            </div>
-        </article>
-
-    </div>
+    <article class="card">
+      <div class="coming-soon">
+        <div class="flower">✿</div>
+        <h3>Съвсем скоро</h3>
+        <p>Подготвяме още красиви дизайни за вашия специален ден.</p>
+      </div>
+      <div class="card-info">
+        <div class="card-type">Дизайн 02</div>
+        <h3>Нова колекция</h3>
+        <p>Още една специална визия скоро ще бъде добавена тук.</p>
+      </div>
+    </article>
+  </div>
 </section>
 
-<section class="how-it-works">
-    <div class="eyebrow">Само няколко лесни стъпки</div>
-    <h2>Как работи поръчката?</h2>
-    <p class="how-intro">
-        Избирате дизайн, изпращате ни информацията и получавате
-        готова видео покана, персонализирана за вашия повод.
-    </p>
-
-    <div class="steps">
-        <div class="step">
-            <div class="step-number">01</div>
-            <h3>Изберете дизайн</h3>
-            <p>Разгледайте видеата и изберете своята любима визия.</p>
-        </div>
-
-        <div class="step">
-            <div class="step-number">02</div>
-            <h3>Изпратете данните</h3>
-            <p>Подгответе имената, датата, мястото и текста за поканата.</p>
-        </div>
-
-        <div class="step">
-            <div class="step-number">03</div>
-            <h3>Получете поканата</h3>
-            <p>Ще получите готовия персонализиран видеофайл дигитално.</p>
-        </div>
-    </div>
+<section class="how">
+  <div class="eyebrow">Лесно и удобно</div>
+  <h2>Как да поръчате?</h2>
+  <div class="steps">
+    <div class="step"><div class="step-number">01</div><h3>Изберете дизайн</h3><p>Разгледайте видеото и харесайте своята покана.</p></div>
+    <div class="step"><div class="step-number">02</div><h3>Попълнете данните</h3><p>Въведете информацията за младоженците и сватбата.</p></div>
+    <div class="step"><div class="step-number">03</div><h3>Получете видеото</h3><p>Ще подготвим персонализираната ви покана и ще ви я изпратим.</p></div>
+  </div>
 </section>
 </main>
 
-<footer>
-    © 2026 Вашата покана · Дигитални видео покани
-</footer>
+<footer>© 2026 Вашата покана · Дигитални видео покани</footer>
 
+<script>
+document.querySelectorAll(".preview").forEach(function(preview){
+  const video = preview.querySelector("video");
+  const button = preview.querySelector(".play-button");
+
+  button.addEventListener("click", function(){
+    if(video.paused){
+      document.querySelectorAll(".invitation-video").forEach(function(other){
+        if(other !== video){
+          other.pause();
+          other.closest(".preview").classList.remove("is-playing");
+        }
+      });
+      video.play().then(function(){
+        preview.classList.add("is-playing");
+        button.textContent = "Ⅱ";
+        button.setAttribute("aria-label","Пауза");
+      }).catch(function(){
+        video.setAttribute("controls","controls");
+      });
+    } else {
+      video.pause();
+      preview.classList.remove("is-playing");
+      button.textContent = "▶";
+      button.setAttribute("aria-label","Пусни поканата");
+    }
+  });
+
+  video.addEventListener("pause",function(){
+    preview.classList.remove("is-playing");
+    button.textContent = "▶";
+    button.setAttribute("aria-label","Пусни поканата");
+  });
+
+  video.addEventListener("ended",function(){
+    preview.classList.remove("is-playing");
+    button.textContent = "▶";
+  });
+});
+</script>
 </body>
 </html>
