@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Поръчка на видео покана | Вашата покана</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f8f4ee;color:#463d35;font-family:Georgia,"Times New Roman",serif}
+nav{padding:24px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:18px;letter-spacing:2px}
+nav a{color:#463d35;text-decoration:none;font-size:14px}
+header{text-align:center;padding:45px 20px 25px}
+.eyebrow{font-size:11px;letter-spacing:4px;color:#92775b;text-transform:uppercase;margin-bottom:15px}
+h1{font-size:clamp(32px,5vw,45px);font-weight:normal;margin:0 0 15px}
+header p{color:#71665b;line-height:1.8;max-width:600px;margin:auto}
+form{max-width:850px;margin:20px auto 80px;padding:35px;background:#fffdf9;border:1px solid #e4d8c8}
+.section{border-bottom:1px solid #e6dbce;padding:15px 0 28px;margin-bottom:20px}
+.section h2{font-size:24px;font-weight:normal;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+label{font-size:14px}
+input,select,textarea{font:15px Arial,sans-serif;width:100%;padding:13px;border:1px solid #d8cbbb;background:#fff;color:#463d35;border-radius:0}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+.hint{font-size:12px;color:#827568;line-height:1.6}
+button{width:100%;padding:17px;background:#55483d;color:white;border:0;font-size:12px;letter-spacing:2px;cursor:pointer}
+button:hover{background:#746455}
+.privacy{font-size:12px;color:#827568;line-height:1.7;margin:15px 0}
+#result{display:none;padding:20px;background:#eee7dd;line-height:1.8;margin-top:20px}
+#result a{color:#463d35}
+footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size:12px}
+@media(max-width:600px){
+ nav{padding:20px}.logo{font-size:14px;letter-spacing:1px}
+ form{margin:15px 12px 50px;padding:22px 17px}
+ .grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">ВАШАТА ПОКАНА</div>
+  <a href="designs.html">← Към каталога</a>
+</nav>
+
+<header>
+  <div class="eyebrow">Вашият специален ден</div>
+  <h1>Поръчайте своята покана</h1>
+  <p>Попълнете информацията по-долу. Използвайте само полетата, които са приложими за вашето събитие.</p>
+</header>
+
+<form id="orderForm">
+  <section class="section">
+    <h2>1. Избрана покана</h2>
+    <div class="grid">
+      <div class="field full">
+        <label for="design">Дизайн *</label>
+        <select id="design" name="Дизайн" required>
+          <option value="Лилава нежност">Дизайн 01 — Лилава нежност</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>2. Младоженци</h2>
+    <div class="grid">
+      <div class="field">
+        <label for="bride">Име на булката *</label>
+        <input id="bride" name="Име на булката" required>
+      </div>
+      <div class="field">
+        <label for="groom">Име на младоженеца *</label>
+        <input id="groom" name="Име на младоженеца" required>
+      </div>
+      <div class="field">
+        <label for="bridePronunciation">Произношение или обръщение (по желание)</label>
+        <input id="bridePronunciation" name="Произношение на имената">
+      </div>
+      <div class="field">
+        <label for="surname">Фамилия след сватбата (по желание)</label>
+        <input id="surname" name="Фамилия">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>3. Дата и час</h2>
+    <div class="grid">
+      <div class="field">
+        <label for="date">Дата на сватбата *</label>
+        <input type="date" id="date" name="Дата на сватбата" required>
+      </div>
+      <div class="field">
+        <label for="startTime">Час на начало (по желание)</label>
+        <input type="time" id="startTime" name="Час на начало">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>4. Места и програма</h2>
+    <div class="grid">
+      <div class="field">
+        <label for="ceremony">Граждански/църковен ритуал (по желание)</label>
+        <input id="ceremony" name="Ритуал" placeholder="Напр. храм, адрес">
+      </div>
+      <div class="field">
+        <label for="ceremonyTime">Час на ритуала (по желание)</label>
+        <input type="time" id="ceremonyTime" name="Час на ритуала">
+      </div>
+      <div class="field">
+        <label for="restaurant">Ресторант/място на тържеството *</label>
+        <input id="restaurant" name="Място на тържеството" required>
+      </div>
+      <div class="field">
+        <label for="address">Адрес и населено място *</label>
+        <input id="address" name="Адрес" required>
+      </div>
+      <div class="field">
+        <label for="receptionTime">Час за посрещане (по желание)</label>
+        <input type="time" id="receptionTime" name="Час за посрещане">
+      </div>
+      <div class="field">
+        <label for="dinnerTime">Час на вечерята (по желание)</label>
+        <input type="time" id="dinnerTime" name="Час на вечерята">
+      </div>
+      <div class="field full">
+        <label for="schedule">Допълнителна програма (по желание)</label>
+        <textarea id="schedule" name="Допълнителна програма" placeholder="Напр. коктейл, welcome drink, начало на тържеството..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>5. Кумове и специални участници</h2>
+    <div class="grid">
+      <div class="field">
+        <label for="godmother">Име на кумата (по желание)</label>
+        <input id="godmother" name="Кума">
+      </div>
+      <div class="field">
+        <label for="godfather">Име на кума (по желание)</label>
+        <input id="godfather" name="Кум">
+      </div>
+      <div class="field full">
+        <label for="participants">Други участници или обръщения (по желание)</label>
+        <input id="participants" name="Други участници" placeholder="Напр. родители, шафери">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>6. Текст на поканата</h2>
+    <div class="grid">
+      <div class="field full">
+        <label for="message">Желан текст *</label>
+        <textarea id="message" name="Текст на поканата" required placeholder="Напишете текста, който искате да присъства във видеото."></textarea>
+      </div>
+      <div class="field full">
+        <label for="closing">Финално послание (по желание)</label>
+        <input id="closing" name="Финално послание" placeholder="Напр. Ще се радваме да бъдете с нас!">
+      </div>
+      <div class="field full">
+        <label for="notes">Допълнителни инструкции (по желание)</label>
+        <textarea id="notes" name="Допълнителни инструкции" placeholder="Предпочитания за изписване, промени или други детайли."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>7. Данни за връзка</h2>
+    <div class="grid">
+      <div class="field">
+        <label for="contactName">Вашето име *</label>
+        <input id="contactName" name="Име за контакт" required>
+      </div>
+      <div class="field">
+        <label for="email">Имейл *</label>
+        <input type="email" id="email" name="Имейл" required>
+      </div>
+      <div class="field">
+        <label for="phone">Телефон (по желание)</label>
+        <input type="tel" id="phone" name="Телефон">
+      </div>
+      <div class="field">
+        <label for="deadline">Желана дата за получаване (по желание)</label>
+        <input type="date" id="deadline" name="Желана дата за получаване">
+      </div>
+    </div>
+  </section>
+
+  <p class="privacy">
+    С натискането на бутона ще подготвите имейл с данните за поръчката.
+    Не включвайте информация, която не желаете да изпращате.
+  </p>
+
+  <button type="submit">ПОДГОТВИ ЗАЯВКАТА</button>
+  <div id="result" role="status"></div>
+</form>
+
+<footer>© 2026 Вашата покана · Дигитални видео покани</footer>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+if (params.get("design") === "purple-white-wedding") {
+  document.getElementById("design").value = "Лилава нежност";
+}
+
+document.getElementById("orderForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const data = new FormData(form);
+  const lines = ["Заявка за видео покана", ""];
+
+  for (const [key, value] of data.entries()) {
+    if (String(value).trim()) lines.push(key + ": " + value);
+  }
+
+  const subject = encodeURIComponent("Поръчка на видео покана — " + data.get("Дизайн"));
+  const body = encodeURIComponent(lines.join("\n"));
+
+  /*
+    ВАЖНО: замени имейла по-долу с имейла,
+    на който искаш да получаваш поръчките.
+  */
+  const orderEmail = "galinatasheva94@gmail.com";
+  const result = document.getElementById("result");
+
+  result.style.display = "block";
+  result.textContent = "Ще се отвори имейл приложение с попълнената заявка. Провери данните и изпрати имейла.";
+
+  window.location.href =
+    "mailto:" + orderEmail + "?subject=" + subject + "&body=" + body;
+});
+</script>
+</body>
+</html>
