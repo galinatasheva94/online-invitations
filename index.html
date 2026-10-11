@@ -277,4 +277,519 @@
       height: 76px;
       padding: 0 0 0 5px;
       transform: translate(-50%, -50%);
-      border: 1px solid rgba(255, 255
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      color: #FFFFFF;
+      background: rgba(112, 67, 141, 0.72);
+      box-shadow: 0 6px 28px rgba(60, 30, 75, 0.28);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      font-size: 27px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .featured-play-button:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+      background: rgba(89, 49, 111, 0.92);
+    }
+
+    .featured-play-button.is-hidden {
+      display: none;
+    }
+
+    .featured-video-wrap.is-playing {
+      cursor: pointer;
+    }
+
+    .featured-info {
+      padding: 18px 10px 10px;
+      text-align: center;
+    }
+
+    .featured-info h3 {
+      font-size: 28px;
+      color: #70438D;
+      margin-bottom: 6px;
+    }
+
+    .featured-info p {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 16px;
+    }
+
+    .featured-info .button {
+      width: 100%;
+    }
+
+    .section {
+      padding: 85px 28px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(36px, 4vw, 49px);
+      color: #684282;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .intro {
+      background: #FFFFFF;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .feature {
+      padding: 32px 25px;
+      background: linear-gradient(145deg, #FFFFFF, #F8F0FC);
+      border: 1px solid #E5D1F0;
+      text-align: center;
+      border-radius: 7px;
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #DCC1EE, #F0C7E2);
+      color: #70438D;
+      font-size: 24px;
+    }
+
+    .feature h3 {
+      font-size: 28px;
+      color: #70438D;
+      margin-bottom: 12px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .how {
+      background:
+        radial-gradient(ellipse at 100% 0%, #E9C9E5, transparent 48%),
+        linear-gradient(135deg, #E7D7F4, #F6E9F5);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      color: #A65F9A;
+      margin-bottom: 10px;
+    }
+
+    .step h3 {
+      font-size: 28px;
+      color: #684282;
+      margin-bottom: 12px;
+    }
+
+    .step p {
+      font-size: 12px;
+      color: #715F7B;
+      line-height: 1.9;
+    }
+
+    .catalog-cta {
+      padding: 82px 28px;
+      background: linear-gradient(115deg, #D7B8EB, #EABFDA);
+      text-align: center;
+    }
+
+    .catalog-cta .eyebrow {
+      color: #70438D;
+    }
+
+    .catalog-cta h2 {
+      font-size: clamp(38px, 4.5vw, 54px);
+      color: #603D7B;
+      margin-bottom: 18px;
+    }
+
+    .catalog-cta p {
+      color: #6D527B;
+      max-width: 570px;
+      margin: 0 auto 27px;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    footer {
+      padding: 32px 20px;
+      text-align: center;
+      background: white;
+      border-top: 1px solid var(--line);
+    }
+
+    footer .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: var(--purple);
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 7px;
+    }
+
+    @media (max-width: 800px) {
+      .nav {
+        flex-direction: column;
+        padding: 22px 18px;
+        gap: 18px;
+        text-align: center;
+      }
+
+      .brand {
+        white-space: normal;
+      }
+
+      .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        padding: 55px 22px 60px;
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .featured {
+        max-width: 460px;
+      }
+
+      .featured-video {
+        height: min(110vw, 460px);
+      }
+
+      .features,
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .section {
+        padding: 65px 22px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .nav-button {
+        padding: 10px 16px;
+      }
+
+      .featured-video {
+        height: 105vw;
+        max-height: 420px;
+      }
+
+      .featured-info h3 {
+        font-size: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">
+    Вашите емоции. Нашето вдъхновение.
+  </div>
+
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        The Story Atelier
+        <span>Онлайн покани за специалните моменти</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Начало</a>
+        <a href="designs.html">Каталог</a>
+        <a href="#how">Как работи?</a>
+        <a href="designs.html" class="nav-button">Разгледай поканите</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+          <span class="eyebrow">За вашите специални моменти</span>
+
+          <h1>
+            Всяка история заслужава <em>красива покана.</em>
+          </h1>
+
+          <p class="hero-description">
+            Превръщаме вашите специални поводи в персонализирани видео покани,
+            създадени с внимание към всеки детайл. Изберете своя дизайн,
+            добавете личните си думи и споделете вълнението с любимите си хора.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="designs.html" class="button">Разгледай каталога</a>
+            <a href="#how" class="button button-light">Как работи?</a>
+          </div>
+
+          <p class="hero-note">
+            Създадени с любов. Персонализирани специално за вас.
+          </p>
+        </div>
+
+        <div class="featured">
+          <div class="featured-label">
+            <span class="eyebrow">The Story Atelier представя</span>
+            <h2>Нашият избор за месеца</h2>
+          </div>
+
+          <div class="featured-card">
+            <span class="featured-ribbon">♡ ИЗБОР НА МЕСЕЦА</span>
+
+            <div class="featured-video-wrap" id="featuredVideoWrap">
+              <video
+                class="featured-video"
+                id="featuredVideo"
+                playsinline
+                preload="auto"
+                aria-label="Видео покана на месеца"
+              >
+                <source src="videos/Purple%20White%20Wedding.mp4" type="video/mp4">
+                Вашият браузър не поддържа възпроизвеждане на видео.
+              </video>
+
+              <button
+                class="featured-play-button"
+                id="featuredPlayButton"
+                type="button"
+                aria-label="Пусни видео поканата"
+              >▶</button>
+            </div>
+
+            <div class="featured-info">
+              <h3>Purple White Wedding</h3>
+              <p>Елегантна видео покана, която можете да персонализирате за своя специален ден.</p>
+              <a href="designs.html" class="button">Разгледай поканата</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section intro">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow">The Story Atelier</span>
+          <h2>Не просто покана. Начало на спомен.</h2>
+          <p>
+            Първото впечатление от вашия специален ден започва още с поканата.
+            Нека тя разкаже вашата история по красив, личен и незабравим начин.
+          </p>
+        </div>
+
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon">♡</div>
+            <h3>Създадена за вас</h3>
+            <p>
+              Всеки дизайн оживява с вашите имена, дата, място и лични детайли.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">✧</div>
+            <h3>Красива и различна</h3>
+            <p>
+              Видео покана с настроение, която лесно можете да споделите
+              с близки и приятели.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">❀</div>
+            <h3>Лесно и удобно</h3>
+            <p>
+              Избирате модел, изпращате информацията и получавате покана,
+              подготвена специално за вашия повод.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how" id="how">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow">Само три лесни стъпки</span>
+          <h2>Вашата покана започва тук</h2>
+          <p>
+            Без излишни усложнения — само любим дизайн и вашата лична история.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Изберете</h3>
+            <p>
+              Разгледайте каталога и открийте дизайна, който ви кара да се усмихнете.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Персонализирайте</h3>
+            <p>
+              Изпратете имената, датата, мястото и останалите подробности за събитието.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Споделете</h3>
+            <p>
+              Получете своята персонализирана видео покана и я споделете с любимите хора.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-cta">
+      <span class="eyebrow">Вашият специален момент</span>
+      <h2>Нека разкажем вашата история.</h2>
+      <p>
+        Разгледайте нашите дизайни и открийте поканата,
+        която най-добре изразява вашето настроение.
+      </p>
+      <a href="designs.html" class="button">Открийте своята покана</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">The Story Atelier</div>
+    <p>Онлайн покани за специалните моменти</p>
+    <p>© <span id="year"></span> The Story Atelier · Създадено с любов</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    (function () {
+      const video = document.getElementById("featuredVideo");
+      const wrap = document.getElementById("featuredVideoWrap");
+      const playButton = document.getElementById("featuredPlayButton");
+
+      if (!video || !wrap || !playButton) return;
+
+      async function playVideo() {
+        try {
+          await video.play();
+          playButton.classList.add("is-hidden");
+          wrap.classList.add("is-playing");
+        } catch (error) {
+          playButton.classList.remove("is-hidden");
+        }
+      }
+
+      function resetVideo() {
+        video.pause();
+
+        try {
+          video.currentTime = 0;
+        } catch (error) {
+          // Видеото може още да се зарежда.
+        }
+
+        playButton.classList.remove("is-hidden");
+        wrap.classList.remove("is-playing");
+      }
+
+      playButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        playVideo();
+      });
+
+      video.addEventListener("ended", resetVideo);
+
+      wrap.addEventListener("click", function (event) {
+        if (event.target !== video) return;
+        if (video.paused) {
+          playVideo();
+        } else {
+          resetVideo();
+        }
+      });
+
+      video.addEventListener("error", function () {
+        playButton.classList.remove("is-hidden");
+      });
+    })();
+  </script>
+</body>
+</html>
