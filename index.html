@@ -1,12 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4eaf9">
-  <meta name="description" content="The Story Atelier — артистични видео покани за сватби и специалните моменти. Вашите емоции. Нашето вдъхновение.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F4EAF9">
+  <meta name="description" content="The Story Atelier — онлайн покани за специалните моменти.">
   <title>The Story Atelier | Онлайн покани за специалните моменти</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -24,6 +27,8 @@
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -31,12 +36,10 @@
     }
 
     body {
-      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--lavender-light);
       color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(ellipse at top left, #f9e8f3 0, transparent 42%),
-        linear-gradient(180deg, #fcf8fd 0%, #fff 55%, #f8f0fb 100%);
+      line-height: 1.7;
     }
 
     a {
@@ -44,251 +47,225 @@
       text-decoration: none;
     }
 
-    button {
-      font-family: inherit;
-    }
-
-    .page {
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .top-line {
-      height: 5px;
-      background: linear-gradient(
-        90deg,
-        var(--pink),
-        var(--lavender-dark),
-        var(--pink)
-      );
+    .announcement {
+      background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
+      color: #603C79;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 11px;
+      letter-spacing: 2px;
     }
 
     header {
-      width: min(1160px, calc(100% - 40px));
-      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1180px;
       min-height: 100px;
+      margin: 0 auto;
+      padding: 17px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
-      border-bottom: 1px solid rgba(227, 205, 235, .8);
+      gap: 24px;
     }
 
     .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .brand-name {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
       color: var(--purple);
-      font-size: clamp(24px, 3vw, 34px);
-      letter-spacing: 1px;
+      font-size: clamp(27px, 3vw, 37px);
+      font-weight: 600;
+      line-height: 1.05;
     }
 
-    .brand-tagline {
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+    .brand span {
+      display: block;
+      margin-top: 8px;
+      font-family: 'Montserrat', sans-serif;
+      color: #A15F98;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
     }
 
-    nav {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
+      gap: 25px;
+      font-size: 12px;
     }
 
-    nav a {
-      transition: color .2s ease;
-    }
-
-    nav a:hover {
+    .nav-links a:not(.nav-button):hover {
       color: var(--lavender-dark);
     }
 
-    .nav-button {
-      padding: 12px 20px;
-      color: white;
-      background: var(--purple);
+    .nav-button,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 30px;
-      transition: background .2s ease, transform .2s ease;
+      background: var(--purple);
+      color: white;
+      padding: 13px 24px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
 
-    .nav-button:hover {
-      color: white;
-      background: var(--lavender-dark);
+    .nav-button:hover,
+    .button:hover {
+      background: #59316F;
       transform: translateY(-2px);
     }
 
+    .button-light {
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--purple);
+      border: 1px solid #CDA9DE;
+    }
+
+    .button-light:hover {
+      background: white;
+      color: var(--purple);
+    }
+
     .hero {
-      width: min(1100px, calc(100% - 40px));
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 8% 18%, rgba(209, 174, 235, 0.85), transparent 40%),
+        radial-gradient(ellipse at 90% 82%, rgba(235, 182, 216, 0.85), transparent 43%),
+        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
+    }
+
+    .hero-inner {
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 76px 0 64px;
-      text-align: center;
+      padding: 70px 28px 78px;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      align-items: center;
+      gap: 55px;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 22px;
+      display: inline-block;
       color: var(--lavender-dark);
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before,
-    .eyebrow::after {
-      content: "";
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--pink);
-    }
-
-    h1 {
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--purple);
-      font-size: clamp(38px, 6vw, 66px);
-      font-weight: normal;
-      line-height: 1.15;
-    }
-
-    .hero-description {
-      max-width: 560px;
-      margin: 22px auto 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
-    }
-
-    .hero-decoration {
-      margin-top: 25px;
-      color: var(--pink);
-      font-size: 25px;
-    }
-
-    .featured-section {
-      width: min(1100px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 20px 0 85px;
-    }
-
-    .section-heading {
-      margin-bottom: 35px;
-      text-align: center;
-    }
-
-    .section-kicker {
-      margin-bottom: 12px;
-      color: var(--lavender-dark);
-      font-family: Arial, sans-serif;
       font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
-    .section-heading h2 {
-      margin: 0;
-      color: var(--purple);
-      font-size: clamp(29px, 4vw, 42px);
-      font-weight: normal;
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      line-height: 1.12;
     }
 
-    .section-heading p {
-      max-width: 500px;
-      margin: 14px auto 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
+    h1 {
+      font-size: clamp(44px, 5.2vw, 70px);
+      color: #603D7B;
+      margin-bottom: 22px;
     }
 
-    .featured-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
-      align-items: center;
-      gap: clamp(35px, 7vw, 90px);
-      max-width: 900px;
-      margin: 0 auto;
+    h1 em {
+      color: #A65E98;
+      font-weight: 500;
     }
 
-    .invitation-column {
-      width: 100%;
-      max-width: 390px;
-      margin: 0 auto;
+    .hero-description {
+      max-width: 510px;
+      font-size: 14px;
+      line-height: 2;
+      color: #6D5978;
+      margin-bottom: 30px;
     }
 
-    .invitation-art {
-      position: relative;
-      padding: 10px;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: linear-gradient(
-        145deg,
-        #fff,
-        var(--pink-light),
-        var(--lavender)
-      );
-      box-shadow: 0 20px 55px rgba(112, 67, 141, .16);
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .invitation-art::before {
-      content: "✧";
-      position: absolute;
-      z-index: 2;
-      top: 19px;
-      left: 23px;
-      color: white;
-      font-size: 26px;
-      pointer-events: none;
-      text-shadow: 0 1px 8px rgba(70, 30, 90, .8);
+    .hero-note {
+      margin-top: 25px;
+      color: #795F86;
+      font-size: 10px;
+      letter-spacing: 0.5px;
     }
 
-    .invitation-art::after {
-      content: "✧";
-      position: absolute;
-      z-index: 2;
-      right: 22px;
-      bottom: 95px;
-      color: white;
-      font-size: 23px;
-      pointer-events: none;
-      text-shadow: 0 1px 8px rgba(70, 30, 90, .8);
-    }
+    /* Избор на месеца */
 
-    .invitation-frame {
+    .featured {
       position: relative;
       width: 100%;
-      aspect-ratio: 9 / 16;
+      max-width: 440px;
+      justify-self: center;
+    }
+
+    .featured-label {
+      text-align: center;
+      margin-bottom: 17px;
+    }
+
+    .featured-label .eyebrow {
+      margin-bottom: 7px;
+    }
+
+    .featured-label h2 {
+      font-size: clamp(32px, 3.5vw, 43px);
+      color: #70438D;
+    }
+
+    .featured-card {
+      position: relative;
+      background: #FFFFFF;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 10px;
+      box-shadow: 0 22px 60px rgba(92, 54, 119, 0.22);
+    }
+
+    .featured-ribbon {
+      display: inline-block;
+      position: absolute;
+      z-index: 2;
+      top: 24px;
+      left: 24px;
+      background: linear-gradient(100deg, #70438D, #A45D98);
+      color: #FFFFFF;
+      border-radius: 20px;
+      padding: 8px 13px;
+      font-size: 9px;
+      letter-spacing: 0.7px;
+      box-shadow: 0 4px 12px rgba(75, 40, 95, 0.2);
+    }
+
+    .featured-video-wrap {
+      position: relative;
       overflow: hidden;
-      border-radius: 17px;
-      background: linear-gradient(
-        160deg,
-        #f3e4f7,
-        #e5c5e9,
-        #f8eaf5
-      );
+      border-radius: 5px;
+      background: #E5D5EF;
+      line-height: 0;
     }
 
-    .invitation-frame video {
+    .featured-video {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: 350px;
+      object-fit: contain;
+      background: #E5D5EF;
     }
 
-    .invitation-frame video::-webkit-media-controls {
-      display: none !important;
-    }
-
-    .invitation-play {
+    /* Артистичен бутон за пускане на видеото */
+    .featured-play-button {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -296,428 +273,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 78px;
-      height: 78px;
+      width: 76px;
+      height: 76px;
       padding: 0 0 0 5px;
       transform: translate(-50%, -50%);
-      border: 1px solid rgba(255, 255, 255, .9);
-      border-radius: 50%;
-      color: white;
-      background: rgba(112, 67, 141, .72);
-      box-shadow: 0 5px 30px rgba(40, 15, 50, .24);
-      backdrop-filter: blur(8px);
-      font-size: 28px;
-      cursor: pointer;
-      transition: transform .25s ease, background .25s ease;
-    }
-
-    .invitation-play:hover {
-      transform: translate(-50%, -50%) scale(1.09);
-      background: rgba(112, 67, 141, .94);
-    }
-
-    .invitation-play.hidden {
-      display: none;
-    }
-
-    .invitation-stop {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: none;
-      cursor: pointer;
-    }
-
-    .invitation-frame.is-playing .invitation-stop {
-      display: block;
-    }
-
-    .invitation-caption {
-      padding: 20px 8px 12px;
-      text-align: center;
-    }
-
-    .invitation-caption h3 {
-      margin: 0;
-      color: var(--purple);
-      font-size: 23px;
-      font-weight: normal;
-    }
-
-    .invitation-caption p {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: .7px;
-    }
-
-    .featured-copy {
-      padding: 10px 0;
-    }
-
-    .month-ribbon {
-      display: inline-block;
-      margin-bottom: 24px;
-      padding: 10px 16px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      color: var(--purple);
-      background: rgba(255, 255, 255, .7);
-      font-family: Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-    }
-
-    .featured-copy h3 {
-      margin: 0;
-      color: var(--purple);
-      font-size: clamp(30px, 4vw, 43px);
-      font-weight: normal;
-      line-height: 1.2;
-    }
-
-    .featured-copy > p {
-      margin: 20px 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.9;
-    }
-
-    .little-divider {
-      margin: 24px 0;
-      color: var(--pink);
-      font-size: 22px;
-      letter-spacing: 8px;
-    }
-
-    .feature-note {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-    }
-
-    .primary-button,
-    .secondary-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 49px;
-      padding: 14px 25px;
-      border: 1px solid var(--purple);
-      border-radius: 30px;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      letter-spacing: .3px;
-      cursor: pointer;
-      transition: transform .2s ease, background .2s ease, color .2s ease;
-    }
-
-    .primary-button {
-      color: white;
-      background: var(--purple);
-    }
-
-    .primary-button:hover {
-      transform: translateY(-2px);
-      border-color: var(--lavender-dark);
-      background: var(--lavender-dark);
-    }
-
-    .secondary-button {
-      color: var(--purple);
-      background: white;
-    }
-
-    .secondary-button:hover {
-      transform: translateY(-2px);
-      color: white;
-      background: var(--purple);
-    }
-
-    .closing-section {
-      padding: 64px 20px 70px;
-      border-top: 1px solid rgba(227, 205, 235, .8);
-      background: linear-gradient(
-        135deg,
-        rgba(249, 232, 243, .7),
-        rgba(220, 193, 238, .45)
-      );
-      text-align: center;
-    }
-
-    .closing-section h2 {
-      margin: 0;
-      color: var(--purple);
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: normal;
-    }
-
-    .closing-section p {
-      max-width: 530px;
-      margin: 18px auto 25px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.8;
-    }
-
-    footer {
-      padding: 28px 20px;
-      color: var(--muted);
-      text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      line-height: 1.9;
-    }
-
-    .footer-brand {
-      color: var(--purple);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 19px;
-    }
-
-    @media (max-width: 760px) {
-      header {
-        width: min(100% - 30px, 550px);
-        padding: 19px 0;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 17px;
-      }
-
-      nav {
-        width: 100%;
-        flex-wrap: wrap;
-        gap: 17px;
-        font-size: 12px;
-      }
-
-      .hero {
-        padding: 58px 0 43px;
-      }
-
-      .hero-description {
-        font-size: 15px;
-      }
-
-      .featured-section {
-        width: min(100% - 30px, 550px);
-        padding-bottom: 58px;
-      }
-
-      .featured-layout {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .invitation-column {
-        max-width: 330px;
-      }
-
-      .featured-copy {
-        text-align: center;
-      }
-
-      .featured-copy > p {
-        font-size: 15px;
-      }
-
-      .little-divider {
-        margin: 17px 0;
-      }
-
-      .feature-note {
-        margin-bottom: 25px;
-      }
-
-      .section-heading p {
-        font-size: 14px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="page">
-    <div class="top-line"></div>
-
-    <header>
-      <a class="brand" href="index.html" aria-label="The Story Atelier — начало">
-        <span class="brand-name">The Story Atelier</span>
-        <span class="brand-tagline">Онлайн покани за специалните моменти</span>
-      </a>
-
-      <nav aria-label="Основна навигация">
-        <a href="index.html">Начало</a>
-        <a href="designs.html">Каталог</a>
-        <a href="#about">За нас</a>
-        <a class="nav-button" href="designs.html">Избери покана</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="eyebrow">The Story Atelier</div>
-
-        <h1>Всяка история заслужава красива покана.</h1>
-
-        <p class="hero-description">
-          Превръщаме специалните ви моменти в красиви видео покани,
-          създадени с внимание към всеки детайл и вдъхновение от вашата история.
-        </p>
-
-        <div class="hero-decoration" aria-hidden="true">♡ ✧ ♡</div>
-      </section>
-
-      <section class="featured-section" id="featured">
-        <div class="section-heading">
-          <div class="section-kicker">Специално за вас</div>
-          <h2>Нашият избор за месеца</h2>
-          <p>
-            Покана, която разказва историята на любовта по един
-            нежен и незабравим начин.
-          </p>
-        </div>
-
-        <div class="featured-layout">
-          <div class="invitation-column">
-            <div class="invitation-art">
-              <div class="invitation-frame" id="featuredFrame">
-                <video
-                  id="featuredVideo"
-                  playsinline
-                  preload="metadata"
-                  aria-label="Видео покана Purple White Wedding"
-                >
-                  <source
-                    src="videos/Purple%20White%20Wedding.mp4"
-                    type="video/mp4"
-                  >
-                  Вашият браузър не поддържа възпроизвеждане на видео.
-                </video>
-
-                <button
-                  class="invitation-play"
-                  id="featuredPlay"
-                  type="button"
-                  aria-label="Пусни видео поканата"
-                >▶</button>
-
-                <button
-                  class="invitation-stop"
-                  id="featuredStop"
-                  type="button"
-                  aria-label="Спри видеото"
-                  tabindex="-1"
-                ></button>
-              </div>
-            </div>
-
-            <div class="invitation-caption">
-              <h3>Purple White Wedding</h3>
-              <p>Една история, разказана с любов ♡</p>
-            </div>
-          </div>
-
-          <div class="featured-copy">
-            <div class="month-ribbon">♡ ИЗБОР НА МЕСЕЦА</div>
-
-            <h3>Любовта е в малките детайли.</h3>
-
-            <p>
-              Представете своя специален ден с елегантна видео покана,
-              която създава настроение още преди първия миг от празника.
-            </p>
-
-            <div class="little-divider" aria-hidden="true">✧ ♡ ✧</div>
-
-            <p class="feature-note">
-              Вашите имена, вашата дата, вашата история.
-              Поканата може да бъде персонализирана, за да отразява
-              именно вас и вашия празник.
-            </p>
-
-            <a class="primary-button" href="designs.html">
-              Разгледай поканата&nbsp; →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="closing-section" id="about">
-        <div class="section-kicker">Създадено с вдъхновение</div>
-
-        <h2>Вашите емоции. Нашето вдъхновение.</h2>
-
-        <p>
-          За сватби и специални поводи, които заслужават да бъдат
-          разказани по красив и личен начин.
-        </p>
-
-        <a class="secondary-button" href="designs.html">
-          Разгледай каталога&nbsp; →
-        </a>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-brand">The Story Atelier</div>
-      <div>Онлайн покани за специалните моменти</div>
-      <div>Вашите емоции. Нашето вдъхновение. ♡</div>
-    </footer>
-  </div>
-
-  <script>
-    (function () {
-      const video = document.getElementById("featuredVideo");
-      const frame = document.getElementById("featuredFrame");
-      const playButton = document.getElementById("featuredPlay");
-      const stopButton = document.getElementById("featuredStop");
-
-      if (!video || !frame || !playButton || !stopButton) return;
-
-      async function playVideo() {
-        try {
-          await video.play();
-          frame.classList.add("is-playing");
-          playButton.classList.add("hidden");
-        } catch (error) {
-          playButton.classList.remove("hidden");
-        }
-      }
-
-      function stopVideo() {
-        video.pause();
-
-        try {
-          video.currentTime = 0;
-        } catch (error) {
-          // Видеото може още да се зарежда.
-        }
-
-        frame.classList.remove("is-playing");
-        playButton.classList.remove("hidden");
-      }
-
-      playButton.addEventListener("click", playVideo);
-      stopButton.addEventListener("click", stopVideo);
-      video.addEventListener("ended", stopVideo);
-
-      video.addEventListener("error", function () {
-        playButton.classList.remove("hidden");
-      });
-    })();
-  </script>
-</body>
-</html>
+      border: 1px solid rgba(255, 255
