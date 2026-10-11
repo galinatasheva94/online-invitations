@@ -27,6 +27,16 @@
       box-shadow: 0 4px 20px rgba(70, 61, 53, 0.08);
     }
 
+    nav {
+      margin-bottom: 28px;
+    }
+
+    nav a {
+      color: #796653;
+      text-decoration: none;
+      font: 14px Arial, sans-serif;
+    }
+
     h1 {
       margin-top: 0;
       text-align: center;
@@ -36,8 +46,28 @@
 
     .intro {
       text-align: center;
-      line-height: 1.6;
+      line-height: 1.7;
       margin-bottom: 28px;
+      color: #71665b;
+    }
+
+    .selected-design {
+      padding: 15px 18px;
+      margin-bottom: 26px;
+      background: #f3ece2;
+      border-left: 3px solid #a48655;
+    }
+
+    .selected-design-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #92775b;
+      margin-bottom: 6px;
+    }
+
+    .selected-design-name {
+      font-size: 21px;
     }
 
     .form-grid {
@@ -52,8 +82,17 @@
       gap: 7px;
     }
 
-    .full {
+    .full,
+    .section-title {
       grid-column: 1 / -1;
+    }
+
+    .section-title {
+      margin: 12px 0 -4px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5ddd3;
+      font-size: 19px;
+      font-weight: normal;
     }
 
     label {
@@ -61,7 +100,6 @@
     }
 
     input,
-    select,
     textarea {
       width: 100%;
       padding: 12px;
@@ -73,7 +111,6 @@
     }
 
     input:focus,
-    select:focus,
     textarea:focus {
       outline: 2px solid #c5a77d;
       border-color: #c5a77d;
@@ -84,14 +121,6 @@
       resize: vertical;
     }
 
-    .section-title {
-      grid-column: 1 / -1;
-      margin: 12px 0 -4px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #e5ddd3;
-      font-size: 19px;
-    }
-
     .hint {
       font: 12px Arial, sans-serif;
       color: #776d63;
@@ -100,17 +129,18 @@
     button {
       width: 100%;
       margin-top: 24px;
-      padding: 14px 20px;
+      padding: 15px 20px;
       border: none;
       border-radius: 6px;
-      background: #8b7055;
+      background: #55483d;
       color: white;
-      font: 16px Arial, sans-serif;
+      font: 13px Arial, sans-serif;
+      letter-spacing: 1px;
       cursor: pointer;
     }
 
     button:hover {
-      background: #735a43;
+      background: #796653;
     }
 
     button:disabled {
@@ -125,6 +155,7 @@
       border-radius: 6px;
       line-height: 1.5;
       overflow-wrap: anywhere;
+      font: 14px Arial, sans-serif;
     }
 
     #result.success {
@@ -163,38 +194,31 @@
 
 <body>
   <main class="container">
-    <h1>Поръчка на видео покана</h1>
+
+    <nav>
+      <a href="designs.html">← Обратно към каталога</a>
+    </nav>
+
+    <h1>Вашата сватбена покана</h1>
 
     <p class="intro">
       Попълнете информацията за вашия специален ден.
       Ще използваме данните, за да персонализираме избрания дизайн.
     </p>
 
+    <div class="selected-design">
+      <div class="selected-design-label">Избран дизайн</div>
+      <div class="selected-design-name" id="selectedDesignName">
+        Зареждане...
+      </div>
+    </div>
+
     <form id="orderForm">
+
+      <input type="hidden" id="design" name="Дизайн">
+      <input type="hidden" id="designId" name="Идентификатор на дизайна">
+
       <div class="form-grid">
-
-        <h2 class="section-title">Избран дизайн</h2>
-
-        <div class="field full">
-          <label for="design">Име на дизайна *</label>
-          <input
-            type="text"
-            id="design"
-            name="Дизайн"
-            required
-            placeholder="Например: Purple White Wedding"
-          >
-        </div>
-
-        <div class="field full">
-          <label for="designId">Идентификатор на дизайна</label>
-          <input
-            type="text"
-            id="designId"
-            name="Идентификатор на дизайна"
-            placeholder="Попълва се при избор от каталога"
-          >
-        </div>
 
         <h2 class="section-title">Младоженци и сватба</h2>
 
@@ -204,6 +228,7 @@
             type="text"
             id="bride"
             name="Име на булката"
+            autocomplete="given-name"
             required
           >
         </div>
@@ -246,7 +271,7 @@
             inputmode="numeric"
             maxlength="10"
             pattern="(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{4}"
-            title="Въведете датата във формат дд.мм.гггг, например 25.06.2027"
+            title="Въведете дата във формат дд.мм.гггг, например 25.06.2027"
             required
           >
           <span class="hint">Например: 25.06.2027</span>
@@ -348,7 +373,7 @@
           >
         </div>
 
-        <div class="field">
+        <div class="field full">
           <label for="rsvpDate">Краен срок за потвърждение *</label>
           <input
             type="text"
@@ -358,7 +383,7 @@
             inputmode="numeric"
             maxlength="10"
             pattern="(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{4}"
-            title="Въведете датата във формат дд.мм.гггг, например 01.06.2027"
+            title="Въведете дата във формат дд.мм.гггг, например 01.06.2027"
             required
           >
           <span class="hint">Например: 01.06.2027</span>
@@ -382,6 +407,7 @@
             type="email"
             id="email"
             name="Имейл"
+            autocomplete="email"
             required
           >
         </div>
@@ -392,6 +418,7 @@
             type="tel"
             id="phone"
             name="Телефон"
+            autocomplete="tel"
             required
           >
         </div>
@@ -408,7 +435,7 @@
       </div>
 
       <button type="submit" id="submitButton">
-        Изпрати поръчката
+        ИЗПРАТИ ПОРЪЧКАТА
       </button>
 
       <div id="result" role="status" aria-live="polite"></div>
@@ -426,10 +453,38 @@
     const SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbzgWg6GNB8_C7_8qyZ8OFoXFTt7slv_n8PH-nxK6N0Zv8tXS9AOWqPnoO_F82-FfPMR/exec";
 
+    const designs = {
+      "purple-white-wedding": {
+        name: "Лилава нежност",
+        id: "purple-white-wedding"
+      }
+    };
+
     const form = document.getElementById("orderForm");
     const result = document.getElementById("result");
     const submitButton = document.getElementById("submitButton");
 
+    // Зареждане на избрания дизайн от адреса.
+    const params = new URLSearchParams(window.location.search);
+    const selectedDesignId = params.get("design");
+    const selectedDesign = designs[selectedDesignId];
+
+    if (selectedDesign) {
+      document.getElementById("design").value = selectedDesign.name;
+      document.getElementById("designId").value = selectedDesign.id;
+      document.getElementById("selectedDesignName").textContent =
+        selectedDesign.name;
+    } else {
+      document.getElementById("selectedDesignName").textContent =
+        "Не е избран дизайн";
+      submitButton.disabled = true;
+      result.textContent =
+        "Моля, върнете се в каталога и натиснете „ПОРЪЧАЙ“ под избраната покана.";
+      result.className = "error";
+      result.style.display = "block";
+    }
+
+    // Проверка и преобразуване на дата от дд.мм.гггг към гггг-мм-дд.
     function convertDateToISO(value, fieldName) {
       const match = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(value.trim());
 
@@ -460,8 +515,12 @@
       ].join("-");
     }
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", function(event) {
       event.preventDefault();
+
+      if (!selectedDesign) {
+        return;
+      }
 
       result.className = "";
       result.style.display = "none";
@@ -497,8 +556,6 @@
       order["Краен срок за потвърждение"] = rsvpDate;
       order["Източник"] = window.location.href;
 
-      const payload = JSON.stringify(order);
-
       const submitForm = document.createElement("form");
       submitForm.method = "POST";
       submitForm.action = SCRIPT_URL;
@@ -508,35 +565,29 @@
       const payloadInput = document.createElement("input");
       payloadInput.type = "hidden";
       payloadInput.name = "payload";
-      payloadInput.value = payload;
+      payloadInput.value = JSON.stringify(order);
 
       submitForm.appendChild(payloadInput);
       document.body.appendChild(submitForm);
 
       submitButton.disabled = true;
-      submitButton.textContent = "Изпращане...";
+      submitButton.textContent = "ИЗПРАЩАНЕ...";
 
       result.textContent =
-        "Поръчката се изпраща. Моля, изчакайте...";
+        "Изпращането е инициирано. Моля, изчакайте...";
       result.className = "";
       result.style.display = "block";
 
       submitForm.submit();
 
-      /*
-       * Формата се изпраща през скрит iframe.
-       * Браузърът не предоставя надежден достъп до отговора на Apps Script
-       * при този начин на изпращане. Затова съобщението не гарантира,
-       * че поръчката е записана успешно.
-       */
-      setTimeout(function () {
+      setTimeout(function() {
         submitForm.remove();
         submitButton.disabled = false;
-        submitButton.textContent = "Изпрати поръчката";
+        submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
 
         result.textContent =
-          "Изпращането е инициирано. Проверете дали поръчката е записана в Google Sheets и дали е получено известие по имейл. Ако липсват, опитайте отново по-късно.";
-        result.className = "";
+          "Поръчката е изпратена от формата. Моля, проверете Google Sheets и имейла за потвърждение, за да се уверите, че е записана успешно.";
+        result.className = "success";
         result.style.display = "block";
       }, 2500);
     });
