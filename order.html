@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -22,8 +22,8 @@ form.order-form{max-width:850px;margin:20px auto 80px;padding:35px;background:#f
 .field{display:flex;flex-direction:column;gap:8px}
 .field.full{grid-column:1/-1}
 label{font-size:14px}
-input,select,textarea{font:15px Arial,sans-serif;width:100%;padding:13px;border:1px solid #d8cbbb;background:#fff;color:#463d35;border-radius:0}
-textarea{min-height:110px;resize:vertical;line-height:1.5}
+input,select{font:15px Arial,sans-serif;width:100%;padding:13px;border:1px solid #d8cbbb;background:#fff;color:#463d35;border-radius:0}
+.hint{font:12px/1.6 Arial,sans-serif;color:#827568;margin:0 0 15px}
 button{width:100%;padding:17px;background:#55483d;color:white;border:0;font-size:12px;letter-spacing:2px;cursor:pointer}
 button:hover{background:#746455}
 button:disabled{opacity:.65;cursor:wait}
@@ -47,7 +47,7 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
 <header>
   <div class="eyebrow">Вашият специален ден</div>
   <h1>Поръчайте своята покана</h1>
-  <p>Попълнете информацията по-долу. Използвайте само полетата, които са приложими за вашето събитие.</p>
+  <p>Попълнете данните, които да включим във вашата видео покана. Не е необходимо да попълвате полетата за събития, които не са приложими.</p>
 </header>
 
 <form id="orderForm" class="order-form">
@@ -55,7 +55,7 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
     <h2>1. Избрана покана</h2>
     <div class="grid">
       <div class="field full">
-        <label for="design">Дизайн *</label>
+        <label for="design">Модел</label>
         <select id="design" name="Дизайн" required>
           <option value="Лилава нежност">Дизайн 01 — Лилава нежност</option>
         </select>
@@ -64,7 +64,7 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
   </section>
 
   <section class="section">
-    <h2>2. Младоженци</h2>
+    <h2>2. Младоженци и кумове</h2>
     <div class="grid">
       <div class="field">
         <label for="bride">Име на булката *</label>
@@ -74,132 +74,117 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
         <label for="groom">Име на младоженеца *</label>
         <input id="groom" name="Име на младоженеца" required>
       </div>
-
-  <section class="section">
-    <h2>3. Дата и час</h2>
-    <div class="grid">
       <div class="field">
-        <label for="date">Дата на сватбата *</label>
-        <input type="date" id="date" name="Дата на сватбата" required>
+        <label for="godmother">Име на кумата *</label>
+        <input id="godmother" name="Име на кумата" required>
       </div>
       <div class="field">
-        <label for="startTime">Час на начало (по желание)</label>
-        <input type="time" id="startTime" name="Час на начало">
+        <label for="godfather">Име на кума *</label>
+        <input id="godfather" name="Име на кума" required>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>4. Места и програма</h2>
+    <h2>3. Сватба</h2>
     <div class="grid">
-      <div class="field">
-        <label for="ceremony">Граждански/църковен ритуал (по желание)</label>
-        <input id="ceremony" name="Ритуал" placeholder="Напр. храм, адрес">
-      </div>
-      <div class="field">
-        <label for="ceremonyTime">Час на ритуала (по желание)</label>
-        <input type="time" id="ceremonyTime" name="Час на ритуала">
-      </div>
-      <div class="field">
-        <label for="restaurant">Ресторант/място на тържеството *</label>
-        <input id="restaurant" name="Място на тържеството" required>
-      </div>
-      <div class="field">
-        <label for="address">Адрес и населено място *</label>
-        <input id="address" name="Адрес" required>
-      </div>
-      <div class="field">
-        <label for="receptionTime">Час за посрещане (по желание)</label>
-        <input type="time" id="receptionTime" name="Час за посрещане">
-      </div>
-      <div class="field">
-        <label for="dinnerTime">Час на вечерята (по желание)</label>
-        <input type="time" id="dinnerTime" name="Час на вечерята">
-      </div>
       <div class="field full">
-        <label for="schedule">Допълнителна програма (по желание)</label>
-        <textarea id="schedule" name="Допълнителна програма" placeholder="Напр. коктейл, welcome drink, начало на тържеството..."></textarea>
+        <label for="weddingDate">Дата на сватбата *</label>
+        <input type="date" id="weddingDate" name="Дата на сватбата" required>
+      </div>
+      <div class="field">
+        <label for="restaurant">Ресторант *</label>
+        <input id="restaurant" name="Ресторант" required>
+      </div>
+      <div class="field">
+        <label for="city">Град *</label>
+        <input id="city" name="Град" required>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>5. Кумове и специални участници</h2>
+    <h2>4. Програма на събитието</h2>
+    <p class="hint">Попълнете часовете и местата така, както искате да се изписват във видеото. Неизползваните полета може да останат празни.</p>
     <div class="grid">
       <div class="field">
-        <label for="godmother">Име на кумата (по желание)</label>
-        <input id="godmother" name="Кума">
+        <label for="churchTime">Църковен ритуал — час</label>
+        <input type="time" id="churchTime" name="Църковен ритуал - час">
       </div>
       <div class="field">
-        <label for="godfather">Име на кума (по желание)</label>
-        <input id="godfather" name="Кум">
+        <label for="churchPlace">Църковен ритуал — място</label>
+        <input id="churchPlace" name="Църковен ритуал - място">
+      </div>
+      <div class="field">
+        <label for="civilTime">Граждански ритуал — час</label>
+        <input type="time" id="civilTime" name="Граждански ритуал - час">
+      </div>
+      <div class="field">
+        <label for="civilPlace">Граждански ритуал — място</label>
+        <input id="civilPlace" name="Граждански ритуал - място">
+      </div>
+      <div class="field">
+        <label for="welcomeTime">Welcome drink — час</label>
+        <input type="time" id="welcomeTime" name="Welcome drink - час">
+      </div>
+      <div class="field">
+        <label for="welcomePlace">Welcome drink — място</label>
+        <input id="welcomePlace" name="Welcome drink - място">
+      </div>
+      <div class="field">
+        <label for="dinnerTime">Официална вечеря — час</label>
+        <input type="time" id="dinnerTime" name="Официална вечеря - час">
+      </div>
+      <div class="field">
+        <label for="dinnerPlace">Официална вечеря — място</label>
+        <input id="dinnerPlace" name="Официална вечеря - място">
       </div>
       <div class="field full">
-        <label for="participants">Други участници или обръщения (по желание)</label>
-        <input id="participants" name="Други участници" placeholder="Напр. родители, шафери">
+        <label for="rsvpDate">Краен срок за потвърждение от гостите *</label>
+        <input type="date" id="rsvpDate" name="Краен срок за потвърждение" required>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>6. Текст на поканата</h2>
+    <h2>5. Данни за контакт</h2>
     <div class="grid">
       <div class="field full">
-        <label for="message">Желан текст *</label>
-        <textarea id="message" name="Текст на поканата" required placeholder="Напишете текста, който искате да присъства във видеото."></textarea>
-      </div>
-      <div class="field full">
-        <label for="closing">Финално послание (по желание)</label>
-        <input id="closing" name="Финално послание" placeholder="Напр. Ще се радваме да бъдете с нас!">
-      </div>
-      <div class="field full">
-        <label for="notes">Допълнителни инструкции (по желание)</label>
-        <textarea id="notes" name="Допълнителни инструкции" placeholder="Предпочитания за изписване, промени или други детайли."></textarea>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>7. Данни за връзка</h2>
-    <div class="grid">
-      <div class="field">
         <label for="contactName">Вашето име *</label>
-        <input id="contactName" name="Име за контакт" required>
+        <input id="contactName" name="Име за контакт" autocomplete="name" required>
       </div>
       <div class="field">
         <label for="email">Имейл *</label>
-        <input type="email" id="email" name="Имейл" required>
+        <input type="email" id="email" name="Имейл" autocomplete="email" required>
       </div>
       <div class="field">
         <label for="phone">Телефон *</label>
-        <input type="tel" id="phone" name="Телефон" required>
+        <input type="tel" id="phone" name="Телефон" autocomplete="tel" required>
       </div>
     </div>
   </section>
 
   <p class="privacy">
-    Данните ще бъдат изпратени за обработка на поръчката и ще бъдат записани в таблица. Изпращайте само информацията, необходима за изработката на поканата.
+    Полетата се използват за персонализиране на избрания модел. Включена е замяна на предварително определените надписи, а не промяна на цялостния дизайн или сценарий.
   </p>
 
   <button id="submitButton" type="submit">ИЗПРАТИ ЗАЯВКАТА</button>
   <div id="result" role="status" aria-live="polite"></div>
 </form>
 
-<!-- Скритият iframe позволява изпращане към Google без пренасочване на клиента. -->
-<iframe name="submissionFrame" id="submissionFrame" title="Изпращане на заявка" style="display:none"></iframe>
+<iframe name="submissionFrame" id="submissionFrame"
+title="Изпращане на заявка" style="display:none"></iframe>
 
 <footer>© 2026 Вашата покана · Дигитални видео покани</footer>
 
 <script>
-/*
-  ПОПЪЛНИ ТУК своя Web app URL от Google Apps Script.
-  Адресът трябва да завършва на /exec.
-*/
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgWg6GNB8_C7_8qyZ8OFoXFTt7slv_n8PH-nxK6N0Zv8tXS9AOWqPnoO_F82-FfPMR/exec";
 
 const params = new URLSearchParams(window.location.search);
+const designSelect = document.getElementById("design");
+
 if (params.get("design") === "purple-white-wedding") {
-  document.getElementById("design").value = "Лилава нежност";
+  designSelect.value = "Лилава нежност";
 }
 
 const form = document.getElementById("orderForm");
@@ -212,16 +197,16 @@ let responseTimer;
 
 form.addEventListener("submit", function(event) {
   event.preventDefault();
-  
-if (
-  !SCRIPT_URL ||
-  !SCRIPT_URL.startsWith("https://script.google.com/macros/s/") ||
-  !SCRIPT_URL.endsWith("/exec")
-) {
-  result.style.display = "block";
-  result.textContent = "Формулярът още не е свързан с Google Apps Script. Добави своя Web app URL в кода.";
-  return;
-}
+
+  if (
+    !SCRIPT_URL ||
+    !SCRIPT_URL.startsWith("https://script.google.com/macros/s/") ||
+    !SCRIPT_URL.endsWith("/exec")
+  ) {
+    result.style.display = "block";
+    result.textContent = "Формулярът не е свързан с Google Apps Script.";
+    return;
+  }
 
   if (submitButton.disabled) return;
 
@@ -233,11 +218,9 @@ if (
   }
 
   order["Източник"] = "Сайтът Вашата покана";
-  order["Идентификатор на дизайна"] = params.get("design") || "purple-white-wedding";
+  order["Идентификатор на дизайна"] =
+    params.get("design") || "purple-white-wedding";
 
-  const payload = JSON.stringify(order);
-
-  // Използваме обикновен POST към скрит iframe, без да отваряме имейл клиент.
   const hiddenForm = document.createElement("form");
   hiddenForm.method = "POST";
   hiddenForm.action = SCRIPT_URL;
@@ -247,7 +230,7 @@ if (
   const payloadInput = document.createElement("input");
   payloadInput.type = "hidden";
   payloadInput.name = "payload";
-  payloadInput.value = payload;
+  payloadInput.value = JSON.stringify(order);
 
   hiddenForm.appendChild(payloadInput);
   document.body.appendChild(hiddenForm);
@@ -256,28 +239,37 @@ if (
   submitButton.disabled = true;
   submitButton.textContent = "ИЗПРАЩАНЕ...";
   result.style.display = "block";
-  result.textContent = "Заявката се изпраща. Моля, изчакай.";
+  result.textContent = "Заявката се изпраща. Моля, изчакайте.";
 
-  // Не можем да прочетем отговора на Google през различен домейн.
-  // Затова потвърждението се проверява допълнително в таблицата и по имейл.
   submissionFrame.onload = function() {
     if (!awaitingResponse) return;
+
     awaitingResponse = false;
     clearTimeout(responseTimer);
-    document.body.removeChild(hiddenForm);
+
+    if (hiddenForm.isConnected) {
+      document.body.removeChild(hiddenForm);
+    }
 
     submitButton.disabled = false;
     submitButton.textContent = "ИЗПРАТИ ЗАЯВКАТА";
-    result.textContent = "Изпращането е завършено от браузъра. Провери дали заявката е записана в Google таблицата и дали е получен имейлът, преди да изпратиш нова.";
+    result.textContent =
+      "Заявката е изпратена от браузъра. Ще проверим данните и ще се свържем с вас.";
   };
 
   responseTimer = setTimeout(function() {
     if (!awaitingResponse) return;
+
     awaitingResponse = false;
     submitButton.disabled = false;
     submitButton.textContent = "ОПИТАЙ ОТНОВО";
-    result.textContent = "Не успяхме да потвърдим изпращането. Провери Google таблицата и пощата си, преди да опиташ отново, за да не се дублира заявката.";
-    if (hiddenForm.isConnected) document.body.removeChild(hiddenForm);
+
+    result.textContent =
+      "Не можем да потвърдим изпращането. Моля, проверете дали заявката е записана, преди да опитате отново.";
+
+    if (hiddenForm.isConnected) {
+      document.body.removeChild(hiddenForm);
+    }
   }, 15000);
 
   hiddenForm.submit();
@@ -285,4 +277,3 @@ if (
 </script>
 </body>
 </html>
-```
