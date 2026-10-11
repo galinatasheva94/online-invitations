@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#F4EAF9">
-  <meta name="description" content="The Story Atelier — онлайн покани за специалните моменти. Персонализирани видео покани, създадени с любов.">
-
+  <meta name="description" content="The Story Atelier — онлайн покани за специалните моменти.">
   <title>The Story Atelier | Онлайн покани за специалните моменти</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +20,7 @@
       --purple: #70438D;
       --pink: #E5B5D8;
       --pink-light: #F9E8F3;
-      --white: #ffffff;
+      --white: #FFFFFF;
       --text: #493550;
       --muted: #806C89;
       --line: #E3CDEB;
@@ -59,7 +58,7 @@
     }
 
     header {
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.95);
       border-bottom: 1px solid var(--line);
     }
 
@@ -81,7 +80,6 @@
       font-size: clamp(27px, 3vw, 37px);
       font-weight: 600;
       line-height: 1.05;
-      white-space: nowrap;
     }
 
     .brand span {
@@ -92,13 +90,12 @@
       font-size: 10px;
       font-weight: 400;
       letter-spacing: 0.5px;
-      white-space: normal;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 27px;
+      gap: 25px;
       font-size: 12px;
     }
 
@@ -118,6 +115,9 @@
       font-size: 12px;
       font-weight: 500;
       transition: transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .nav-button:hover,
@@ -138,7 +138,6 @@
     }
 
     .hero {
-      position: relative;
       overflow: hidden;
       background:
         radial-gradient(ellipse at 8% 18%, rgba(209, 174, 235, 0.85), transparent 40%),
@@ -149,11 +148,11 @@
     .hero-inner {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 76px 28px 85px;
+      padding: 70px 28px 78px;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1fr 0.9fr;
       align-items: center;
-      gap: 65px;
+      gap: 55px;
     }
 
     .eyebrow {
@@ -174,7 +173,6 @@
     h1 {
       font-size: clamp(44px, 5.2vw, 70px);
       color: #603D7B;
-      max-width: 650px;
       margin-bottom: 22px;
     }
 
@@ -204,102 +202,91 @@
       letter-spacing: 0.5px;
     }
 
-    .hero-art {
-      min-height: 440px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Избор на месеца */
+
+    .featured {
       position: relative;
+      width: 100%;
+      max-width: 440px;
+      justify-self: center;
     }
 
-    .decor-circle {
-      position: absolute;
-      width: 345px;
-      height: 345px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #CFA9E9, #E9B9D8);
-      opacity: 0.95;
-    }
-
-    .invitation {
-      position: relative;
-      z-index: 1;
-      width: min(310px, 85%);
-      min-height: 380px;
-      padding: 30px;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid white;
-      box-shadow: 0 24px 70px rgba(92, 54, 119, 0.22);
+    .featured-label {
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transform: rotate(2deg);
-    }
-
-    .invitation::before {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border: 1px solid #D9BDE8;
-      pointer-events: none;
-    }
-
-    .invitation-top {
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: #8962A4;
-      text-transform: uppercase;
-      margin-bottom: 25px;
-    }
-
-    .floral {
-      font-size: 42px;
-      line-height: 1.2;
       margin-bottom: 17px;
-      color: #BC77AC;
     }
 
-    .invitation h2 {
-      font-size: 43px;
+    .featured-label .eyebrow {
+      margin-bottom: 7px;
+    }
+
+    .featured-label h2 {
+      font-size: clamp(32px, 3.5vw, 43px);
       color: #70438D;
-      margin-bottom: 13px;
     }
 
-    .invitation p {
-      color: #876D94;
-      font-size: 10px;
-      letter-spacing: 1px;
+    .featured-card {
+      position: relative;
+      background: #FFFFFF;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 10px;
+      box-shadow: 0 22px 60px rgba(92, 54, 119, 0.22);
     }
 
-    .invitation .invitation-date {
-      color: #B36A9F;
-      margin-top: 24px;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    .floating-heart {
+    .featured-ribbon {
+      display: inline-block;
       position: absolute;
       z-index: 2;
-      color: #A45C9A;
-      font-size: 30px;
+      top: 24px;
+      left: 24px;
+      background: linear-gradient(100deg, #70438D, #A45D98);
+      color: #FFFFFF;
+      border-radius: 20px;
+      padding: 8px 13px;
+      font-size: 9px;
+      letter-spacing: 0.7px;
+      box-shadow: 0 4px 12px rgba(75, 40, 95, 0.2);
     }
 
-    .heart-one {
-      top: 45px;
-      right: 30px;
+    .featured-video-wrap {
+      overflow: hidden;
+      border-radius: 5px;
+      background: #E5D5EF;
+      line-height: 0;
     }
 
-    .heart-two {
-      bottom: 43px;
-      left: 22px;
-      font-size: 23px;
+    .featured-video {
+      display: block;
+      width: 100%;
+      height: 350px;
+      object-fit: contain;
+      background: #E5D5EF;
+    }
+
+    .featured-info {
+      padding: 18px 10px 10px;
+      text-align: center;
+    }
+
+    .featured-info h3 {
+      font-size: 28px;
+      color: #70438D;
+      margin-bottom: 6px;
+    }
+
+    .featured-info p {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 16px;
+    }
+
+    .featured-info .button {
+      width: 100%;
     }
 
     .section {
-      padding: 88px 28px;
+      padding: 85px 28px;
     }
 
     .section-inner {
@@ -467,14 +454,9 @@
 
       .hero-inner {
         grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 60px 24px 55px;
+        gap: 45px;
+        padding: 55px 22px 60px;
         text-align: center;
-      }
-
-      h1 {
-        margin-left: auto;
-        margin-right: auto;
       }
 
       .hero-description {
@@ -486,13 +468,12 @@
         justify-content: center;
       }
 
-      .hero-art {
-        min-height: 400px;
+      .featured {
+        max-width: 460px;
       }
 
-      .decor-circle {
-        width: 290px;
-        height: 290px;
+      .featured-video {
+        height: min(110vw, 460px);
       }
 
       .features,
@@ -521,16 +502,13 @@
         padding: 10px 16px;
       }
 
-      .hero-art {
-        min-height: 365px;
+      .featured-video {
+        height: 105vw;
+        max-height: 420px;
       }
 
-      .invitation {
-        min-height: 340px;
-      }
-
-      .invitation h2 {
-        font-size: 36px;
+      .featured-info h3 {
+        font-size: 25px;
       }
     }
   </style>
@@ -560,6 +538,7 @@
   <main>
     <section class="hero">
       <div class="hero-inner">
+
         <div class="hero-copy">
           <span class="eyebrow">За вашите специални моменти</span>
 
@@ -583,19 +562,36 @@
           </p>
         </div>
 
-        <div class="hero-art" aria-label="Декоративен пример за покана">
-          <div class="decor-circle"></div>
-          <span class="floating-heart heart-one">♡</span>
-          <span class="floating-heart heart-two">✧</span>
+        <div class="featured">
+          <div class="featured-label">
+            <span class="eyebrow">The Story Atelier представя</span>
+            <h2>Нашият избор за месеца</h2>
+          </div>
 
-          <div class="invitation">
-            <div class="invitation-top">You are invited</div>
-            <div class="floral">✿</div>
-            <h2>Your Story</h2>
-            <p>A SPECIAL DAY · A BEAUTIFUL MEMORY</p>
-            <div class="invitation-date">WITH LOVE ♡</div>
+          <div class="featured-card">
+            <span class="featured-ribbon">♡ ИЗБОР НА МЕСЕЦА</span>
+
+            <div class="featured-video-wrap">
+              <video
+                class="featured-video"
+                controls
+                playsinline
+                preload="metadata"
+                aria-label="Видео покана на месеца"
+              >
+                <source src="videos/Purple%20White%20Wedding.mp4" type="video/mp4">
+                Вашият браузър не поддържа възпроизвеждане на видео.
+              </video>
+            </div>
+
+            <div class="featured-info">
+              <h3>Purple White Wedding</h3>
+              <p>Елегантна видео покана, която можете да персонализирате за своя специален ден.</p>
+              <a href="designs.html" class="button">Разгледай поканата</a>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
 
