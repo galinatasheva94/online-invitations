@@ -74,16 +74,6 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
         <label for="groom">Име на младоженеца *</label>
         <input id="groom" name="Име на младоженеца" required>
       </div>
-      <div class="field">
-        <label for="bridePronunciation">Произношение или обръщение (по желание)</label>
-        <input id="bridePronunciation" name="Произношение на имената">
-      </div>
-      <div class="field">
-        <label for="surname">Фамилия след сватбата (по желание)</label>
-        <input id="surname" name="Фамилия">
-      </div>
-    </div>
-  </section>
 
   <section class="section">
     <h2>3. Дата и час</h2>
@@ -181,12 +171,8 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
         <input type="email" id="email" name="Имейл" required>
       </div>
       <div class="field">
-        <label for="phone">Телефон (по желание)</label>
-        <input type="tel" id="phone" name="Телефон">
-      </div>
-      <div class="field">
-        <label for="deadline">Желана дата за получаване (по желание)</label>
-        <input type="date" id="deadline" name="Желана дата за получаване">
+        <label for="phone">Телефон *</label>
+        <input type="tel" id="phone" name="Телефон" required>
       </div>
     </div>
   </section>
@@ -209,7 +195,7 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
   ПОПЪЛНИ ТУК своя Web app URL от Google Apps Script.
   Адресът трябва да завършва на /exec.
 */
-const SCRIPT_URL = "ПОСТАВИ_ТУК_ТВОЯ_WEB_APP_URL";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgWg6GNB8_C7_8qyZ8OFoXFTt7slv_n8PH-nxK6N0Zv8tXS9AOWqPnoO_F82-FfPMR/exec";
 
 const params = new URLSearchParams(window.location.search);
 if (params.get("design") === "purple-white-wedding") {
