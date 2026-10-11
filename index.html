@@ -1,537 +1,1026 @@
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbf6f2">
+  <meta name="description" content="Персонализирани сватбени видео покани, създадени с внимание към вашата история. Изберете своя дизайн от Вашата покана.">
+  <title>Вашата покана | Видео покани за вашата сватба</title>
 
-    <title>Вашата покана | Онлайн покани за специалните моменти</title>
+  <style>
+    :root {
+      --cream: #fbf6f2;
+      --white: #fffdfb;
+      --ink: #493943;
+      --muted: #82747e;
+      --purple: #80638f;
+      --purple-dark: #62496f;
+      --pink: #e8b6c7;
+      --peach: #f4d1bd;
+      --gold: #c5a46b;
+      --line: #eadfe5;
+      --shadow: 0 18px 55px rgba(83, 56, 77, .10);
+    }
 
-    <style>
+    * { box-sizing: border-box; }
 
-        * {
-            box-sizing: border-box;
-        }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
 
-        body {
-            margin: 0;
-            font-family: Georgia, "Times New Roman", serif;
-            background: #f8f4ee;
-            color: #463d35;
-        }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
 
-        /* NAVIGATION */
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
 
-        nav {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
+    .announcement {
+      padding: 9px 16px;
+      text-align: center;
+      background: #705579;
+      color: white;
+      font-size: 12px;
+      letter-spacing: .8px;
+    }
 
-        .logo {
-            font-size: 23px;
-            letter-spacing: 2px;
-        }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251, 246, 242, .94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(234, 223, 229, .8);
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #463d35;
-            font-size: 14px;
-        }
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 25px;
+      letter-spacing: -.8px;
+      white-space: nowrap;
+    }
 
-        /* HERO */
+    .logo span { color: var(--purple); }
 
-        .hero {
-            min-height: 720px;
-            padding: 150px 20px 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background:
-                radial-gradient(
-                    circle at top right,
-                    #eee4d7 0%,
-                    #f8f4ee 45%,
-                    #f8f4ee 100%
-                );
-        }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 13px;
+      font-weight: 600;
+    }
 
-        .hero-content {
-            max-width: 850px;
-        }
+    .nav-links a:not(.button):hover { color: var(--purple); }
 
-        .eyebrow {
-            font-size: 13px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--purple);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .25s, background .25s, box-shadow .25s;
+    }
 
-        h1 {
-            font-size: 68px;
-            line-height: 1.05;
-            font-weight: normal;
-            margin: 0;
-        }
+    .button:hover {
+      transform: translateY(-3px);
+      background: var(--purple-dark);
+      box-shadow: 0 10px 24px rgba(98, 73, 111, .2);
+    }
 
-        .hero-subtitle {
-            max-width: 600px;
-            margin: 30px auto;
-            font-size: 20px;
-            line-height: 1.7;
-            color: #71665b;
-        }
+    .button-light {
+      background: rgba(255,255,255,.65);
+      color: var(--purple-dark);
+      border-color: #d9c8dc;
+    }
 
-        .main-button {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 16px 35px;
-            background: #55483d;
-            color: white;
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-size: 13px;
-            transition: 0.3s;
-        }
+    .button-light:hover {
+      background: white;
+      color: var(--purple-dark);
+    }
 
-        .main-button:hover {
-            background: #746455;
-        }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 75px 0 90px;
+      background:
+        radial-gradient(ellipse at 8% 15%, #f4dce7 0, transparent 31%),
+        radial-gradient(ellipse at 94% 78%, #f5ddca 0, transparent 30%),
+        var(--cream);
+    }
 
-        /* INTRO */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: 70px;
+    }
 
-        .intro {
-            text-align: center;
-            padding: 100px 20px 60px;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--purple-dark);
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
 
-        .section-title {
-            font-size: 40px;
-            font-weight: normal;
-            margin-bottom: 20px;
-        }
+    .eyebrow::before {
+      content: "";
+      width: 27px;
+      height: 1px;
+      background: var(--gold);
+    }
 
-        .section-text {
-            max-width: 650px;
-            margin: auto;
-            line-height: 1.8;
-            color: #71665b;
-            font-size: 17px;
-        }
+    h1, h2, h3, p { margin-top: 0; }
 
-        /* HOW IT WORKS */
+    h1, h2, .serif {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
 
-        .steps {
-            max-width: 1050px;
-            margin: 0 auto;
-            padding: 30px 20px 110px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
+    h1 {
+      max-width: 620px;
+      margin: 20px 0;
+      font-size: clamp(43px, 5.2vw, 70px);
+      line-height: 1.09;
+      letter-spacing: -2.2px;
+    }
 
-        .step {
-            padding: 30px;
-        }
+    h1 em {
+      color: var(--purple);
+      font-weight: 400;
+    }
 
-        .step-number {
-            width: 55px;
-            height: 55px;
-            border: 1px solid #9c8c7b;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 25px;
-            font-size: 18px;
-        }
+    .hero-copy {
+      max-width: 460px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 16px;
+    }
 
-        .step h3 {
-            font-size: 21px;
-            font-weight: normal;
-            margin-bottom: 15px;
-        }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-        .step p {
-            line-height: 1.7;
-            color: #71665b;
-            font-size: 15px;
-        }
+    .small-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-        /* CATEGORIES */
+    .hero-art {
+      position: relative;
+      min-height: 440px;
+      display: grid;
+      place-items: center;
+    }
 
-        .categories {
-            background: #eee7dd;
-            padding: 100px 20px;
-            text-align: center;
-        }
+    .halo {
+      position: absolute;
+      width: 370px;
+      height: 370px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f2dce7, #f7e4d1);
+    }
 
-        .category-grid {
-            max-width: 1050px;
-            margin: 55px auto 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
+    .invite-frame {
+      position: relative;
+      z-index: 1;
+      width: min(280px, 75%);
+      padding: 10px;
+      background: white;
+      border-radius: 155px 155px 22px 22px;
+      box-shadow: 0 25px 75px rgba(91, 63, 84, .2);
+      transform: rotate(-3deg);
+      transition: transform .4s;
+    }
 
-        .category {
-            min-height: 300px;
-            padding: 45px 25px;
-            background: #faf8f4;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #e2d9cd;
-        }
+    .invite-frame:hover { transform: rotate(0) translateY(-7px); }
 
-        .category-icon {
-            font-size: 42px;
-            margin-bottom: 25px;
-        }
+    .invite-screen {
+      position: relative;
+      min-height: 365px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+      text-align: center;
+      border-radius: 145px 145px 15px 15px;
+      color: white;
+      background:
+        linear-gradient(180deg, rgba(46, 30, 47, .06), rgba(46, 30, 47, .72)),
+        radial-gradient(ellipse at 50% 18%, #f6d7dc 0, #c8a9c9 34%, #786181 68%, #493b53 100%);
+    }
 
-        .category h3 {
-            font-size: 25px;
-            font-weight: normal;
-            margin: 0 0 15px;
-        }
+    .invite-screen::before,
+    .invite-screen::after {
+      content: "✿";
+      position: absolute;
+      color: rgba(255,255,255,.48);
+      font-size: 90px;
+      font-family: Georgia, serif;
+    }
 
-        .category p {
-            color: #71665b;
-            line-height: 1.6;
-            font-size: 15px;
-        }
+    .invite-screen::before {
+      top: 8px;
+      left: -9px;
+      transform: rotate(-35deg);
+    }
 
-        /* CTA */
+    .invite-screen::after {
+      right: -12px;
+      bottom: 18px;
+      transform: rotate(25deg);
+    }
 
-        .cta {
-            padding: 110px 20px;
-            text-align: center;
-            background: #55483d;
-            color: white;
-        }
+    .invite-caption {
+      position: relative;
+      z-index: 1;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
 
-        .cta h2 {
-            font-size: 42px;
-            font-weight: normal;
-            margin: 0 0 20px;
-        }
+    .invite-names {
+      position: relative;
+      z-index: 1;
+      margin: 20px 0 12px;
+      font-family: Georgia, serif;
+      font-size: 35px;
+      line-height: 1.12;
+    }
 
-        .cta p {
-            max-width: 550px;
-            margin: 0 auto 35px;
-            line-height: 1.7;
-            opacity: 0.85;
-        }
+    .invite-divider {
+      width: 50px;
+      height: 1px;
+      background: #f2d8bd;
+      margin: 10px 0 16px;
+    }
 
-        .cta-button {
-            display: inline-block;
-            padding: 16px 35px;
-            background: #f8f4ee;
-            color: #463d35;
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-size: 13px;
-        }
+    .invite-date {
+      position: relative;
+      z-index: 1;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
 
-        /* FOOTER */
+    .play-button {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      width: 57px;
+      height: 57px;
+      display: grid;
+      place-items: center;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(255,255,255,.75);
+      border-radius: 50%;
+      color: white;
+      background: rgba(255,255,255,.2);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      font-size: 20px;
+      transition: transform .2s, background .2s;
+    }
 
-        footer {
-            padding: 35px 20px;
-            text-align: center;
-            background: #463d35;
-            color: #d8cec1;
-            font-size: 13px;
-        }
+    .play-button:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: rgba(255,255,255,.35);
+    }
 
-        /* MOBILE */
+    .floating {
+      position: absolute;
+      z-index: 3;
+      padding: 13px 17px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 14px;
+      background: rgba(255,253,251,.93);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      animation: float 4s ease-in-out infinite;
+    }
 
-        @media (max-width: 750px) {
+    .floating strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: 400;
+    }
 
-            nav {
-                padding: 20px;
-            }
+    .floating-one { top: 48px; right: 0; }
+    .floating-two { bottom: 48px; left: 0; animation-delay: -2s; }
 
-            .nav-links {
-                gap: 12px;
-            }
+    @keyframes float {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -9px; }
+    }
 
-            .nav-links a {
-                font-size: 12px;
-            }
+    .trust-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,253,251,.7);
+    }
 
-            h1 {
-                font-size: 48px;
-            }
+    .trust-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 21px 0;
+      text-align: center;
+      gap: 20px;
+    }
 
-            .hero {
-                min-height: 650px;
-                padding-top: 130px;
-            }
+    .trust-items div {
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-            .steps,
-            .category-grid {
-                grid-template-columns: 1fr;
-            }
+    .trust-items span {
+      margin-right: 7px;
+      color: var(--purple);
+    }
 
-            .section-title {
-                font-size: 34px;
-            }
+    section.content-section { padding: 90px 0; }
 
-            .cta h2 {
-                font-size: 34px;
-            }
-        }
+    .section-heading {
+      max-width: 650px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
 
-    </style>
+    .section-heading h2 {
+      margin: 12px 0;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.2;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .design-card {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      align-items: center;
+      gap: 48px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .design-preview {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      min-height: 340px;
+      border-radius: 17px;
+      background: linear-gradient(145deg, #f0dce8, #d5c3df 48%, #87718f);
+    }
+
+    .design-preview::before,
+    .design-preview::after {
+      content: "✿";
+      position: absolute;
+      color: rgba(255,255,255,.45);
+      font-size: 145px;
+    }
+
+    .design-preview::before { top: -40px; left: -18px; }
+    .design-preview::after { bottom: -50px; right: -12px; }
+
+    .preview-paper {
+      position: relative;
+      z-index: 1;
+      width: 190px;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.8);
+      outline: 5px solid rgba(255,255,255,.18);
+      color: white;
+      text-align: center;
+      background: rgba(81, 57, 89, .45);
+      box-shadow: 0 15px 40px rgba(56, 37, 61, .2);
+      transition: transform .35s;
+    }
+
+    .design-preview:hover .preview-paper { transform: scale(1.04) rotate(1deg); }
+
+    .preview-paper small {
+      text-transform: uppercase;
+      font-size: 8px;
+      letter-spacing: 2px;
+    }
+
+    .preview-paper strong {
+      margin: 20px 0;
+      font: 32px/1.1 Georgia, serif;
+    }
+
+    .preview-paper span { font-size: 10px; letter-spacing: 1px; }
+
+    .design-info .tag {
+      display: inline-block;
+      padding: 6px 11px;
+      border-radius: 99px;
+      background: #f5eaf0;
+      color: var(--purple-dark);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .design-info h3 {
+      margin: 18px 0 12px;
+      font: 36px/1.2 Georgia, serif;
+    }
+
+    .design-info p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 10px;
+      margin: 22px 0 27px;
+      padding: 0;
+      list-style: none;
+      font-size: 13px;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      margin-right: 10px;
+      color: var(--purple);
+      font-weight: 800;
+    }
+
+    .steps-section {
+      background:
+        radial-gradient(ellipse at 10% 70%, #f4e3eb, transparent 32%),
+        #f5eee9;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step {
+      padding: 30px 25px;
+      border: 1px solid rgba(234,223,229,.9);
+      border-radius: 19px;
+      background: rgba(255,253,251,.8);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .step:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 21px;
+      border-radius: 50%;
+      background: #eee1ef;
+      color: var(--purple-dark);
+      font: 19px Georgia, serif;
+    }
+
+    .step:nth-child(2) .step-number { background: #f7e3dc; }
+    .step:nth-child(3) .step-number { background: #eee5d1; }
+
+    .step h3 {
+      margin-bottom: 9px;
+      font: 23px Georgia, serif;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+    }
+
+    .benefit { text-align: center; padding: 10px; }
+
+    .benefit-icon {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 17px;
+      border-radius: 20px;
+      background: #f1e4ee;
+      font-size: 25px;
+      transition: transform .3s;
+    }
+
+    .benefit:nth-child(2) .benefit-icon { background: #f8e7df; }
+    .benefit:nth-child(3) .benefit-icon { background: #eee6d5; }
+
+    .benefit:hover .benefit-icon { transform: rotate(-8deg) scale(1.08); }
+
+    .benefit h3 {
+      margin-bottom: 8px;
+      font: 22px Georgia, serif;
+    }
+
+    .benefit p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .faq-list { max-width: 760px; margin: auto; }
+
+    .faq-item { border-bottom: 1px solid var(--line); }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      padding: 21px 0;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .faq-question span:last-child {
+      color: var(--purple);
+      font-size: 22px;
+      transition: transform .25s;
+    }
+
+    .faq-question[aria-expanded="true"] span:last-child { transform: rotate(45deg); }
+
+    .faq-answer {
+      display: none;
+      max-width: 670px;
+      padding: 0 30px 21px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .faq-answer.open { display: block; }
+
+    .final-cta { padding: 25px 0 90px; }
+
+    .cta-box {
+      position: relative;
+      overflow: hidden;
+      padding: 65px 25px;
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at 0 100%, #9a7da5, transparent 45%),
+        radial-gradient(ellipse at 100% 0, #f2d3d9, transparent 48%),
+        #6d5578;
+      color: white;
+      text-align: center;
+    }
+
+    .cta-box::before {
+      content: "✧";
+      position: absolute;
+      top: 4px;
+      left: 8%;
+      color: rgba(255,255,255,.3);
+      font-size: 100px;
+    }
+
+    .cta-box::after {
+      content: "✿";
+      position: absolute;
+      right: 5%;
+      bottom: -45px;
+      color: rgba(255,255,255,.2);
+      font-size: 150px;
+    }
+
+    .cta-box h2 {
+      position: relative;
+      z-index: 1;
+      max-width: 660px;
+      margin: 0 auto 17px;
+      font-size: clamp(33px, 4vw, 49px);
+      line-height: 1.2;
+    }
+
+    .cta-box p {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 25px;
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+    }
+
+    .cta-box .button {
+      position: relative;
+      z-index: 1;
+      color: var(--purple-dark);
+      background: white;
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-inner .logo { color: var(--ink); font-size: 21px; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 800px) {
+      .nav { min-height: 68px; }
+      .nav-links { gap: 13px; }
+      .nav-links a:not(.button) { display: none; }
+      .nav-links .button { padding: 11px 15px; }
+      .hero { padding: 55px 0 65px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-copy { max-width: 560px; }
+      .hero-art { min-height: 420px; }
+      .design-card { grid-template-columns: 1fr; gap: 27px; padding: 18px; }
+      .design-preview { min-height: 320px; }
+      .steps { grid-template-columns: 1fr; gap: 14px; }
+      .step { padding: 23px; }
+      .benefits { gap: 14px; }
+      section.content-section { padding: 65px 0; }
+      .final-cta { padding-bottom: 65px; }
+    }
+
+    @media (max-width: 520px) {
+      .container { width: calc(100% - 30px); }
+      .logo { font-size: 22px; }
+      .nav-links .button { font-size: 11px; padding: 10px 12px; }
+      h1 { font-size: 45px; letter-spacing: -1.5px; }
+      .hero-art { min-height: 370px; }
+      .halo { width: 290px; height: 290px; }
+      .invite-frame { width: 230px; }
+      .invite-screen { min-height: 310px; }
+      .invite-names { font-size: 30px; }
+      .floating { padding: 10px 12px; font-size: 10px; }
+      .floating strong { font-size: 14px; }
+      .floating-one { top: 23px; right: -2px; }
+      .floating-two { bottom: 24px; left: -2px; }
+      .trust-items { grid-template-columns: 1fr; gap: 9px; }
+      .benefits { grid-template-columns: 1fr; gap: 22px; }
+      .benefit { max-width: 340px; margin: auto; }
+      .section-heading { margin-bottom: 28px; }
+      .design-info h3 { font-size: 31px; }
+      .cta-box { padding: 48px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="announcement">
+    ВАШИЯТ СПЕЦИАЛЕН ДЕН ЗАСЛУЖАВА СПЕЦИАЛНА ПОКАНА
+  </div>
 
-    <!-- NAVIGATION -->
+  <header>
+    <div class="container nav">
+      <a class="logo" href="index.html">Вашата <span>покана.</span></a>
 
-    <nav>
+      <nav class="nav-links" aria-label="Основна навигация">
+        <a href="#design">Дизайн</a>
+        <a href="#how">Как работи?</a>
+        <a href="#faq">Въпроси</a>
+        <a class="button" href="designs.html">Разгледай поканите ↗</a>
+      </nav>
+    </div>
+  </header>
 
-        <div class="logo">
-            ВАШАТА ПОКАНА
-        </div>
-
-        <div class="nav-links">
-            <a href="#how">Как работи</a>
-            <a href="#occasions">Поводи</a>
-        </div>
-
-    </nav>
-
-
-    <!-- HERO -->
-
+  <main>
     <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">За вашата сватбена история</div>
 
-        <div class="hero-content">
+          <h1>Една любов.<br>Един ден.<br><em>Една покана.</em></h1>
 
-            <div class="eyebrow">
-                Вашият специален ден
-            </div>
+          <p class="hero-copy">
+            Поканете любимите си хора по красив и различен начин.
+            Персонализирани видео покани, създадени за вашия специален ден.
+          </p>
 
-            <h1>
-                Покана, създадена<br>
-                специално за вас.
-            </h1>
+          <div class="hero-actions">
+            <a class="button" href="designs.html">Открий своята покана <span>↗</span></a>
+            <a class="button button-light" href="#how">Как работи?</a>
+          </div>
 
-            <p class="hero-subtitle">
-                Красиви онлайн покани, които персонализирате сами
-                и споделяте с любимите си хора с един линк.
-            </p>
-
-            <a href="designs.html" class="main-button">
-                РАЗГЛЕДАЙ ПОКАНИТЕ
-            </a>
-
+          <p class="small-note">✧ Вашата история, разказана по вашия начин.</p>
         </div>
 
+        <div class="hero-art reveal">
+          <div class="halo"></div>
+
+          <div class="invite-frame">
+            <div class="invite-screen">
+              <div class="invite-caption">Together with love</div>
+              <div class="invite-names">Вашите<br>имена</div>
+              <div class="invite-divider"></div>
+              <div class="invite-date">ВАШИЯТ СПЕЦИАЛЕН ДЕН</div>
+              <button class="play-button" id="heroPlay" aria-label="Преглед на видео поканата">▶</button>
+            </div>
+          </div>
+
+          <div class="floating floating-one">
+            <strong>Създадена за вас</strong>
+            С лично послание ♡
+          </div>
+
+          <div class="floating floating-two">
+            <strong>Споделете любовта</strong>
+            Лесно и онлайн ✧
+          </div>
+        </div>
+      </div>
     </section>
 
+    <div class="trust-strip">
+      <div class="container trust-items">
+        <div><span>✧</span> Красиви видео дизайни</div>
+        <div><span>♡</span> Персонализирана за вас</div>
+        <div><span>↗</span> Лесна за споделяне</div>
+      </div>
+    </div>
 
-    <!-- INTRO -->
-
-    <section class="intro" id="how">
-
-        <div class="eyebrow">
-            Лесно. Красиво. Лично.
+    <section class="content-section" id="design">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Нашето предложение</div>
+          <h2>Поканата, която разказва вашата история</h2>
+          <p>Изберете визия, която ви допада, и я превърнете в покана, създадена специално за вас.</p>
         </div>
 
-        <h2 class="section-title">
-            Вашата покана, вашата история.
-        </h2>
-
-        <p class="section-text">
-            Изберете дизайн, добавете вашите имена, дата,
-            място и всички детайли, които искате да споделите.
-            Ние превръщаме информацията ви в красива
-            онлайн покана, готова за изпращане.
-        </p>
-
-    </section>
-
-
-    <!-- STEPS -->
-
-    <section class="steps">
-
-        <div class="step">
-
-            <div class="step-number">
-                1
+        <div class="design-card reveal">
+          <a class="design-preview" href="designs.html" aria-label="Разгледай видео поканата">
+            <div class="preview-paper">
+              <small>Together with love</small>
+              <strong>Галина<br>&amp;<br>Мартин</strong>
+              <span>OUR WEDDING DAY</span>
             </div>
+          </a>
 
-            <h3>
-                Изберете дизайн
-            </h3>
-
+          <div class="design-info">
+            <span class="tag">Видео покана</span>
+            <h3>Лилава нежност</h3>
             <p>
-                Разгледайте нашите дизайни и изберете този,
-                който най-много ви харесва.
+              Романтична визия с нежни цветове и елегантно излъчване.
+              Подходяща за двойки, които искат поканата им да бъде
+              също толкова специална, колкото и самият ден.
             </p>
 
+            <ul class="feature-list">
+              <li>Персонализация с вашите имена и дата</li>
+              <li>Информация за мястото и програмата</li>
+              <li>Удобно споделяне с близки и приятели</li>
+            </ul>
+
+            <a class="button" href="designs.html">Виж поканата ↗</a>
+          </div>
         </div>
-
-
-        <div class="step">
-
-            <div class="step-number">
-                2
-            </div>
-
-            <h3>
-                Добавете вашите данни
-            </h3>
-
-            <p>
-                Въведете имената, датата, мястото и
-                останалата информация за вашия повод.
-            </p>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-number">
-                3
-            </div>
-
-            <h3>
-                Споделете с гостите
-            </h3>
-
-            <p>
-                Получавате персонален линк към вашата покана,
-                който можете да изпратите на всички гости.
-            </p>
-
-        </div>
-
+      </div>
     </section>
 
-
-    <!-- OCCASIONS -->
-
-    <section class="categories" id="occasions">
-
-        <div class="eyebrow">
-            За всеки специален момент
+    <section class="content-section steps-section" id="how">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Лесно като три стъпки</div>
+          <h2>От идеята до вашата покана</h2>
+          <p>Без излишно усложняване — избирате, споделяте подробностите и подготвяме вашата персонална визия.</p>
         </div>
 
-        <h2 class="section-title">
-            Изберете своя повод
-        </h2>
+        <div class="steps">
+          <article class="step reveal">
+            <div class="step-number">01</div>
+            <h3>Изберете дизайн</h3>
+            <p>Разгледайте видео поканите и открийте стила, който най-много ви подхожда.</p>
+          </article>
 
+          <article class="step reveal">
+            <div class="step-number">02</div>
+            <h3>Разкажете ни за деня</h3>
+            <p>Попълнете формата с имената, датата, местата и детайлите за вашата сватба.</p>
+          </article>
 
-        <div class="category-grid">
+          <article class="step reveal">
+            <div class="step-number">03</div>
+            <h3>Споделете любовта</h3>
+            <p>След уточняване на поръчката ще можете да споделите своята персонализирана покана с гостите.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            <div class="category">
-
-                <div class="category-icon">
-                    ♡
-                </div>
-
-                <h3>
-                    Сватба
-                </h3>
-
-                <p>
-                    Елегантни онлайн покани за
-                    вашия голям ден.
-                </p>
-
-            </div>
-
-
-            <div class="category">
-
-                <div class="category-icon">
-                    ✦
-                </div>
-
-                <h3>
-                    Кръщене
-                </h3>
-
-                <p>
-                    Нежни покани за един от
-                    най-специалните семейни моменти.
-                </p>
-
-            </div>
-
-
-            <div class="category">
-
-                <div class="category-icon">
-                    ✿
-                </div>
-
-                <h3>
-                    Специални поводи
-                </h3>
-
-                <p>
-                    Рождени дни, юбилеи,
-                    годишнини и още.
-                </p>
-
-            </div>
-
+    <section class="content-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Малки детайли, голяма емоция</div>
+          <h2>Повече от обикновена покана</h2>
         </div>
 
+        <div class="benefits">
+          <article class="benefit reveal">
+            <div class="benefit-icon">♡</div>
+            <h3>Лична и специална</h3>
+            <p>Имената, датата и детайлите превръщат избрания дизайн във вашата история.</p>
+          </article>
+
+          <article class="benefit reveal">
+            <div class="benefit-icon">✧</div>
+            <h3>Красива и запомняща се</h3>
+            <p>Видео форматът добавя настроение и емоция още преди празника.</p>
+          </article>
+
+          <article class="benefit reveal">
+            <div class="benefit-icon">↗</div>
+            <h3>Лесна за изпращане</h3>
+            <p>Споделете поканата онлайн с хората, с които искате да отпразнувате любовта си.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
+    <section class="content-section" id="faq">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Добре е да знаете</div>
+          <h2>Често задавани въпроси</h2>
+        </div>
 
-    <!-- CTA -->
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Как да поръчам видео покана?</span><span>+</span>
+            </button>
+            <div class="faq-answer">
+              Изберете дизайн от каталога, натиснете „Поръчай“ и попълнете формата с подробностите за сватбата.
+            </div>
+          </div>
 
-    <section class="cta">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Мога ли да добавя имената и информацията за сватбата ни?</span><span>+</span>
+            </button>
+            <div class="faq-answer">
+              Да. При поръчката ще посочите имената, датата, местата и останалите необходими подробности, за да бъде поканата персонализирана.
+            </div>
+          </div>
 
-        <h2>
-            Нека започнем вашата история.
-        </h2>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Как ще получа готовата покана?</span><span>+</span>
+            </button>
+            <div class="faq-answer">
+              Начинът и срокът за получаване се уточняват при потвърждаване на поръчката.
+            </div>
+          </div>
 
-        <p>
-            Изберете дизайн и създайте покана,
-            която гостите ви ще запомнят.
-        </p>
-
-        <a href="designs.html" class="cta-button">
-            РАЗГЛЕДАЙ ДИЗАЙНИТЕ
-        </a>
-
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Мога ли да поискам промени?</span><span>+</span>
+            </button>
+            <div class="faq-answer">
+              Въведете желанията си в полето за допълнителни коментари във формата. Възможностите за промени се уточняват преди изработката.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <section class="final-cta">
+      <div class="container">
+        <div class="cta-box reveal">
+          <h2>Нека вашата история започне с красива покана.</h2>
+          <p>Разгледайте дизайните и открийте своя начин да кажете „Заповядайте на нашата сватба“.</p>
+          <a class="button" href="designs.html">Разгледай всички покани ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <a class="logo" href="index.html">Вашата <span>покана.</span></a>
+      <div>За любовта, която заслужава да бъде отпразнувана ♡</div>
+      <a href="designs.html">Сватбени видео покани</a>
+    </div>
+  </footer>
 
-    <footer>
+  <script>
+    // Плавно показване на секциите при скролиране
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-        © 2026 Вашата покана · Онлайн покани
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
 
-    </footer>
+    // Разгъване на въпросите
+    document.querySelectorAll(".faq-question").forEach((button) => {
+      button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        const isOpen = button.getAttribute("aria-expanded") === "true";
 
+        button.setAttribute("aria-expanded", String(!isOpen));
+        answer.classList.toggle("open", !isOpen);
+      });
+    });
 
+    // Преглед на реалното видео от каталога
+    document.getElementById("heroPlay").addEventListener("click", () => {
+      window.location.href = "designs.html";
+    });
+  </script>
 </body>
 </html>
