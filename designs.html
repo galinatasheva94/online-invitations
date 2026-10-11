@@ -1,736 +1,712 @@
-```html
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#fbf7f2">
-<title>Сватбени видео покани | Вашата покана</title>
-<meta name="description" content="Изберете своята персонализирана сватбена видео покана. Красив дизайн, създаден специално за вашия ден.">
-
-<style>
-:root {
-  --cream: #fbf7f2;
-  --paper: #fffdfb;
-  --ink: #463d4b;
-  --muted: #786d79;
-  --purple: #78618e;
-  --purple-dark: #5b456e;
-  --pink: #e9cbd5;
-  --peach: #f5dfd0;
-  --gold: #b69a6b;
-  --line: #eadfe6;
-  --shadow: 0 16px 45px rgba(85, 62, 91, .09);
-}
-
-* { box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
-}
-
-body {
-  margin: 0;
-  background: var(--cream);
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-a { color: inherit; }
-
-.announcement {
-  background: var(--purple-dark);
-  color: white;
-  text-align: center;
-  padding: 10px 16px;
-  font: 10px/1.6 Arial, sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: rgba(251,247,242,.94);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(234,223,230,.8);
-}
-
-nav {
-  max-width: 1320px;
-  margin: auto;
-  padding: 17px 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.logo {
-  text-decoration: none;
-  font-size: 18px;
-  letter-spacing: 2px;
-  white-space: nowrap;
-}
-
-.logo span { color: var(--purple); }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  font: 12px Arial, sans-serif;
-  transition: color .2s;
-}
-
-.nav-links a:hover { color: var(--purple); }
-
-.nav-cta {
-  background: var(--purple-dark);
-  color: white !important;
-  border-radius: 30px;
-  padding: 13px 20px;
-  white-space: nowrap;
-}
-
-.nav-cta:hover { background: var(--purple); }
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  padding: 76px 20px 48px;
-  background:
-    radial-gradient(ellipse at 12% 25%, rgba(233,203,213,.42), transparent 33%),
-    radial-gradient(ellipse at 90% 10%, rgba(245,223,208,.65), transparent 35%),
-    var(--cream);
-}
-
-.hero::before,
-.hero::after {
-  content: "✿";
-  position: absolute;
-  color: rgba(120,97,142,.15);
-  font-size: 110px;
-  pointer-events: none;
-}
-
-.hero::before { top: 35px; left: 5%; transform: rotate(-20deg); }
-.hero::after { right: 5%; bottom: 5px; transform: rotate(20deg); }
-
-.eyebrow {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 18px;
-  color: var(--purple);
-  font: 10px Arial, sans-serif;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-h1 {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  margin: 0 auto 20px;
-  font-size: clamp(37px, 5.5vw, 65px);
-  font-weight: normal;
-  line-height: 1.13;
-  letter-spacing: -1.5px;
-}
-
-h1 em {
-  color: var(--purple);
-  font-weight: normal;
-}
-
-.hero p {
-  position: relative;
-  z-index: 1;
-  max-width: 570px;
-  margin: auto;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.9;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 25px;
-  padding: 10px 16px;
-  border: 1px solid rgba(182,154,107,.4);
-  border-radius: 30px;
-  color: #8d7550;
-  font-size: 12px;
-  background: rgba(255,253,251,.65);
-}
-
-.hero-tag span { color: var(--purple); }
-
-.catalog {
-  max-width: 1240px;
-  margin: auto;
-  padding: 30px 28px 95px;
-}
-
-.section-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 30px;
-  padding-bottom: 19px;
-  border-bottom: 1px solid var(--line);
-}
-
-.section-heading h2 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: normal;
-}
-
-.section-heading p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
-  gap: 28px;
-}
-
-.card {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 19px;
-  background: var(--paper);
-  box-shadow: var(--shadow);
-  transition: transform .25s, box-shadow .25s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 22px 50px rgba(85,62,91,.13);
-}
-
-.preview-wrap {
-  padding: 13px 13px 0;
-  background: linear-gradient(140deg, #f0e6f0, #f9eae5 60%, #f6eee5);
-}
-
-.preview {
-  position: relative;
-  overflow: hidden;
-  border-radius: 11px;
-  background: #eee5ec;
-}
-
-.preview video {
-  display: block;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: contain;
-  background: #eee5ec;
-}
-
-.play-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(49,35,53,.13);
-  opacity: 0;
-  transition: opacity .25s;
-  pointer-events: none;
-}
-
-.preview:hover .play-overlay,
-.preview:focus-within .play-overlay,
-.preview.is-playing .play-overlay {
-  opacity: 1;
-}
-
-.play-button {
-  pointer-events: auto;
-  display: grid;
-  place-items: center;
-  width: 68px;
-  height: 68px;
-  padding: 0 0 0 3px;
-  border: 1px solid rgba(255,255,255,.85);
-  border-radius: 50%;
-  background: rgba(91,69,110,.85);
-  color: white;
-  font-size: 23px;
-  cursor: pointer;
-  box-shadow: 0 5px 25px rgba(0,0,0,.15);
-  transition: transform .2s, background .2s;
-}
-
-.play-button:hover {
-  transform: scale(1.07);
-  background: var(--purple-dark);
-}
-
-.preview.is-playing .play-button {
-  padding-left: 0;
-}
-
-.card-info { padding: 23px 22px 24px; }
-
-.card-type {
-  margin-bottom: 11px;
-  color: var(--purple);
-  font: 10px Arial, sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.card h3 {
-  margin: 0 0 11px;
-  font-size: 27px;
-  font-weight: normal;
-}
-
-.card p {
-  margin: 0 0 17px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.85;
-}
-
-.card-note {
-  padding-top: 13px;
-  border-top: 1px solid var(--line);
-  color: #8c7c8e;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-.order-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  margin-top: 21px;
-  padding: 15px 18px;
-  border: 1px solid var(--purple-dark);
-  border-radius: 30px;
-  background: var(--purple-dark);
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font: 11px Arial, sans-serif;
-  letter-spacing: 1.5px;
-  transition: background .2s, transform .2s;
-}
-
-.order-button:hover {
-  background: var(--purple);
-  transform: translateY(-1px);
-}
-
-.coming-soon {
-  min-height: 300px;
-  aspect-ratio: 9 / 16;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: 11px;
-  background:
-    radial-gradient(ellipse at 50% 25%, rgba(255,255,255,.9), transparent 60%),
-    linear-gradient(150deg, #f6e9ee, #eee6f3 60%, #f8eadf);
-  text-align: center;
-  color: var(--purple-dark);
-}
-
-.coming-soon .flower {
-  margin-bottom: 20px;
-  color: #b59ab9;
-  font-size: 55px;
-}
-
-.coming-soon h3 {
-  margin: 0 0 13px;
-  font-size: 27px;
-  font-weight: normal;
-}
-
-.coming-soon p {
-  max-width: 230px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.9;
-}
-
-.how {
-  padding: 78px 25px 85px;
-  background: #f3eaf1;
-  text-align: center;
-}
-
-.how h2 {
-  margin: 0 0 13px;
-  font-size: clamp(29px, 4vw, 39px);
-  font-weight: normal;
-}
-
-.how-intro {
-  margin: 0 auto 42px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 25px;
-  max-width: 1050px;
-  margin: auto;
-}
-
-.step {
-  padding: 30px 23px;
-  border: 1px solid rgba(182,154,107,.28);
-  border-radius: 16px;
-  background: rgba(255,253,251,.76);
-}
-
-.step-number {
-  display: grid;
-  place-items: center;
-  width: 47px;
-  height: 47px;
-  margin: 0 auto 19px;
-  border: 1px solid #d8c3d9;
-  border-radius: 50%;
-  color: var(--purple);
-  font-size: 17px;
-}
-
-.step h3 {
-  margin: 0 0 12px;
-  font-size: 20px;
-  font-weight: normal;
-}
-
-.step p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.85;
-}
-
-.bottom-cta {
-  padding: 72px 20px;
-  background:
-    radial-gradient(ellipse at 10% 100%, rgba(233,203,213,.35), transparent 45%),
-    var(--paper);
-  text-align: center;
-}
-
-.bottom-cta h2 {
-  margin: 0 0 15px;
-  font-size: clamp(28px, 4vw, 39px);
-  font-weight: normal;
-}
-
-.bottom-cta p {
-  max-width: 520px;
-  margin: 0 auto 25px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.bottom-cta a {
-  display: inline-block;
-  padding: 15px 24px;
-  border-radius: 30px;
-  background: var(--purple-dark);
-  color: white;
-  text-decoration: none;
-  font: 11px Arial, sans-serif;
-  letter-spacing: 1.5px;
-  transition: background .2s;
-}
-
-.bottom-cta a:hover { background: var(--purple); }
-
-footer {
-  padding: 30px 20px;
-  background: #463d4b;
-  color: #e9dfe8;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.9;
-}
-
-footer a {
-  color: #f4dce8;
-  text-decoration: none;
-}
-
-.footer-brand {
-  margin-bottom: 7px;
-  font-size: 15px;
-  letter-spacing: 2px;
-}
-
-@media (max-width: 900px) {
-  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-  .nav-links { gap: 17px; }
-  .nav-links a { font-size: 11px; }
-  .nav-cta { padding: 12px 14px; }
-}
-
-@media (max-width: 620px) {
-  .announcement { font-size: 9px; letter-spacing: 1.3px; }
-  nav { padding: 15px 18px; gap: 10px; }
-  .logo { font-size: 14px; letter-spacing: 1px; }
-  .nav-links { gap: 10px; }
-  .nav-links a { font-size: 11px; }
-  .nav-links .nav-optional { display: none; }
-  .nav-cta { padding: 11px 12px; font-size: 10px !important; }
-  .hero { padding: 57px 22px 37px; }
-  .hero::before { left: -22px; font-size: 75px; }
-  .hero::after { right: -20px; font-size: 75px; }
-  h1 { letter-spacing: -.7px; }
-  .hero p { font-size: 14px; }
-  .catalog { padding: 25px 17px 65px; }
-  .section-heading { align-items: start; flex-direction: column; gap: 8px; }
-  .section-heading h2 { font-size: 27px; }
-  .products { grid-template-columns: 1fr; max-width: 410px; margin: auto; gap: 27px; }
-  .card-info { padding: 21px; }
-  .play-overlay { opacity: 1; background: transparent; }
-  .play-button { width: 59px; height: 59px; }
-  .how { padding: 62px 18px; }
-  .steps { grid-template-columns: 1fr; gap: 15px; max-width: 410px; }
-  .step { padding: 25px 22px; }
-  .bottom-cta { padding: 57px 22px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F4EAF9">
+  <meta name="description" content="Разгледайте видео поканите на The Story Atelier и изберете своя дизайн.">
+  <title>Каталог с покани | The Story Atelier</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --lavender: #DCC1EE;
+      --lavender-light: #F4EAF9;
+      --lavender-dark: #8755A6;
+      --purple: #70438D;
+      --pink: #E5B5D8;
+      --pink-light: #F9E8F3;
+      --white: #FFFFFF;
+      --text: #493550;
+      --muted: #806C89;
+      --line: #E3CDEB;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--lavender-light);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .announcement {
+      background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
+      color: #603C79;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1180px;
+      min-height: 100px;
+      margin: 0 auto;
+      padding: 17px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--purple);
+      font-size: clamp(27px, 3vw, 37px);
+      font-weight: 600;
+      line-height: 1.05;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 8px;
+      font-family: 'Montserrat', sans-serif;
+      color: #A15F98;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      font-size: 12px;
+    }
+
+    .nav-links a:not(.nav-button):hover {
+      color: var(--lavender-dark);
+    }
+
+    .nav-button,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 30px;
+      background: var(--purple);
+      color: white;
+      padding: 13px 24px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .nav-button:hover,
+    .button:hover {
+      background: #59316F;
+      transform: translateY(-2px);
+    }
+
+    .page-hero {
+      padding: 75px 24px 65px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 10% 15%, rgba(209, 174, 235, 0.8), transparent 42%),
+        radial-gradient(ellipse at 90% 90%, rgba(235, 182, 216, 0.8), transparent 43%),
+        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--lavender-dark);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    .page-hero h1 {
+      max-width: 800px;
+      margin: 0 auto 18px;
+      color: #603D7B;
+      font-size: clamp(43px, 6vw, 68px);
+    }
+
+    .page-hero h1 em {
+      color: #A65E98;
+      font-weight: 500;
+    }
+
+    .page-hero p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #6D5978;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .catalog-section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 65px 28px 85px;
+    }
+
+    .catalog-heading {
+      margin-bottom: 38px;
+      text-align: center;
+    }
+
+    .catalog-heading h2 {
+      margin-bottom: 12px;
+      color: var(--purple);
+      font-size: clamp(34px, 4vw, 46px);
+    }
+
+    .catalog-heading p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+      align-items: start;
+    }
+
+    .design-card {
+      overflow: hidden;
+      border: 1px solid #E5D1F0;
+      border-radius: 10px;
+      background: #FFFFFF;
+      box-shadow: 0 12px 35px rgba(92, 54, 119, 0.10);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .design-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(92, 54, 119, 0.16);
+    }
+
+    .video-container {
+      position: relative;
+      overflow: hidden;
+      background: #E5D5EF;
+      line-height: 0;
+    }
+
+    .design-video {
+      display: block;
+      width: 100%;
+      height: 410px;
+      object-fit: contain;
+      background: #E5D5EF;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(
+        180deg,
+        rgba(63, 34, 79, 0.04),
+        rgba(63, 34, 79, 0.10)
+      );
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+
+    .video-overlay:hover {
+      background: rgba(63, 34, 79, 0.16);
+    }
+
+    .play-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      padding-left: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      color: #FFFFFF;
+      background: rgba(112, 67, 141, 0.76);
+      box-shadow: 0 6px 28px rgba(60, 30, 75, 0.28);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      font-size: 26px;
+      line-height: 1;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .video-overlay:hover .play-button {
+      transform: scale(1.08);
+      background: rgba(89, 49, 111, 0.94);
+    }
+
+    .video-overlay.hidden {
+      display: none;
+    }
+
+    .design-badge {
+      position: absolute;
+      z-index: 2;
+      top: 17px;
+      left: 17px;
+      padding: 8px 13px;
+      border-radius: 22px;
+      background: linear-gradient(100deg, #70438D, #A45D98);
+      color: white;
+      font-size: 9px;
+      letter-spacing: 0.7px;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(75, 40, 95, 0.2);
+    }
+
+    .design-info {
+      padding: 25px 25px 27px;
+    }
+
+    .design-category {
+      display: block;
+      margin-bottom: 7px;
+      color: #A15F98;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .design-info h3 {
+      margin-bottom: 9px;
+      color: var(--purple);
+      font-size: 32px;
+    }
+
+    .design-info p {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .design-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .design-actions .button {
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .button-light {
+      border: 1px solid #CDA9DE;
+      background: #FFFFFF;
+      color: var(--purple);
+    }
+
+    .button-light:hover {
+      background: var(--lavender-light);
+      color: var(--purple);
+    }
+
+    .coming-soon {
+      min-height: 410px;
+      padding: 35px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 10% 15%, rgba(209, 174, 235, 0.75), transparent 42%),
+        radial-gradient(ellipse at 90% 90%, rgba(235, 182, 216, 0.8), transparent 43%),
+        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
+    }
+
+    .coming-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(112, 67, 141, 0.25);
+      border-radius: 50%;
+      color: var(--purple);
+      font-size: 34px;
+    }
+
+    .coming-soon h3 {
+      margin-bottom: 12px;
+      color: var(--purple);
+      font-size: 34px;
+    }
+
+    .coming-soon p {
+      max-width: 300px;
+      color: #715F7B;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .personal-note {
+      margin-top: 60px;
+      padding: 35px 25px;
+      border: 1px solid #E5D1F0;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.65);
+      text-align: center;
+    }
+
+    .personal-note h2 {
+      margin-bottom: 12px;
+      color: var(--purple);
+      font-size: 34px;
+    }
+
+    .personal-note p {
+      max-width: 600px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    footer {
+      padding: 35px 20px;
+      border-top: 1px solid var(--line);
+      background: #FFFFFF;
+      text-align: center;
+    }
+
+    .footer-brand {
+      color: var(--purple);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    footer p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 15px;
+      font-size: 11px;
+    }
+
+    .footer-links a:hover {
+      color: var(--lavender-dark);
+    }
+
+    @media (max-width: 800px) {
+      .nav {
+        flex-direction: column;
+        padding: 22px 18px;
+        gap: 18px;
+        text-align: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .catalog-grid {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .design-video {
+        height: min(110vw, 480px);
+      }
+
+      .coming-soon {
+        min-height: 300px;
+      }
+
+      .catalog-section {
+        padding: 50px 20px 65px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .nav-button {
+        padding: 10px 16px;
+      }
+
+      .page-hero {
+        padding: 55px 20px 48px;
+      }
+
+      .design-video {
+        height: 105vw;
+        max-height: 430px;
+      }
+
+      .design-info {
+        padding: 22px 18px;
+      }
+
+      .design-actions {
+        flex-direction: column;
+      }
+
+      .design-actions .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="announcement">
+    Вашите емоции. Нашето вдъхновение.
+  </div>
 
-<div class="announcement">
-  Онлайн видео покани · Създадени с любов за вашия специален ден
-</div>
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        The Story Atelier
+        <span>Онлайн покани за специалните моменти</span>
+      </a>
 
-<header class="site-header">
-  <nav aria-label="Основна навигация">
-    <a class="logo" href="index.html">ВАШАТА <span>ПОКАНА.</span></a>
+      <div class="nav-links">
+        <a href="index.html">Начало</a>
+        <a href="designs.html">Каталог</a>
+        <a href="index.html#how">Как работи?</a>
+        <a href="order.html?design=purple-white-wedding" class="nav-button">
+          Поръчай покана
+        </a>
+      </div>
+    </nav>
+  </header>
 
-    <div class="nav-links">
-      <a class="nav-optional" href="index.html">Начало</a>
-      <a class="nav-optional" href="#how">Как работи?</a>
-      <a class="nav-cta" href="#collection">Разгледай поканите ↗</a>
-    </div>
-  </nav>
-</header>
+  <main>
+    <section class="page-hero">
+      <span class="eyebrow">The Story Atelier представя</span>
+      <h1>Открийте своята <em>покана.</em></h1>
+      <p>
+        Всеки специален момент заслужава своята история.
+        Изберете дизайн, разгледайте видео поканата и я персонализирайте
+        с вашите имена, дата и подробности за събитието.
+      </p>
+    </section>
 
-<header class="hero">
-  <div class="eyebrow">Нашата колекция</div>
-  <h1>Изберете покана,<br>която разказва <em>вашата история.</em></h1>
-  <p>
-    Всяка любовна история е различна. Изберете своя дизайн,
-    а ние ще го превърнем в персонализирана видео покана
-    за най-красивия ден от живота ви.
-  </p>
-  <div class="hero-tag"><span>✦</span> Персонализирана специално за вас <span>✦</span></div>
-</header>
+    <section class="catalog-section">
+      <div class="catalog-heading">
+        <span class="eyebrow">Нашата колекция</span>
+        <h2>Видео покани</h2>
+        <p>Разгледайте дизайните и изберете този, който ви допада най-много.</p>
+      </div>
 
-<main>
-  <section class="catalog" id="collection">
-    <div class="section-heading">
-      <h2>Сватбени видео покани</h2>
-      <p>Изберете любимата си визия</p>
-    </div>
+      <div class="catalog-grid">
 
-    <div class="products">
+        <!-- Първи дизайн -->
+        <article class="design-card">
+          <div class="video-container">
+            <span class="design-badge">♡ НОВ ДИЗАЙН</span>
 
-      <article class="card">
-        <div class="preview-wrap">
-          <div class="preview">
-            <video class="invitation-video"
-                   poster="images/purple-white-wedding.jpg"
-                   preload="metadata"
-                   playsinline
-                   controls
-                   aria-label="Преглед на видео поканата Лилава нежност">
+            <video
+              class="design-video"
+              id="purpleWhiteVideo"
+              playsinline
+              preload="metadata"
+              aria-label="Видео покана Purple White Wedding"
+            >
               <source src="videos/Purple%20White%20Wedding.mp4" type="video/mp4">
-              Вашият браузър не поддържа видео.
+              Вашият браузър не поддържа възпроизвеждане на видео.
             </video>
-            <div class="play-overlay">
-              <button class="play-button" type="button" aria-label="Пусни поканата">▶</button>
+
+            <button
+              class="video-overlay"
+              type="button"
+              aria-label="Пусни видео поканата"
+              data-video="purpleWhiteVideo"
+            >
+              <span class="play-button">▶</span>
+            </button>
+          </div>
+
+          <div class="design-info">
+            <span class="design-category">Сватбени покани</span>
+            <h3>Purple White Wedding</h3>
+            <p>
+              Елегантна комбинация от лилави и бели нюанси,
+              създадена за един незабравим сватбен ден.
+              Добавете вашите имена, дата и място, за да превърнете
+              дизайна във ваша лична покана.
+            </p>
+
+            <div class="design-actions">
+              <button
+                class="button button-light replay-button"
+                type="button"
+                data-video="purpleWhiteVideo"
+              >
+                ▶ Гледай поканата
+              </button>
+
+              <a
+                class="button"
+                href="order.html?design=purple-white-wedding"
+              >
+                Поръчай
+              </a>
             </div>
           </div>
-        </div>
+        </article>
 
-        <div class="card-info">
-          <div class="card-type">Дизайн 01 · Сватба</div>
-          <h3>Лилава нежност</h3>
-          <p>
-            Романтична видео покана с нежни лилави цветя,
-            деликатни детайли и елегантно излъчване.
-          </p>
-          <div class="card-note">
-            Персонализира се с имената, датата, мястото и текста
-            за вашата сватба.
-          </div>
-          <a class="order-button" href="order.html?design=purple-white-wedding">
-            ПОРЪЧАЙ СВОЯТА ПОКАНА <span>↗</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="preview-wrap">
+        <!-- Място за следващ дизайн -->
+        <article class="design-card">
           <div class="coming-soon">
-            <div class="flower">✿</div>
-            <h3>Съвсем скоро</h3>
+            <div class="coming-icon">✧</div>
+            <span class="eyebrow">Очаквайте скоро</span>
+            <h3>Още красиви истории</h3>
             <p>
-              Подготвяме още красиви дизайни,
-              за да откриете поканата, която е точно като вас.
+              Подготвяме нови дизайни, за да откриете
+              поканата, която най-добре разказва вашата история.
             </p>
           </div>
-        </div>
-        <div class="card-info">
-          <div class="card-type">Дизайн 02 · Очаквайте</div>
-          <h3>Нова колекция</h3>
-          <p>Още една специална визия скоро ще бъде добавена тук.</p>
-          <div class="card-note">Следете колекцията ни за нови предложения.</div>
-        </div>
-      </article>
 
+          <div class="design-info">
+            <span class="design-category">Нова колекция</span>
+            <h3>Скоро при нас</h3>
+            <p>
+              Нови цветове, стилове и вдъхновение за вашите
+              специални поводи.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="personal-note">
+        <span class="eyebrow">Вашият специален момент</span>
+        <h2>Имате ли вече любим дизайн?</h2>
+        <p>
+          Натиснете „Поръчай“, попълнете информацията за събитието
+          и ни разкажете как си представяте своята покана.
+        </p>
+        <a href="order.html?design=purple-white-wedding" class="button">
+          Поръчай своята покана
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">The Story Atelier</div>
+    <p>Онлайн покани за специалните моменти</p>
+    <p>© <span id="year"></span> The Story Atelier · Създадено с любов</p>
+
+    <div class="footer-links">
+      <a href="index.html">Начало</a>
+      <a href="designs.html">Каталог</a>
+      <a href="order.html?design=purple-white-wedding">Поръчай покана</a>
     </div>
-  </section>
+  </footer>
 
-  <section class="how" id="how">
-    <div class="eyebrow">Лесно и удобно</div>
-    <h2>От идеята до вашата покана</h2>
-    <p class="how-intro">Само три лесни стъпки до нещо специално.</p>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">01</div>
-        <h3>Изберете дизайн</h3>
-        <p>Разгледайте видеото и изберете стила, който най-много ви харесва.</p>
-      </div>
+    const videoButtons = document.querySelectorAll("[data-video]");
 
-      <div class="step">
-        <div class="step-number">02</div>
-        <h3>Споделете детайлите</h3>
-        <p>Попълнете формата с имената, датата и подробностите за сватбата.</p>
-      </div>
+    videoButtons.forEach(function (button) {
+      button.addEventListener("click", async function () {
+        const videoId = button.getAttribute("data-video");
+        const video = document.getElementById(videoId);
 
-      <div class="step">
-        <div class="step-number">03</div>
-        <h3>Получете поканата</h3>
-        <p>Ще подготвим персонализираната ви видео покана и ще се свържем с вас.</p>
-      </div>
-    </div>
-  </section>
+        if (!video) return;
 
-  <section class="bottom-cta">
-    <div class="eyebrow">Вашият специален ден започва тук</div>
-    <h2>Всяка красива история заслужава красива покана.</h2>
-    <p>
-      Изберете любимия си дизайн и ни разкажете за вашия специален ден.
-      Ние ще се погрижим за останалото.
-    </p>
-    <a href="order.html?design=purple-white-wedding">ПОРЪЧАЙТЕ „ЛИЛАВА НЕЖНОСТ“ ↗</a>
-  </section>
-</main>
+        const card = video.closest(".video-container");
+        const overlay = card.querySelector(".video-overlay");
 
-<footer>
-  <div class="footer-brand">ВАШАТА ПОКАНА.</div>
-  <div>Онлайн видео покани за вашите специални моменти</div>
-  <div>© 2026 Вашата покана · <a href="index.html">Начало</a></div>
-</footer>
+        if (video.paused) {
+          try {
+            await video.play();
 
-<script>
-document.querySelectorAll(".preview").forEach(function(preview) {
-  const video = preview.querySelector("video");
-  const button = preview.querySelector(".play-button");
-
-  if (!video || !button) return;
-
-  button.addEventListener("click", function() {
-    if (video.paused) {
-      document.querySelectorAll(".invitation-video").forEach(function(other) {
-        if (other !== video) {
-          other.pause();
-          const otherPreview = other.closest(".preview");
-          const otherButton = otherPreview && otherPreview.querySelector(".play-button");
-
-          if (otherPreview) otherPreview.classList.remove("is-playing");
-
-          if (otherButton) {
-            otherButton.textContent = "▶";
-            otherButton.setAttribute("aria-label", "Пусни поканата");
+            if (overlay) {
+              overlay.classList.add("hidden");
+            }
+          } catch (error) {
+            if (overlay) {
+              overlay.classList.remove("hidden");
+            }
           }
+        } else {
+          video.pause();
+        }
+      });
+    });
+
+    document.querySelectorAll(".design-video").forEach(function (video) {
+      const container = video.closest(".video-container");
+      const overlay = container.querySelector(".video-overlay");
+
+      video.addEventListener("ended", function () {
+        video.currentTime = 0;
+        overlay.classList.remove("hidden");
+      });
+
+      video.addEventListener("pause", function () {
+        if (video.ended) {
+          overlay.classList.remove("hidden");
         }
       });
 
-      video.play().then(function() {
-        preview.classList.add("is-playing");
-        button.textContent = "Ⅱ";
-        button.setAttribute("aria-label", "Пауза");
-      }).catch(function() {
-        video.setAttribute("controls", "controls");
+      video.addEventListener("error", function () {
+        overlay.classList.remove("hidden");
       });
-    } else {
-      video.pause();
-    }
-  });
-
-  video.addEventListener("play", function() {
-    preview.classList.add("is-playing");
-    button.textContent = "Ⅱ";
-    button.setAttribute("aria-label", "Пауза");
-  });
-
-  video.addEventListener("pause", function() {
-    preview.classList.remove("is-playing");
-    button.textContent = "▶";
-    button.setAttribute("aria-label", "Пусни поканата");
-  });
-
-  video.addEventListener("ended", function() {
-    preview.classList.remove("is-playing");
-    button.textContent = "▶";
-    button.setAttribute("aria-label", "Пусни поканата");
-  });
-});
-</script>
-
+    });
+  </script>
 </body>
 </html>
-```
