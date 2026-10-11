@@ -278,20 +278,22 @@
         </div>
 
         <div class="field">
-          <label for="restaurant">Ресторант</label>
+          <label for="restaurant">Ресторант *</label>
           <input
             type="text"
             id="restaurant"
             name="Ресторант"
+            required
           >
         </div>
 
         <div class="field full">
-          <label for="city">Град</label>
+          <label for="city">Град *</label>
           <input
             type="text"
             id="city"
             name="Град"
+            required
           >
         </div>
 
@@ -424,11 +426,11 @@
         </div>
 
         <div class="field full">
-          <label for="notes">Допълнителни пожелания</label>
+          <label for="notes">Допълнителни коментари</label>
           <textarea
             id="notes"
-            name="Допълнителни пожелания"
-            placeholder="Текст за поканата, допълнителни уточнения и други..."
+            name="Допълнителни коментари"
+            placeholder="Уточнения и други..."
           ></textarea>
         </div>
 
@@ -586,7 +588,7 @@
         submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
 
         result.textContent =
-          "Поръчката е изпратена от формата. Моля, проверете Google Sheets и имейла за потвърждение, за да се уверите, че е записана успешно.";
+          "Поръчката е изпратена от формата. Ще се свържем с вас за потвърждение.";
         result.className = "success";
         result.style.display = "block";
       }, 2500);
