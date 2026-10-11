@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -15,7 +15,7 @@ header{text-align:center;padding:45px 20px 25px}
 .eyebrow{font-size:11px;letter-spacing:4px;color:#92775b;text-transform:uppercase;margin-bottom:15px}
 h1{font-size:clamp(32px,5vw,45px);font-weight:normal;margin:0 0 15px}
 header p{color:#71665b;line-height:1.8;max-width:600px;margin:auto}
-form{max-width:850px;margin:20px auto 80px;padding:35px;background:#fffdf9;border:1px solid #e4d8c8}
+form.order-form{max-width:850px;margin:20px auto 80px;padding:35px;background:#fffdf9;border:1px solid #e4d8c8}
 .section{border-bottom:1px solid #e6dbce;padding:15px 0 28px;margin-bottom:20px}
 .section h2{font-size:24px;font-weight:normal;margin:0 0 20px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -24,16 +24,15 @@ form{max-width:850px;margin:20px auto 80px;padding:35px;background:#fffdf9;borde
 label{font-size:14px}
 input,select,textarea{font:15px Arial,sans-serif;width:100%;padding:13px;border:1px solid #d8cbbb;background:#fff;color:#463d35;border-radius:0}
 textarea{min-height:110px;resize:vertical;line-height:1.5}
-.hint{font-size:12px;color:#827568;line-height:1.6}
 button{width:100%;padding:17px;background:#55483d;color:white;border:0;font-size:12px;letter-spacing:2px;cursor:pointer}
 button:hover{background:#746455}
+button:disabled{opacity:.65;cursor:wait}
 .privacy{font-size:12px;color:#827568;line-height:1.7;margin:15px 0}
-#result{display:none;padding:20px;background:#eee7dd;line-height:1.8;margin-top:20px}
-#result a{color:#463d35}
+#result{display:none;padding:20px;background:#eee7dd;line-height:1.8;margin-top:20px;overflow-wrap:anywhere}
 footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size:12px}
 @media(max-width:600px){
- nav{padding:20px}.logo{font-size:14px;letter-spacing:1px}
- form{margin:15px 12px 50px;padding:22px 17px}
+ nav{padding:20px;gap:15px}.logo{font-size:14px;letter-spacing:1px}
+ form.order-form{margin:15px 12px 50px;padding:22px 17px}
  .grid{grid-template-columns:1fr}
  .field.full{grid-column:auto}
 }
@@ -51,7 +50,7 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
   <p>Попълнете информацията по-долу. Използвайте само полетата, които са приложими за вашето събитие.</p>
 </header>
 
-<form id="orderForm">
+<form id="orderForm" class="order-form">
   <section class="section">
     <h2>1. Избрана покана</h2>
     <div class="grid">
@@ -193,49 +192,108 @@ footer{background:#463d35;color:#d8cec1;text-align:center;padding:25px;font-size
   </section>
 
   <p class="privacy">
-    С натискането на бутона ще подготвите имейл с данните за поръчката.
-    Не включвайте информация, която не желаете да изпращате.
+    Данните ще бъдат изпратени за обработка на поръчката и ще бъдат записани в таблица. Изпращайте само информацията, необходима за изработката на поканата.
   </p>
 
-  <button type="submit">ПОДГОТВИ ЗАЯВКАТА</button>
-  <div id="result" role="status"></div>
+  <button id="submitButton" type="submit">ИЗПРАТИ ЗАЯВКАТА</button>
+  <div id="result" role="status" aria-live="polite"></div>
 </form>
+
+<!-- Скритият iframe позволява изпращане към Google без пренасочване на клиента. -->
+<iframe name="submissionFrame" id="submissionFrame" title="Изпращане на заявка" style="display:none"></iframe>
 
 <footer>© 2026 Вашата покана · Дигитални видео покани</footer>
 
 <script>
+/*
+  ПОПЪЛНИ ТУК своя Web app URL от Google Apps Script.
+  Адресът трябва да завършва на /exec.
+*/
+const SCRIPT_URL = "ПОСТАВИ_ТУК_ТВОЯ_WEB_APP_URL";
+
 const params = new URLSearchParams(window.location.search);
 if (params.get("design") === "purple-white-wedding") {
   document.getElementById("design").value = "Лилава нежност";
 }
 
-document.getElementById("orderForm").addEventListener("submit", function(event) {
+const form = document.getElementById("orderForm");
+const result = document.getElementById("result");
+const submitButton = document.getElementById("submitButton");
+const submissionFrame = document.getElementById("submissionFrame");
+
+let awaitingResponse = false;
+let responseTimer;
+
+form.addEventListener("submit", function(event) {
   event.preventDefault();
 
-  const form = event.currentTarget;
-  const data = new FormData(form);
-  const lines = ["Заявка за видео покана", ""];
-
-  for (const [key, value] of data.entries()) {
-    if (String(value).trim()) lines.push(key + ": " + value);
+  if (SCRIPT_URL === "https://script.google.com/macros/s/AKfycbzgWg6GNB8_C7_8qyZ8OFoXFTt7slv_n8PH-nxK6N0Zv8tXS9AOWqPnoO_F82-FfPMR/exec" ||
+      !SCRIPT_URL.startsWith("https://script.google.com/")) {
+    result.style.display = "block";
+    result.textContent = "Формулярът още не е свързан с Google Apps Script. Добави своя Web app URL в кода.";
+    return;
   }
 
-  const subject = encodeURIComponent("Поръчка на видео покана — " + data.get("Дизайн"));
-  const body = encodeURIComponent(lines.join("\n"));
+  if (submitButton.disabled) return;
 
-  /*
-    ВАЖНО: замени имейла по-долу с имейла,
-    на който искаш да получаваш поръчките.
-  */
-  const orderEmail = "galinatasheva94@gmail.com";
-  const result = document.getElementById("result");
+  const formData = new FormData(form);
+  const order = {};
 
+  for (const [key, value] of formData.entries()) {
+    order[key] = String(value).trim();
+  }
+
+  order["Източник"] = "Сайтът Вашата покана";
+  order["Идентификатор на дизайна"] = params.get("design") || "purple-white-wedding";
+
+  const payload = JSON.stringify(order);
+
+  // Използваме обикновен POST към скрит iframe, без да отваряме имейл клиент.
+  const hiddenForm = document.createElement("form");
+  hiddenForm.method = "POST";
+  hiddenForm.action = SCRIPT_URL;
+  hiddenForm.target = "submissionFrame";
+  hiddenForm.style.display = "none";
+
+  const payloadInput = document.createElement("input");
+  payloadInput.type = "hidden";
+  payloadInput.name = "payload";
+  payloadInput.value = payload;
+
+  hiddenForm.appendChild(payloadInput);
+  document.body.appendChild(hiddenForm);
+
+  awaitingResponse = true;
+  submitButton.disabled = true;
+  submitButton.textContent = "ИЗПРАЩАНЕ...";
   result.style.display = "block";
-  result.textContent = "Ще се отвори имейл приложение с попълнената заявка. Провери данните и изпрати имейла.";
+  result.textContent = "Заявката се изпраща. Моля, изчакай.";
 
-  window.location.href =
-    "mailto:" + orderEmail + "?subject=" + subject + "&body=" + body;
+  // Не можем да прочетем отговора на Google през различен домейн.
+  // Затова потвърждението се проверява допълнително в таблицата и по имейл.
+  submissionFrame.onload = function() {
+    if (!awaitingResponse) return;
+    awaitingResponse = false;
+    clearTimeout(responseTimer);
+    document.body.removeChild(hiddenForm);
+
+    submitButton.disabled = false;
+    submitButton.textContent = "ИЗПРАТИ ЗАЯВКАТА";
+    result.textContent = "Изпращането е завършено от браузъра. Провери дали заявката е записана в Google таблицата и дали е получен имейлът, преди да изпратиш нова.";
+  };
+
+  responseTimer = setTimeout(function() {
+    if (!awaitingResponse) return;
+    awaitingResponse = false;
+    submitButton.disabled = false;
+    submitButton.textContent = "ОПИТАЙ ОТНОВО";
+    result.textContent = "Не успяхме да потвърдим изпращането. Провери Google таблицата и пощата си, преди да опиташ отново, за да не се дублира заявката.";
+    if (hiddenForm.isConnected) document.body.removeChild(hiddenForm);
+  }, 15000);
+
+  hiddenForm.submit();
 });
 </script>
 </body>
 </html>
+```
