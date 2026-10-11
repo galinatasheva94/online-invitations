@@ -1,183 +1,194 @@
-```html
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#fbf7f2">
-<title>Поръчка на видео покана | Вашата покана</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F4EAF9">
+<meta name="description" content="Поръчайте персонализирана видео покана от The Story Atelier.">
+<title>Поръчка | The Story Atelier</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --cream: #fbf7f2;
-  --paper: #fffdfb;
-  --ink: #463d4b;
-  --muted: #786d79;
-  --purple: #78618e;
-  --purple-dark: #5b456e;
-  --pink: #e9cbd5;
-  --gold: #b69a6b;
-  --line: #eadfe6;
-  --shadow: 0 16px 45px rgba(85, 62, 91, .09);
+  --lavender: #DCC1EE;
+  --lavender-light: #F4EAF9;
+  --lavender-dark: #8755A6;
+  --purple: #70438D;
+  --pink: #E5B5D8;
+  --pink-light: #F9E8F3;
+  --white: #FFFFFF;
+  --text: #493550;
+  --muted: #806C89;
+  --line: #E3CDEB;
+  --shadow: 0 18px 55px rgba(92, 54, 119, .11);
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
-}
+html { scroll-behavior: smooth; scroll-padding-top: 120px; }
 
 body {
-  margin: 0;
+  font-family: 'Montserrat', sans-serif;
   background:
-    radial-gradient(ellipse at 0% 20%, rgba(233,203,213,.25), transparent 35%),
-    radial-gradient(ellipse at 100% 50%, rgba(245,223,208,.35), transparent 35%),
-    var(--cream);
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
+    radial-gradient(ellipse at 0% 20%, rgba(220,193,238,.45), transparent 38%),
+    radial-gradient(ellipse at 100% 65%, rgba(229,181,216,.3), transparent 38%),
+    var(--lavender-light);
+  color: var(--text);
+  line-height: 1.7;
 }
 
-a { color: inherit; }
+a { color: inherit; text-decoration: none; }
 
 .announcement {
-  background: var(--purple-dark);
-  color: white;
+  background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
+  color: #603C79;
   text-align: center;
-  padding: 10px 16px;
-  font: 10px/1.6 Arial, sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  padding: 10px 15px;
+  font-size: 10px;
+  letter-spacing: 1.8px;
 }
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(251,247,242,.94);
+  background: rgba(255,255,255,.95);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(234,223,230,.8);
+  border-bottom: 1px solid var(--line);
 }
 
 nav {
-  max-width: 1320px;
+  max-width: 1180px;
+  min-height: 88px;
   margin: auto;
-  padding: 17px 5%;
+  padding: 15px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 24px;
 }
 
 .logo {
-  text-decoration: none;
-  font-size: 18px;
-  letter-spacing: 2px;
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  line-height: 1.05;
+  font-weight: 600;
+  color: var(--purple);
   white-space: nowrap;
 }
 
-.logo span { color: var(--purple); }
+.logo span {
+  display: block;
+  margin-top: 7px;
+  font-family: 'Montserrat', sans-serif;
+  color: #A15F98;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .3px;
+}
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 23px;
+  font-size: 12px;
 }
 
-.nav-links a {
-  text-decoration: none;
-  font: 12px Arial, sans-serif;
-  transition: color .2s;
-}
-
-.nav-links a:hover { color: var(--purple); }
+.nav-links a:not(.nav-cta):hover { color: var(--lavender-dark); }
 
 .nav-cta {
-  padding: 13px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
   border-radius: 30px;
-  background: var(--purple-dark);
-  color: white !important;
+  background: var(--purple);
+  color: white;
   white-space: nowrap;
+  transition: background .2s, transform .2s;
 }
 
-.nav-cta:hover { background: var(--purple); }
+.nav-cta:hover { background: #59316F; transform: translateY(-1px); }
 
 .page-hero {
   position: relative;
   overflow: hidden;
-  padding: 57px 20px 30px;
+  padding: 62px 22px 42px;
   text-align: center;
   background:
-    radial-gradient(ellipse at 10% 30%, rgba(233,203,213,.38), transparent 35%),
-    radial-gradient(ellipse at 90% 10%, rgba(245,223,208,.55), transparent 35%);
+    radial-gradient(ellipse at 8% 18%, rgba(209,174,235,.8), transparent 40%),
+    radial-gradient(ellipse at 90% 82%, rgba(235,182,216,.65), transparent 43%),
+    linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
 }
 
 .page-hero::before,
 .page-hero::after {
   content: "✿";
   position: absolute;
-  color: rgba(120,97,142,.14);
+  color: rgba(112,67,141,.18);
   font-size: 90px;
   pointer-events: none;
 }
 
-.page-hero::before {
-  top: 5px;
-  left: 7%;
-  transform: rotate(-20deg);
-}
-
-.page-hero::after {
-  right: 7%;
-  bottom: -5px;
-  transform: rotate(20deg);
-}
+.page-hero::before { top: 5px; left: 7%; transform: rotate(-20deg); }
+.page-hero::after { right: 7%; bottom: -12px; transform: rotate(20deg); }
 
 .eyebrow {
   position: relative;
   z-index: 1;
+  display: inline-block;
   margin-bottom: 15px;
-  color: var(--purple);
-  font: 10px Arial, sans-serif;
-  letter-spacing: 3px;
+  color: var(--lavender-dark);
+  font-size: 10px;
+  letter-spacing: 2.7px;
   text-transform: uppercase;
+}
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  line-height: 1.15;
 }
 
 h1 {
   position: relative;
   z-index: 1;
-  margin: 0 auto 16px;
-  font-size: clamp(34px, 5vw, 51px);
-  font-weight: normal;
-  line-height: 1.17;
-  letter-spacing: -.7px;
+  margin: 0 auto 17px;
+  color: #603D7B;
+  font-size: clamp(38px, 5vw, 58px);
 }
+
+h1 span { color: #A65E98; }
 
 .page-hero p {
   position: relative;
   z-index: 1;
-  max-width: 560px;
+  max-width: 610px;
   margin: auto;
-  color: var(--muted);
-  font-size: 14px;
+  color: #6D5978;
+  font-size: 13px;
   line-height: 1.9;
 }
 
 .container {
-  width: min(820px, calc(100% - 36px));
-  margin: 15px auto 80px;
-  padding: 35px;
+  width: min(850px, calc(100% - 36px));
+  margin: 25px auto 75px;
+  padding: 38px;
   border: 1px solid var(--line);
-  border-radius: 22px;
-  background: rgba(255,253,251,.96);
+  border-radius: 18px;
+  background: rgba(255,255,255,.94);
   box-shadow: var(--shadow);
 }
 
 .form-intro {
   margin: 0 0 25px;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.8;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -187,41 +198,42 @@ h1 {
   gap: 17px;
   margin-bottom: 32px;
   padding: 19px 21px;
-  border: 1px solid #e7d6e8;
-  border-radius: 14px;
-  background:
-    linear-gradient(115deg, rgba(243,231,245,.95), rgba(255,242,237,.9));
+  border: 1px solid #E3CDEB;
+  border-radius: 13px;
+  background: linear-gradient(115deg, #F2E6F8, #FCEBF4);
 }
 
 .design-icon {
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: 49px;
-  height: 49px;
-  border: 1px solid rgba(120,97,142,.23);
+  width: 51px;
+  height: 51px;
+  border: 1px solid rgba(112,67,141,.25);
   border-radius: 50%;
-  background: rgba(255,255,255,.65);
+  background: rgba(255,255,255,.75);
   color: var(--purple);
-  font-size: 23px;
+  font-size: 24px;
 }
 
 .selected-design-label {
-  margin-bottom: 6px;
-  color: var(--purple);
-  font: 10px Arial, sans-serif;
-  letter-spacing: 2px;
+  margin-bottom: 4px;
+  color: var(--lavender-dark);
+  font-size: 9px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
 }
 
 .selected-design-name {
-  font-size: 23px;
-  line-height: 1.3;
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
+  line-height: 1.2;
 }
 
 .form-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
   gap: 21px 19px;
 }
 
@@ -232,21 +244,17 @@ h1 {
   gap: 8px;
 }
 
-.full,
-.section-title {
-  grid-column: 1 / -1;
-}
+.full, .section-title { grid-column: 1 / -1; }
 
 .section-title {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 16px 0 0;
-  padding-bottom: 13px;
+  margin: 15px 0 0;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
-  color: var(--purple-dark);
-  font-size: 22px;
-  font-weight: normal;
+  color: var(--purple);
+  font-size: 27px;
 }
 
 .section-title::before {
@@ -254,52 +262,42 @@ h1 {
   display: block;
   flex-shrink: 0;
   width: 4px;
-  height: 25px;
+  height: 26px;
   border-radius: 4px;
   background: linear-gradient(var(--purple), var(--pink));
 }
 
 label {
   color: #514657;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
-input,
-textarea {
+input, textarea {
   display: block;
   width: 100%;
   min-width: 0;
   padding: 13px 14px;
-  border: 1px solid #e1d6e1;
+  border: 1px solid #DFD0E6;
   border-radius: 9px;
   outline: none;
-  background: #fff;
-  color: var(--ink);
-  font: 14px Arial, sans-serif;
+  background: #FFFEFF;
+  color: var(--text);
+  font: 13px 'Montserrat', sans-serif;
   transition: border-color .2s, box-shadow .2s, background .2s;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #b2a6b3;
+input::placeholder, textarea::placeholder { color: #B2A2BB; }
+
+input:hover, textarea:hover { border-color: #C5A7D8; }
+
+input:focus, textarea:focus {
+  border-color: var(--lavender-dark);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(135,85,166,.12);
 }
 
-input:hover,
-textarea:hover {
-  border-color: #cbb9d2;
-}
-
-input:focus,
-textarea:focus {
-  border-color: var(--purple);
-  background: #fffdfd;
-  box-shadow: 0 0 0 3px rgba(120,97,142,.12);
-}
-
-input:invalid:not(:placeholder-shown) {
-  border-color: #d9a9b2;
-}
+input:invalid:not(:placeholder-shown) { border-color: #D9A9B2; }
 
 textarea {
   min-height: 115px;
@@ -309,7 +307,8 @@ textarea {
 
 .hint {
   color: #938596;
-  font: 11px/1.6 Arial, sans-serif;
+  font-size: 10px;
+  line-height: 1.6;
 }
 
 .form-note {
@@ -318,21 +317,17 @@ textarea {
   gap: 11px;
   margin-top: 27px;
   padding: 16px 17px;
-  border: 1px solid #eee1cf;
+  border: 1px solid #E6D5EE;
   border-radius: 11px;
-  background: #fcf7ee;
-  color: #76664f;
-  font-size: 12px;
+  background: #F9F2FC;
+  color: #705C7A;
+  font-size: 11px;
   line-height: 1.8;
 }
 
-.form-note span {
-  flex-shrink: 0;
-  color: var(--gold);
-  font-size: 17px;
-}
+.form-note span { flex-shrink: 0; color: #A65E98; font-size: 17px; }
 
-button {
+.submit-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -340,27 +335,24 @@ button {
   width: 100%;
   margin-top: 25px;
   padding: 17px 22px;
-  border: 1px solid var(--purple-dark);
+  border: 1px solid var(--purple);
   border-radius: 30px;
-  background: var(--purple-dark);
+  background: var(--purple);
   color: white;
-  font: 11px Arial, sans-serif;
-  letter-spacing: 1.7px;
+  font: 11px 'Montserrat', sans-serif;
+  font-weight: 500;
+  letter-spacing: 1.5px;
   cursor: pointer;
   transition: background .2s, transform .2s, box-shadow .2s;
 }
 
-button:hover:not(:disabled) {
+.submit-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  background: var(--purple);
-  box-shadow: 0 8px 20px rgba(91,69,110,.18);
+  background: #59316F;
+  box-shadow: 0 8px 20px rgba(91,49,111,.18);
 }
 
-button:disabled {
-  opacity: .6;
-  cursor: wait;
-  transform: none;
-}
+.submit-button:disabled { opacity: .65; cursor: wait; }
 
 #result {
   display: none;
@@ -370,130 +362,86 @@ button:disabled {
   border-radius: 11px;
   line-height: 1.7;
   overflow-wrap: anywhere;
-  font: 13px Arial, sans-serif;
+  font-size: 12px;
 }
 
 #result.success {
   display: block;
-  border-color: #cfe0c7;
-  background: #f0f7ed;
-  color: #31552b;
+  border-color: #CFE0C7;
+  background: #F0F7ED;
+  color: #31552B;
 }
 
 #result.error {
   display: block;
-  border-color: #edcfca;
-  background: #fff0ed;
-  color: #8b3025;
+  border-color: #EDCFCA;
+  background: #FFF0ED;
+  color: #8B3025;
 }
 
 .back-link {
   display: block;
   margin-top: 26px;
-  color: var(--purple);
+  color: var(--lavender-dark);
   text-align: center;
-  text-decoration: none;
-  font: 12px Arial, sans-serif;
+  font-size: 11px;
   transition: color .2s;
 }
 
-.back-link:hover {
-  color: var(--purple-dark);
-  text-decoration: underline;
-}
+.back-link:hover { color: var(--purple); text-decoration: underline; }
 
 footer {
-  padding: 30px 20px;
-  background: #463d4b;
-  color: #e9dfe8;
+  padding: 31px 20px;
+  background: white;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.9;
 }
 
 .footer-brand {
-  margin-bottom: 7px;
-  font-size: 15px;
-  letter-spacing: 2px;
+  margin-bottom: 5px;
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
+  font-weight: 600;
 }
 
-footer a {
-  color: #f4dce8;
-  text-decoration: none;
-}
+footer a { color: var(--lavender-dark); }
+footer a:hover { text-decoration: underline; }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   nav {
-    padding: 15px 18px;
-    gap: 10px;
+    min-height: auto;
+    flex-direction: column;
+    padding: 17px 16px;
+    gap: 15px;
   }
 
-  .logo {
-    font-size: 14px;
-    letter-spacing: 1px;
-  }
-
-  .nav-links { gap: 10px; }
-
+  .logo { font-size: 29px; text-align: center; }
+  .nav-links { justify-content: center; flex-wrap: wrap; gap: 13px; }
   .nav-links .nav-optional { display: none; }
+  .nav-cta { padding: 10px 15px; font-size: 10px; }
 
-  .nav-cta {
-    padding: 11px 13px;
-    font-size: 10px !important;
-  }
-
-  .page-hero { padding: 45px 22px 25px; }
-
-  .page-hero::before,
-  .page-hero::after {
-    font-size: 65px;
-  }
+  .page-hero { padding: 46px 22px 30px; }
+  .page-hero::before, .page-hero::after { font-size: 62px; }
 
   .container {
     width: calc(100% - 24px);
-    margin: 12px auto 45px;
-    padding: 23px 18px;
-    border-radius: 17px;
+    margin: 13px auto 45px;
+    padding: 24px 18px;
+    border-radius: 15px;
   }
 
-  .form-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 18px;
-  }
-
-  .full,
-  .section-title {
-    grid-column: auto;
-  }
-
-  .section-title {
-    margin-top: 12px;
-    font-size: 20px;
-  }
-
-  .selected-design {
-    padding: 15px;
-    gap: 12px;
-  }
-
-  .design-icon {
-    width: 43px;
-    height: 43px;
-    font-size: 20px;
-  }
-
-  .selected-design-name { font-size: 21px; }
-
-  input,
-  textarea {
-    font-size: 16px;
-  }
-
-  button {
-    padding: 16px 12px;
-    font-size: 10px;
-    letter-spacing: 1.1px;
-  }
+  .form-grid { grid-template-columns: minmax(0,1fr); gap: 18px; }
+  .full, .section-title { grid-column: auto; }
+  .section-title { margin-top: 12px; font-size: 24px; }
+  .selected-design { padding: 15px; gap: 12px; }
+  .design-icon { width: 44px; height: 44px; font-size: 20px; }
+  .selected-design-name { font-size: 24px; }
+  input, textarea { font-size: 16px; }
+  .submit-button { padding: 16px 12px; font-size: 10px; letter-spacing: 1px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -508,12 +456,15 @@ footer a {
 <body>
 
 <div class="announcement">
-  Онлайн видео покани · Създадени с любов за вашия специален ден
+  Вашите емоции. Нашето вдъхновение.
 </div>
 
 <header class="site-header">
   <nav aria-label="Основна навигация">
-    <a class="logo" href="index.html">ВАШАТА <span>ПОКАНА.</span></a>
+    <a class="logo" href="index.html">
+      The Story Atelier
+      <span>Онлайн покани за специалните моменти</span>
+    </a>
     <div class="nav-links">
       <a class="nav-optional" href="index.html">Начало</a>
       <a class="nav-optional" href="designs.html">Каталог</a>
@@ -524,7 +475,7 @@ footer a {
 
 <header class="page-hero">
   <div class="eyebrow">Една красива история започва тук</div>
-  <h1>Нека създадем<br>вашата <span style="color:#78618e">специална покана.</span></h1>
+  <h1>Нека създадем<br>вашата <span>специална покана.</span></h1>
   <p>
     Разкажете ни за вашия сватбен ден.
     Ще използваме информацията, за да персонализираме
@@ -542,14 +493,11 @@ footer a {
     <div class="design-icon">✿</div>
     <div>
       <div class="selected-design-label">Вашият избран дизайн</div>
-      <div class="selected-design-name" id="selectedDesignName">
-        Зареждане...
-      </div>
+      <div class="selected-design-name" id="selectedDesignName">Зареждане...</div>
     </div>
   </div>
 
   <form id="orderForm">
-
     <input type="hidden" id="design" name="Дизайн">
     <input type="hidden" id="designId" name="Идентификатор на дизайна">
 
@@ -559,8 +507,7 @@ footer a {
 
       <div class="field">
         <label for="bride">Име на булката *</label>
-        <input type="text" id="bride" name="Име на булката"
-               autocomplete="given-name" required>
+        <input type="text" id="bride" name="Име на булката" autocomplete="given-name" required>
       </div>
 
       <div class="field">
@@ -581,10 +528,9 @@ footer a {
       <div class="field">
         <label for="weddingDate">Дата на сватбата *</label>
         <input type="text" id="weddingDate" name="Дата на сватбата"
-               placeholder="дд.мм.гггг" inputmode="numeric" maxlength="10"
-               pattern="(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{4}"
-               title="Въведете дата във формат дд.мм.гггг, например 25.06.2027"
-               required>
+          placeholder="дд.мм.гггг" inputmode="numeric" maxlength="10"
+          pattern="(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{4}"
+          title="Въведете дата във формат дд.мм.гггг, например 25.06.2027" required>
         <span class="hint">Например: 25.06.2027</span>
       </div>
 
@@ -602,8 +548,7 @@ footer a {
 
       <div class="field">
         <label for="churchTime">Църковен ритуал — час</label>
-        <input type="text" id="churchTime" name="Църковен ритуал - час"
-               placeholder="Например: 14:30">
+        <input type="text" id="churchTime" name="Църковен ритуал - час" placeholder="Например: 14:30">
       </div>
 
       <div class="field">
@@ -613,8 +558,7 @@ footer a {
 
       <div class="field">
         <label for="civilTime">Граждански ритуал — час</label>
-        <input type="text" id="civilTime" name="Граждански ритуал - час"
-               placeholder="Например: 15:30">
+        <input type="text" id="civilTime" name="Граждански ритуал - час" placeholder="Например: 15:30">
       </div>
 
       <div class="field">
@@ -624,8 +568,7 @@ footer a {
 
       <div class="field">
         <label for="welcomeTime">Welcome drink — час</label>
-        <input type="text" id="welcomeTime" name="Welcome drink - час"
-               placeholder="Например: 17:00">
+        <input type="text" id="welcomeTime" name="Welcome drink - час" placeholder="Например: 17:00">
       </div>
 
       <div class="field">
@@ -635,8 +578,7 @@ footer a {
 
       <div class="field">
         <label for="dinnerTime">Официална вечеря — час</label>
-        <input type="text" id="dinnerTime" name="Официална вечеря - час"
-               placeholder="Например: 19:00">
+        <input type="text" id="dinnerTime" name="Официална вечеря - час" placeholder="Например: 19:00">
       </div>
 
       <div class="field">
@@ -646,12 +588,10 @@ footer a {
 
       <div class="field full">
         <label for="rsvpDate">Краен срок за потвърждение *</label>
-        <input type="text" id="rsvpDate"
-               name="Краен срок за потвърждение"
-               placeholder="дд.мм.гггг" inputmode="numeric" maxlength="10"
-               pattern="(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{4}"
-               title="Въведете дата във формат дд.мм.гггг, например 01.06.2027"
-               required>
+        <input type="text" id="rsvpDate" name="Краен срок за потвърждение"
+          placeholder="дд.мм.гггг" inputmode="numeric" maxlength="10"
+          pattern="(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{4}"
+          title="Въведете дата във формат дд.мм.гггг, например 01.06.2027" required>
         <span class="hint">Например: 01.06.2027</span>
       </div>
 
@@ -664,20 +604,18 @@ footer a {
 
       <div class="field">
         <label for="email">Имейл *</label>
-        <input type="email" id="email" name="Имейл"
-               autocomplete="email" required>
+        <input type="email" id="email" name="Имейл" autocomplete="email" required>
       </div>
 
       <div class="field">
         <label for="phone">Телефон *</label>
-        <input type="tel" id="phone" name="Телефон"
-               autocomplete="tel" required>
+        <input type="tel" id="phone" name="Телефон" autocomplete="tel" required>
       </div>
 
       <div class="field full">
         <label for="notes">Допълнителни коментари</label>
         <textarea id="notes" name="Допълнителни коментари"
-                  placeholder="Имате специални желания или уточнения? Споделете ги тук..."></textarea>
+          placeholder="Имате специални желания или уточнения? Споделете ги тук..."></textarea>
       </div>
 
     </div>
@@ -690,25 +628,23 @@ footer a {
       </div>
     </div>
 
-    <button type="submit" id="submitButton">
+    <button type="submit" class="submit-button" id="submitButton">
       ИЗПРАТИ ПОРЪЧКАТА <span>↗</span>
     </button>
 
     <div id="result" role="status" aria-live="polite"></div>
-
   </form>
 
   <a class="back-link" href="designs.html">← Обратно към каталога с покани</a>
 
-  <iframe name="submitFrame" id="submitFrame"
-          style="display:none"
-          title="Изпращане на поръчка"></iframe>
+  <iframe name="submitFrame" id="submitFrame" style="display:none" title="Изпращане на поръчка"></iframe>
 </main>
 
 <footer>
-  <div class="footer-brand">ВАШАТА ПОКАНА.</div>
-  <div>Онлайн видео покани за вашите специални моменти</div>
-  <div>© 2026 Вашата покана · <a href="index.html">Начало</a></div>
+  <div class="footer-brand">The Story Atelier</div>
+  <div>Онлайн покани за специалните моменти</div>
+  <div>Вашите емоции. Нашето вдъхновение.</div>
+  <div>© <span id="year"></span> The Story Atelier · <a href="index.html">Начало</a></div>
 </footer>
 
 <script>
@@ -717,10 +653,12 @@ footer a {
 
   const designs = {
     "purple-white-wedding": {
-      name: "Лилава нежност",
+      name: "Purple White Wedding",
       id: "purple-white-wedding"
     }
   };
+
+  document.getElementById("year").textContent = new Date().getFullYear();
 
   const form = document.getElementById("orderForm");
   const result = document.getElementById("result");
@@ -733,31 +671,25 @@ footer a {
   if (selectedDesign) {
     document.getElementById("design").value = selectedDesign.name;
     document.getElementById("designId").value = selectedDesign.id;
-    document.getElementById("selectedDesignName").textContent =
-      selectedDesign.name;
+    document.getElementById("selectedDesignName").textContent = selectedDesign.name;
   } else {
-    document.getElementById("selectedDesignName").textContent =
-      "Не е избран дизайн";
+    document.getElementById("selectedDesignName").textContent = "Не е избран дизайн";
     submitButton.disabled = true;
     result.textContent =
       "Моля, върнете се в каталога и натиснете „ПОРЪЧАЙ“ под избраната покана.";
     result.className = "error";
-    result.style.display = "block";
   }
 
   function convertDateToISO(value, fieldName) {
     const match = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(value.trim());
 
     if (!match) {
-      throw new Error(
-        fieldName + ": въведете дата във формат дд.мм.гггг."
-      );
+      throw new Error(fieldName + ": въведете дата във формат дд.мм.гггг.");
     }
 
     const day = Number(match[1]);
     const month = Number(match[2]);
     const year = Number(match[3]);
-
     const date = new Date(Date.UTC(year, month - 1, day));
 
     if (
@@ -778,9 +710,7 @@ footer a {
   form.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    if (!selectedDesign) {
-      return;
-    }
+    if (!selectedDesign) return;
 
     result.className = "";
     result.style.display = "none";
@@ -833,8 +763,7 @@ footer a {
     submitButton.disabled = true;
     submitButton.textContent = "ИЗПРАЩАНЕ...";
 
-    result.textContent =
-      "Изпращането е инициирано. Моля, изчакайте...";
+    result.textContent = "Изпращането е инициирано. Моля, изчакайте...";
     result.className = "";
     result.style.display = "block";
 
@@ -846,7 +775,7 @@ footer a {
       submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
 
       result.textContent =
-        "Поръчката е изпратена от формата. Ще се свържем с вас за потвърждение.";
+        "Формулярът е изпратен. Ще се свържем с вас за потвърждение. Ако не получите отговор, проверете дали поръчката е записана.";
       result.className = "success";
       result.style.display = "block";
     }, 2500);
@@ -855,4 +784,3 @@ footer a {
 
 </body>
 </html>
-```
