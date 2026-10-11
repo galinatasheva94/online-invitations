@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbf6f2">
-  <meta name="description" content="Персонализирани сватбени видео покани, създадени с внимание към вашата история. Изберете своя дизайн от Вашата покана.">
+  <meta name="description" content="Персонализирани сватбени видео покани, създадени с внимание към вашата история.">
   <title>Вашата покана | Видео покани за вашата сватба</title>
 
   <style>
@@ -51,15 +51,15 @@
       text-align: center;
       background: #705579;
       color: white;
-      font-size: 12px;
-      letter-spacing: .8px;
+      font-size: 11px;
+      letter-spacing: 1px;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(251, 246, 242, .94);
+      background: rgba(251, 246, 242, .95);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(234, 223, 229, .8);
     }
@@ -231,103 +231,61 @@
       position: relative;
       min-height: 365px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 28px 20px;
-      text-align: center;
       border-radius: 145px 145px 15px 15px;
-      color: white;
-      background:
-        linear-gradient(180deg, rgba(46, 30, 47, .06), rgba(46, 30, 47, .72)),
-        radial-gradient(ellipse at 50% 18%, #f6d7dc 0, #c8a9c9 34%, #786181 68%, #493b53 100%);
+      background: linear-gradient(145deg, #d8bed9, #786181);
     }
 
-    .invite-screen::before,
-    .invite-screen::after {
-      content: "✿";
-      position: absolute;
-      color: rgba(255,255,255,.48);
-      font-size: 90px;
-      font-family: Georgia, serif;
-    }
-
-    .invite-screen::before {
-      top: 8px;
-      left: -9px;
-      transform: rotate(-35deg);
-    }
-
-    .invite-screen::after {
-      right: -12px;
-      bottom: 18px;
-      transform: rotate(25deg);
-    }
-
-    .invite-caption {
-      position: relative;
-      z-index: 1;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
-
-    .invite-names {
-      position: relative;
-      z-index: 1;
-      margin: 20px 0 12px;
-      font-family: Georgia, serif;
-      font-size: 35px;
-      line-height: 1.12;
-    }
-
-    .invite-divider {
-      width: 50px;
-      height: 1px;
-      background: #f2d8bd;
-      margin: 10px 0 16px;
-    }
-
-    .invite-date {
-      position: relative;
-      z-index: 1;
-      font-size: 11px;
-      letter-spacing: 2px;
+    .invite-screen video {
+      display: block;
+      width: 100%;
+      height: 365px;
+      object-fit: cover;
+      border-radius: inherit;
+      background: #5b465f;
     }
 
     .play-button {
       position: absolute;
-      z-index: 2;
+      z-index: 3;
       top: 50%;
       left: 50%;
-      width: 57px;
-      height: 57px;
+      width: 61px;
+      height: 61px;
       display: grid;
       place-items: center;
       transform: translate(-50%, -50%);
-      border: 1px solid rgba(255,255,255,.75);
+      border: 1px solid rgba(255,255,255,.85);
       border-radius: 50%;
       color: white;
-      background: rgba(255,255,255,.2);
+      background: rgba(87, 60, 96, .52);
       backdrop-filter: blur(8px);
+      box-shadow: 0 5px 25px rgba(0,0,0,.15);
       cursor: pointer;
       font-size: 20px;
-      transition: transform .2s, background .2s;
+      transition: transform .2s, background .2s, opacity .2s;
     }
 
     .play-button:hover {
       transform: translate(-50%, -50%) scale(1.1);
-      background: rgba(255,255,255,.35);
+      background: rgba(87, 60, 96, .8);
+    }
+
+    .invite-screen.playing .play-button {
+      opacity: 0;
+    }
+
+    .invite-screen.playing:hover .play-button,
+    .invite-screen.playing .play-button:focus {
+      opacity: 1;
     }
 
     .floating {
       position: absolute;
-      z-index: 3;
+      z-index: 4;
       padding: 13px 17px;
       border: 1px solid rgba(255,255,255,.8);
       border-radius: 14px;
-      background: rgba(255,253,251,.93);
+      background: rgba(255,253,251,.94);
       box-shadow: var(--shadow);
       font-size: 12px;
       animation: float 4s ease-in-out infinite;
@@ -443,7 +401,9 @@
       transition: transform .35s;
     }
 
-    .design-preview:hover .preview-paper { transform: scale(1.04) rotate(1deg); }
+    .design-preview:hover .preview-paper {
+      transform: scale(1.04) rotate(1deg);
+    }
 
     .preview-paper small {
       text-transform: uppercase;
@@ -570,7 +530,9 @@
     .benefit:nth-child(2) .benefit-icon { background: #f8e7df; }
     .benefit:nth-child(3) .benefit-icon { background: #eee6d5; }
 
-    .benefit:hover .benefit-icon { transform: rotate(-8deg) scale(1.08); }
+    .benefit:hover .benefit-icon {
+      transform: rotate(-8deg) scale(1.08);
+    }
 
     .benefit h3 {
       margin-bottom: 8px;
@@ -607,7 +569,9 @@
       transition: transform .25s;
     }
 
-    .faq-question[aria-expanded="true"] span:last-child { transform: rotate(45deg); }
+    .faq-question[aria-expanded="true"] span:last-child {
+      transform: rotate(45deg);
+    }
 
     .faq-answer {
       display: none;
@@ -690,7 +654,10 @@
       font-size: 11px;
     }
 
-    .footer-inner .logo { color: var(--ink); font-size: 21px; }
+    .footer-inner .logo {
+      color: var(--ink);
+      font-size: 21px;
+    }
 
     .reveal {
       opacity: 0;
@@ -717,15 +684,23 @@
       .nav-links { gap: 13px; }
       .nav-links a:not(.button) { display: none; }
       .nav-links .button { padding: 11px 15px; }
+
       .hero { padding: 55px 0 65px; }
       .hero-grid { grid-template-columns: 1fr; gap: 30px; }
       .hero-copy { max-width: 560px; }
       .hero-art { min-height: 420px; }
-      .design-card { grid-template-columns: 1fr; gap: 27px; padding: 18px; }
+
+      .design-card {
+        grid-template-columns: 1fr;
+        gap: 27px;
+        padding: 18px;
+      }
+
       .design-preview { min-height: 320px; }
       .steps { grid-template-columns: 1fr; gap: 14px; }
       .step { padding: 23px; }
       .benefits { gap: 14px; }
+
       section.content-section { padding: 65px 0; }
       .final-cta { padding-bottom: 65px; }
     }
@@ -734,19 +709,27 @@
       .container { width: calc(100% - 30px); }
       .logo { font-size: 22px; }
       .nav-links .button { font-size: 11px; padding: 10px 12px; }
+
       h1 { font-size: 45px; letter-spacing: -1.5px; }
+
       .hero-art { min-height: 370px; }
       .halo { width: 290px; height: 290px; }
       .invite-frame { width: 230px; }
-      .invite-screen { min-height: 310px; }
-      .invite-names { font-size: 30px; }
+      .invite-screen video { height: 310px; }
+
       .floating { padding: 10px 12px; font-size: 10px; }
       .floating strong { font-size: 14px; }
       .floating-one { top: 23px; right: -2px; }
       .floating-two { bottom: 24px; left: -2px; }
-      .trust-items { grid-template-columns: 1fr; gap: 9px; }
+
+      .trust-items {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
       .benefits { grid-template-columns: 1fr; gap: 22px; }
       .benefit { max-width: 340px; margin: auto; }
+
       .section-heading { margin-bottom: 28px; }
       .design-info h3 { font-size: 31px; }
       .cta-box { padding: 48px 20px; }
@@ -779,11 +762,11 @@
         <div class="reveal">
           <div class="eyebrow">За вашата сватбена история</div>
 
-          <h1>Една любов.<br>Един специален ден.<br><em>Една покана.</em></h1>
+          <h1>Една любов.<br>Един ден.<br><em>Една покана.</em></h1>
 
           <p class="hero-copy">
             Поканете любимите си хора по красив и различен начин.
-            Персонализирани видео покани, създадени за вашия приказен ден.
+            Персонализирани видео покани, създадени за вашия специален ден.
           </p>
 
           <div class="hero-actions">
@@ -798,12 +781,23 @@
           <div class="halo"></div>
 
           <div class="invite-frame">
-            <div class="invite-screen">
-              <div class="invite-caption">Together with love</div>
-              <div class="invite-names">Вашите<br>имена</div>
-              <div class="invite-divider"></div>
-              <div class="invite-date">ВАШИЯТ СПЕЦИАЛЕН ДЕН</div>
-              <button class="play-button" id="heroPlay" aria-label="Преглед на видео поканата">▶</button>
+            <div class="invite-screen" id="heroScreen">
+              <video
+                id="heroVideo"
+                playsinline
+                preload="metadata"
+                aria-label="Сватбена видео покана"
+              >
+                <source src="videos/Purple%20White%20Wedding.mp4" type="video/mp4">
+                Браузърът ви не поддържа видео.
+              </video>
+
+              <button
+                class="play-button"
+                id="heroPlay"
+                type="button"
+                aria-label="Пусни видео поканата"
+              >▶</button>
             </div>
           </div>
 
@@ -840,7 +834,7 @@
           <a class="design-preview" href="designs.html" aria-label="Разгледай видео поканата">
             <div class="preview-paper">
               <small>Together with love</small>
-              <strong>Галина<br>&amp;<br>Мартин</strong>
+              <strong>Вашите<br>имена</strong>
               <span>OUR WEDDING DAY</span>
             </div>
           </a>
@@ -871,7 +865,7 @@
         <div class="section-heading reveal">
           <div class="eyebrow">Лесно като три стъпки</div>
           <h2>От идеята до вашата покана</h2>
-          <p>Без излишно усложняване — избирате, споделяте подробностите и подготвяме вашата персонална визия.</p>
+          <p>Избирате, споделяте подробностите и подготвяме вашата персонална визия.</p>
         </div>
 
         <div class="steps">
@@ -992,21 +986,27 @@
   </footer>
 
   <script>
-    // Плавно показване на секциите при скролиране
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
-        }
+    // Анимации при превъртане
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll(".reveal").forEach((element) => {
+        revealObserver.observe(element);
       });
-    }, { threshold: 0.12 });
+    } else {
+      document.querySelectorAll(".reveal").forEach((element) => {
+        element.classList.add("visible");
+      });
+    }
 
-    document.querySelectorAll(".reveal").forEach((element) => {
-      revealObserver.observe(element);
-    });
-
-    // Разгъване на въпросите
+    // Отваряне и затваряне на често задаваните въпроси
     document.querySelectorAll(".faq-question").forEach((button) => {
       button.addEventListener("click", () => {
         const answer = button.nextElementSibling;
@@ -1017,9 +1017,42 @@
       });
     });
 
-    // Преглед на реалното видео от каталога
-    document.getElementById("heroPlay").addEventListener("click", () => {
-      window.location.href = "designs.html";
+    // Управление на истинското видео в началната секция
+    const heroVideo = document.getElementById("heroVideo");
+    const heroPlay = document.getElementById("heroPlay");
+    const heroScreen = document.getElementById("heroScreen");
+
+    heroPlay.addEventListener("click", async () => {
+      if (heroVideo.paused) {
+        try {
+          await heroVideo.play();
+          heroScreen.classList.add("playing");
+          heroPlay.textContent = "Ⅱ";
+          heroPlay.setAttribute("aria-label", "Пауза на видео поканата");
+        } catch (error) {
+          window.location.href = "designs.html";
+        }
+      } else {
+        heroVideo.pause();
+      }
+    });
+
+    heroVideo.addEventListener("play", () => {
+      heroScreen.classList.add("playing");
+      heroPlay.textContent = "Ⅱ";
+      heroPlay.setAttribute("aria-label", "Пауза на видео поканата");
+    });
+
+    heroVideo.addEventListener("pause", () => {
+      heroScreen.classList.remove("playing");
+      heroPlay.textContent = "▶";
+      heroPlay.setAttribute("aria-label", "Пусни видео поканата");
+    });
+
+    heroVideo.addEventListener("ended", () => {
+      heroScreen.classList.remove("playing");
+      heroPlay.textContent = "▶";
+      heroPlay.setAttribute("aria-label", "Пусни видео поканата");
     });
   </script>
 </body>
