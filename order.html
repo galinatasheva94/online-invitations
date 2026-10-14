@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -352,7 +351,7 @@ textarea {
   box-shadow: 0 8px 20px rgba(91,49,111,.18);
 }
 
-.submit-button:disabled { opacity: .65; cursor: wait; }
+.submit-button:disabled { opacity: .65; cursor: not-allowed; }
 
 #result {
   display: none;
@@ -653,8 +652,15 @@ footer a:hover { text-decoration: underline; }
 
   const designs = {
     "purple-white-wedding": {
-      name: "Purple White Wedding",
-      id: "purple-white-wedding"
+      name: "Лилава нежност",
+      id: "purple-white-wedding",
+      aliases: [
+        "purple-white-wedding",
+        "wedding-1",
+        "wedding1",
+        "purple white wedding",
+        "лилава нежност"
+      ]
     }
   };
 
@@ -663,21 +669,38 @@ footer a:hover { text-decoration: underline; }
   const form = document.getElementById("orderForm");
   const result = document.getElementById("result");
   const submitButton = document.getElementById("submitButton");
+  const designNameElement = document.getElementById("selectedDesignName");
+  const designInput = document.getElementById("design");
+  const designIdInput = document.getElementById("designId");
 
   const params = new URLSearchParams(window.location.search);
-  const selectedDesignId = params.get("design");
-  const selectedDesign = designs[selectedDesignId];
+  const rawDesignId = params.get("design");
+  const normalizedDesignId = (rawDesignId || "")
+    .trim()
+    .toLowerCase()
+    .replace(/_/g, "-");
+
+  const selectedDesign = Object.values(designs).find(function(design) {
+    return design.aliases.some(function(alias) {
+      return alias.toLowerCase().replace(/_/g, "-") === normalizedDesignId;
+    });
+  });
 
   if (selectedDesign) {
-    document.getElementById("design").value = selectedDesign.name;
-    document.getElementById("designId").value = selectedDesign.id;
-    document.getElementById("selectedDesignName").textContent = selectedDesign.name;
+    designInput.value = selectedDesign.name;
+    designIdInput.value = selectedDesign.id;
+    designNameElement.textContent = selectedDesign.name;
+    submitButton.disabled = false;
+    result.textContent = "";
+    result.className = "";
+    result.style.display = "none";
   } else {
-    document.getElementById("selectedDesignName").textContent = "Не е избран дизайн";
+    designNameElement.textContent = "Не е избран дизайн";
     submitButton.disabled = true;
     result.textContent =
-      "Моля, върнете се в каталога и натиснете „ПОРЪЧАЙ“ под избраната покана.";
+      "Не успяхме да разпознаем избраната покана. Върнете се в каталога и натиснете „ПОРЪЧАЙ“ под желания дизайн.";
     result.className = "error";
+    result.style.display = "block";
   }
 
   function convertDateToISO(value, fieldName) {
@@ -710,7 +733,13 @@ footer a:hover { text-decoration: underline; }
   form.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    if (!selectedDesign) return;
+    if (!selectedDesign) {
+      result.textContent =
+        "Не може да се изпрати поръчка без разпознат дизайн. Върнете се в каталога и изберете покана.";
+      result.className = "error";
+      result.style.display = "block";
+      return;
+    }
 
     result.className = "";
     result.style.display = "none";
@@ -772,7 +801,7 @@ footer a:hover { text-decoration: underline; }
     setTimeout(function() {
       submitForm.remove();
       submitButton.disabled = false;
-      submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
+      submitButton.innerHTML = 'ИЗПРАТИ ПОРЪЧКАТА <span>↗</span>';
 
       result.textContent =
         "Формулярът е изпратен. Ще се свържем с вас за потвърждение.";
