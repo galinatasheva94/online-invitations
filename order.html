@@ -460,7 +460,16 @@ footer p {
         <div class="fields">
           <div class="field">
             <label for="weddingDate">Дата на сватбата <span class="required">*</span></label>
-            <input id="weddingDate" name="Дата на сватбата" type="date" required>
+            <input
+  id="weddingDate"
+  name="Дата на сватбата"
+  type="text"
+  inputmode="numeric"
+  placeholder="дд/мм/гггг"
+  pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}"
+  title="Въведете датата във формат дд/мм/гггг, например 25/10/2026"
+  required
+>
             <span class="hint">Изберете датата от календара.</span>
           </div>
 
@@ -476,7 +485,16 @@ footer p {
 
           <div class="field">
             <label for="rsvp">Краен срок за потвърждение <span class="required">*</span></label>
-            <input id="rsvp" name="Краен срок за потвърждение" type="date" required>
+            <input
+  id="rsvp"
+  name="Краен срок за потвърждение"
+  type="text"
+  inputmode="numeric"
+  placeholder="дд/мм/гггг"
+  pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}"
+  title="Въведете датата във формат дд/мм/гггг, например 25/10/2026"
+  required
+>
           </div>
         </div>
       </section>
@@ -726,7 +744,7 @@ orderForm.addEventListener("submit", function(event) {
       submitButton.disabled = false;
       submitButton.textContent = "ОПИТАЙ ОТНОВО";
       showStatus(
-        "Не успяхме да потвърдим изпращането автоматично. Моля, проверете дали има потвърждение по имейл, преди да изпратите отново.",
+        "Не успяхме да потвърдим изпращането автоматично.",
         true
       );
     }
@@ -745,7 +763,7 @@ responseFrame.addEventListener("load", function() {
   submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
 
   showStatus(
-    "Заявката беше изпратена. Ако не получите потвърждение, моля, свържете се с нас, за да проверим статуса на поръчката.",
+    "Поръчката беше изпратена. Ще се свържем с Вас за потвърждение на детайлите.",
     false
   );
 
