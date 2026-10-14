@@ -236,7 +236,7 @@
     .featured-ribbon {
       display: inline-block;
       position: absolute;
-      z-index: 2;
+      z-index: 4;
       top: 24px;
       left: 24px;
       background: linear-gradient(100deg, #70438D, #A45D98);
@@ -246,6 +246,7 @@
       font-size: 9px;
       letter-spacing: 0.7px;
       box-shadow: 0 4px 12px rgba(75, 40, 95, 0.2);
+      pointer-events: none;
     }
 
     .featured-video-wrap {
@@ -254,6 +255,7 @@
       border-radius: 5px;
       background: #E5D5EF;
       line-height: 0;
+      isolation: isolate;
     }
 
     .featured-video {
@@ -262,9 +264,11 @@
       height: 350px;
       object-fit: contain;
       background: #E5D5EF;
+      cursor: pointer;
     }
 
-    /* Артистичен бутон за пускане на видеото */
+    /* Централен бутон за възпроизвеждане */
+
     .featured-play-button {
       position: absolute;
       top: 50%;
@@ -277,10 +281,10 @@
       height: 76px;
       padding: 0 0 0 5px;
       transform: translate(-50%, -50%);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.95);
       border-radius: 50%;
       color: #FFFFFF;
-      background: rgba(112, 67, 141, 0.72);
+      background: rgba(112, 67, 141, 0.78);
       box-shadow: 0 6px 28px rgba(60, 30, 75, 0.28);
       backdrop-filter: blur(7px);
       -webkit-backdrop-filter: blur(7px);
@@ -292,15 +296,20 @@
 
     .featured-play-button:hover {
       transform: translate(-50%, -50%) scale(1.08);
-      background: rgba(89, 49, 111, 0.92);
+      background: rgba(89, 49, 111, 0.96);
+    }
+
+    .featured-play-button:focus-visible {
+      outline: 3px solid #E5B5D8;
+      outline-offset: 4px;
     }
 
     .featured-play-button.is-hidden {
       display: none;
     }
 
-    .featured-video-wrap.is-playing {
-      cursor: pointer;
+    .featured-video-wrap.is-playing .featured-play-button {
+      display: none;
     }
 
     .featured-info {
@@ -549,6 +558,12 @@
       .featured-info h3 {
         font-size: 25px;
       }
+
+      .featured-play-button {
+        width: 66px;
+        height: 66px;
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -610,18 +625,26 @@
           <div class="featured-card">
             <span class="featured-ribbon">♡ ИЗБОР НА МЕСЕЦА</span>
 
-            <div class="featured-video-wrap">
+            <div class="featured-video-wrap" id="featuredVideoWrap">
               <video
                 class="featured-video"
-                controls
+                id="featuredVideo"
                 playsinline
                 preload="metadata"
                 poster="images/Wedding%20%231.jpg"
                 aria-label="Видео покана на месеца"
-                >
+              >
                 <source src="videos/Wedding%20%231.mp4" type="video/mp4">
                 Вашият браузър не поддържа възпроизвеждане на видео.
-               </video>
+              </video>
+
+              <button
+                class="featured-play-button"
+                id="featuredPlayButton"
+                type="button"
+                aria-label="Пусни видео поканата"
+                title="Пусни видеото"
+              >▶</button>
             </div>
 
             <div class="featured-info">
@@ -650,27 +673,19 @@
           <article class="feature">
             <div class="feature-icon">♡</div>
             <h3>Създадена за вас</h3>
-            <p>
-              Всеки дизайн оживява с вашите имена, дата, място и лични детайли.
-            </p>
+            <p>Всеки дизайн оживява с вашите имена, дата, място и лични детайли.</p>
           </article>
 
           <article class="feature">
             <div class="feature-icon">✧</div>
             <h3>Красива и различна</h3>
-            <p>
-              Видео покана с настроение, която лесно можете да споделите
-              с близки и приятели.
-            </p>
+            <p>Видео покана с настроение, която лесно можете да споделите с близки и приятели.</p>
           </article>
 
           <article class="feature">
             <div class="feature-icon">❀</div>
             <h3>Лесно и удобно</h3>
-            <p>
-              Избирате модел, изпращате информацията и получавате покана,
-              подготвена специално за вашия повод.
-            </p>
+            <p>Избирате модел, изпращате информацията и получавате покана, подготвена специално за вашия повод.</p>
           </article>
         </div>
       </div>
@@ -681,34 +696,26 @@
         <div class="section-heading">
           <span class="eyebrow">Само три лесни стъпки</span>
           <h2>Вашата покана започва тук</h2>
-          <p>
-            Без излишни усложнения — само любим дизайн и вашата лична история.
-          </p>
+          <p>Без излишни усложнения — само любим дизайн и вашата лична история.</p>
         </div>
 
         <div class="steps">
           <article class="step">
             <div class="step-number">01</div>
             <h3>Изберете</h3>
-            <p>
-              Разгледайте каталога и открийте дизайна, който ви кара да се усмихнете.
-            </p>
+            <p>Разгледайте каталога и открийте дизайна, който ви кара да се усмихнете.</p>
           </article>
 
           <article class="step">
             <div class="step-number">02</div>
             <h3>Персонализирайте</h3>
-            <p>
-              Изпратете имената, датата, мястото и останалите подробности за събитието.
-            </p>
+            <p>Изпратете имената, датата, мястото и останалите подробности за събитието.</p>
           </article>
 
           <article class="step">
             <div class="step-number">03</div>
             <h3>Споделете</h3>
-            <p>
-              Получете своята персонализирана видео покана и я споделете с любимите хора.
-            </p>
+            <p>Получете своята персонализирана видео покана и я споделете с любимите хора.</p>
           </article>
         </div>
       </div>
@@ -744,14 +751,18 @@
       async function playVideo() {
         try {
           await video.play();
-          playButton.classList.add("is-hidden");
-          wrap.classList.add("is-playing");
         } catch (error) {
           playButton.classList.remove("is-hidden");
         }
       }
 
-      function resetVideo() {
+      function updateVideoState() {
+        const playing = !video.paused && !video.ended;
+        wrap.classList.toggle("is-playing", playing);
+        playButton.classList.toggle("is-hidden", playing);
+      }
+
+      function stopVideo() {
         video.pause();
 
         try {
@@ -760,29 +771,31 @@
           // Видеото може още да се зарежда.
         }
 
-        playButton.classList.remove("is-hidden");
-        wrap.classList.remove("is-playing");
+        updateVideoState();
       }
 
-      playButton.addEventListener("click", function (event) {
-        event.stopPropagation();
+      playButton.addEventListener("click", function () {
         playVideo();
       });
 
-      video.addEventListener("ended", resetVideo);
+      video.addEventListener("play", updateVideoState);
+      video.addEventListener("pause", updateVideoState);
+      video.addEventListener("ended", updateVideoState);
 
-      wrap.addEventListener("click", function (event) {
-        if (event.target !== video) return;
+      video.addEventListener("click", function () {
         if (video.paused) {
           playVideo();
         } else {
-          resetVideo();
+          stopVideo();
         }
       });
 
       video.addEventListener("error", function () {
         playButton.classList.remove("is-hidden");
+        wrap.classList.remove("is-playing");
       });
+
+      updateVideoState();
     })();
   </script>
 </body>
