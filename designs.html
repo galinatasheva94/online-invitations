@@ -1,450 +1,664 @@
-```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Каталог с покани | The Story Atelier</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F4EAF9">
+<meta name="description" content="Разгледайте видео поканите на The Story Atelier и изберете своя дизайн за специалния ден.">
+<title>Каталог с видео покани | The Story Atelier</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+:root {
+  --lavender: #DCC1EE;
+  --lavender-light: #F4EAF9;
+  --lavender-dark: #8755A6;
+  --purple: #70438D;
+  --pink: #E5B5D8;
+  --pink-light: #F9E8F3;
+  --white: #FFFFFF;
+  --text: #493550;
+  --muted: #806C89;
+  --line: #E3CDEB;
+}
 
-    body {
-      margin: 0;
-      background: #fbf8fc;
-      color: #44384b;
-      font-family: 'Montserrat', sans-serif;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    header {
-      padding: 25px 20px;
-      text-align: center;
-      background: #f0e7f4;
-      border-bottom: 1px solid #e6d8ec;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .brand {
-      margin: 0;
-      color: #765583;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 500;
-      letter-spacing: 1px;
-    }
+body {
+  margin: 0;
+  background: var(--lavender-light);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
 
-    .tagline {
-      margin: 7px 0 0;
-      color: #796d7e;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    nav {
-      margin-top: 18px;
-    }
+.announcement {
+  background: linear-gradient(100deg, #D7B5E9, #EBC3DE, #D7B5E9);
+  color: #603C79;
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
 
-    nav a {
-      margin: 0 12px;
-      color: #644b70;
-      font-size: 13px;
-      text-decoration: none;
-    }
+header {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--line);
+}
 
-    nav a:hover {
-      color: #a16eae;
-    }
+.nav {
+  max-width: 1180px;
+  min-height: 100px;
+  margin: 0 auto;
+  padding: 17px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
 
-    .intro {
-      padding: 35px 20px 25px;
-      text-align: center;
-    }
+.brand {
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(27px, 3vw, 37px);
+  font-weight: 600;
+  line-height: 1.05;
+  white-space: nowrap;
+}
 
-    .intro h1 {
-      margin: 0 0 10px;
-      color: #765583;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 500;
-    }
+.brand span {
+  display: block;
+  margin-top: 8px;
+  color: #A15F98;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
 
-    .intro p {
-      max-width: 600px;
-      margin: 0 auto;
-      color: #796d7e;
-      font-size: 13px;
-      line-height: 1.8;
-    }
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+  font-size: 12px;
+}
 
-    .catalog {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 18px;
-      width: min(1500px, 96%);
-      margin: 0 auto 55px;
-      padding: 10px;
-    }
+.nav-links > a:not(.nav-button) {
+  transition: color 0.2s ease;
+}
 
-    .card {
-      min-width: 0;
-      overflow: hidden;
-      background: #fff;
-      border: 1px solid #eadfed;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(95, 65, 105, 0.07);
-    }
+.nav-links > a:not(.nav-button):hover {
+  color: var(--lavender-dark);
+}
 
-    .preview {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      background: #eee5f0;
-    }
+.nav-button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 30px;
+  background: var(--purple);
+  color: var(--white);
+  padding: 13px 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
 
-    .preview video,
-    .preview img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.nav-button:hover,
+.button:hover {
+  background: #59316F;
+  transform: translateY(-2px);
+}
 
-    .preview video {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
+/* Заглавна част на каталога */
+.catalog-intro {
+  padding: 54px 22px 34px;
+  text-align: center;
+}
 
-    .preview img {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      transition: opacity 0.25s ease;
-    }
+.eyebrow {
+  margin: 0 0 9px;
+  color: #A15F98;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
 
-    .preview.playing img {
-      opacity: 0;
-      pointer-events: none;
-    }
+.catalog-intro h1 {
+  margin: 0;
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 54px);
+  font-weight: 500;
+  line-height: 1.15;
+}
 
-    .play-button {
-      position: absolute;
-      z-index: 3;
-      top: 50%;
-      left: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 46px;
-      height: 46px;
-      padding: 0 0 0 3px;
-      transform: translate(-50%, -50%);
-      color: white;
-      background: rgba(92, 63, 105, 0.82);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
+.catalog-intro p:last-child {
+  max-width: 570px;
+  margin: 13px auto 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
 
-    .play-button:hover {
-      background: rgba(121, 81, 137, 0.96);
-      transform: translate(-50%, -50%) scale(1.06);
-    }
+/* Карти с видео покани */
+.catalog {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 12px 28px 76px;
+  scroll-margin-top: 25px;
+}
 
-    .preview.playing .play-button {
-      opacity: 0;
-    }
+.design-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
 
-    .preview.playing:hover .play-button {
-      opacity: 1;
-    }
+.design-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(227, 205, 235, 0.9);
+  border-radius: 5px;
+  background: var(--white);
+  box-shadow: 0 8px 26px rgba(112, 67, 141, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-    .card-content {
-      padding: 12px 10px 14px;
-      text-align: center;
-    }
+.design-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(112, 67, 141, 0.12);
+}
 
-    .card h2 {
-      margin: 0 0 10px;
-      color: #765583;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #E9DDEC;
+}
 
-    .order-button {
-      display: block;
-      width: 100%;
-      padding: 10px 6px;
-      color: white;
-      background: #896b98;
-      border: none;
-      border-radius: 6px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background 0.2s ease;
-    }
+.video-container video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #E9DDEC;
+}
 
-    .order-button:hover {
-      background: #70517f;
-    }
+.video-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
 
-    footer {
-      padding: 22px 15px;
-      color: #85758b;
-      background: #f0e7f4;
-      font-size: 11px;
-      line-height: 1.8;
-      text-align: center;
-    }
+.video-container.playing .video-poster {
+  opacity: 0;
+}
 
-    @media (max-width: 1100px) {
-      .catalog {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-    }
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(50, 27, 59, 0.04),
+    rgba(50, 27, 59, 0.18)
+  );
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
 
-    @media (max-width: 650px) {
-      .brand {
-        font-size: 30px;
-      }
+.play-overlay:hover {
+  background: rgba(80, 48, 94, 0.23);
+}
 
-      .tagline {
-        font-size: 9px;
-        letter-spacing: 1px;
-      }
+.play-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 57px;
+  height: 57px;
+  padding-left: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--purple);
+  font-size: 20px;
+  box-shadow: 0 4px 20px rgba(48, 24, 57, 0.13);
+}
 
-      nav a {
-        margin: 0 7px;
-        font-size: 12px;
-      }
+.video-container.playing .play-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
 
-      .intro {
-        padding: 28px 16px 20px;
-      }
+.video-container.playing:hover .play-overlay {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(50, 27, 59, 0.12);
+}
 
-      .intro h1 {
-        font-size: 35px;
-      }
+.video-container.playing:hover .play-icon {
+  font-size: 0;
+}
 
-      .catalog {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-        width: 100%;
-        padding: 10px;
-      }
+.video-container.playing:hover .play-icon::after {
+  content: "Ⅱ";
+  font-size: 21px;
+  padding-right: 3px;
+}
 
-      .card-content {
-        padding: 10px 7px 11px;
-      }
+.design-info {
+  padding: 19px 15px 20px;
+  text-align: center;
+}
 
-      .card h2 {
-        font-size: 18px;
-      }
+.design-number {
+  margin: 0 0 3px;
+  color: #A15F98;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
 
-      .order-button {
-        padding: 9px 4px;
-        font-size: 10px;
-      }
+.design-info h2 {
+  margin: 0 0 15px;
+  color: var(--text);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.25;
+}
 
-      .play-button {
-        width: 40px;
-        height: 40px;
-      }
-    }
+.order-button {
+  display: block;
+  width: 100%;
+  padding: 12px 10px;
+  border-radius: 30px;
+  background: var(--purple);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
 
-    @media (max-width: 360px) {
-      .catalog {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.order-button:hover {
+  background: #59316F;
+  transform: translateY(-2px);
+}
+
+/* Долна покана за действие */
+.catalog-bottom {
+  padding: 44px 20px 58px;
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.catalog-bottom h2 {
+  margin: 0 0 10px;
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.catalog-bottom p {
+  margin: 0 auto 22px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+footer {
+  padding: 32px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--white);
+  text-align: center;
+}
+
+.footer-brand {
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+footer p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* Адаптация за различни екрани */
+@media (max-width: 1100px) {
+  .design-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .catalog {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 800px) {
+  .nav {
+    flex-direction: column;
+    padding: 22px 18px;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .announcement {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .catalog-intro {
+    padding: 39px 18px 25px;
+  }
+
+  .catalog {
+    padding: 10px 15px 48px;
+  }
+
+  .design-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+  }
+
+  .design-info {
+    padding: 14px 10px 15px;
+  }
+
+  .design-info h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .order-button {
+    padding: 11px 6px;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+
+  .play-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 430px) {
+  .announcement {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    gap: 12px;
+    font-size: 11px;
+  }
+
+  .nav-button {
+    padding: 10px 16px;
+  }
+
+  .brand {
+    white-space: normal;
+  }
+
+  .brand span {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .design-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .catalog {
+    max-width: 300px;
+  }
+
+  .design-info h2 {
+    font-size: 25px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <p class="brand">The Story Atelier</p>
-    <p class="tagline">Вашите емоции. Нашето вдъхновение.</p>
 
-    <nav>
-      <a href="./index.html">Начало</a>
-      <a href="./designs.html">Каталог</a>
-    </nav>
-  </header>
+<div class="announcement">Вашите емоции. Нашето вдъхновение.</div>
 
-  <main>
-    <section class="intro">
-      <h1>Каталог с покани</h1>
-      <p>
-        Изберете дизайн, който разказва вашата история.
-        Натиснете бутона за преглед, за да гледате видеото,
-        а когато откриете своята покана, можете да я поръчате.
-      </p>
-    </section>
+<header>
+  <nav class="nav">
+    <a href="index.html" class="brand">
+      The Story Atelier
+      <span>Онлайн покани за специалните моменти</span>
+    </a>
 
-    <section class="catalog">
+    <div class="nav-links">
+      <a href="index.html">Начало</a>
+      <a href="designs.html">Каталог</a>
+      <a href="index.html#how">Как работи?</a>
+      <a href="#catalog" class="nav-button">Разгледай поканите</a>
+    </div>
+  </nav>
+</header>
 
-      <!-- ПОКАНА 1 -->
-      <article class="card">
-        <div class="preview" id="preview-wedding-1">
+<main>
+  <section class="catalog-intro">
+    <p class="eyebrow">THE STORY ATELIER · КОЛЕКЦИЯ</p>
+    <h1>Избери своята покана</h1>
+    <p>
+      Всеки специален ден започва с покана.
+      Разгледай нашите видео дизайни и избери този,
+      който най-добре разказва вашата история.
+    </p>
+  </section>
+
+  <section class="catalog" id="catalog">
+    <div class="design-grid">
+
+      <!-- Видео покана 1 -->
+      <article class="design-card">
+        <div class="video-container">
           <video
-            id="video-wedding-1"
-            preload="none"
             playsinline
-            poster="./images/Wedding%20%231.jpg">
-            <source src="./videos/Wedding%20%231.mp4" type="video/mp4">
-            Вашият браузър не поддържа възпроизвеждане на видео.
+            preload="none"
+            poster="images/Wedding%20%231.jpg"
+            aria-label="Преглед на видео покана 1"
+          >
+            <source src="videos/Wedding%20%231.mp4" type="video/mp4">
+            Вашият браузър не поддържа видео.
           </video>
 
           <img
-            src="./images/Wedding%20%231.jpg"
-            alt="Преглед на сватбена покана Wedding 1">
+            class="video-poster"
+            src="images/Wedding%20%231.jpg"
+            alt="Визия на видео покана 1"
+          >
 
-          <button class="play-button" type="button"
-            aria-label="Пусни поканата Wedding 1"
-            onclick="toggleVideo('wedding-1')">▶</button>
+          <button class="play-overlay" type="button" aria-label="Пусни видео покана 1">
+            <span class="play-icon">▶</span>
+          </button>
         </div>
 
-        <div class="card-content">
-          <h2>Wedding #1</h2>
-          <a class="order-button" href="./order.html?design=wedding-1">
-            Поръчай
-          </a>
+        <div class="design-info">
+          <p class="design-number">Дизайн 01</p>
+          <h2>Лилава нежност</h2>
+          <a class="order-button" href="order.html?design=wedding-1">ПОРЪЧАЙ</a>
         </div>
       </article>
 
-      <!-- ПОКАНА 2 -->
-      <article class="card">
-        <div class="preview" id="preview-wedding-2">
+      <!-- Видео покана 2 -->
+      <article class="design-card">
+        <div class="video-container">
           <video
-            id="video-wedding-2"
-            preload="none"
             playsinline
-            poster="./images/Wedding%20%232.jpg">
-            <source src="./videos/Wedding%20%232.mp4" type="video/mp4">
-            Вашият браузър не поддържа възпроизвеждане на видео.
+            preload="none"
+            poster="images/Wedding%20%232.jpg"
+            aria-label="Преглед на видео покана 2"
+          >
+            <source src="videos/Wedding%20%232.mp4" type="video/mp4">
+            Вашият браузър не поддържа видео.
           </video>
 
           <img
-            src="./images/Wedding%20%232.jpg"
-            alt="Преглед на сватбена покана Wedding 2">
+            class="video-poster"
+            src="images/Wedding%20%232.jpg"
+            alt="Визия на видео покана 2"
+          >
 
-          <button class="play-button" type="button"
-            aria-label="Пусни поканата Wedding 2"
-            onclick="toggleVideo('wedding-2')">▶</button>
+          <button class="play-overlay" type="button" aria-label="Пусни видео покана 2">
+            <span class="play-icon">▶</span>
+          </button>
         </div>
 
-        <div class="card-content">
-          <h2>Wedding #2</h2>
-          <a class="order-button" href="./order.html?design=wedding-2">
-            Поръчай
-          </a>
+        <div class="design-info">
+          <p class="design-number">Дизайн 02</p>
+          <h2>Романтична история</h2>
+          <a class="order-button" href="order.html?design=wedding-2">ПОРЪЧАЙ</a>
         </div>
       </article>
 
-      <!-- ПОКАНА 3 -->
-      <article class="card">
-        <div class="preview" id="preview-wedding-3">
+      <!-- Видео покана 3 -->
+      <article class="design-card">
+        <div class="video-container">
           <video
-            id="video-wedding-3"
-            preload="none"
             playsinline
-            poster="./images/Wedding%20%233.jpg">
-            <source src="./videos/Wedding%20%233.mp4" type="video/mp4">
-            Вашият браузър не поддържа възпроизвеждане на видео.
+            preload="none"
+            poster="images/Wedding%20%233.jpg"
+            aria-label="Преглед на видео покана 3"
+          >
+            <source src="videos/Wedding%20%233.mp4" type="video/mp4">
+            Вашият браузър не поддържа видео.
           </video>
 
           <img
-            src="./images/Wedding%20%233.jpg"
-            alt="Преглед на сватбена покана Wedding 3">
+            class="video-poster"
+            src="images/Wedding%20%233.jpg"
+            alt="Визия на видео покана 3"
+          >
 
-          <button class="play-button" type="button"
-            aria-label="Пусни поканата Wedding 3"
-            onclick="toggleVideo('wedding-3')">▶</button>
+          <button class="play-overlay" type="button" aria-label="Пусни видео покана 3">
+            <span class="play-icon">▶</span>
+          </button>
         </div>
 
-        <div class="card-content">
-          <h2>Wedding #3</h2>
-          <a class="order-button" href="./order.html?design=wedding-3">
-            Поръчай
-          </a>
+        <div class="design-info">
+          <p class="design-number">Дизайн 03</p>
+          <h2>Нашият специален ден</h2>
+          <a class="order-button" href="order.html?design=wedding-3">ПОРЪЧАЙ</a>
         </div>
       </article>
 
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    The Story Atelier<br>
-    Вашите емоции. Нашето вдъхновение.
-  </footer>
+  <section class="catalog-bottom">
+    <h2>Вашата история заслужава специална покана</h2>
+    <p>Избери дизайн и нека заедно подготвим поканата за вашия ден.</p>
+    <a class="button" href="order.html?design=wedding-1">Започни своята поръчка</a>
+  </section>
+</main>
 
-  <script>
-    function toggleVideo(designId) {
-      const video = document.getElementById('video-' + designId);
-      const preview = document.getElementById('preview-' + designId);
+<footer>
+  <div class="footer-brand">The Story Atelier</div>
+  <p>Онлайн покани за специалните моменти</p>
+  <p>© <span id="year"></span> The Story Atelier · Създадено с любов</p>
+</footer>
 
-      if (!video || !preview) {
-        return;
-      }
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
 
-      if (video.paused) {
-        document.querySelectorAll('.preview video').forEach(function(otherVideo) {
-          if (otherVideo !== video) {
-            otherVideo.pause();
-            otherVideo.currentTime = 0;
+document.querySelectorAll(".video-container").forEach(function(container) {
+  const video = container.querySelector("video");
+  const button = container.querySelector(".play-overlay");
 
-            const otherPreview = otherVideo.closest('.preview');
-            if (otherPreview) {
-              otherPreview.classList.remove('playing');
-            }
-          }
-        });
-
-        const playPromise = video.play();
-
-        if (playPromise !== undefined) {
-          playPromise.then(function() {
-            preview.classList.add('playing');
-          }).catch(function(error) {
-            console.error('Видеото не може да бъде пуснато:', error);
-          });
+  button.addEventListener("click", async function() {
+    if (video.paused) {
+      document.querySelectorAll(".video-container video").forEach(function(otherVideo) {
+        if (otherVideo !== video) {
+          otherVideo.pause();
+          otherVideo.closest(".video-container").classList.remove("playing");
         }
-      } else {
-        video.pause();
-        preview.classList.remove('playing');
+      });
+
+      try {
+        await video.play();
+        container.classList.add("playing");
+      } catch (error) {
+        container.classList.remove("playing");
+        console.error("Видеото не може да бъде пуснато:", error);
       }
+    } else {
+      video.pause();
+      container.classList.remove("playing");
     }
+  });
 
-    document.querySelectorAll('.preview video').forEach(function(video) {
-      video.addEventListener('ended', function() {
-        const preview = video.closest('.preview');
-        if (preview) {
-          preview.classList.remove('playing');
-        }
-      });
+  video.addEventListener("ended", function() {
+    container.classList.remove("playing");
+  });
 
-      video.addEventListener('pause', function() {
-        const preview = video.closest('.preview');
-        if (preview && video.ended) {
-          preview.classList.remove('playing');
-        }
-      });
-    });
-  </script>
+  video.addEventListener("pause", function() {
+    container.classList.remove("playing");
+  });
+
+  video.addEventListener("play", function() {
+    container.classList.add("playing");
+  });
+});
+</script>
+
 </body>
 </html>
-```
