@@ -14,23 +14,17 @@
 <style>
 :root {
   --lavender-light: #F4EAF9;
-  --lavender: #DCC1EE;
   --purple: #70438D;
   --purple-dark: #59316F;
-  --pink: #E5B5D8;
   --text: #493550;
   --muted: #806C89;
   --line: #E3CDEB;
   --white: #FFFFFF;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -96,9 +90,7 @@ header {
   font-size: 12px;
 }
 
-.nav-links a:hover {
-  color: var(--purple);
-}
+.nav-links a:hover { color: var(--purple); }
 
 .page-intro {
   padding: 44px 20px 28px;
@@ -174,13 +166,8 @@ header {
   font-size: 11px;
 }
 
-.form-section {
-  margin-top: 30px;
-}
-
-.form-section:first-of-type {
-  margin-top: 0;
-}
+.form-section { margin-top: 30px; }
+.form-section:first-of-type { margin-top: 0; }
 
 .form-section h2 {
   margin: 0 0 17px;
@@ -204,13 +191,8 @@ header {
   gap: 17px 20px;
 }
 
-.field {
-  min-width: 0;
-}
-
-.field.full {
-  grid-column: 1 / -1;
-}
+.field { min-width: 0; }
+.field.full { grid-column: 1 / -1; }
 
 label {
   display: block;
@@ -220,9 +202,7 @@ label {
   font-weight: 500;
 }
 
-.required {
-  color: #A15F98;
-}
+.required { color: #A15F98; }
 
 input,
 select,
@@ -253,15 +233,69 @@ textarea {
 }
 
 input::placeholder,
-textarea::placeholder {
-  color: #AA9BAF;
-}
+textarea::placeholder { color: #AA9BAF; }
 
 .hint {
   display: block;
   margin-top: 5px;
   color: var(--muted);
   font-size: 10px;
+}
+
+/* Поле за дата с календар */
+.date-picker {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 45px;
+}
+
+.date-display {
+  width: 100%;
+  min-height: 45px;
+  padding: 11px 48px 11px 12px;
+  border: 1px solid #DCC9E3;
+  border-radius: 4px;
+  background: #FFFEFF;
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 21px;
+}
+
+.date-display.empty { color: #AA9BAF; }
+
+.calendar-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #DCC9E3;
+  color: var(--purple);
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.date-native {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.date-picker:focus-within .date-display {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(112,67,141,.09);
 }
 
 .submit-area {
@@ -318,9 +352,7 @@ textarea::placeholder {
   text-align: center;
 }
 
-.status-message.visible {
-  display: block;
-}
+.status-message.visible { display: block; }
 
 .status-message.error {
   border-color: #E7B8B8;
@@ -363,26 +395,16 @@ footer p {
     gap: 12px 18px;
   }
 
-  .form-wrap {
-    padding: 22px 18px;
-  }
+  .form-wrap { padding: 22px 18px; }
 
   .fields {
     grid-template-columns: 1fr;
     gap: 15px;
   }
 
-  .field.full {
-    grid-column: auto;
-  }
-
-  .page-intro {
-    padding-top: 34px;
-  }
-
-  .submit-button {
-    width: 100%;
-  }
+  .field.full { grid-column: auto; }
+  .page-intro { padding-top: 34px; }
+  .submit-button { width: 100%; }
 }
 </style>
 </head>
@@ -417,7 +439,6 @@ footer p {
   </section>
 
   <div class="form-wrap">
-
     <div class="selected-design">
       <p class="small-label">Вашият избран дизайн</p>
       <h2 id="selectedDesignName">Не е избран дизайн</h2>
@@ -430,11 +451,10 @@ footer p {
 
       <section class="form-section">
         <h2>01. Вашите имена</h2>
-
         <div class="fields">
           <div class="field">
             <label for="bride">Име на булката <span class="required">*</span></label>
-            <input id="bride" name="Име на булката" type="text" required autocomplete="given-name" placeholder="Име на булката">
+            <input id="bride" name="Име на булката" type="text" required placeholder="Име на булката">
           </div>
 
           <div class="field">
@@ -456,21 +476,16 @@ footer p {
 
       <section class="form-section">
         <h2>02. Сватбеният ден</h2>
-
         <div class="fields">
           <div class="field">
-            <label for="weddingDate">Дата на сватбата <span class="required">*</span></label>
-            <input
-  id="weddingDate"
-  name="Дата на сватбата"
-  type="text"
-  inputmode="numeric"
-  placeholder="дд/мм/гггг"
-  pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}"
-  title="Въведете датата във формат дд/мм/гггг, например 25/10/2026"
-  required
->
-            <span class="hint">Изберете датата от календара.</span>
+            <label for="weddingDatePicker">Дата на сватбата <span class="required">*</span></label>
+            <div class="date-picker">
+              <div class="date-display empty" id="weddingDateDisplay">Изберете дата</div>
+              <span class="calendar-icon" aria-hidden="true">▦</span>
+              <input class="date-native" id="weddingDatePicker" type="date" aria-label="Изберете дата на сватбата">
+            </div>
+            <input type="hidden" id="weddingDate" name="Дата на сватбата">
+            <span class="hint">Изберете датата от календара. Показва се във формат дд/мм/гггг.</span>
           </div>
 
           <div class="field">
@@ -484,17 +499,14 @@ footer p {
           </div>
 
           <div class="field">
-            <label for="rsvp">Краен срок за потвърждение <span class="required">*</span></label>
-            <input
-  id="rsvp"
-  name="Краен срок за потвърждение"
-  type="text"
-  inputmode="numeric"
-  placeholder="дд/мм/гггг"
-  pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}"
-  title="Въведете датата във формат дд/мм/гггг, например 25/10/2026"
-  required
->
+            <label for="rsvpPicker">Краен срок за потвърждение <span class="required">*</span></label>
+            <div class="date-picker">
+              <div class="date-display empty" id="rsvpDisplay">Изберете дата</div>
+              <span class="calendar-icon" aria-hidden="true">▦</span>
+              <input class="date-native" id="rsvpPicker" type="date" aria-label="Изберете краен срок за потвърждение">
+            </div>
+            <input type="hidden" id="rsvp" name="Краен срок за потвърждение">
+            <span class="hint">Изберете датата от календара. Показва се във формат дд/мм/гггг.</span>
           </div>
         </div>
       </section>
@@ -502,7 +514,6 @@ footer p {
       <section class="form-section">
         <h2>03. Програма на деня</h2>
         <p>Попълнете само ритуалите и събитията, които ще присъстват във вашия ден.</p>
-
         <div class="fields">
           <div class="field">
             <label for="churchTime">Църковен ритуал – час</label>
@@ -548,7 +559,6 @@ footer p {
 
       <section class="form-section">
         <h2>04. Данни за контакт</h2>
-
         <div class="fields">
           <div class="field">
             <label for="contactName">Име за контакт <span class="required">*</span></label>
@@ -573,14 +583,10 @@ footer p {
       </section>
 
       <div class="submit-area">
-        <button class="submit-button" id="submitButton" type="submit">
-          ИЗПРАТИ ПОРЪЧКАТА
-        </button>
-
+        <button class="submit-button" id="submitButton" type="submit">ИЗПРАТИ ПОРЪЧКАТА</button>
         <p class="privacy-note">
           След изпращането ще получим информацията за вашата поръчка и ще се свържем с вас за уточнения.
         </p>
-
         <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
       </div>
     </form>
@@ -593,7 +599,6 @@ footer p {
   <p>© <span id="year"></span> The Story Atelier · Създадено с любов</p>
 </footer>
 
-<!-- Формулярът изпраща данните към Apps Script през скрит iframe. -->
 <iframe name="orderResponseFrame" id="orderResponseFrame" title="Отговор за поръчката" style="display:none"></iframe>
 
 <form id="transportForm"
@@ -611,30 +616,17 @@ const designs = {
   "wedding-1": {
     name: "Лилава нежност",
     id: "wedding-1",
-    aliases: [
-      "wedding-1",
-      "purple-white-wedding",
-      "purple white wedding",
-      "лилава нежност"
-    ]
+    aliases: ["wedding-1", "purple-white-wedding", "purple white wedding", "лилава нежност"]
   },
-
   "wedding-2": {
     name: "Романтична история",
     id: "wedding-2",
-    aliases: [
-      "wedding-2",
-      "романтична история"
-    ]
+    aliases: ["wedding-2", "романтична история"]
   },
-
   "wedding-3": {
     name: "Нашият специален ден",
     id: "wedding-3",
-    aliases: [
-      "wedding-3",
-      "нашият специален ден"
-    ]
+    aliases: ["wedding-3", "нашият специален ден"]
   }
 };
 
@@ -671,7 +663,6 @@ if (selectedDesign) {
   selectedDesignDescription.textContent = "Избраният модел ще бъде записан към вашата поръчка.";
   designInput.value = selectedDesign.name;
   designIdInput.value = selectedDesign.id;
-  submitButton.disabled = false;
 } else {
   selectedDesignName.textContent = "Не е избран дизайн";
   selectedDesignDescription.textContent = "Моля, върнете се в каталога и натиснете „ПОРЪЧАЙ“ под избрания модел.";
@@ -686,8 +677,48 @@ function showStatus(message, isError) {
   statusMessage.classList.toggle("error", Boolean(isError));
 }
 
+function formatDateBG(isoDate) {
+  if (!isoDate) return "";
+  const parts = isoDate.split("-");
+  if (parts.length !== 3) return "";
+  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+}
+
+function connectDatePicker(pickerId, displayId, hiddenId) {
+  const picker = document.getElementById(pickerId);
+  const display = document.getElementById(displayId);
+  const hidden = document.getElementById(hiddenId);
+
+  function updateDisplay() {
+    hidden.value = picker.value;
+    display.textContent = picker.value ? formatDateBG(picker.value) : "Изберете дата";
+    display.classList.toggle("empty", !picker.value);
+  }
+
+  picker.addEventListener("change", updateDisplay);
+  picker.addEventListener("input", updateDisplay);
+
+  // Поддържа и предварително попълнена дата, ако такава бъде зададена.
+  updateDisplay();
+
+  return { picker, hidden, updateDisplay };
+}
+
+const weddingDateControl = connectDatePicker(
+  "weddingDatePicker",
+  "weddingDateDisplay",
+  "weddingDate"
+);
+
+const rsvpDateControl = connectDatePicker(
+  "rsvpPicker",
+  "rsvpDisplay",
+  "rsvp"
+);
+
 let waitingForResponse = false;
 let requestSubmitted = false;
+let responseTimeout = null;
 
 orderForm.addEventListener("submit", function(event) {
   event.preventDefault();
@@ -697,7 +728,26 @@ orderForm.addEventListener("submit", function(event) {
     return;
   }
 
-  if (!orderForm.reportValidity()) {
+  if (!orderForm.reportValidity()) return;
+
+  if (!weddingDateControl.picker.value) {
+    showStatus("Моля, изберете дата на сватбата от календара.", true);
+    weddingDateControl.picker.focus();
+    return;
+  }
+
+  if (!rsvpDateControl.picker.value) {
+    showStatus("Моля, изберете краен срок за потвърждение от календара.", true);
+    rsvpDateControl.picker.focus();
+    return;
+  }
+
+  // Проверяваме, че календарните дати са реални дати.
+  const weddingDate = weddingDateControl.picker.value;
+  const rsvpDate = rsvpDateControl.picker.value;
+
+  if (weddingDate > "9999-12-31" || rsvpDate > "9999-12-31") {
+    showStatus("Моля, проверете въведените дати.", true);
     return;
   }
 
@@ -708,19 +758,9 @@ orderForm.addEventListener("submit", function(event) {
     order[key] = String(value).trim();
   }
 
-  // Датите се изпращат във формат YYYY-MM-DD.
-  // Това избягва неочаквано преобразуване на датата при запис.
-  const dateFields = [
-    "Дата на сватбата",
-    "Краен срок за потвърждение"
-  ];
-
-  dateFields.forEach(function(fieldName) {
-    if (order[fieldName]) {
-      order[fieldName] = String(order[fieldName]).trim();
-    }
-  });
-
+  // Датите се изпращат като ISO YYYY-MM-DD, без двусмислие между ден и месец.
+  order["Дата на сватбата"] = weddingDate;
+  order["Краен срок за потвърждение"] = rsvpDate;
   order["Дизайн"] = selectedDesign.name;
   order["Идентификатор на дизайна"] = selectedDesign.id;
   order["Източник"] = window.location.href;
@@ -736,15 +776,14 @@ orderForm.addEventListener("submit", function(event) {
 
   transportForm.submit();
 
-  // Ако няма отговор от iframe в разумен срок, не твърдим,
-  // че поръчката със сигурност е записана.
-  window.setTimeout(function() {
+  responseTimeout = window.setTimeout(function() {
     if (waitingForResponse) {
       waitingForResponse = false;
+      requestSubmitted = false;
       submitButton.disabled = false;
-      submitButton.textContent = "ОПИТАЙ ОТНОВО";
+      submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
       showStatus(
-        "Не успяхме да потвърдим изпращането автоматично.",
+        "Не успяхме да потвърдим изпращането автоматично. Проверете дали поръчката е записана, преди да изпратите отново.",
         true
       );
     }
@@ -752,26 +791,35 @@ orderForm.addEventListener("submit", function(event) {
 });
 
 responseFrame.addEventListener("load", function() {
-  if (!requestSubmitted || !waitingForResponse) {
-    return;
-  }
+  if (!requestSubmitted || !waitingForResponse) return;
 
   waitingForResponse = false;
   requestSubmitted = false;
+
+  if (responseTimeout) {
+    clearTimeout(responseTimeout);
+    responseTimeout = null;
+  }
 
   submitButton.disabled = false;
   submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
 
   showStatus(
-    "Поръчката беше изпратена. Ще се свържем с Вас за потвърждение на детайлите.",
+    "Поръчката беше изпратена. Ще се свържем с вас за потвърждение на детайлите.",
     false
   );
 
   orderForm.reset();
 
-  // Запазваме избрания дизайн след изчистването на останалите полета.
+  // Запазваме избрания дизайн.
   designInput.value = selectedDesign.name;
   designIdInput.value = selectedDesign.id;
+
+  // Изчистваме датите и техните визуализации след изпращане.
+  weddingDateControl.picker.value = "";
+  rsvpDateControl.picker.value = "";
+  weddingDateControl.updateDisplay();
+  rsvpDateControl.updateDisplay();
 });
 </script>
 
