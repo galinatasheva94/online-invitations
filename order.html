@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -7,133 +6,107 @@
 <title>Поръчка на видео покана | Вашата покана</title>
 
 <style>
+:root {
+  --bg: #f8f4ee;
+  --card: #ffffff;
+  --text: #463d35;
+  --muted: #82766d;
+  --accent: #9674a5;
+  --accent-dark: #775786;
+  --border: #e5d9d0;
+  --input-bg: #fffdfb;
+  --success: #36724b;
+  --error: #a43d3d;
+}
+
 * {
   box-sizing: border-box;
 }
 
-:root {
-  --background: #f8f4ee;
-  --surface: #fffdf9;
-  --text: #463d35;
-  --muted: #81766b;
-  --accent: #987b9e;
-  --accent-dark: #765b7d;
-  --border: #e5dcd2;
-  --success: #426c51;
-  --error: #a13e3e;
-}
-
 body {
   margin: 0;
-  background: var(--background);
+  padding: 32px 16px 55px;
+  background: var(--bg);
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-header {
-  padding: 25px 20px;
+.page {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.site-header {
   text-align: center;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
 }
 
 .brand {
+  margin: 0 0 8px;
   color: var(--accent-dark);
-  text-decoration: none;
-  font-size: 27px;
-  letter-spacing: 2px;
-}
-
-header p {
-  margin: 5px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-main {
-  width: min(900px, calc(100% - 30px));
-  margin: 35px auto 60px;
-}
-
-.intro {
-  text-align: center;
-  margin-bottom: 30px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  font-weight: bold;
 }
 
 h1 {
+  margin: 0;
   font-size: clamp(27px, 5vw, 39px);
   font-weight: normal;
-  line-height: 1.25;
-  margin: 0 0 12px;
 }
 
-.intro p {
-  max-width: 650px;
-  margin: 0 auto;
+.intro {
+  max-width: 570px;
+  margin: 13px auto 0;
   color: var(--muted);
+  font-size: 15px;
 }
 
-.selected-design {
-  margin: 25px auto;
-  padding: 17px 20px;
-  max-width: 600px;
-  text-align: center;
-  background: #f0e8f0;
-  border: 1px solid #e1d3e2;
-  border-radius: 12px;
-}
-
-.selected-design span {
-  display: block;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.selected-design strong {
-  color: var(--accent-dark);
-  font-size: 20px;
-  font-weight: normal;
-}
-
-form#orderForm {
-  display: block;
-  width: 100%;
-  background: var(--surface);
+.form-card {
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: clamp(20px, 4vw, 38px);
-  box-shadow: 0 8px 30px rgba(70, 61, 53, 0.05);
+  padding: 30px;
+  box-shadow: 0 8px 28px rgba(70, 61, 53, 0.06);
 }
 
-/* Заглавията винаги са на цял ред. */
+.section {
+  display: block;
+  width: 100%;
+  margin: 0 0 30px;
+  padding: 0;
+}
+
+.section + .section {
+  margin-top: 30px;
+}
+
 .section-title {
   display: block;
   width: 100%;
-  clear: both;
-  margin: 30px 0 16px;
-  padding-bottom: 8px;
+  margin: 0 0 20px;
+  padding: 0 0 12px;
   border-bottom: 1px solid var(--border);
   color: var(--accent-dark);
-  font-size: 22px;
+  font-size: 21px;
   font-weight: normal;
+  line-height: 1.4;
 }
 
-.section-title:first-child {
-  margin-top: 0;
-}
-
-/* Всяка група полета има собствена решетка. */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 17px 20px;
+  gap: 18px 20px;
   width: 100%;
 }
 
 .field {
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
+  gap: 7px;
 }
 
 .field.full {
@@ -141,29 +114,42 @@ form#orderForm {
 }
 
 label {
-  display: block;
-  margin-bottom: 6px;
   font-size: 14px;
+  font-weight: bold;
+}
+
+.optional {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: normal;
 }
 
 input,
-select,
-textarea {
+textarea,
+select {
   width: 100%;
   min-width: 0;
-  padding: 12px 13px;
+  min-height: 46px;
+  padding: 11px 13px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: #fff;
+  background: var(--input-bg);
   color: var(--text);
   font: 15px Arial, sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid #d9c5dc;
+textarea:focus,
+select:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(150, 116, 165, 0.12);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #a79c94;
 }
 
 textarea {
@@ -171,408 +157,534 @@ textarea {
   resize: vertical;
 }
 
-.optional {
-  color: var(--muted);
-  font-size: 12px;
-}
-
 .date-control {
   position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 47px;
+  min-width: 0;
+  height: 46px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--input-bg);
+}
+
+.date-control:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(150, 116, 165, 0.12);
 }
 
 .date-display {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  height: 44px;
+  min-width: 0;
   padding: 0 48px 0 13px;
-  border: 1px solid var(--border);
+  border: 0;
   border-radius: 8px;
-  background: #fff;
+  background: transparent;
   color: var(--text);
   font: 15px Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
   pointer-events: none;
-  z-index: 1;
 }
 
 .date-display.placeholder {
-  color: #81766b;
+  color: #a79c94;
 }
 
 .date-native {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  left: 0;
+  width: calc(100% - 43px);
   height: 100%;
-  opacity: 0.01;
+  opacity: 0;
   cursor: pointer;
   z-index: 2;
-  padding: 0;
-  border: 0;
-  background: transparent;
 }
 
 .calendar-button {
   position: absolute;
-  z-index: 3;
-  right: 3px;
-  top: 3px;
-  width: 41px;
-  height: 41px;
+  right: 0;
+  top: 0;
+  width: 43px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: 6px;
-  background: #f0e8f0;
+  border-left: 1px solid var(--border);
+  border-radius: 0 7px 7px 0;
+  background: #f7f0f8;
   color: var(--accent-dark);
   cursor: pointer;
+  z-index: 3;
 }
 
 .calendar-button:hover {
-  background: #e5d6e7;
+  background: #eee2f1;
 }
 
 .calendar-button svg {
-  width: 21px;
-  height: 21px;
+  width: 19px;
+  height: 19px;
 }
 
-.date-help {
-  margin-top: 5px;
+.hint {
+  margin: 8px 0 0;
   color: var(--muted);
-  font-size: 12px;
+  font: 12px/1.5 Arial, sans-serif;
+}
+
+.submit-area {
+  padding-top: 5px;
+  text-align: center;
 }
 
 .submit-button {
-  display: block;
   width: 100%;
-  margin-top: 28px;
-  padding: 15px 20px;
+  min-height: 52px;
+  padding: 14px 22px;
   border: 0;
-  border-radius: 8px;
-  background: var(--accent-dark);
+  border-radius: 9px;
+  background: var(--accent);
   color: white;
-  font: 16px Georgia, "Times New Roman", serif;
-  letter-spacing: 0.5px;
+  font: bold 14px Arial, sans-serif;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .submit-button:hover {
-  background: #624869;
+  background: var(--accent-dark);
 }
 
 .submit-button:disabled {
-  opacity: 0.6;
+  opacity: 0.65;
   cursor: wait;
 }
 
-.status {
-  display: none;
-  margin-top: 18px;
-  padding: 14px;
-  border-radius: 8px;
-  text-align: center;
-  font-size: 15px;
-}
-
-.status.success {
-  display: block;
-  color: var(--success);
-  background: #edf5ee;
-  border: 1px solid #cfe2d2;
-}
-
-.status.error {
-  display: block;
-  color: var(--error);
-  background: #fbefef;
-  border: 1px solid #edcece;
-}
-
 .privacy-note {
-  margin-top: 17px;
-  text-align: center;
+  max-width: 520px;
+  margin: 13px auto 0;
   color: var(--muted);
   font-size: 12px;
 }
 
-.back-link {
+.message {
+  display: none;
+  margin: 0 0 22px;
+  padding: 15px 17px;
+  border-radius: 9px;
+  font: 14px/1.6 Arial, sans-serif;
+}
+
+.message.success {
   display: block;
-  margin-top: 25px;
-  text-align: center;
+  background: #edf7ef;
+  color: var(--success);
+  border: 1px solid #c9e5cf;
+}
+
+.message.error {
+  display: block;
+  background: #fff0f0;
+  color: var(--error);
+  border: 1px solid #edcccc;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 22px;
   color: var(--accent-dark);
   text-decoration: none;
+  font-size: 14px;
 }
 
 .back-link:hover {
   text-decoration: underline;
 }
 
-footer {
-  padding: 25px 15px;
-  border-top: 1px solid var(--border);
+.site-footer {
+  margin-top: 24px;
   text-align: center;
   color: var(--muted);
   font-size: 12px;
 }
 
 @media (max-width: 620px) {
+  body {
+    padding: 22px 12px 35px;
+  }
+
+  .form-card {
+    padding: 22px 17px;
+    border-radius: 12px;
+  }
+
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
   }
 
   .field.full {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 
-  header {
-    padding: 20px 12px;
+  .section-title {
+    font-size: 19px;
   }
 
-  .brand {
-    font-size: 23px;
+  .section {
+    margin-bottom: 25px;
   }
 }
 </style>
 </head>
 
 <body>
+<div class="page">
 
-<header>
-  <a class="brand" href="index.html">ВАШАТА ПОКАНА</a>
-  <p>ОНЛАЙН ВИДЕО ПОКАНИ ЗА ВАШИЯ СПЕЦИАЛЕН ДЕН</p>
-</header>
-
-<main>
-  <div class="intro">
-    <h1>Нека разкажем вашата история</h1>
-    <p>
-      Попълнете данните по-долу, за да персонализираме
-      вашата видео покана. Ще се свържем с вас за потвърждение
-      на детайлите.
+  <header class="site-header">
+    <p class="brand">ВАШАТА ПОКАНА</p>
+    <h1>Да създадем вашата покана</h1>
+    <p class="intro">
+      Попълнете информацията по-долу, а ние ще подготвим
+      вашата персонализирана видео покана за специалния ден.
     </p>
-  </div>
+  </header>
 
-  <div class="selected-design">
-    <span>Избраният от вас дизайн е:</span>
-    <strong id="designName">Лилава нежност</strong>
-  </div>
+  <main class="form-card">
 
-  <form id="orderForm">
-    <input type="hidden" name="Дизайн" id="designField" value="Лилава нежност">
-    <input type="hidden" name="Идентификатор на дизайна" id="designId" value="wedding-1">
+    <div id="successMessage" class="message" role="status" aria-live="polite"></div>
+    <div id="errorMessage" class="message" role="alert" aria-live="assertive"></div>
 
-    <h2 class="section-title">1. Младоженци</h2>
+    <form id="orderForm">
 
-    <div class="grid">
-      <div class="field">
-        <label for="bride">Име на булката *</label>
-        <input id="bride" name="Име на булката" required>
+      <!-- 1. ДАННИ ЗА МЛАДОЖЕНЦИТЕ -->
+      <section class="section">
+        <h2 class="section-title">1. Данни за младоженците</h2>
+
+        <div class="grid">
+
+          <div class="field">
+            <label for="bride">Име на булката *</label>
+            <input
+              id="bride"
+              name="Име на булката"
+              type="text"
+              placeholder="Напр. Мария"
+              autocomplete="given-name"
+              required>
+          </div>
+
+          <div class="field">
+            <label for="groom">Име на младоженеца *</label>
+            <input
+              id="groom"
+              name="Име на младоженеца"
+              type="text"
+              placeholder="Напр. Иван"
+              required>
+          </div>
+
+          <div class="field">
+            <label for="koum">Име на кума</label>
+            <input
+              id="koum"
+              name="Име на кума"
+              type="text"
+              placeholder="Име на кума">
+          </div>
+
+          <div class="field">
+            <label for="kouma">Име на кумата</label>
+            <input
+              id="kouma"
+              name="Име на кумата"
+              type="text"
+              placeholder="Име на кумата">
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 2. МЯСТО И ОРГАНИЗАЦИЯ -->
+      <section class="section">
+        <h2 class="section-title">2. Място и организация</h2>
+
+        <div class="grid">
+
+          <!-- ДВЕТЕ ДАТИ СА НА ЕДИН РЕД -->
+          <div class="field">
+            <label for="weddingDate">Дата на сватбата *</label>
+
+            <div class="date-control">
+              <div id="weddingDateDisplay" class="date-display placeholder">
+                дд.мм.гггг
+              </div>
+
+              <input
+                class="date-native"
+                id="weddingDatePicker"
+                type="date"
+                aria-label="Изберете дата на сватбата"
+                required>
+
+              <button
+                class="calendar-button"
+                type="button"
+                data-picker="weddingDatePicker"
+                aria-label="Отвори календара за дата на сватбата">
+                <svg viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="16" rx="2"/>
+                  <path d="M16 3v4M8 3v4M3 10h18"/>
+                </svg>
+              </button>
+            </div>
+
+            <input
+              id="weddingDate"
+              name="Дата на сватбата"
+              type="hidden"
+              required>
+          </div>
+
+          <div class="field">
+            <label for="rsvpDate">Краен срок за потвърждение</label>
+
+            <div class="date-control">
+              <div id="rsvpDateDisplay" class="date-display placeholder">
+                дд.мм.гггг
+              </div>
+
+              <input
+                class="date-native"
+                id="rsvpDatePicker"
+                type="date"
+                aria-label="Изберете краен срок за потвърждение">
+
+              <button
+                class="calendar-button"
+                type="button"
+                data-picker="rsvpDatePicker"
+                aria-label="Отвори календара за крайния срок">
+                <svg viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="16" rx="2"/>
+                  <path d="M16 3v4M8 3v4M3 10h18"/>
+                </svg>
+              </button>
+            </div>
+
+            <input
+              id="rsvpDate"
+              name="Краен срок за потвърждение"
+              type="hidden">
+          </div>
+
+          <!-- РЕСТОРАНТЪТ И ГРАДЪТ СА НА СЛЕДВАЩИЯ РЕД -->
+          <div class="field">
+            <label for="restaurant">Ресторант / място на тържеството *</label>
+            <input
+              id="restaurant"
+              name="Ресторант"
+              type="text"
+              placeholder="Напр. Резиденция Тера"
+              required>
+          </div>
+
+          <div class="field">
+            <label for="city">Град *</label>
+            <input
+              id="city"
+              name="Град"
+              type="text"
+              placeholder="Напр. София"
+              required>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3. ДОПЪЛНИТЕЛНИ РИТУАЛИ -->
+      <section class="section">
+        <h2 class="section-title">3. Допълнителни ритуали</h2>
+
+        <div class="grid">
+
+          <div class="field">
+            <label for="civilTime">Час на гражданския брак <span class="optional">(по желание)</span></label>
+            <input
+              id="civilTime"
+              name="Час на гражданския брак"
+              type="time">
+          </div>
+
+          <div class="field">
+            <label for="civilPlace">Място на гражданския брак <span class="optional">(по желание)</span></label>
+            <input
+              id="civilPlace"
+              name="Място на гражданския брак"
+              type="text"
+              placeholder="Адрес или име на мястото">
+          </div>
+
+          <div class="field">
+            <label for="churchTime">Час на църковния брак <span class="optional">(по желание)</span></label>
+            <input
+              id="churchTime"
+              name="Час на църковния брак"
+              type="time">
+          </div>
+
+          <div class="field">
+            <label for="churchPlace">Място на църковния брак <span class="optional">(по желание)</span></label>
+            <input
+              id="churchPlace"
+              name="Място на църковния брак"
+              type="text"
+              placeholder="Църква и град">
+          </div>
+
+          <div class="field">
+            <label for="welcomeTime">Час на посрещането <span class="optional">(по желание)</span></label>
+            <input
+              id="welcomeTime"
+              name="Час на посрещането"
+              type="time">
+          </div>
+
+          <div class="field">
+            <label for="welcomePlace">Място на посрещането <span class="optional">(по желание)</span></label>
+            <input
+              id="welcomePlace"
+              name="Място на посрещането"
+              type="text"
+              placeholder="Място на посрещането">
+          </div>
+
+          <div class="field">
+            <label for="dinnerTime">Час на вечерята <span class="optional">(по желание)</span></label>
+            <input
+              id="dinnerTime"
+              name="Час на вечерята"
+              type="time">
+          </div>
+
+          <div class="field">
+            <label for="dinnerPlace">Място на вечерята <span class="optional">(по желание)</span></label>
+            <input
+              id="dinnerPlace"
+              name="Място на вечерята"
+              type="text"
+              placeholder="Ресторант или адрес">
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4. КОНТАКТИ -->
+      <section class="section">
+        <h2 class="section-title">4. Данни за контакт</h2>
+
+        <div class="grid">
+
+          <div class="field">
+            <label for="contactName">Име за контакт *</label>
+            <input
+              id="contactName"
+              name="Име за контакт"
+              type="text"
+              placeholder="Вашето име"
+              autocomplete="name"
+              required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Телефон *</label>
+            <input
+              id="phone"
+              name="Телефон"
+              type="tel"
+              placeholder="08..."
+              autocomplete="tel"
+              required>
+          </div>
+
+          <div class="field full">
+            <label for="email">Имейл адрес *</label>
+            <input
+              id="email"
+              name="Имейл"
+              type="email"
+              placeholder="name@example.com"
+              autocomplete="email"
+              required>
+          </div>
+
+          <div class="field full">
+            <label for="wishes">Допълнителни коментари <span class="optional">(по желание)</span></label>
+            <textarea
+              id="wishes"
+              name="Допълнителни коментари"
+              placeholder="Ако имате уточнения към поканата, напишете ги тук."></textarea>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ИНФОРМАЦИЯ ЗА ИЗБРАНИЯ ДИЗАЙН -->
+      <input type="hidden" id="designId" name="Идентификатор на дизайна">
+      <input type="hidden" id="designName" name="Дизайн">
+
+      <div class="submit-area">
+        <button class="submit-button" id="submitButton" type="submit">
+          ИЗПРАТИ ПОРЪЧКАТА
+        </button>
+
+        <p class="privacy-note">
+          След изпращане ще получим информацията за вашата поръчка
+          и ще се свържем с вас за уточненията.
+        </p>
       </div>
 
-      <div class="field">
-        <label for="groom">Име на младоженеца *</label>
-        <input id="groom" name="Име на младоженеца" required>
-      </div>
+    </form>
 
-      <div class="field">
-        <label for="kouma">Име на кумата *</label>
-        <input id="kouma" name="Име на кумата" required>
-      </div>
-
-      <div class="field">
-        <label for="koum">Име на кума *</label>
-        <input id="koum" name="Име на кума" required>
-      </div>
-      
-<h2 class="section-title">2. Място и организация</h2>
-
-<div class="grid">
-  <div class="field">
-    <label for="weddingDatePicker">Дата на сватбата *</label>
-
-    <div class="date-control">
-      <div class="date-display placeholder" id="weddingDateDisplay">
-        Изберете дата
-      </div>
-
-      <input
-        class="date-native"
-        type="date"
-        id="weddingDatePicker"
-        required
-        aria-label="Дата на сватбата"
-      >
-
-      <button
-        class="calendar-button"
-        type="button"
-        data-calendar="weddingDatePicker"
-        aria-label="Отвори календара за дата на сватбата"
-        title="Избери дата"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-             aria-hidden="true">
-          <rect x="3" y="5" width="18" height="16" rx="2"></rect>
-          <path d="M16 3v4M8 3v4M3 10h18"></path>
-          <path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"></path>
-        </svg>
-      </button>
+    <div style="text-align:center">
+      <a class="back-link" href="index.html">← Обратно към дизайните</a>
     </div>
 
-    <input type="hidden" name="Дата на сватбата" id="weddingDate">
-  </div>
+  </main>
 
-  <div class="field">
-    <label for="rsvpPicker">Краен срок за потвърждение *</label>
+  <footer class="site-footer">
+    ВАШАТА ПОКАНА · Онлайн покани за специалните моменти
+  </footer>
 
-    <div class="date-control">
-      <div class="date-display placeholder" id="rsvpDisplay">
-        Изберете дата
-      </div>
-
-      <input
-        class="date-native"
-        type="date"
-        id="rsvpPicker"
-        required
-        aria-label="Краен срок за потвърждение"
-      >
-
-      <button
-        class="calendar-button"
-        type="button"
-        data-calendar="rsvpPicker"
-        aria-label="Отвори календара за крайния срок"
-        title="Избери дата"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-             aria-hidden="true">
-          <rect x="3" y="5" width="18" height="16" rx="2"></rect>
-          <path d="M16 3v4M8 3v4M3 10h18"></path>
-          <path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"></path>
-        </svg>
-      </button>
-    </div>
-
-    <input type="hidden" name="Краен срок за потвърждение" id="rsvp">
-  </div>
-
-  <div class="field">
-    <label for="restaurant">Ресторант / място на тържеството *</label>
-    <input id="restaurant" name="Ресторант" required>
-  </div>
-
-  <div class="field">
-    <label for="city">Град *</label>
-    <input id="city" name="Град" required>
-  </div>
 </div>
 
-    <h2 class="section-title">3. Допълнителни ритуали</h2>
-    <p class="optional">
-      Попълнете само тези части, които желаете да присъстват във вашата покана.
-    </p>
-
-    <div class="grid">
-      <div class="field">
-        <label for="churchTime">Църковен ритуал – час <span class="optional">(по желание)</span></label>
-        <input id="churchTime" name="Църковен ритуал - час" type="time">
-      </div>
-
-      <div class="field">
-        <label for="churchPlace">Църковен ритуал – място <span class="optional">(по желание)</span></label>
-        <input id="churchPlace" name="Църковен ритуал - място">
-      </div>
-
-      <div class="field">
-        <label for="civilTime">Граждански ритуал – час <span class="optional">(по желание)</span></label>
-        <input id="civilTime" name="Граждански ритуал - час" type="time">
-      </div>
-
-      <div class="field">
-        <label for="civilPlace">Граждански ритуал – място <span class="optional">(по желание)</span></label>
-        <input id="civilPlace" name="Граждански ритуал - място">
-      </div>
-
-      <div class="field">
-        <label for="welcomeTime">Посрещане на гости – час <span class="optional">(по желание)</span></label>
-        <input id="welcomeTime" name="Посрещане на гости - час" type="time">
-      </div>
-
-      <div class="field">
-        <label for="welcomePlace">Посрещане на гости – място <span class="optional">(по желание)</span></label>
-        <input id="welcomePlace" name="Посрещане на гости - място">
-      </div>
-
-      <div class="field">
-        <label for="dinnerTime">Начало на тържеството – час <span class="optional">(по желание)</span></label>
-        <input id="dinnerTime" name="Начало на тържеството - час" type="time">
-      </div>
-
-      <div class="field">
-        <label for="dinnerPlace">Начало на тържеството – място <span class="optional">(по желание)</span></label>
-        <input id="dinnerPlace" name="Начало на тържеството - място">
-      </div>
-    </div>
-
-    <h2 class="section-title">4. Данни за връзка</h2>
-
-    <div class="grid">
-      <div class="field">
-        <label for="contactName">Вашето име *</label>
-        <input id="contactName" name="Лице за контакт" required>
-      </div>
-
-      <div class="field">
-        <label for="email">Имейл адрес *</label>
-        <input id="email" name="Имейл" type="email" required>
-      </div>
-
-      <div class="field full">
-        <label for="phone">Телефон *</label>
-        <input id="phone" name="Телефон" type="tel" required>
-      </div>
-
-      <div class="field full">
-        <label for="wishes">Допълнителни желания <span class="optional">(по желание)</span></label>
-        <textarea id="wishes" name="Допълнителни желания"
-          placeholder="Имате ли уточнения или специални желания за вашата покана?"></textarea>
-      </div>
-    </div>
-
-    <button class="submit-button" id="submitButton" type="submit">
-      ИЗПРАТИ ПОРЪЧКА
-    </button>
-
-    <div id="status" class="status" role="status" aria-live="polite"></div>
-
-    <p class="privacy-note">
-      Изпращайки формуляра, предоставяте данните си с цел обработка на поръчката.
-    </p>
-  </form>
-
-  <a class="back-link" href="designs.html">← Обратно към дизайните</a>
-</main>
-
-<footer>
-  ВАШАТА ПОКАНА · Онлайн видео покани за специалните моменти
-</footer>
-
+<!-- Скрит формуляр за изпращане към Google Apps Script -->
 <iframe
   name="submissionFrame"
   id="submissionFrame"
-  title="Изпращане на поръчката"
-  style="display:none"
-></iframe>
+  title="Изпращане на поръчка"
+  style="display:none">
+</iframe>
 
-<form id="transportForm" method="POST" target="submissionFrame" style="display:none">
+<form
+  id="transportForm"
+  method="POST"
+  target="submissionFrame"
+  style="display:none">
+
   <input type="hidden" name="payload" id="transportPayload">
 </form>
 
@@ -591,172 +703,201 @@ footer {
   };
 
   const params = new URLSearchParams(window.location.search);
-  const requestedDesign = params.get("design") || "wedding-1";
-  const actualDesignId = designs[requestedDesign] ? requestedDesign : "wedding-1";
-  const designName = designs[actualDesignId];
+  const requestedDesign = params.get("design") || "purple-white-wedding";
+  const designName = designs[requestedDesign] || designs["purple-white-wedding"];
+  const designId = designs[requestedDesign] ? requestedDesign : "purple-white-wedding";
 
-  document.getElementById("designName").textContent = designName;
-  document.getElementById("designField").value = designName;
-  document.getElementById("designId").value = actualDesignId;
+  document.getElementById("designId").value = designId;
+  document.getElementById("designName").value = designName;
 
-  const orderForm = document.getElementById("orderForm");
-  const transportForm = document.getElementById("transportForm");
-  const transportPayload = document.getElementById("transportPayload");
-  const submitButton = document.getElementById("submitButton");
-  const statusBox = document.getElementById("status");
-  const frame = document.getElementById("submissionFrame");
+  function formatDate(value) {
+    if (!value) return "";
 
-  function formatDateBG(isoDate) {
-    if (!isoDate) return "";
-
-    const parts = isoDate.split("-");
+    const parts = value.split("-");
     if (parts.length !== 3) return "";
 
-    return parts[2] + "/" + parts[1] + "/" + parts[0];
+    return parts[2] + "." + parts[1] + "." + parts[0];
   }
 
   function setupDatePicker(pickerId, displayId, hiddenId) {
     const picker = document.getElementById(pickerId);
     const display = document.getElementById(displayId);
     const hidden = document.getElementById(hiddenId);
-    const calendarButton = document.querySelector(
-      '[data-calendar="' + pickerId + '"]'
-    );
 
-    function updateDisplay() {
-      const formatted = formatDateBG(picker.value);
-      display.textContent = formatted || "Изберете дата";
-      display.classList.toggle("placeholder", !formatted);
+    function updateDate() {
       hidden.value = picker.value || "";
+
+      if (picker.value) {
+        display.textContent = formatDate(picker.value);
+        display.classList.remove("placeholder");
+      } else {
+        display.textContent = "дд.мм.гггг";
+        display.classList.add("placeholder");
+      }
     }
 
-    picker.addEventListener("change", updateDisplay);
-    picker.addEventListener("input", updateDisplay);
+    picker.addEventListener("change", updateDate);
+    picker.addEventListener("input", updateDate);
 
-    calendarButton.addEventListener("click", function () {
-      if (typeof picker.showPicker === "function") {
-        try {
-          picker.showPicker();
-          return;
-        } catch (error) {
-          // Резервен вариант за браузъри, които блокират showPicker().
-        }
-      }
-
-      picker.focus();
-      picker.click();
-    });
-
-    updateDisplay();
-
-    return {
-      picker: picker,
-      hidden: hidden,
-      updateDisplay: updateDisplay
-    };
+    updateDate();
   }
 
-  const weddingDateControl = setupDatePicker(
-    "weddingDatePicker",
-    "weddingDateDisplay",
-    "weddingDate"
-  );
+  setupDatePicker("weddingDatePicker", "weddingDateDisplay", "weddingDate");
+  setupDatePicker("rsvpDatePicker", "rsvpDateDisplay", "rsvpDate");
 
-  const rsvpControl = setupDatePicker(
-    "rsvpPicker",
-    "rsvpDisplay",
-    "rsvp"
-  );
+  document.querySelectorAll("[data-picker]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const picker = document.getElementById(button.dataset.picker);
+
+      if (!picker) return;
+
+      try {
+        if (typeof picker.showPicker === "function") {
+          picker.showPicker();
+        } else {
+          picker.focus();
+          picker.click();
+        }
+      } catch (error) {
+        picker.focus();
+        picker.click();
+      }
+    });
+  });
+
+  const orderForm = document.getElementById("orderForm");
+  const transportForm = document.getElementById("transportForm");
+  const transportPayload = document.getElementById("transportPayload");
+  const submitButton = document.getElementById("submitButton");
+  const successMessage = document.getElementById("successMessage");
+  const errorMessage = document.getElementById("errorMessage");
+  const submissionFrame = document.getElementById("submissionFrame");
 
   let submissionPending = false;
-  let submissionTimeout;
+  let submissionTimer = null;
 
-  frame.addEventListener("load", function () {
-    if (!submissionPending) return;
+  function hideMessages() {
+    successMessage.className = "message";
+    successMessage.textContent = "";
+    errorMessage.className = "message";
+    errorMessage.textContent = "";
+  }
 
-    submissionPending = false;
-    window.clearTimeout(submissionTimeout);
+  function showError(message) {
+    errorMessage.className = "message error";
+    errorMessage.textContent = message;
+    errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function showSuccess() {
+    successMessage.className = "message success";
+    successMessage.textContent =
+      "Благодарим Ви! Поръчката е изпратена. Ще се свържем с Вас за следващите стъпки.";
+
+    errorMessage.className = "message";
+    errorMessage.textContent = "";
 
     submitButton.disabled = false;
-    submitButton.textContent = "ИЗПРАТИ ПОРЪЧКА";
+    submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
 
-    statusBox.className = "status success";
-    statusBox.textContent =
-      "Поръчката беше изпратена. Ще се свържем с вас за потвърждение на детайлите.";
+    submissionPending = false;
+
+    if (submissionTimer) {
+      clearTimeout(submissionTimer);
+      submissionTimer = null;
+    }
 
     orderForm.reset();
-    weddingDateControl.updateDisplay();
-    rsvpControl.updateDisplay();
+
+    document.getElementById("designId").value = designId;
+    document.getElementById("designName").value = designName;
+
+    setupDatePicker("weddingDatePicker", "weddingDateDisplay", "weddingDate");
+    setupDatePicker("rsvpDatePicker", "rsvpDateDisplay", "rsvpDate");
+
+    successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  submissionFrame.addEventListener("load", function () {
+    if (!submissionPending) return;
+
+    /*
+      Apps Script отговаря през скрития iframe.
+      При успешно приключване на заявката се показва съобщение.
+    */
+    showSuccess();
   });
 
   orderForm.addEventListener("submit", function (event) {
     event.preventDefault();
-
-    statusBox.className = "status";
-    statusBox.textContent = "";
+    hideMessages();
 
     if (!orderForm.reportValidity()) return;
 
-    weddingDateControl.updateDisplay();
-    rsvpControl.updateDisplay();
-
-    const weddingDate = weddingDateControl.picker.value;
-    const rsvpDate = rsvpControl.picker.value;
+    const weddingDate = document.getElementById("weddingDate").value;
+    const rsvpDate = document.getElementById("rsvpDate").value;
 
     if (!weddingDate) {
-      statusBox.className = "status error";
-      statusBox.textContent = "Моля, изберете дата на сватбата.";
-      weddingDateControl.picker.focus();
+      showError("Моля, изберете дата на сватбата.");
       return;
     }
 
-    if (!rsvpDate) {
-      statusBox.className = "status error";
-      statusBox.textContent = "Моля, изберете краен срок за потвърждение.";
-      rsvpControl.picker.focus();
-      return;
-    }
-
-    if (rsvpDate > weddingDate) {
-      statusBox.className = "status error";
-      statusBox.textContent =
-        "Крайният срок за потвърждение не може да бъде след датата на сватбата.";
-      rsvpControl.picker.focus();
+    if (rsvpDate && rsvpDate > weddingDate) {
+      showError("Крайният срок за потвърждение не може да бъде след датата на сватбата.");
       return;
     }
 
     const formData = new FormData(orderForm);
-    const order = {};
+    const payload = {};
 
     formData.forEach(function (value, key) {
-      order[key] = value;
+      payload[key] = String(value).trim();
     });
 
-    order["Дата на сватбата"] = weddingDate;
-    order["Краен срок за потвърждение"] = rsvpDate;
-    order["Дизайн"] = designName;
-    order["Идентификатор на дизайна"] = actualDesignId;
+    payload["Източник"] = "Онлайн покани - Вашата покана";
+    payload["Дизайн"] = designName;
+    payload["Идентификатор на дизайна"] = designId;
 
-    transportPayload.value = JSON.stringify(order);
+    /*
+      Датите се изпращат като ISO стойности YYYY-MM-DD,
+      за да могат да бъдат записани правилно в Google Sheets.
+    */
+    payload["Дата на сватбата"] = weddingDate;
+    payload["Краен срок за потвърждение"] = rsvpDate;
+
     transportForm.action = SCRIPT_URL;
+    transportPayload.value = JSON.stringify(payload);
 
+    submissionPending = true;
     submitButton.disabled = true;
     submitButton.textContent = "ИЗПРАЩАНЕ...";
 
-    submissionPending = true;
-    transportForm.submit();
-
-    submissionTimeout = window.setTimeout(function () {
+    submissionTimer = setTimeout(function () {
       if (!submissionPending) return;
 
       submissionPending = false;
       submitButton.disabled = false;
-      submitButton.textContent = "ИЗПРАТИ ПОРЪЧКА";
+      submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
 
-      statusBox.className = "status error";
-      statusBox.textContent =
-        "Моля, опитайте отново";
+      showError(
+        "Не успяхме да потвърдим изпращането. Моля, проверете връзката си и опитайте отново. Ако проблемът продължи, свържете се с нас."
+      );
     }, 20000);
+
+    try {
+      transportForm.submit();
+    } catch (error) {
+      submissionPending = false;
+      submitButton.disabled = false;
+      submitButton.textContent = "ИЗПРАТИ ПОРЪЧКАТА";
+
+      if (submissionTimer) {
+        clearTimeout(submissionTimer);
+        submissionTimer = null;
+      }
+
+      showError("Възникна проблем при изпращането. Моля, опитайте отново.");
+    }
   });
 })();
 </script>
