@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -95,7 +96,9 @@ h1 {
   font-weight: normal;
 }
 
-form {
+form#orderForm {
+  display: block;
+  width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -103,8 +106,12 @@ form {
   box-shadow: 0 8px 30px rgba(70, 61, 53, 0.05);
 }
 
+/* Заглавията винаги са на цял ред. */
 .section-title {
-  margin: 27px 0 16px;
+  display: block;
+  width: 100%;
+  clear: both;
+  margin: 30px 0 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
   color: var(--accent-dark);
@@ -116,13 +123,16 @@ form {
   margin-top: 0;
 }
 
+/* Всяка група полета има собствена решетка. */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 17px 20px;
+  width: 100%;
 }
 
 .field {
+  display: block;
   min-width: 0;
 }
 
@@ -316,7 +326,7 @@ footer {
   }
 
   .field.full {
-    grid-column: auto;
+    grid-column: 1 / -1;
   }
 
   header {
@@ -379,23 +389,10 @@ footer {
         <input id="koum" name="Име на кума" required>
       </div>
 
-     
-    <h2 class="section-title">2. Място и организация</h2>
-
-      <div class="grid">
-        <div class="field">
-          <label for="restaurant">Ресторант / място на тържеството *</label>
-          <input id="restaurant" name="Ресторант" required>
-        </div>
-
-        <div class="field">
-          <label for="city">Град *</label>
-          <input id="city" name="Град" required>
-        </div>
-     <div class="field full">
+      <div class="field full">
         <label for="weddingDatePicker">Дата на сватбата *</label>
 
-        <div class="date-control date-picker">
+        <div class="date-control">
           <div class="date-display placeholder" id="weddingDateDisplay">
             Изберете дата
           </div>
@@ -425,15 +422,28 @@ footer {
           </button>
         </div>
 
-          <input type="hidden" name="Дата на сватбата" id="weddingDate">
-          <div class="date-help">Натиснете полето или иконата, за да изберете дата.</div>
-        </div>
+        <input type="hidden" name="Дата на сватбата" id="weddingDate">
+        <div class="date-help">Натиснете полето или иконата, за да изберете дата.</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">2. Място и организация</h2>
+
+    <div class="grid">
+      <div class="field">
+        <label for="restaurant">Ресторант / място на тържеството *</label>
+        <input id="restaurant" name="Ресторант" required>
+      </div>
+
+      <div class="field">
+        <label for="city">Град *</label>
+        <input id="city" name="Град" required>
       </div>
 
       <div class="field full">
         <label for="rsvpPicker">Краен срок за потвърждение от гостите *</label>
 
-        <div class="date-control date-picker">
+        <div class="date-control">
           <div class="date-display placeholder" id="rsvpDisplay">
             Изберете дата
           </div>
@@ -564,8 +574,7 @@ footer {
   style="display:none"
 ></iframe>
 
-<form id="transportForm" method="POST" target="submissionFrame"
-      style="display:none">
+<form id="transportForm" method="POST" target="submissionFrame" style="display:none">
   <input type="hidden" name="payload" id="transportPayload">
 </form>
 
@@ -573,7 +582,6 @@ footer {
 (function () {
   "use strict";
 
-  // Запазваме адреса на работещото Apps Script приложение.
   const SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbyZKiyXPFD88z4upRDsK8lbaQO7gASmoWIuSPA44tznhRVmw3_Qc6LR5yGin9HQn8_F/exec";
 
@@ -585,11 +593,9 @@ footer {
   };
 
   const params = new URLSearchParams(window.location.search);
-  const designIdFromUrl = params.get("design") || "wedding-1";
-  const designName = designs[designIdFromUrl] || designs["wedding-1"];
-  const actualDesignId = designs[designIdFromUrl]
-    ? designIdFromUrl
-    : "wedding-1";
+  const requestedDesign = params.get("design") || "wedding-1";
+  const actualDesignId = designs[requestedDesign] ? requestedDesign : "wedding-1";
+  const designName = designs[actualDesignId];
 
   document.getElementById("designName").textContent = designName;
   document.getElementById("designField").value = designName;
@@ -600,6 +606,7 @@ footer {
   const transportPayload = document.getElementById("transportPayload");
   const submitButton = document.getElementById("submitButton");
   const statusBox = document.getElementById("status");
+  const frame = document.getElementById("submissionFrame");
 
   function formatDateBG(isoDate) {
     if (!isoDate) return "";
@@ -620,25 +627,21 @@ footer {
 
     function updateDisplay() {
       const formatted = formatDateBG(picker.value);
-
       display.textContent = formatted || "Изберете дата";
       display.classList.toggle("placeholder", !formatted);
-
-      // Запазваме ISO формата за Apps Script и Google Sheets.
       hidden.value = picker.value || "";
     }
 
     picker.addEventListener("change", updateDisplay);
     picker.addEventListener("input", updateDisplay);
 
-    // Отваряне на календара от отделната икона.
     calendarButton.addEventListener("click", function () {
       if (typeof picker.showPicker === "function") {
         try {
           picker.showPicker();
           return;
         } catch (error) {
-          // Използваме резервен вариант за браузъри с ограничения.
+          // Резервен вариант за браузъри, които блокират showPicker().
         }
       }
 
@@ -667,48 +670,60 @@ footer {
     "rsvp"
   );
 
+  let submissionPending = false;
+  let submissionTimeout;
+
+  frame.addEventListener("load", function () {
+    if (!submissionPending) return;
+
+    submissionPending = false;
+    window.clearTimeout(submissionTimeout);
+
+    submitButton.disabled = false;
+    submitButton.textContent = "ИЗПРАТИ ПОРЪЧКА";
+
+    statusBox.className = "status success";
+    statusBox.textContent =
+      "Поръчката беше изпратена. Ще се свържем с вас за потвърждение на детайлите.";
+
+    orderForm.reset();
+    weddingDateControl.updateDisplay();
+    rsvpControl.updateDisplay();
+  });
+
   orderForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     statusBox.className = "status";
     statusBox.textContent = "";
 
-    if (!orderForm.reportValidity()) {
-      return;
-    }
+    if (!orderForm.reportValidity()) return;
 
     weddingDateControl.updateDisplay();
     rsvpControl.updateDisplay();
 
-    if (!weddingDateControl.picker.value) {
+    const weddingDate = weddingDateControl.picker.value;
+    const rsvpDate = rsvpControl.picker.value;
+
+    if (!weddingDate) {
       statusBox.className = "status error";
       statusBox.textContent = "Моля, изберете дата на сватбата.";
       weddingDateControl.picker.focus();
       return;
     }
 
-    if (!rsvpControl.picker.value) {
+    if (!rsvpDate) {
       statusBox.className = "status error";
       statusBox.textContent = "Моля, изберете краен срок за потвърждение.";
       rsvpControl.picker.focus();
       return;
     }
 
-    if (rsvpControl.picker.value > weddingDateControl.picker.value) {
+    if (rsvpDate > weddingDate) {
       statusBox.className = "status error";
       statusBox.textContent =
         "Крайният срок за потвърждение не може да бъде след датата на сватбата.";
       rsvpControl.picker.focus();
-      return;
-    }
-
-    if (
-      !SCRIPT_URL.includes("/macros/s/") ||
-      !SCRIPT_URL.endsWith("/exec")
-    ) {
-      statusBox.className = "status error";
-      statusBox.textContent =
-        "Адресът за изпращане на поръчката не е настроен правилно.";
       return;
     }
 
@@ -719,9 +734,8 @@ footer {
       order[key] = value;
     });
 
-    // Изрично задаваме датите във формат YYYY-MM-DD.
-    order["Дата на сватбата"] = weddingDateControl.picker.value;
-    order["Краен срок за потвърждение"] = rsvpControl.picker.value;
+    order["Дата на сватбата"] = weddingDate;
+    order["Краен срок за потвърждение"] = rsvpDate;
     order["Дизайн"] = designName;
     order["Идентификатор на дизайна"] = actualDesignId;
 
@@ -730,59 +744,21 @@ footer {
 
     submitButton.disabled = true;
     submitButton.textContent = "ИЗПРАЩАНЕ...";
-    statusBox.className = "status";
-    statusBox.textContent = "";
 
-    let submissionStarted = false;
+    submissionPending = true;
+    transportForm.submit();
 
-    function restoreButton() {
+    submissionTimeout = window.setTimeout(function () {
+      if (!submissionPending) return;
+
+      submissionPending = false;
       submitButton.disabled = false;
       submitButton.textContent = "ИЗПРАТИ ПОРЪЧКА";
-    }
-
-    const submissionTimeout = window.setTimeout(function () {
-      if (!submissionStarted) {
-        restoreButton();
-        statusBox.className = "status error";
-        statusBox.textContent =
-          "Не успяхме да потвърдим изпращането. Моля, опитайте отново.";
-      }
-    }, 20000);
-
-    const frame = document.getElementById("submissionFrame");
-
-    function onFrameLoad() {
-      if (!submissionStarted) return;
-
-      window.clearTimeout(submissionTimeout);
-      restoreButton();
-
-      statusBox.className = "status success";
-      statusBox.textContent =
-        "Поръчката беше изпратена. Ще се свържем с вас за потвърждение на детайлите.";
-
-      orderForm.reset();
-
-      weddingDateControl.updateDisplay();
-      rsvpControl.updateDisplay();
-
-      frame.removeEventListener("load", onFrameLoad);
-    }
-
-    frame.addEventListener("load", onFrameLoad);
-
-    try {
-      submissionStarted = true;
-      transportForm.submit();
-    } catch (error) {
-      window.clearTimeout(submissionTimeout);
-      frame.removeEventListener("load", onFrameLoad);
-      restoreButton();
 
       statusBox.className = "status error";
       statusBox.textContent =
-        "Възникна проблем при изпращането. Моля, опитайте отново.";
-    }
+        "Моля, опитайте отново";
+    }, 20000);
   });
 })();
 </script>
