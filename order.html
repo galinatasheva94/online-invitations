@@ -389,93 +389,91 @@ footer {
         <input id="koum" name="Име на кума" required>
       </div>
       
-    <h2 class="section-title">2. Място и организация</h2>
-<div class="field full">
-      
-  <label for="weddingDatePicker">Дата на сватбата *</label>
+<h2 class="section-title">2. Място и организация</h2>
 
-        <div class="date-control">
-          <div class="date-display placeholder" id="weddingDateDisplay">
-            Изберете дата
-          </div>
+<div class="grid">
+  <div class="field">
+    <label for="weddingDatePicker">Дата на сватбата *</label>
 
-          <input
-            class="date-native"
-            type="date"
-            id="weddingDatePicker"
-            required
-            aria-label="Дата на сватбата"
-          >
-
-          <button
-            class="calendar-button"
-            type="button"
-            data-calendar="weddingDatePicker"
-            aria-label="Отвори календара за дата на сватбата"
-            title="Избери дата"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true">
-              <rect x="3" y="5" width="18" height="16" rx="2"></rect>
-              <path d="M16 3v4M8 3v4M3 10h18"></path>
-              <path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"></path>
-            </svg>
-          </button>
-        </div>
-
-        <input type="hidden" name="Дата на сватбата" id="weddingDate">
-        <div class="date-help">Натиснете полето или иконата, за да изберете дата.</div>
+    <div class="date-control">
+      <div class="date-display placeholder" id="weddingDateDisplay">
+        Изберете дата
       </div>
+
+      <input
+        class="date-native"
+        type="date"
+        id="weddingDatePicker"
+        required
+        aria-label="Дата на сватбата"
+      >
+
+      <button
+        class="calendar-button"
+        type="button"
+        data-calendar="weddingDatePicker"
+        aria-label="Отвори календара за дата на сватбата"
+        title="Избери дата"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+          <path d="M16 3v4M8 3v4M3 10h18"></path>
+          <path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"></path>
+        </svg>
+      </button>
     </div>
 
-    <div class="grid">
-      <div class="field">
-        <label for="restaurant">Ресторант / място на тържеството *</label>
-        <input id="restaurant" name="Ресторант" required>
+    <input type="hidden" name="Дата на сватбата" id="weddingDate">
+  </div>
+
+  <div class="field">
+    <label for="rsvpPicker">Краен срок за потвърждение *</label>
+
+    <div class="date-control">
+      <div class="date-display placeholder" id="rsvpDisplay">
+        Изберете дата
       </div>
 
-      <div class="field">
-        <label for="city">Град *</label>
-        <input id="city" name="Град" required>
-      </div>
+      <input
+        class="date-native"
+        type="date"
+        id="rsvpPicker"
+        required
+        aria-label="Краен срок за потвърждение"
+      >
 
-      <div class="field full">
-        <label for="rsvpPicker">Краен срок за потвърждение от гостите *</label>
-
-        <div class="date-control">
-          <div class="date-display placeholder" id="rsvpDisplay">
-            Изберете дата
-          </div>
-
-          <input
-            class="date-native"
-            type="date"
-            id="rsvpPicker"
-            required
-            aria-label="Краен срок за потвърждение"
-          >
-
-          <button
-            class="calendar-button"
-            type="button"
-            data-calendar="rsvpPicker"
-            aria-label="Отвори календара за крайния срок"
-            title="Избери дата"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true">
-              <rect x="3" y="5" width="18" height="16" rx="2"></rect>
-              <path d="M16 3v4M8 3v4M3 10h18"></path>
-              <path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"></path>
-            </svg>
-          </button>
-        </div>
-
-        <input type="hidden" name="Краен срок за потвърждение" id="rsvp">
-      </div>
+      <button
+        class="calendar-button"
+        type="button"
+        data-calendar="rsvpPicker"
+        aria-label="Отвори календара за крайния срок"
+        title="Избери дата"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+          <path d="M16 3v4M8 3v4M3 10h18"></path>
+          <path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"></path>
+        </svg>
+      </button>
     </div>
+
+    <input type="hidden" name="Краен срок за потвърждение" id="rsvp">
+  </div>
+
+  <div class="field">
+    <label for="restaurant">Ресторант / място на тържеството *</label>
+    <input id="restaurant" name="Ресторант" required>
+  </div>
+
+  <div class="field">
+    <label for="city">Град *</label>
+    <input id="city" name="Град" required>
+  </div>
+</div>
 
     <h2 class="section-title">3. Допълнителни ритуали</h2>
     <p class="optional">
