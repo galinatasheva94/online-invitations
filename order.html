@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
@@ -192,9 +192,35 @@ main {
   font-size: 11px;
 }
 
+.design-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 12px 0 3px;
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 31px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.design-price-label {
+  color: var(--muted);
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.design-note-small {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
 .change-design {
   display: inline-block;
-  margin-top: 7px;
+  margin-top: 9px;
   color: var(--purple);
   font-size: 11px;
   font-weight: 700;
@@ -535,6 +561,10 @@ footer {
     font-size: 25px;
   }
 
+  .design-price {
+    font-size: 29px;
+  }
+
   .section-title {
     font-size: 25px;
   }
@@ -556,7 +586,7 @@ footer {
   <div class="header-inner">
     <a class="logo" href="index.html">Вашата покана</a>
     <nav>
-      <a href="index.html">Начало</a> 
+      <a href="index.html">Начало</a>
       <a href="index.html#how">Как работи?</a>
       <a href="designs.html#catalog">Каталог</a>
     </nav>
@@ -591,12 +621,21 @@ footer {
     <div id="selectedDesignBox" class="selected-design">
       <div class="design-symbol" aria-hidden="true">♡</div>
       <div class="design-info">
-        <p class="design-label">Избраната от вас покана</p>
+        <p class="design-label" id="selectedDesignLabel">Избраната от вас покана</p>
         <h2 id="selectedDesignName" class="design-name">Лилава нежност</h2>
-        <p class="design-note">
-          Моля, проверете дали това е дизайнът, който желаете.
+        <p class="design-price">
+          <span id="selectedDesignPrice">17 €</span>
+          <span class="design-price-label">крайна цена</span>
         </p>
-        <a class="change-design" href="designs.html">Избери друг дизайн</a>
+        <p class="design-note" id="selectedDesignNote">
+          Готов дизайн с персонализация на сватбените данни.
+        </p>
+        <p class="design-note-small" id="selectedDesignCorrections">
+          Включена 1 корекция.
+        </p>
+        <a class="change-design" id="changeDesignLink" href="designs.html">
+          Избери друг дизайн
+        </a>
       </div>
     </div>
 
@@ -769,6 +808,8 @@ footer {
 
       <input type="hidden" id="designId" name="Идентификатор на дизайна">
       <input type="hidden" id="designName" name="Дизайн">
+      <input type="hidden" id="orderType" name="Тип поръчка">
+      <input type="hidden" id="orderPrice" name="Цена">
 
       <div class="submit-area">
         <button class="submit-button" id="submitButton" type="submit">
@@ -814,21 +855,60 @@ footer {
     "purple-white-wedding": "Лилава нежност"
   };
 
+  const prices = {
+    "wedding-1": 17,
+    "wedding-2": 17,
+    "wedding-3": 17,
+    "purple-white-wedding": 17
+  };
+
   const params = new URLSearchParams(window.location.search);
+  const requestedType = params.get("type") || "standard";
+  const orderType = requestedType === "custom" ? "custom" : "standard";
+
   const requestedDesign = params.get("design") || "purple-white-wedding";
   const designId = Object.prototype.hasOwnProperty.call(designs, requestedDesign)
     ? requestedDesign
     : "purple-white-wedding";
-  const designName = designs[designId];
 
-  document.getElementById("designId").value = designId;
+  const isCustom = orderType === "custom";
+  const designName = isCustom
+    ? "Персонализирана покана"
+    : designs[designId];
+
+  const price = isCustom ? 27 : prices[designId];
+
+  document.getElementById("designId").value = isCustom ? "custom" : designId;
   document.getElementById("designName").value = designName;
-  document.getElementById("selectedDesignName").textContent = designName;
+  document.getElementById("orderType").value =
+    isCustom ? "Персонализирана покана" : "Готов дизайн";
+  document.getElementById("orderPrice").value = price + " €";
 
-  // Запазваме избрания дизайн и при връщане към каталога.
-  document.querySelectorAll(".change-design, .back-link").forEach(function (link) {
-    link.href = "designs.html?design=" + encodeURIComponent(designId);
-  });
+  document.getElementById("selectedDesignName").textContent = designName;
+  document.getElementById("selectedDesignPrice").textContent = price + " €";
+
+  if (isCustom) {
+    document.getElementById("selectedDesignLabel").textContent =
+      "Избрана услуга";
+    document.getElementById("selectedDesignNote").textContent =
+      "Изцяло нова видео покана, създадена според вашите идеи.";
+    document.getElementById("selectedDesignCorrections").textContent =
+      "Включени до 3 корекции.";
+    document.getElementById("changeDesignLink").textContent =
+      "Избери готов дизайн";
+    document.getElementById("changeDesignLink").href = "designs.html#catalog";
+  } else {
+    document.getElementById("selectedDesignLabel").textContent =
+      "Избраната от вас покана";
+    document.getElementById("selectedDesignNote").textContent =
+      "Готов дизайн с персонализация на сватбените данни.";
+    document.getElementById("selectedDesignCorrections").textContent =
+      "Включена 1 корекция.";
+    document.getElementById("changeDesignLink").href =
+      "designs.html?design=" + encodeURIComponent(designId);
+  }
+
+  document.querySelector(".back-link").href = "designs.html#catalog";
 
   const orderForm = document.getElementById("orderForm");
   const transportForm = document.getElementById("transportForm");
@@ -963,7 +1043,9 @@ footer {
 
     payload["Източник"] = "Онлайн покани - Вашата покана";
     payload["Дизайн"] = designName;
-    payload["Идентификатор на дизайна"] = designId;
+    payload["Идентификатор на дизайна"] = isCustom ? "custom" : designId;
+    payload["Тип поръчка"] = isCustom ? "Персонализирана покана" : "Готов дизайн";
+    payload["Цена"] = price + " €";
     payload["Дата на сватбата"] = weddingDate;
     payload["Краен срок за потвърждение"] = rsvpDate;
 
