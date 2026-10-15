@@ -1,820 +1,917 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Каталог с видео покани | Вашата покана</title>
-  <meta name="description" content="Изберете своята сватбена видео покана или създайте изцяло персонализиран дизайн.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --background: #FCF9FC;
-      --white: #FFFFFF;
-      --purple: #70438D;
-      --purple-dark: #503064;
-      --lavender: #F4EAF9;
-      --lavender-dark: #B89ACD;
-      --pink: #E5B5D8;
-      --text: #453B49;
-      --muted: #817585;
-      --border: #EDE3F0;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .announcement {
-      padding: 9px 15px;
-      background: var(--purple);
-      color: var(--white);
-      text-align: center;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(252, 249, 252, 0.97);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-container {
-      width: min(1200px, 92%);
-      min-height: 82px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .logo {
-      display: flex;
-      flex-direction: column;
-      color: var(--purple);
-      line-height: 1.2;
-      flex-shrink: 0;
-    }
-
-    .logo-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 31px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .logo-caption {
-      margin-top: 4px;
-      font-size: 8px;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-      gap: 28px;
-    }
-
-    nav a {
-      color: var(--text);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: color 0.2s;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: var(--purple);
-    }
-
-    .page-intro {
-      position: relative;
-      overflow: hidden;
-      padding: 76px 20px 66px;
-      background:
-        radial-gradient(ellipse at 15% 20%, rgba(229,181,216,0.27), transparent 38%),
-        radial-gradient(ellipse at 85% 75%, rgba(184,154,205,0.20), transparent 40%),
-        var(--lavender);
-      text-align: center;
-    }
-
-    .eyebrow {
-      margin: 0 0 13px;
-      color: var(--purple);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    .page-intro h1 {
-      margin: 0 auto 17px;
-      color: var(--purple-dark);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(38px, 5vw, 58px);
-      font-weight: 500;
-      line-height: 1.1;
-    }
-
-    .page-intro .intro-text {
-      max-width: 610px;
-      margin: 0 auto;
-      color: #75677C;
-      font-size: 12px;
-      line-height: 2;
-    }
-
-    .catalog-section {
-      width: min(1380px, 94%);
-      margin: 0 auto;
-      padding: 55px 0 75px;
-    }
-
-    .section-heading {
-      margin-bottom: 35px;
-      text-align: center;
-    }
-
-    .section-heading h2 {
-      margin: 0 0 9px;
-      color: var(--purple-dark);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 37px;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-    .section-heading p {
-      max-width: 620px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .design-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .design-card {
-      min-width: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      box-shadow: 0 8px 28px rgba(91, 57, 111, 0.055);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-
-    .design-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 35px rgba(91, 57, 111, 0.12);
-    }
-
-    .video-container {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      background: #EEE5F0;
-    }
-
-    .video-container video {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      cursor: pointer;
-    }
-
-    .video-play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: 2;
-      display: flex;
-      width: 58px;
-      height: 58px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 0 0 4px;
-      transform: translate(-50%, -50%);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 50%;
-      background: rgba(112, 67, 141, 0.82);
-      color: white;
-      font-size: 21px;
-      cursor: pointer;
-      transition: background 0.2s, opacity 0.2s;
-    }
-
-    .video-play-button:hover {
-      background: var(--purple-dark);
-    }
-
-    .video-container.is-playing .video-play-button {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .video-container.is-playing:hover .video-play-button {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .video-hint {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      padding: 30px 10px 12px;
-      background: linear-gradient(transparent, rgba(36, 22, 42, 0.55));
-      color: white;
-      text-align: center;
-      font-size: 9px;
-      letter-spacing: 1px;
-      pointer-events: none;
-    }
-
-    .design-info {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      align-items: center;
-      padding: 23px 15px 22px;
-      text-align: center;
-    }
-
-    .design-number {
-      margin: 0 0 6px;
-      color: var(--lavender-dark);
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .design-info h2,
-    .custom-design-card h2 {
-      margin: 0 0 9px;
-      color: var(--purple-dark);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 27px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    .design-price {
-      margin: 0 0 4px;
-      color: var(--purple);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 31px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    .design-includes {
-      margin: 0 0 17px;
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.7;
-    }
-
-    .order-button {
-      display: inline-flex;
-      min-height: 43px;
-      align-items: center;
-      justify-content: center;
-      margin-top: auto;
-      padding: 12px 17px;
-      border: 1px solid var(--purple);
-      border-radius: 2px;
-      background: var(--purple);
-      color: var(--white);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      line-height: 1.5;
-      text-align: center;
-      transition: background 0.2s, color 0.2s;
-      cursor: pointer;
-    }
-
-    .order-button:hover {
-      background: var(--purple-dark);
-      border-color: var(--purple-dark);
-    }
-
-    .custom-design-card {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100%;
-      padding: 28px 20px;
-      background: linear-gradient(150deg, #FFFFFF, #F9E8F3, #F4EAF9);
-      text-align: center;
-    }
-
-    .custom-design-symbol {
-      margin-bottom: 13px;
-      color: var(--lavender-dark);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 51px;
-      line-height: 1.2;
-    }
-
-    .custom-design-card h2 {
-      margin-bottom: 12px;
-    }
-
-    .custom-design-card .design-price {
-      margin-bottom: 12px;
-    }
-
-    .custom-design-card p:not(.design-number):not(.design-price) {
-      margin: 0 0 12px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.9;
-    }
-
-    .custom-design-card .order-button {
-      width: 100%;
-      margin-top: 8px;
-    }
-
-    .catalog-note {
-      max-width: 680px;
-      margin: 32px auto 0;
-      color: var(--muted);
-      font-size: 10px;
-      line-height: 1.9;
-      text-align: center;
-    }
-
-    .bottom-cta {
-      padding: 52px 20px;
-      background: var(--lavender);
-      text-align: center;
-    }
-
-    .bottom-cta h2 {
-      margin: 0 0 10px;
-      color: var(--purple-dark);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-    .bottom-cta p {
-      max-width: 560px;
-      margin: 0 auto 23px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.9;
-    }
-
-    footer {
-      padding: 29px 20px;
-      background: #35243F;
-      color: rgba(255,255,255,0.8);
-      text-align: center;
-    }
-
-    .footer-logo {
-      margin-bottom: 7px;
-      color: white;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 27px;
-      font-weight: 600;
-    }
-
-    footer p {
-      margin: 0;
-      font-size: 9px;
-      letter-spacing: 0.5px;
-    }
-
-    @media (max-width: 1100px) {
-      .design-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 22px;
-      }
-
-      .design-info h2,
-      .custom-design-card h2 {
-        font-size: 30px;
-      }
-
-      .custom-design-card {
-        padding: 35px 28px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      .announcement {
-        font-size: 9px;
-        letter-spacing: 1px;
-      }
-
-      .nav-container {
-        min-height: auto;
-        padding: 15px 0;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .logo {
-        align-items: center;
-      }
-
-      .logo-name {
-        font-size: 29px;
-      }
-
-      nav {
-        justify-content: center;
-        gap: 16px;
-      }
-
-      nav a {
-        font-size: 9px;
-      }
-
-      .page-intro {
-        padding: 54px 20px 47px;
-      }
-
-      .page-intro h1 {
-        font-size: 41px;
-      }
-
-      .catalog-section {
-        width: 92%;
-        padding: 42px 0 55px;
-      }
-
-      .section-heading {
-        margin-bottom: 25px;
-      }
-
-      .section-heading h2 {
-        font-size: 32px;
-      }
-
-      .design-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .design-info {
-        padding: 17px 9px;
-      }
-
-      .design-info h2,
-      .custom-design-card h2 {
-        font-size: 23px;
-      }
-
-      .design-price {
-        font-size: 28px;
-      }
-
-      .design-includes {
-        font-size: 9px;
-      }
-
-      .order-button {
-        width: 100%;
-        min-height: 42px;
-        padding: 10px 7px;
-        font-size: 8px;
-        letter-spacing: 0.5px;
-      }
-
-      .video-play-button {
-        width: 46px;
-        height: 46px;
-        font-size: 17px;
-      }
-
-      .custom-design-card {
-        padding: 20px 10px;
-      }
-
-      .custom-design-symbol {
-        font-size: 39px;
-      }
-
-      .custom-design-card p:not(.design-number):not(.design-price) {
-        font-size: 10px;
-      }
-
-      .bottom-cta h2 {
-        font-size: 31px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .design-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .design-info h2,
-      .custom-design-card h2 {
-        font-size: 28px;
-      }
-
-      .design-info {
-        padding: 22px 15px;
-      }
-
-      .custom-design-card {
-        padding: 30px 20px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог с видео покани | Вашата покана</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --lavender: #F4EAF9;
+  --lavender-dark: #DCC1EE;
+  --purple: #70438D;
+  --purple-dark: #57316F;
+  --pink: #E5B5D8;
+  --text: #493B50;
+  --muted: #806F86;
+  --border: #E8D8EF;
+  --white: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #FCF9FD;
+  color: var(--text);
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+}
+
+.announcement {
+  padding: 9px 15px;
+  background: var(--purple);
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+header {
+  background: white;
+  border-bottom: 1px solid #F0E7F4;
+}
+
+.header-inner {
+  width: min(1120px, calc(100% - 36px));
+  min-height: 83px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 31px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+nav a:hover {
+  color: var(--purple);
+}
+
+.hero {
+  padding: 54px 20px 42px;
+  background: linear-gradient(
+    135deg,
+    #F4EAF9 0%,
+    #F8EDF7 55%,
+    #FCEFF6 100%
+  );
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--purple);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+}
+
+h1 {
+  margin: 0;
+  color: var(--purple-dark);
+  font-size: clamp(38px, 5vw, 54px);
+  line-height: 1.1;
+}
+
+.hero-description {
+  max-width: 620px;
+  margin: 16px auto 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+main {
+  width: min(1180px, calc(100% - 40px));
+  margin: 42px auto 65px;
+}
+
+.catalog-intro {
+  margin-bottom: 27px;
+  text-align: center;
+}
+
+.catalog-intro h2 {
+  margin: 0 0 8px;
+  color: var(--purple-dark);
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.catalog-intro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Каталогът използва по-компактни карти */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+}
+
+.invitation-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 8px 28px rgba(112, 67, 141, .06);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.invitation-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(112, 67, 141, .12);
+}
+
+/*
+  Важно: видеото се показва изцяло.
+  object-fit: contain предотвратява изрязването на страните.
+*/
+.video-wrap {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: #F4EAF9;
+}
+
+.video-wrap video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background: #F4EAF9;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(55, 34, 65, .12);
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+
+.play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  color: var(--purple);
+  box-shadow: 0 4px 18px rgba(40,20,50,.15);
+}
+
+.play-button svg {
+  width: 21px;
+  height: 21px;
+  margin-left: 3px;
+}
+
+.video-wrap.is-playing .video-overlay {
+  opacity: 0;
+}
+
+.video-wrap.is-playing:hover .video-overlay {
+  opacity: 1;
+}
+
+.card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 19px 19px 20px;
+}
+
+.card-number {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.card-title {
+  margin: 0;
+  color: var(--purple-dark);
+  font-size: 27px;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.card-description {
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.card-bottom {
+  margin-top: auto;
+  padding-top: 19px;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.price {
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.price-note {
+  color: var(--muted);
+  font-size: 9px;
+  text-align: right;
+}
+
+.order-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 45px;
+  padding: 12px 14px;
+  border: 1px solid var(--purple);
+  border-radius: 5px;
+  background: var(--purple);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-align: center;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+
+.order-button:hover {
+  border-color: var(--purple-dark);
+  background: var(--purple-dark);
+}
+
+.custom-section {
+  margin-top: 55px;
+  padding: 34px;
+  border: 1px solid var(--lavender-dark);
+  border-radius: 15px;
+  background: linear-gradient(120deg, #F8F0FC, #FFF7FC);
+}
+
+.custom-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, .7fr);
+  align-items: center;
+  gap: 30px;
+}
+
+.custom-eyebrow {
+  margin: 0 0 7px;
+  color: var(--purple);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.custom-title {
+  margin: 0;
+  color: var(--purple-dark);
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.custom-description {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.custom-benefits {
+  margin: 12px 0 0;
+  padding-left: 19px;
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.custom-action {
+  padding: 22px;
+  border: 1px solid #E8D8EF;
+  border-radius: 11px;
+  background: rgba(255,255,255,.8);
+  text-align: center;
+}
+
+.custom-price {
+  margin: 0;
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.custom-price-note {
+  margin: 5px 0 16px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.how-section {
+  margin-top: 55px;
+  text-align: center;
+}
+
+.how-section h2 {
+  margin: 0 0 22px;
+  color: var(--purple-dark);
+  font-size: 34px;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.how-item {
+  padding: 22px 18px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: white;
+}
+
+.how-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 12px;
+  border: 1px solid var(--pink);
+  border-radius: 50%;
+  background: var(--lavender);
+  color: var(--purple);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+}
+
+.how-item h3 {
+  margin: 0 0 7px;
+  color: var(--purple-dark);
+  font-size: 23px;
+}
+
+.how-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+footer {
+  padding: 25px 15px;
+  border-top: 1px solid #EDE2F1;
+  background: white;
+  color: var(--muted);
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: .5px;
+}
+
+@media (min-width: 1200px) {
+  main {
+    width: min(1100px, calc(100% - 48px));
+  }
+
+  .catalog-grid {
+    gap: 24px;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 850px) {
+  main {
+    width: calc(100% - 32px);
+  }
+
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .custom-section {
+    padding: 25px;
+  }
+
+  .custom-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .custom-action {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .custom-price-note {
+    margin: 4px 0 0;
+  }
+
+  .custom-action .order-button {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+@media (max-width: 650px) {
+  .header-inner {
+    min-height: 72px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 0;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+
+  .hero {
+    padding: 39px 17px 34px;
+  }
+
+  main {
+    width: calc(100% - 28px);
+    margin: 30px auto 45px;
+  }
+
+  .catalog-intro h2 {
+    font-size: 30px;
+  }
+
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .invitation-card {
+    border-radius: 10px;
+  }
+
+  .card-content {
+    padding: 12px 11px 13px;
+  }
+
+  .card-title {
+    font-size: 22px;
+  }
+
+  .card-description {
+    font-size: 10px;
+    line-height: 1.55;
+  }
+
+  .price-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    font-size: 28px;
+  }
+
+  .price-note {
+    text-align: left;
+  }
+
+  .order-button {
+    min-height: 42px;
+    padding: 10px 7px;
+    font-size: 9px;
+    letter-spacing: .7px;
+  }
+
+  .play-button {
+    width: 43px;
+    height: 43px;
+  }
+
+  .play-button svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .custom-section {
+    margin-top: 35px;
+    padding: 20px 15px;
+  }
+
+  .custom-title {
+    font-size: 29px;
+  }
+
+  .custom-action {
+    display: flex;
+    flex-direction: column;
+    padding: 17px;
+  }
+
+  .custom-action .order-button {
+    width: 100%;
+  }
+
+  .how-section {
+    margin-top: 38px;
+  }
+
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  main {
+    width: calc(100% - 20px);
+  }
+
+  .catalog-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .card-content {
+    padding: 17px;
+  }
+
+  .card-title {
+    font-size: 26px;
+  }
+
+  .price-row {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .price-note {
+    text-align: right;
+  }
+
+  .order-button {
+    font-size: 10px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="announcement">
-    ВАШИЯТ СПЕЦИАЛЕН ДЕН ЗАСЛУЖАВА СПЕЦИАЛНА ПОКАНА
+<div class="announcement">
+  Онлайн покани за вашите специални моменти
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">Вашата покана</a>
+    <nav>
+      <a href="index.html">Начало</a>
+      <a href="designs.html#catalog">Каталог</a>
+      <a href="index.html#how">Как работи?</a>
+    </nav>
   </div>
+</header>
 
-  <header>
-    <div class="nav-container">
-      <a class="logo" href="index.html" aria-label="Вашата покана – начало">
-        <span class="logo-name">Вашата покана</span>
-        <span class="logo-caption">За вашите специални моменти</span>
-      </a>
+<section class="hero">
+  <p class="eyebrow">Вашият специален ден заслужава нещо красиво</p>
+  <h1>Изберете своята видео покана</h1>
+  <p class="hero-description">
+    Разгледайте готовите ни дизайни, пуснете видеото и изберете
+    поканата, която най-много ви допада. Ще персонализираме текста
+    според вашия специален ден.
+  </p>
+</section>
 
-      <nav aria-label="Основна навигация">
-        <a href="index.html">Начало</a>
-        <a href="index.html#how">Как работи?</a> 
-        <a href="designs.html#catalog" class="active">Каталог</a>
-      </nav>
+<main>
+  <section id="catalog">
+    <div class="catalog-intro">
+      <h2>Нашите видео покани</h2>
+      <p>Изберете готов дизайн или създайте изцяло нова покана по ваша идея.</p>
     </div>
-  </header>
 
-  <main>
-    <section class="page-intro">
-      <p class="eyebrow">Вашата история, разказана красиво</p>
-      <h1>Изберете своята покана</h1>
-      <p class="intro-text">
-        Всяка любовна история е различна. Изберете готов дизайн,
-        който да персонализираме за вас, или създайте покана
-        изцяло по ваша идея.
-      </p>
-    </section>
+    <div class="catalog-grid">
 
-    <section class="catalog-section" id="catalog">
-      <div class="section-heading">
-        <p class="eyebrow">Колекцията</p>
-        <h2>Нашите видео покани</h2>
-        <p>
-          Разгледайте предложенията, пуснете видеото и изберете
-          поканата, която най-много ви подхожда.
+      <!-- Дизайн 1 -->
+      <article class="invitation-card">
+        <div class="video-wrap">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="images/Wedding%20%231.jpg"
+            aria-label="Преглед на видео покана Лилава нежност"
+          >
+            <source src="videos/Wedding%20%231.mp4" type="video/mp4">
+            Вашият браузър не поддържа възпроизвеждане на видео.
+          </video>
+          <div class="video-overlay" aria-hidden="true">
+            <div class="play-button">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <p class="card-number">ДИЗАЙН 01</p>
+          <h3 class="card-title">Лилава нежност</h3>
+          <p class="card-description">
+            Нежна и романтична видео покана с персонализирани данни
+            за вашия сватбен ден.
+          </p>
+          <div class="card-bottom">
+            <div class="price-row">
+              <span class="price">17 €</span>
+              <span class="price-note">Включена 1 корекция</span>
+            </div>
+            <a class="order-button"
+              href="order.html?type=standard&amp;design=wedding-1">
+              ПОРЪЧАЙ
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Дизайн 2 -->
+      <article class="invitation-card">
+        <div class="video-wrap">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="images/Wedding%20%232.jpg"
+            aria-label="Преглед на видео покана Романтична история"
+          >
+            <source src="videos/Wedding%20%232.mp4" type="video/mp4">
+            Вашият браузър не поддържа възпроизвеждане на видео.
+          </video>
+          <div class="video-overlay" aria-hidden="true">
+            <div class="play-button">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <p class="card-number">ДИЗАЙН 02</p>
+          <h3 class="card-title">Романтична история</h3>
+          <p class="card-description">
+            Елегантна видео покана за двойки, които обичат нежните
+            детайли и романтичното настроение.
+          </p>
+          <div class="card-bottom">
+            <div class="price-row">
+              <span class="price">17 €</span>
+              <span class="price-note">Включена 1 корекция</span>
+            </div>
+            <a class="order-button"
+              href="order.html?type=standard&amp;design=wedding-2">
+              ПОРЪЧАЙ
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Дизайн 3 -->
+      <article class="invitation-card">
+        <div class="video-wrap">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="images/Wedding%20%233.jpg"
+            aria-label="Преглед на видео покана Нашият специален ден"
+          >
+            <source src="videos/Wedding%20%233.mp4" type="video/mp4">
+            Вашият браузър не поддържа възпроизвеждане на видео.
+          </video>
+          <div class="video-overlay" aria-hidden="true">
+            <div class="play-button">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <p class="card-number">ДИЗАЙН 03</p>
+          <h3 class="card-title">Нашият специален ден</h3>
+          <p class="card-description">
+            Стилна видео покана, която превръща важните подробности
+            за сватбата ви в красиво преживяване.
+          </p>
+          <div class="card-bottom">
+            <div class="price-row">
+              <span class="price">17 €</span>
+              <span class="price-note">Включена 1 корекция</span>
+            </div>
+            <a class="order-button"
+              href="order.html?type=standard&amp;design=wedding-3">
+              ПОРЪЧАЙ
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="custom-section">
+    <div class="custom-inner">
+      <div>
+        <p class="custom-eyebrow">За вашите специални идеи</p>
+        <h2 class="custom-title">Персонализирана покана</h2>
+        <p class="custom-description">
+          Мечтаете за нещо различно от готовите дизайни?
+          Ще създадем изцяло нова видео покана според вашите идеи,
+          предпочитания и история.
         </p>
+        <ul class="custom-benefits">
+          <li>Индивидуална концепция и визия</li>
+          <li>Дизайн според вашите предпочитания</li>
+          <li>Включени до 3 корекции</li>
+        </ul>
       </div>
 
-      <div class="design-grid">
-
-        <!-- ДИЗАЙН 1 -->
-        <article class="design-card">
-          <div class="video-container">
-            <video
-              class="design-video"
-              preload="metadata"
-              playsinline
-              poster="images/Wedding%20%231.jpg"
-              aria-label="Преглед на видео покана Лилава нежност"
-            >
-              <source src="videos/Wedding%20%231.mp4" type="video/mp4">
-              Вашият браузър не поддържа възпроизвеждане на видео.
-            </video>
-            <button class="video-play-button" type="button" aria-label="Пусни видео поканата">▶</button>
-            <div class="video-hint">НАТИСНЕТЕ, ЗА ДА ГЛЕДАТЕ</div>
-          </div>
-
-          <div class="design-info">
-            <p class="design-number">Дизайн 01</p>
-            <h2>Лилава нежност</h2>
-            <p class="design-price">17 €</p>
-            <p class="design-includes">Включена 1 корекция</p>
-            <a class="order-button" href="order.html?type=standard&amp;design=wedding-1">
-              ПОРЪЧАЙ
-            </a>
-          </div>
-        </article>
-
-        <!-- ДИЗАЙН 2 -->
-        <article class="design-card">
-          <div class="video-container">
-            <video
-              class="design-video"
-              preload="metadata"
-              playsinline
-              poster="images/Wedding%20%232.jpg"
-              aria-label="Преглед на видео покана Романтична история"
-            >
-              <source src="videos/Wedding%20%232.mp4" type="video/mp4">
-              Вашият браузър не поддържа възпроизвеждане на видео.
-            </video>
-            <button class="video-play-button" type="button" aria-label="Пусни видео поканата">▶</button>
-            <div class="video-hint">НАТИСНЕТЕ, ЗА ДА ГЛЕДАТЕ</div>
-          </div>
-
-          <div class="design-info">
-            <p class="design-number">Дизайн 02</p>
-            <h2>Романтична история</h2>
-            <p class="design-price">17 €</p>
-            <p class="design-includes">Включена 1 корекция</p>
-            <a class="order-button" href="order.html?type=standard&amp;design=wedding-2">
-              ПОРЪЧАЙ
-            </a>
-          </div>
-        </article>
-
-        <!-- ДИЗАЙН 3 -->
-        <article class="design-card">
-          <div class="video-container">
-            <video
-              class="design-video"
-              preload="metadata"
-              playsinline
-              poster="images/Wedding%20%233.jpg"
-              aria-label="Преглед на видео покана Нашият специален ден"
-            >
-              <source src="videos/Wedding%20%233.mp4" type="video/mp4">
-              Вашият браузър не поддържа възпроизвеждане на видео.
-            </video>
-            <button class="video-play-button" type="button" aria-label="Пусни видео поканата">▶</button>
-            <div class="video-hint">НАТИСНЕТЕ, ЗА ДА ГЛЕДАТЕ</div>
-          </div>
-
-          <div class="design-info">
-            <p class="design-number">Дизайн 03</p>
-            <h2>Нашият специален ден</h2>
-            <p class="design-price">17 €</p>
-            <p class="design-includes">Включена 1 корекция</p>
-            <a class="order-button" href="order.html?type=standard&amp;design=wedding-3">
-              ПОРЪЧАЙ
-            </a>
-          </div>
-        </article>
-
-        <!-- ПЕРСОНАЛИЗИРАНА ПОКАНА -->
-        <article class="design-card">
-          <div class="custom-design-card">
-            <div class="custom-design-symbol" aria-hidden="true">✦</div>
-            <p class="design-number">ТВОЯТА ИДЕЯ</p>
-            <h2>Персонализирана покана</h2>
-            <p class="design-price">27 €</p>
-            <p>
-              Изцяло нова концепция, създадена специално за вас —
-              според вашия стил, цветове, текст и идеи.
-            </p>
-            <p><strong>Включени до 3 корекции</strong></p>
-            <a class="order-button" href="order.html?type=custom">
-              СЪЗДАЙ СВОЯТА ПОКАНА
-            </a>
-          </div>
-        </article>
-
+      <div class="custom-action">
+        <p class="custom-price">27 €</p>
+        <p class="custom-price-note">Индивидуална видео покана</p>
+        <a class="order-button" href="order.html?type=custom">
+          СЪЗДАЙ МОЯТА ПОКАНА
+        </a>
       </div>
+    </div>
+  </section>
 
-      <p class="catalog-note">
-        Готовите дизайни се персонализират с вашите имена и сватбени
-        данни. При индивидуалната покана създаваме нова концепция
-        според вашите желания. Броят на включените корекции е посочен
-        към всяко предложение.
-      </p>
-    </section>
+  <section class="how-section">
+    <h2>Как работи?</h2>
+    <div class="how-grid">
+      <article class="how-item">
+        <div class="how-number">1</div>
+        <h3>Изберете дизайн</h3>
+        <p>Разгледайте видеата и изберете любимата си покана.</p>
+      </article>
 
-    <section class="bottom-cta">
-      <p class="eyebrow">Вашият ден. Вашата история.</p>
-      <h2>Нека създадем нещо специално</h2>
-      <p>
-        Изберете любимия си дизайн или ни разкажете как си представяте
-        вашата идеална сватбена видео покана.
-      </p>
-      <a class="order-button" href="order.html?type=standard&amp;design=wedding-1">
-        РАЗГЛЕДАЙТЕ И ПОРЪЧАЙТЕ
-      </a>
-    </section>
-  </main>
+      <article class="how-item">
+        <div class="how-number">2</div>
+        <h3>Изпратете данните</h3>
+        <p>Попълнете формуляра с имената, датата и мястото на сватбата.</p>
+      </article>
 
-  <footer>
-    <div class="footer-logo">Вашата покана</div>
-    <p>Красивото начало на вашата обща история.</p>
-  </footer>
+      <article class="how-item">
+        <div class="how-number">3</div>
+        <h3>Получете поканата</h3>
+        <p>Ще подготвим вашата видео покана и ще се свържем с вас.</p>
+      </article>
+    </div>
+  </section>
+</main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const containers = document.querySelectorAll('.video-container');
+<footer>
+  ВАШАТА ПОКАНА · Онлайн покани за специалните моменти
+</footer>
 
-      containers.forEach(function (container) {
-        const video = container.querySelector('video');
-        const button = container.querySelector('.video-play-button');
+<script>
+(function () {
+  "use strict";
 
-        if (!video || !button) return;
+  const videos = Array.from(document.querySelectorAll(".video-wrap video"));
 
-        function updateButton() {
-          const playing = !video.paused && !video.ended;
+  videos.forEach(function (video) {
+    const wrapper = video.closest(".video-wrap");
 
-          container.classList.toggle('is-playing', playing);
-          button.textContent = playing ? 'Ⅱ' : '▶';
-          button.setAttribute(
-            'aria-label',
-            playing ? 'Постави видеото на пауза' : 'Пусни видео поканата'
-          );
+    video.addEventListener("play", function () {
+      videos.forEach(function (otherVideo) {
+        if (otherVideo !== video) {
+          otherVideo.pause();
+          otherVideo.closest(".video-wrap").classList.remove("is-playing");
         }
-
-        function toggleVideo() {
-          if (video.paused || video.ended) {
-            containers.forEach(function (otherContainer) {
-              const otherVideo = otherContainer.querySelector('video');
-
-              if (otherVideo && otherVideo !== video) {
-                otherVideo.pause();
-              }
-            });
-
-            video.play().catch(function (error) {
-              console.error('Видеото не може да бъде възпроизведено:', error);
-            });
-          } else {
-            video.pause();
-          }
-        }
-
-        button.addEventListener('click', toggleVideo);
-
-        video.addEventListener('click', toggleVideo);
-        video.addEventListener('play', updateButton);
-        video.addEventListener('pause', updateButton);
-        video.addEventListener('ended', updateButton);
       });
+
+      wrapper.classList.add("is-playing");
     });
-  </script>
+
+    video.addEventListener("pause", function () {
+      wrapper.classList.remove("is-playing");
+    });
+
+    video.addEventListener("ended", function () {
+      wrapper.classList.remove("is-playing");
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
