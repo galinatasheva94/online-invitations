@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Видео покани | Вашата покана</title>
-  <meta name="description" content="Изберете своята сватбена видео покана или поръчайте персонализиран дизайн, създаден специално за вас.">
+  <meta name="description" content="Изберете своята сватбена видео покана или поръчайте персонализиран дизайн.">
 
   <style>
     :root {
@@ -16,8 +16,6 @@
       --accent: #9a6a91;
       --accent-dark: #795174;
       --border: #eee4ec;
-      --soft-pink: #f4e8f1;
-      --soft-beige: #f5eee7;
     }
 
     * {
@@ -40,14 +38,10 @@
       text-decoration: none;
     }
 
-    button {
-      font: inherit;
-    }
-
-    /* НАВИГАЦИЯ */
+    /* МЕНЮ */
 
     .site-header {
-      background: rgba(255, 255, 255, 0.96);
+      background: #fff;
       border-bottom: 1px solid var(--border);
     }
 
@@ -65,7 +59,6 @@
       color: var(--accent-dark);
       font-size: 25px;
       font-weight: bold;
-      letter-spacing: 0.4px;
       white-space: nowrap;
     }
 
@@ -73,7 +66,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 24px;
+      gap: 25px;
       font-family: Arial, sans-serif;
       font-size: 13px;
     }
@@ -135,8 +128,6 @@
       align-items: stretch;
     }
 
-    /* КАРТИ */
-
     .design-card {
       min-width: 0;
       display: flex;
@@ -146,9 +137,7 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       box-shadow: 0 4px 16px rgba(82, 52, 75, 0.045);
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .design-card:hover {
@@ -156,61 +145,74 @@
       box-shadow: 0 9px 24px rgba(82, 52, 75, 0.10);
     }
 
-    /* ЕДНАКВА ВЕРТИКАЛНА ПРОПОРЦИЯ НА ПРЕГЛЕДИТЕ */
+    /* СНИМКА НА ПОКАНАТА */
 
     .preview {
       position: relative;
       width: 100%;
       aspect-ratio: 9 / 16;
       overflow: hidden;
-      background: #eee7ed;
+      background: #f1eaf0;
     }
 
-    .preview video {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #eee7ed;
-    }
-
-    .preview video::-webkit-media-controls-panel {
-      background-color: rgba(255, 255, 255, 0.85);
-    }
-
-    .preview-overlay {
+    .preview-image {
       position: absolute;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(60, 35, 57, 0.08);
-      pointer-events: none;
-      transition: background 0.2s ease;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      cursor: pointer;
     }
 
-    .play-icon {
-      width: 42px;
-      height: 42px;
+    /* БУТОН ЗА ПУСКАНЕ */
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 2;
+      width: 56px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-left: 3px;
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 0 0 0 4px;
+      transform: translate(-50%, -50%);
+      border: 0;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.96);
       color: var(--accent-dark);
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.16);
       font-family: Arial, sans-serif;
-      font-size: 17px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+      font-size: 22px;
+      cursor: pointer;
       transition: transform 0.2s ease;
     }
 
-    .design-card:hover .play-icon {
-      transform: scale(1.08);
+    .play-button:hover {
+      transform: translate(-50%, -50%) scale(1.08);
     }
 
-    .preview:has(video:playing) .preview-overlay {
+    /* ВИДЕО СЕ ПОКАЗВА ЕДВА СЛЕД НАТИСКАНЕ */
+
+    .preview video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .preview.is-playing .preview-image,
+    .preview.is-playing .play-button {
+      display: none;
+    }
+
+    .preview video[hidden] {
       display: none;
     }
 
@@ -252,13 +254,6 @@
       white-space: nowrap;
     }
 
-    .price small {
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 10px;
-      font-weight: normal;
-    }
-
     .order-button {
       width: 100%;
       min-height: 38px;
@@ -269,23 +264,20 @@
       border: 1px solid var(--accent);
       border-radius: 6px;
       background: var(--accent);
-      color: white;
+      color: #fff;
       font-family: Arial, sans-serif;
       font-size: 10px;
       font-weight: bold;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.3px;
       text-align: center;
-      transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+      transition: background 0.2s ease;
     }
 
     .order-button:hover {
       background: var(--accent-dark);
-      border-color: var(--accent-dark);
     }
 
-    /* ПЕРСОНАЛИЗИРАНА ПОКАНА — СЪЩИЯТ РАЗМЕР КАТО ДРУГИТЕ */
+    /* ПЕРСОНАЛИЗИРАНА ПОКАНА */
 
     .custom-preview {
       position: relative;
@@ -297,16 +289,8 @@
       overflow: hidden;
       padding: 12px;
       background:
-        radial-gradient(
-          circle at 15% 15%,
-          rgba(255, 255, 255, 0.9),
-          transparent 32%
-        ),
-        radial-gradient(
-          circle at 90% 80%,
-          rgba(255, 255, 255, 0.7),
-          transparent 35%
-        ),
+        radial-gradient(circle at 15% 15%, #fff 0, transparent 32%),
+        radial-gradient(circle at 90% 80%, #fff8 0, transparent 35%),
         linear-gradient(145deg, #eee0ee, #f8eee8 55%, #e8d8e8);
     }
 
@@ -315,7 +299,6 @@
       position: absolute;
       inset: 9px;
       border: 1px solid rgba(121, 81, 116, 0.45);
-      border-radius: 2px;
       pointer-events: none;
     }
 
@@ -458,7 +441,7 @@
       text-align: center;
     }
 
-    /* АДАПТИВЕН ДИЗАЙН */
+    /* АДАПТИВНОСТ */
 
     @media (max-width: 1250px) {
       .catalog-grid {
@@ -498,7 +481,7 @@
       }
 
       .navigation {
-        gap: 14px;
+        gap: 15px;
       }
     }
 
@@ -588,22 +571,6 @@
       .catalog-section {
         max-width: 300px;
       }
-
-      .card-content {
-        padding: 14px;
-      }
-
-      .card-content h2 {
-        font-size: 19px;
-      }
-
-      .card-description {
-        font-size: 12px;
-      }
-
-      .order-button {
-        font-size: 11px;
-      }
     }
   </style>
 </head>
@@ -616,8 +583,8 @@
 
       <nav class="navigation" aria-label="Основна навигация">
         <a href="index.html">Начало</a>
-        <a href="designs.html#catalog">Каталог</a>
         <a href="index.html#how">Как работи?</a>
+        <a href="designs.html#catalog">Каталог</a>
       </nav>
     </div>
   </header>
@@ -631,7 +598,7 @@
       <p class="hero-description">
         Открийте дизайна, който най-добре разказва вашата история.
         Изберете готов модел или създайте персонализирана покана,
-        вдъхновена изцяло от вашите идеи.
+        вдъхновена от вашите идеи.
       </p>
     </section>
 
@@ -642,20 +609,25 @@
 
         <article class="design-card">
           <div class="preview">
+            <img
+              class="preview-image"
+              src="images/Wedding%20%231.jpg"
+              alt="Преглед на видео покана Лилава нежност"
+              loading="eager"
+            >
+
+            <button class="play-button" type="button" aria-label="Пусни видео Лилава нежност">▶</button>
+
             <video
+              hidden
               controls
               playsinline
-              preload="metadata"
+              preload="none"
               poster="images/Wedding%20%231.jpg"
-              aria-label="Преглед на видео покана Лилава нежност"
             >
               <source src="videos/Wedding%20%231.mp4" type="video/mp4">
               Вашият браузър не поддържа възпроизвеждане на видео.
             </video>
-
-            <div class="preview-overlay">
-              <span class="play-icon" aria-hidden="true">▶</span>
-            </div>
           </div>
 
           <div class="card-content">
@@ -669,10 +641,7 @@
             <div class="card-bottom">
               <p class="price">17 €</p>
 
-              <a
-                class="order-button"
-                href="order.html?type=standard&amp;design=wedding-1"
-              >
+              <a class="order-button" href="order.html?type=standard&amp;design=wedding-1">
                 ПОРЪЧАЙ
               </a>
             </div>
@@ -683,20 +652,25 @@
 
         <article class="design-card">
           <div class="preview">
+            <img
+              class="preview-image"
+              src="images/Wedding%20%232.jpg"
+              alt="Преглед на видео покана Романтична история"
+              loading="eager"
+            >
+
+            <button class="play-button" type="button" aria-label="Пусни видео Романтична история">▶</button>
+
             <video
+              hidden
               controls
               playsinline
-              preload="metadata"
+              preload="none"
               poster="images/Wedding%20%232.jpg"
-              aria-label="Преглед на видео покана Романтична история"
             >
               <source src="videos/Wedding%20%232.mp4" type="video/mp4">
               Вашият браузър не поддържа възпроизвеждане на видео.
             </video>
-
-            <div class="preview-overlay">
-              <span class="play-icon" aria-hidden="true">▶</span>
-            </div>
           </div>
 
           <div class="card-content">
@@ -710,10 +684,7 @@
             <div class="card-bottom">
               <p class="price">17 €</p>
 
-              <a
-                class="order-button"
-                href="order.html?type=standard&amp;design=wedding-2"
-              >
+              <a class="order-button" href="order.html?type=standard&amp;design=wedding-2">
                 ПОРЪЧАЙ
               </a>
             </div>
@@ -724,20 +695,25 @@
 
         <article class="design-card">
           <div class="preview">
+            <img
+              class="preview-image"
+              src="images/Wedding%20%233.jpg"
+              alt="Преглед на видео покана Нашият специален ден"
+              loading="eager"
+            >
+
+            <button class="play-button" type="button" aria-label="Пусни видео Нашият специален ден">▶</button>
+
             <video
+              hidden
               controls
               playsinline
-              preload="metadata"
+              preload="none"
               poster="images/Wedding%20%233.jpg"
-              aria-label="Преглед на видео покана Нашият специален ден"
             >
               <source src="videos/Wedding%20%233.mp4" type="video/mp4">
               Вашият браузър не поддържа възпроизвеждане на видео.
             </video>
-
-            <div class="preview-overlay">
-              <span class="play-icon" aria-hidden="true">▶</span>
-            </div>
           </div>
 
           <div class="card-content">
@@ -751,10 +727,7 @@
             <div class="card-bottom">
               <p class="price">17 €</p>
 
-              <a
-                class="order-button"
-                href="order.html?type=standard&amp;design=wedding-3"
-              >
+              <a class="order-button" href="order.html?type=standard&amp;design=wedding-3">
                 ПОРЪЧАЙ
               </a>
             </div>
@@ -768,9 +741,7 @@
             <div class="custom-art">
               <div class="custom-flower" aria-hidden="true">❀</div>
 
-              <p class="custom-overline">
-                Създадена специално за вас
-              </p>
+              <p class="custom-overline">Създадена специално за вас</p>
 
               <h3>
                 Вашата<br>
@@ -800,10 +771,7 @@
             <div class="card-bottom">
               <p class="price">27 €</p>
 
-              <a
-                class="order-button"
-                href="order.html?type=custom"
-              >
+              <a class="order-button" href="order.html?type=custom">
                 СЪЗДАЙ МОЯТА ПОКАНА
               </a>
             </div>
@@ -852,16 +820,47 @@
   </footer>
 
   <script>
-    // Когато се пусне едно видео, останалите се спират.
-    const videos = document.querySelectorAll(".preview video");
+    const previews = document.querySelectorAll(".preview");
 
-    videos.forEach((video) => {
-      video.addEventListener("play", () => {
-        videos.forEach((otherVideo) => {
+    previews.forEach((preview) => {
+      const image = preview.querySelector(".preview-image");
+      const button = preview.querySelector(".play-button");
+      const video = preview.querySelector("video");
+
+      if (!image || !button || !video) return;
+
+      async function playVideo() {
+        // Спираме другите видеа в каталога.
+        document.querySelectorAll(".preview video").forEach((otherVideo) => {
           if (otherVideo !== video) {
             otherVideo.pause();
+
+            const otherPreview = otherVideo.closest(".preview");
+            if (otherPreview) {
+              otherPreview.classList.remove("is-playing");
+              otherVideo.hidden = true;
+            }
           }
         });
+
+        preview.classList.add("is-playing");
+        video.hidden = false;
+
+        try {
+          await video.play();
+        } catch (error) {
+          // Ако браузърът не позволи автоматично пускане,
+          // видеото остава видимо и може да се стартира от контролите.
+          preview.classList.add("is-playing");
+        }
+      }
+
+      image.addEventListener("click", playVideo);
+      button.addEventListener("click", playVideo);
+
+      video.addEventListener("ended", () => {
+        preview.classList.remove("is-playing");
+        video.hidden = true;
       });
     });
   </script>
