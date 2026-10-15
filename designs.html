@@ -2,24 +2,33 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F4EAF9">
+  <meta name="description" content="The Story Atelier — разгледайте нашите сватбени видео покани и открийте дизайна за вашия специален ден.">
+  <title>Каталог с видео покани | The Story Atelier</title>
 
-  <title>Видео покани | Вашата покана</title>
-  <meta name="description" content="Изберете своята сватбена видео покана или поръчайте персонализиран дизайн.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --background: #fbf8f5;
-      --card: #ffffff;
-      --text: #463d43;
-      --muted: #81747d;
-      --accent: #9a6a91;
-      --accent-dark: #795174;
-      --border: #eee4ec;
+      --lavender: #DCC1EE;
+      --lavender-light: #F4EAF9;
+      --lavender-dark: #8755A6;
+      --purple: #70438D;
+      --pink: #E5B5D8;
+      --pink-light: #F9E8F3;
+      --white: #FFFFFF;
+      --text: #493550;
+      --muted: #806C89;
+      --line: #E3CDEB;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -27,10 +36,10 @@
     }
 
     body {
-      margin: 0;
-      background: var(--background);
+      font-family: 'Montserrat', sans-serif;
+      background: var(--lavender-light);
       color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.7;
     }
 
     a {
@@ -38,78 +47,148 @@
       text-decoration: none;
     }
 
-    /* МЕНЮ */
-
-    .site-header {
-      background: #fff;
-      border-bottom: 1px solid var(--border);
+    button {
+      font-family: inherit;
     }
 
-    .header-inner {
-      max-width: 1450px;
+    /* ГОРНА ЛЕНТА */
+
+    .announcement {
+      background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
+      color: #603C79;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* НАВИГАЦИЯ */
+
+    header {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1180px;
+      min-height: 100px;
       margin: 0 auto;
-      padding: 16px 28px;
+      padding: 17px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
 
     .brand {
-      color: var(--accent-dark);
-      font-size: 25px;
-      font-weight: bold;
-      white-space: nowrap;
+      display: inline-block;
+      flex-shrink: 0;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--purple);
+      font-size: clamp(27px, 3vw, 37px);
+      font-weight: 600;
+      line-height: 1.05;
     }
 
-    .navigation {
+    .brand span {
+      display: block;
+      margin-top: 8px;
+      font-family: 'Montserrat', sans-serif;
+      color: #A15F98;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-links {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 25px;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
+      font-size: 12px;
     }
 
-    .navigation a {
-      transition: color 0.2s ease;
+    .nav-links a:not(.nav-button):hover {
+      color: var(--lavender-dark);
     }
 
-    .navigation a:hover {
-      color: var(--accent);
+    .nav-button,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 30px;
+      background: var(--purple);
+      color: white;
+      padding: 12px 22px;
+      font-size: 11px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .nav-button:hover,
+    .button:hover {
+      background: #59316F;
+      transform: translateY(-2px);
     }
 
     /* ЗАГЛАВНА ЧАСТ */
 
-    .hero {
-      padding: 42px 24px 28px;
+    .catalog-hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 8% 18%, rgba(209, 174, 235, 0.85), transparent 40%),
+        radial-gradient(ellipse at 90% 82%, rgba(235, 182, 216, 0.85), transparent 43%),
+        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 54px 28px 58px;
       text-align: center;
     }
 
     .eyebrow {
-      margin: 0 0 10px;
-      color: var(--accent);
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 2px;
+      display: inline-block;
+      margin-bottom: 13px;
+      color: var(--lavender-dark);
+      font-size: 10px;
+      letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(28px, 3vw, 42px);
-      font-weight: normal;
-      line-height: 1.2;
+    h1,
+    h2,
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    .hero-inner h1 {
+      margin-bottom: 16px;
+      color: #603D7B;
+      font-size: clamp(40px, 5vw, 58px);
+    }
+
+    .hero-inner h1 em {
+      color: #A65E98;
+      font-weight: 500;
     }
 
     .hero-description {
       max-width: 650px;
-      margin: 13px auto 0;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      line-height: 1.7;
+      margin: 0 auto;
+      color: #6D5978;
+      font-size: 13px;
+      line-height: 2;
     }
 
     /* КАТАЛОГ */
@@ -118,93 +197,120 @@
       width: 100%;
       max-width: 1500px;
       margin: 0 auto;
-      padding: 8px 24px 48px;
+      padding: 38px 24px 75px;
+    }
+
+    .catalog-heading {
+      margin-bottom: 27px;
+      text-align: center;
+    }
+
+    .catalog-heading h2 {
+      color: var(--purple);
+      font-size: clamp(30px, 3.5vw, 40px);
+    }
+
+    .catalog-heading p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .catalog-grid {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
       align-items: stretch;
     }
+
+    /* КАРТИ */
 
     .design-card {
       min-width: 0;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(82, 52, 75, 0.045);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      box-shadow: 0 8px 24px rgba(92, 54, 119, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .design-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 9px 24px rgba(82, 52, 75, 0.10);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(92, 54, 119, 0.14);
     }
 
-    /* СНИМКА НА ПОКАНАТА */
+    /* СНИМКА И ВИДЕО */
 
     .preview {
       position: relative;
       width: 100%;
       aspect-ratio: 9 / 16;
       overflow: hidden;
-      background: #f1eaf0;
+      background: #E5D5EF;
+      isolation: isolate;
     }
 
     .preview-image {
       position: absolute;
       inset: 0;
+      z-index: 1;
+      display: block;
       width: 100%;
       height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center;
+      object-fit: contain;
+      background: #E5D5EF;
       cursor: pointer;
     }
-
-    /* БУТОН ЗА ПУСКАНЕ */
 
     .play-button {
       position: absolute;
       top: 50%;
       left: 50%;
-      z-index: 2;
-      width: 56px;
-      height: 56px;
+      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 60px;
+      height: 60px;
       padding: 0 0 0 4px;
       transform: translate(-50%, -50%);
-      border: 0;
+      border: 1px solid rgba(255, 255, 255, 0.95);
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.96);
-      color: var(--accent-dark);
-      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.16);
-      font-family: Arial, sans-serif;
+      color: #FFFFFF;
+      background: rgba(112, 67, 141, 0.82);
+      box-shadow: 0 5px 20px rgba(60, 30, 75, 0.25);
       font-size: 22px;
+      line-height: 1;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
     .play-button:hover {
       transform: translate(-50%, -50%) scale(1.08);
+      background: rgba(89, 49, 111, 0.97);
     }
 
-    /* ВИДЕО СЕ ПОКАЗВА ЕДВА СЛЕД НАТИСКАНЕ */
+    .play-button:focus-visible {
+      outline: 3px solid var(--pink);
+      outline-offset: 4px;
+    }
 
     .preview video {
       position: absolute;
       inset: 0;
+      z-index: 2;
+      display: block;
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: contain;
-      background: #000;
+      background: #E5D5EF;
+    }
+
+    .preview video[hidden] {
+      display: none;
     }
 
     .preview.is-playing .preview-image,
@@ -212,34 +318,27 @@
       display: none;
     }
 
-    .preview video[hidden] {
-      display: none;
-    }
-
-    /* СЪДЪРЖАНИЕ НА КАРТИТЕ */
+    /* ИНФОРМАЦИЯ ЗА ПОКАНАТА */
 
     .card-content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      padding: 13px 12px 14px;
+      padding: 18px 17px 17px;
     }
 
-    .card-content h2 {
-      margin: 0 0 8px;
-      font-size: 17px;
-      font-weight: normal;
-      line-height: 1.3;
-      overflow-wrap: anywhere;
+    .card-content h3 {
+      margin-bottom: 9px;
+      color: var(--purple);
+      font-size: 26px;
+      line-height: 1.12;
     }
 
     .card-description {
-      margin: 0 0 13px;
+      margin-bottom: 19px;
       color: var(--muted);
-      font-family: Arial, sans-serif;
       font-size: 11px;
-      line-height: 1.55;
+      line-height: 1.9;
     }
 
     .card-bottom {
@@ -247,34 +346,42 @@
     }
 
     .price {
-      margin: 0 0 11px;
-      color: var(--accent-dark);
-      font-size: 23px;
-      font-weight: bold;
-      white-space: nowrap;
+      margin-bottom: 13px;
+      color: var(--purple);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 31px;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .price small {
+      color: var(--muted);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
     }
 
     .order-button {
       width: 100%;
-      min-height: 38px;
-      display: flex;
+      min-height: 42px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 9px 7px;
-      border: 1px solid var(--accent);
-      border-radius: 6px;
-      background: var(--accent);
-      color: #fff;
-      font-family: Arial, sans-serif;
+      padding: 11px 12px;
+      border: 1px solid var(--purple);
+      border-radius: 30px;
+      background: var(--purple);
+      color: #FFFFFF;
       font-size: 10px;
-      font-weight: bold;
+      font-weight: 500;
       letter-spacing: 0.3px;
       text-align: center;
-      transition: background 0.2s ease;
+      transition: background 0.2s, transform 0.2s;
     }
 
     .order-button:hover {
-      background: var(--accent-dark);
+      background: #59316F;
+      transform: translateY(-1px);
     }
 
     /* ПЕРСОНАЛИЗИРАНА ПОКАНА */
@@ -287,31 +394,24 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 12px;
+      padding: 15px;
       background:
-        radial-gradient(circle at 15% 15%, #fff 0, transparent 32%),
-        radial-gradient(circle at 90% 80%, #fff8 0, transparent 35%),
-        linear-gradient(145deg, #eee0ee, #f8eee8 55%, #e8d8e8);
+        radial-gradient(ellipse at 10% 12%, rgba(255,255,255,0.9), transparent 35%),
+        radial-gradient(ellipse at 92% 82%, rgba(229,181,216,0.65), transparent 42%),
+        linear-gradient(145deg, #E5D3F1, #F9E8F3 55%, #DCC1EE);
     }
 
-    .custom-preview::before {
-      content: "";
+    .custom-frame {
       position: absolute;
-      inset: 9px;
-      border: 1px solid rgba(121, 81, 116, 0.45);
+      inset: 10px;
+      border: 1px solid rgba(112, 67, 141, 0.48);
+      border-radius: 4px;
       pointer-events: none;
     }
 
-    .custom-preview::after {
-      content: "✦";
-      position: absolute;
-      top: 17px;
-      right: 19px;
-      color: #a47b9a;
-      font-size: 20px;
-    }
-
     .custom-art {
+      position: relative;
+      z-index: 1;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -322,254 +422,332 @@
 
     .custom-flower {
       margin-bottom: 15px;
-      color: #9a7394;
-      font-size: 34px;
+      color: #8755A6;
+      font-size: 35px;
       line-height: 1;
     }
 
     .custom-overline {
-      margin: 0 0 11px;
-      color: #795174;
-      font-family: Arial, sans-serif;
+      margin-bottom: 12px;
+      color: #70438D;
       font-size: 8px;
-      font-weight: bold;
-      letter-spacing: 1.8px;
-      line-height: 1.6;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      line-height: 1.8;
       text-transform: uppercase;
     }
 
     .custom-art h3 {
       margin: 0;
-      color: #60435d;
-      font-size: clamp(17px, 1.4vw, 24px);
-      font-weight: normal;
-      line-height: 1.4;
+      color: #603D7B;
+      font-size: clamp(24px, 2.4vw, 34px);
+      font-weight: 500;
+      line-height: 1.13;
     }
 
     .custom-divider {
-      width: 38px;
+      width: 42px;
       height: 1px;
-      margin: 17px 0;
-      background: #a47b9a;
+      margin: 19px 0;
+      background: #A15F98;
     }
 
     .custom-art p {
-      max-width: 180px;
-      margin: 0;
-      color: #795f77;
-      font-family: Arial, sans-serif;
+      max-width: 190px;
+      color: #795F86;
       font-size: 10px;
-      line-height: 1.7;
+      line-height: 1.9;
     }
 
     .custom-note {
       display: inline-block;
-      margin-top: 20px;
-      padding: 7px 10px;
-      border: 1px solid rgba(121, 81, 116, 0.4);
-      border-radius: 3px;
-      color: #795174;
-      font-family: Arial, sans-serif;
+      margin-top: 19px;
+      padding: 8px 12px;
+      border: 1px solid #CDA9DE;
+      border-radius: 25px;
+      color: #70438D;
       font-size: 8px;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
+    }
+
+    .custom-price-note {
+      margin-top: -5px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 10px;
     }
 
     /* КАК РАБОТИ */
 
     .how-section {
-      padding: 38px 24px 46px;
-      background: #f3eaf1;
+      position: relative;
+      padding: 75px 28px;
+      background:
+        radial-gradient(ellipse at 100% 0%, #E9C9E5, transparent 48%),
+        linear-gradient(135deg, #E7D7F4, #F6E9F5);
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      margin: 0 auto 42px;
       text-align: center;
     }
 
-    .how-section h2 {
-      margin: 0 0 24px;
-      font-size: 30px;
-      font-weight: normal;
+    .section-heading .eyebrow {
+      margin-bottom: 12px;
     }
 
-    .how-grid {
-      width: 100%;
-      max-width: 950px;
-      margin: 0 auto;
+    .section-heading h2 {
+      margin-bottom: 15px;
+      color: #684282;
+      font-size: clamp(36px, 4vw, 48px);
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .steps {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 25px;
+      gap: 30px;
     }
 
-    .how-item {
-      padding: 0 10px;
+    .step {
+      padding: 25px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.52);
+      text-align: center;
     }
 
-    .how-number {
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 12px;
-      border: 1px solid #c8a9c3;
-      border-radius: 50%;
-      color: var(--accent-dark);
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+    .step-number {
+      margin-bottom: 9px;
+      color: #A65F9A;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 43px;
+      line-height: 1.1;
     }
 
-    .how-item h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      font-weight: normal;
+    .step h3 {
+      margin-bottom: 10px;
+      color: #684282;
+      font-size: 27px;
     }
 
-    .how-item p {
-      margin: 0;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      line-height: 1.7;
+    .step p {
+      color: #715F7B;
+      font-size: 11px;
+      line-height: 1.9;
     }
 
     /* ДОЛНА ЧАСТ */
 
-    .site-footer {
-      padding: 22px 20px;
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      line-height: 1.7;
+    footer {
+      padding: 30px 20px;
+      border-top: 1px solid var(--line);
+      background: #FFFFFF;
       text-align: center;
     }
 
-    /* АДАПТИВНОСТ */
+    .footer-brand {
+      color: var(--purple);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 29px;
+      font-weight: 600;
+    }
 
-    @media (max-width: 1250px) {
+    footer p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* АДАПТИВЕН ДИЗАЙН */
+
+    @media (min-width: 1350px) {
       .catalog-grid {
         grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 15px;
-      }
-
-      .catalog-section {
-        padding-right: 18px;
-        padding-left: 18px;
       }
     }
 
-    @media (max-width: 1050px) {
-      .catalog-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .header-inner {
+    @media (max-width: 1100px) {
+      .catalog-section {
         padding-right: 20px;
         padding-left: 20px;
       }
-    }
 
-    @media (max-width: 850px) {
       .catalog-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
+        gap: 17px;
       }
 
       .card-content {
-        padding: 12px 10px;
-      }
-
-      .card-content h2 {
-        font-size: 16px;
-      }
-
-      .navigation {
-        gap: 15px;
+        padding: 16px 14px;
       }
     }
 
-    @media (max-width: 650px) {
-      .header-inner {
+    @media (max-width: 800px) {
+      .nav {
         flex-direction: column;
-        gap: 12px;
-        padding: 15px 14px;
+        justify-content: center;
+        gap: 17px;
+        padding: 22px 18px;
+        text-align: center;
       }
 
       .brand {
-        font-size: 23px;
+        white-space: normal;
       }
 
-      .navigation {
-        flex-wrap: wrap;
+      .nav-links {
         justify-content: center;
-        gap: 10px 18px;
-        font-size: 12px;
+        flex-wrap: wrap;
+        gap: 15px;
       }
 
-      .hero {
-        padding: 32px 18px 22px;
-      }
-
-      .hero h1 {
-        font-size: 29px;
-      }
-
-      .hero-description {
-        font-size: 13px;
+      .hero-inner {
+        padding: 45px 22px 48px;
       }
 
       .catalog-section {
-        padding: 8px 12px 35px;
+        padding: 32px 16px 55px;
       }
 
       .catalog-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+      }
+
+      .card-content h3 {
+        font-size: 25px;
+      }
+
+      .steps {
+        gap: 15px;
+      }
+
+      .step {
+        padding: 20px 13px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .announcement {
+        padding: 8px 10px;
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .nav {
+        min-height: auto;
+        padding: 20px 13px;
+      }
+
+      .nav-links {
         gap: 12px;
+        font-size: 11px;
+      }
+
+      .nav-button {
+        padding: 10px 15px;
+      }
+
+      .hero-inner {
+        padding: 38px 18px 42px;
+      }
+
+      .hero-inner h1 {
+        font-size: 39px;
+      }
+
+      .hero-description {
+        font-size: 12px;
+      }
+
+      .catalog-section {
+        padding: 28px 10px 45px;
+      }
+
+      .catalog-grid {
+        gap: 10px;
       }
 
       .card-content {
-        padding: 11px 9px 12px;
+        padding: 13px 10px;
       }
 
-      .card-content h2 {
-        font-size: 16px;
+      .card-content h3 {
+        font-size: 23px;
+      }
+
+      .card-description {
+        font-size: 10px;
+        line-height: 1.8;
+      }
+
+      .price {
+        font-size: 28px;
+      }
+
+      .order-button {
+        padding: 10px 7px;
+        font-size: 9px;
+      }
+
+      .play-button {
+        width: 48px;
+        height: 48px;
+        font-size: 19px;
+      }
+
+      .how-section {
+        padding: 55px 18px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .step {
+        padding: 23px 20px;
+      }
+    }
+
+    @media (max-width: 340px) {
+      .catalog-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .catalog-section {
+        max-width: 310px;
+        margin: 0 auto;
+      }
+
+      .card-content {
+        padding: 17px;
+      }
+
+      .card-content h3 {
+        font-size: 27px;
       }
 
       .card-description {
         font-size: 11px;
       }
 
-      .price {
-        font-size: 22px;
-      }
-
       .order-button {
         font-size: 10px;
-      }
-
-      .how-section {
-        padding: 32px 16px;
-      }
-
-      .how-section h2 {
-        font-size: 27px;
-      }
-
-      .how-grid {
-        grid-template-columns: 1fr;
-        gap: 26px;
-      }
-
-      .how-item p {
-        max-width: 330px;
-        margin: 0 auto;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .catalog-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .catalog-section {
-        max-width: 300px;
       }
     }
   </style>
@@ -577,46 +755,72 @@
 
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="index.html">ВАШАТА ПОКАНА</a>
+  <div class="announcement">
+    Вашите емоции. Нашето вдъхновение.
+  </div>
 
-      <nav class="navigation" aria-label="Основна навигация">
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        The Story Atelier
+        <span>Онлайн покани за специалните моменти</span>
+      </a>
+
+      <div class="nav-links">
         <a href="index.html">Начало</a>
         <a href="index.html#how">Как работи?</a>
-        <a href="designs.html#catalog">Каталог</a>
-      </nav>
-    </div>
+        <a href="designs.html" class="nav-button">Каталог</a>
+      </div>
+    </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <p class="eyebrow">Вашият специален ден</p>
 
-      <h1>Изберете своята видео покана</h1>
+    <!-- ЗАГЛАВИЕ -->
 
-      <p class="hero-description">
-        Открийте дизайна, който най-добре разказва вашата история.
-        Изберете готов модел или създайте персонализирана покана,
-        вдъхновена от вашите идеи.
-      </p>
+    <section class="catalog-hero">
+      <div class="hero-inner">
+        <span class="eyebrow">The Story Atelier представя</span>
+
+        <h1>Открийте своята <em>покана.</em></h1>
+
+        <p class="hero-description">
+          Всяка история е различна. Изберете готов дизайн за вашия
+          специален ден или създайте персонализирана видео покана,
+          вдъхновена изцяло от вашите идеи.
+        </p>
+      </div>
     </section>
 
+    <!-- КАТАЛОГ -->
+
     <section class="catalog-section" id="catalog">
+
+      <div class="catalog-heading">
+        <span class="eyebrow">Нашите предложения</span>
+        <h2>Изберете своя дизайн</h2>
+        <p>Натиснете върху снимката, за да видите видео поканата.</p>
+      </div>
+
       <div class="catalog-grid">
 
         <!-- ПОКАНА 1 -->
 
         <article class="design-card">
           <div class="preview">
+
             <img
               class="preview-image"
               src="images/Wedding%20%231.jpg"
-              alt="Преглед на видео покана Лилава нежност"
+              alt="Видео покана Лилава нежност"
               loading="eager"
             >
 
-            <button class="play-button" type="button" aria-label="Пусни видео Лилава нежност">▶</button>
+            <button
+              class="play-button"
+              type="button"
+              aria-label="Пусни видео Лилава нежност"
+            >▶</button>
 
             <video
               hidden
@@ -624,14 +828,16 @@
               playsinline
               preload="none"
               poster="images/Wedding%20%231.jpg"
+              aria-label="Видео покана Лилава нежност"
             >
               <source src="videos/Wedding%20%231.mp4" type="video/mp4">
               Вашият браузър не поддържа възпроизвеждане на видео.
             </video>
+
           </div>
 
           <div class="card-content">
-            <h2>Лилава нежност</h2>
+            <h3>Лилава нежност</h3>
 
             <p class="card-description">
               Нежна и романтична видео покана с персонализирани
@@ -641,9 +847,10 @@
             <div class="card-bottom">
               <p class="price">17 €</p>
 
-              <a class="order-button" href="order.html?type=standard&amp;design=wedding-1">
-                ПОРЪЧАЙ
-              </a>
+              <a
+                class="order-button"
+                href="order.html?type=standard&amp;design=wedding-1"
+              >ПОРЪЧАЙ</a>
             </div>
           </div>
         </article>
@@ -652,14 +859,19 @@
 
         <article class="design-card">
           <div class="preview">
+
             <img
               class="preview-image"
               src="images/Wedding%20%232.jpg"
-              alt="Преглед на видео покана Романтична история"
+              alt="Видео покана Романтична история"
               loading="eager"
             >
 
-            <button class="play-button" type="button" aria-label="Пусни видео Романтична история">▶</button>
+            <button
+              class="play-button"
+              type="button"
+              aria-label="Пусни видео Романтична история"
+            >▶</button>
 
             <video
               hidden
@@ -667,14 +879,16 @@
               playsinline
               preload="none"
               poster="images/Wedding%20%232.jpg"
+              aria-label="Видео покана Романтична история"
             >
               <source src="videos/Wedding%20%232.mp4" type="video/mp4">
               Вашият браузър не поддържа възпроизвеждане на видео.
             </video>
+
           </div>
 
           <div class="card-content">
-            <h2>Романтична история</h2>
+            <h3>Романтична история</h3>
 
             <p class="card-description">
               Елегантна видео покана за двойки, които обичат
@@ -684,9 +898,10 @@
             <div class="card-bottom">
               <p class="price">17 €</p>
 
-              <a class="order-button" href="order.html?type=standard&amp;design=wedding-2">
-                ПОРЪЧАЙ
-              </a>
+              <a
+                class="order-button"
+                href="order.html?type=standard&amp;design=wedding-2"
+              >ПОРЪЧАЙ</a>
             </div>
           </div>
         </article>
@@ -695,14 +910,19 @@
 
         <article class="design-card">
           <div class="preview">
+
             <img
               class="preview-image"
               src="images/Wedding%20%233.jpg"
-              alt="Преглед на видео покана Нашият специален ден"
+              alt="Видео покана Нашият специален ден"
               loading="eager"
             >
 
-            <button class="play-button" type="button" aria-label="Пусни видео Нашият специален ден">▶</button>
+            <button
+              class="play-button"
+              type="button"
+              aria-label="Пусни видео Нашият специален ден"
+            >▶</button>
 
             <video
               hidden
@@ -710,14 +930,16 @@
               playsinline
               preload="none"
               poster="images/Wedding%20%233.jpg"
+              aria-label="Видео покана Нашият специален ден"
             >
               <source src="videos/Wedding%20%233.mp4" type="video/mp4">
               Вашият браузър не поддържа възпроизвеждане на видео.
             </video>
+
           </div>
 
           <div class="card-content">
-            <h2>Нашият специален ден</h2>
+            <h3>Нашият специален ден</h3>
 
             <p class="card-description">
               Стилна видео покана, която превръща важните
@@ -727,9 +949,10 @@
             <div class="card-bottom">
               <p class="price">17 €</p>
 
-              <a class="order-button" href="order.html?type=standard&amp;design=wedding-3">
-                ПОРЪЧАЙ
-              </a>
+              <a
+                class="order-button"
+                href="order.html?type=standard&amp;design=wedding-3"
+              >ПОРЪЧАЙ</a>
             </div>
           </div>
         </article>
@@ -738,10 +961,14 @@
 
         <article class="design-card">
           <div class="custom-preview">
+            <div class="custom-frame"></div>
+
             <div class="custom-art">
               <div class="custom-flower" aria-hidden="true">❀</div>
 
-              <p class="custom-overline">Създадена специално за вас</p>
+              <p class="custom-overline">
+                Създадена специално за вас
+              </p>
 
               <h3>
                 Вашата<br>
@@ -761,7 +988,7 @@
           </div>
 
           <div class="card-content">
-            <h2>Персонализирана покана</h2>
+            <h3>Персонализирана покана</h3>
 
             <p class="card-description">
               Видео покана с индивидуална концепция,
@@ -771,9 +998,14 @@
             <div class="card-bottom">
               <p class="price">27 €</p>
 
-              <a class="order-button" href="order.html?type=custom">
-                СЪЗДАЙ МОЯТА ПОКАНА
-              </a>
+              <p class="custom-price-note">
+                Индивидуален дизайн · До 3 корекции
+              </p>
+
+              <a
+                class="order-button"
+                href="order.html?type=custom"
+              >СЪЗДАЙ МОЯТА ПОКАНА</a>
             </div>
           </div>
         </article>
@@ -781,45 +1013,71 @@
       </div>
     </section>
 
+    <!-- КАК РАБОТИ -->
+
     <section class="how-section" id="how">
-      <h2>Как работи?</h2>
+      <div class="section-inner">
 
-      <div class="how-grid">
-        <div class="how-item">
-          <div class="how-number">1</div>
-          <h3>Изберете дизайн</h3>
+        <div class="section-heading">
+          <span class="eyebrow">Само три лесни стъпки</span>
+          <h2>Вашата покана започва тук</h2>
           <p>
-            Изберете готов модел от каталога или ни разкажете
-            как си представяте своята персонализирана покана.
+            Без излишни усложнения — само любим дизайн
+            и вашата лична история.
           </p>
         </div>
 
-        <div class="how-item">
-          <div class="how-number">2</div>
-          <h3>Изпратете данните</h3>
-          <p>
-            Попълнете информацията за сватбения ден във формата
-            за поръчка.
-          </p>
-        </div>
+        <div class="steps">
 
-        <div class="how-item">
-          <div class="how-number">3</div>
-          <h3>Получете поканата</h3>
-          <p>
-            Ще подготвим вашата видео покана и ще се свържем
-            с вас за следващите стъпки.
-          </p>
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Изберете</h3>
+            <p>
+              Разгледайте каталога и открийте дизайна,
+              който най-добре изразява вашето настроение.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Персонализирайте</h3>
+            <p>
+              Изпратете имената, датата, мястото и
+              останалите подробности за сватбения ден.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Споделете</h3>
+            <p>
+              Получете своята видео покана и я споделете
+              с любимите си хора.
+            </p>
+          </article>
+
         </div>
       </div>
     </section>
+
   </main>
 
-  <footer class="site-footer">
-    <p>© Вашата покана — Онлайн покани за специалните моменти.</p>
+  <!-- ДОЛНА ЧАСТ -->
+
+  <footer>
+    <div class="footer-brand">The Story Atelier</div>
+    <p>Онлайн покани за специалните моменти</p>
+    <p>© <span id="year"></span> The Story Atelier · Създадено с любов</p>
   </footer>
 
   <script>
+    // Актуална година във футъра.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Пускане на видеото при натискане върху снимката или бутона.
+    // При пускане на друго видео предишното се спира.
+
     const previews = document.querySelectorAll(".preview");
 
     previews.forEach((preview) => {
@@ -830,12 +1088,12 @@
       if (!image || !button || !video) return;
 
       async function playVideo() {
-        // Спираме другите видеа в каталога.
         document.querySelectorAll(".preview video").forEach((otherVideo) => {
           if (otherVideo !== video) {
             otherVideo.pause();
 
             const otherPreview = otherVideo.closest(".preview");
+
             if (otherPreview) {
               otherPreview.classList.remove("is-playing");
               otherVideo.hidden = true;
@@ -849,8 +1107,8 @@
         try {
           await video.play();
         } catch (error) {
-          // Ако браузърът не позволи автоматично пускане,
-          // видеото остава видимо и може да се стартира от контролите.
+          // Ако автоматичното пускане е блокирано,
+          // контролите на видеото остават достъпни.
           preview.classList.add("is-playing");
         }
       }
