@@ -298,6 +298,43 @@ textarea {
   resize: vertical;
 }
 
+#wishesDescription {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+#wishesSuggestions {
+  margin: 8px 0 12px;
+  padding: 14px 17px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #FCF9FD;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+#wishesSuggestions p {
+  margin: 0 0 5px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+#wishesSuggestions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+#wishes[required] {
+  border-color: var(--purple);
+}
+
+#wishes:invalid:focus {
+  border-color: #B42318;
+}
+
 .date-control {
   position: relative;
   display: flex;
@@ -797,10 +834,35 @@ footer {
               placeholder="name@example.com" autocomplete="email">
           </div>
 
-          <div class="field full">
-            <label for="wishes">Допълнителни коментари <span class="optional">(по желание)</span></label>
-            <textarea id="wishes" name="Допълнителни коментари"
-              placeholder="Ако имате уточнения към поканата, напишете ги тук."></textarea>
+          <div class="field full" id="wishesField">
+            <label for="wishes" id="wishesLabel">
+              Допълнителни коментари
+              <span class="optional">(по желание)</span>
+            </label>
+
+            <p id="wishesDescription" hidden>
+              Разкажете ни как си представяте своята видео покана.
+              Колкото по-подробно опишете идеята си, толкова по-добре
+              ще можем да я пресъздадем.
+            </p>
+
+            <div id="wishesSuggestions" hidden>
+              <p>Можете да включите:</p>
+              <ul>
+                <li>Предпочитани цветове и цветова комбинация</li>
+                <li>Стил и настроение — романтичен, приказен, минималистичен и др.</li>
+                <li>Цветя, орнаменти, илюстрации и други детайли</li>
+                <li>Желан текст, цитат или специално послание</li>
+                <li>Музика или музикален жанр</li>
+                <li>Последователност на сцените и други специални идеи</li>
+              </ul>
+            </div>
+
+            <textarea
+              id="wishes"
+              name="Допълнителни коментари"
+              placeholder="Ако имате уточнения към поканата, напишете ги тук."
+            ></textarea>
           </div>
 
         </div>
@@ -920,6 +982,39 @@ footer {
   const selectedDesignBox = document.getElementById("selectedDesignBox");
   const backLinkContainer = document.getElementById("backLinkContainer");
 
+  const wishesField = document.getElementById("wishes");
+  const wishesLabel = document.getElementById("wishesLabel");
+  const wishesDescription = document.getElementById("wishesDescription");
+  const wishesSuggestions = document.getElementById("wishesSuggestions");
+
+  function updateWishesField() {
+    if (isCustom) {
+      wishesField.required = true;
+
+      wishesLabel.innerHTML =
+        'Опишете поканата, за която мечтаете <span style="color:#B42318">*</span>';
+
+      wishesField.placeholder =
+        "Опишете подробно идеята си за видео поканата — цветове, стил, декорации, текст, музика и желаните сцени.";
+
+      wishesDescription.hidden = false;
+      wishesSuggestions.hidden = false;
+    } else {
+      wishesField.required = false;
+
+      wishesLabel.innerHTML =
+        'Допълнителни коментари <span class="optional">(по желание)</span>';
+
+      wishesField.placeholder =
+        "Ако имате уточнения към поканата, напишете ги тук.";
+
+      wishesDescription.hidden = true;
+      wishesSuggestions.hidden = true;
+    }
+  }
+
+  updateWishesField();
+
   let submissionPending = false;
   let submissionTimer = null;
 
@@ -1021,6 +1116,17 @@ footer {
 
     if (!orderForm.reportValidity()) return;
 
+    if (isCustom && !wishesField.value.trim()) {
+      wishesField.setCustomValidity(
+        "Моля, опишете идеята си за персонализираната видео покана."
+      );
+      wishesField.reportValidity();
+      wishesField.focus();
+      return;
+    }
+
+    wishesField.setCustomValidity("");
+
     const weddingDate = document.getElementById("weddingDate").value;
     const rsvpDate = document.getElementById("rsvpDate").value;
 
@@ -1082,6 +1188,10 @@ footer {
 
       showError("Възникна проблем при изпращането. Моля, опитайте отново.");
     }
+  });
+
+  wishesField.addEventListener("input", function () {
+    wishesField.setCustomValidity("");
   });
 })();
 </script>
