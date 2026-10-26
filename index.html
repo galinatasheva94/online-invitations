@@ -37,31 +37,9 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
+      background: var(--lavender-light);
       color: var(--text);
       line-height: 1.7;
-      /* Градиентът покрива цялата страница — от горния ред до футъра. */
-      background:
-        radial-gradient(ellipse at 8% 12%, rgba(255, 255, 255, 0.18), transparent 34%),
-        radial-gradient(ellipse at 92% 73%, rgba(255, 255, 255, 0.22), transparent 38%),
-        linear-gradient(
-          180deg,
-          #D2B2E8 0%,
-          #E3BCE2 14%,
-          #F1D7EB 27%,
-          #FFFFFF 44%,
-          #FFFBFD 53%,
-          #F8E3F1 63%,
-          #EFCBE6 75%,
-          #DDBCE8 88%,
-          #CFAAE3 100%
-        );
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-    }
-
-    /* Секциите са прозрачни, за да не прекъсват общото преливане. */
-    main {
-      background: transparent;
     }
 
     a {
@@ -70,7 +48,7 @@
     }
 
     .announcement {
-      background: rgba(255, 255, 255, 0.08);
+      background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
       color: #603C79;
       text-align: center;
       padding: 10px 15px;
@@ -79,8 +57,8 @@
     }
 
     header {
-      background: rgba(255, 255, 255, 0.10);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--line);
     }
 
     .nav {
@@ -160,7 +138,10 @@
 
     .hero {
       overflow: hidden;
-      background: transparent;
+      background:
+        radial-gradient(ellipse at 8% 18%, rgba(209, 174, 235, 0.85), transparent 40%),
+        radial-gradient(ellipse at 90% 82%, rgba(235, 182, 216, 0.85), transparent 43%),
+        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
     }
 
     .hero-inner {
@@ -380,7 +361,7 @@
     }
 
     .intro {
-      background: transparent;
+      background: #FFFFFF;
     }
 
     .features {
@@ -423,7 +404,9 @@
     }
 
     .how {
-      background: transparent;
+      background:
+        radial-gradient(ellipse at 100% 0%, #E9C9E5, transparent 48%),
+        linear-gradient(135deg, #E7D7F4, #F6E9F5);
     }
 
     .steps {
@@ -458,7 +441,7 @@
 
     .catalog-cta {
       padding: 82px 28px;
-      background: transparent;
+      background: linear-gradient(115deg, #D7B8EB, #EABFDA);
       text-align: center;
     }
 
@@ -483,8 +466,8 @@
     footer {
       padding: 32px 20px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.08);
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      background: white;
+      border-top: 1px solid var(--line);
     }
 
     footer .footer-brand {
