@@ -33,6 +33,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 150px;
     }
 
     body {
@@ -51,24 +52,28 @@
       font-family: inherit;
     }
 
-    /* ГОРНА ЛЕНТА */
+    /* ГОРНА ФИКСИРАНА ЗОНА */
+
+    .site-header-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
     .announcement {
       background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
       color: #603C79;
       text-align: center;
-      padding: 9px 15px;
-      font-size: 10px;
+      padding: 10px 15px;
+      font-size: 11px;
       letter-spacing: 2px;
     }
 
-    /* НАВИГАЦИЯ */
-
     header {
       position: relative;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 18px rgba(92, 54, 119, 0.07);
     }
 
     .nav {
@@ -198,6 +203,7 @@
       max-width: 1500px;
       margin: 0 auto;
       padding: 38px 24px 75px;
+      scroll-margin-top: 150px;
     }
 
     .catalog-heading {
@@ -483,6 +489,7 @@
     .how-section {
       position: relative;
       padding: 75px 28px;
+      scroll-margin-top: 150px;
       background:
         radial-gradient(ellipse at 100% 0%, #E9C9E5, transparent 48%),
         linear-gradient(135deg, #E7D7F4, #F6E9F5);
@@ -596,16 +603,24 @@
     }
 
     @media (max-width: 800px) {
+      html {
+        scroll-padding-top: 155px;
+      }
+
       .nav {
         flex-direction: column;
         justify-content: center;
         gap: 17px;
-        padding: 22px 18px;
+        padding: 17px 18px;
         text-align: center;
       }
 
       .brand {
         white-space: normal;
+      }
+
+      .brand span {
+        margin-top: 5px;
       }
 
       .nav-links {
@@ -620,6 +635,7 @@
 
       .catalog-section {
         padding: 32px 16px 55px;
+        scroll-margin-top: 155px;
       }
 
       .catalog-grid {
@@ -638,9 +654,17 @@
       .step {
         padding: 20px 13px;
       }
+
+      .how-section {
+        scroll-margin-top: 155px;
+      }
     }
 
     @media (max-width: 520px) {
+      html {
+        scroll-padding-top: 165px;
+      }
+
       .announcement {
         padding: 8px 10px;
         font-size: 9px;
@@ -649,7 +673,8 @@
 
       .nav {
         min-height: auto;
-        padding: 20px 13px;
+        padding: 14px 13px;
+        gap: 12px;
       }
 
       .nav-links {
@@ -675,6 +700,7 @@
 
       .catalog-section {
         padding: 28px 10px 45px;
+        scroll-margin-top: 165px;
       }
 
       .catalog-grid {
@@ -711,6 +737,7 @@
 
       .how-section {
         padding: 55px 18px;
+        scroll-margin-top: 165px;
       }
 
       .steps {
@@ -755,28 +782,28 @@
 
 <body>
 
-  <div class="announcement">
-    Вашите емоции. Нашето вдъхновение.
+  <div class="site-header-wrap">
+    <div class="announcement">
+      Вашите емоции. Нашето вдъхновение.
+    </div>
+
+    <header>
+      <nav class="nav">
+        <a href="index.html" class="brand">
+          The Story Atelier
+          <span>Онлайн покани за специалните моменти</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html">Начало</a>
+          <a href="#how">Как работи?</a>
+          <a href="designs.html" class="nav-button">Каталог</a>
+        </div>
+      </nav>
+    </header>
   </div>
 
-  <header>
-    <nav class="nav">
-      <a href="index.html" class="brand">
-        The Story Atelier
-        <span>Онлайн покани за специалните моменти</span>
-      </a>
-
-      <div class="nav-links">
-        <a href="index.html">Начало</a>
-        <a href="index.html#how">Как работи?</a>
-        <a href="designs.html" class="nav-button">Каталог</a>
-      </div>
-    </nav>
-  </header>
-
   <main>
-
-    <!-- ЗАГЛАВИЕ -->
 
     <section class="catalog-hero">
       <div class="hero-inner">
@@ -791,8 +818,6 @@
         </p>
       </div>
     </section>
-
-    <!-- КАТАЛОГ -->
 
     <section class="catalog-section" id="catalog">
 
@@ -1013,8 +1038,6 @@
       </div>
     </section>
 
-    <!-- КАК РАБОТИ -->
-
     <section class="how-section" id="how">
       <div class="section-inner">
 
@@ -1062,8 +1085,6 @@
 
   </main>
 
-  <!-- ДОЛНА ЧАСТ -->
-
   <footer>
     <div class="footer-brand">The Story Atelier</div>
     <p>Онлайн покани за специалните моменти</p>
@@ -1107,8 +1128,8 @@
         try {
           await video.play();
         } catch (error) {
-          // Ако автоматичното пускане е блокирано,
-          // контролите на видеото остават достъпни.
+          // Контролите на видеото остават достъпни,
+          // ако автоматичното пускане е блокирано.
           preview.classList.add("is-playing");
         }
       }
