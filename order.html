@@ -39,6 +39,14 @@ body {
   line-height: 1.7;
 }
 
+/* Фиксирана горна част: лента + меню */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  isolation: isolate;
+}
+
 .announcement {
   padding: 9px 15px;
   background: var(--purple);
@@ -230,6 +238,7 @@ main {
 
 .section {
   margin-bottom: 35px;
+  scroll-margin-top: 150px;
 }
 
 .section-title {
@@ -609,26 +618,32 @@ footer {
   .success-title {
     font-size: 30px;
   }
+
+  .section {
+    scroll-margin-top: 180px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="announcement">
-  Онлайн покани за вашите специални моменти
-</div>
-
-<header>
-  <div class="header-inner">
-    <a class="logo" href="index.html">The Story Atelier</a>
-    <nav>
-      <a href="index.html">Начало</a>
-      <a href="index.html#how">Как работи?</a>
-      <a href="designs.html#catalog">Каталог</a>
-    </nav>
+<div class="site-header">
+  <div class="announcement">
+    Онлайн покани за вашите специални моменти
   </div>
-</header>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">The Story Atelier</a>
+      <nav>
+        <a href="index.html">Начало</a>
+        <a href="index.html#how">Как работи?</a>
+        <a href="designs.html#catalog">Каталог</a>
+      </nav>
+    </div>
+  </header>
+</div>
 
 <section class="hero">
   <p class="eyebrow">Вашата история започва тук</p>
