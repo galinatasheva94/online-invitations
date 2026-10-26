@@ -37,9 +37,28 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background: var(--lavender-light);
+      background: #F7EFF9;
       color: var(--text);
       line-height: 1.7;
+    }
+
+    /* Един общ градиент през цялото съдържание — без резки граници между секциите. */
+    main {
+      background:
+        radial-gradient(ellipse at 8% 12%, rgba(255, 255, 255, 0.22), transparent 34%),
+        radial-gradient(ellipse at 92% 73%, rgba(255, 255, 255, 0.28), transparent 38%),
+        linear-gradient(
+          180deg,
+          #D2B2E8 0%,
+          #E3BCE2 14%,
+          #F1D7EB 27%,
+          #FFFFFF 44%,
+          #FFFBFD 53%,
+          #F8E3F1 63%,
+          #EFCBE6 75%,
+          #DDBCE8 88%,
+          #CFAAE3 100%
+        );
     }
 
     a {
@@ -48,7 +67,7 @@
     }
 
     .announcement {
-      background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
+      background: rgba(255, 255, 255, 0.18);
       color: #603C79;
       text-align: center;
       padding: 10px 15px;
@@ -57,8 +76,10 @@
     }
 
     header {
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.42);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .nav {
@@ -138,10 +159,7 @@
 
     .hero {
       overflow: hidden;
-      background:
-        radial-gradient(ellipse at 8% 18%, rgba(209, 174, 235, 0.85), transparent 40%),
-        radial-gradient(ellipse at 90% 82%, rgba(235, 182, 216, 0.85), transparent 43%),
-        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
+      background: transparent;
     }
 
     .hero-inner {
@@ -361,7 +379,7 @@
     }
 
     .intro {
-      background: #FFFFFF;
+      background: transparent;
     }
 
     .features {
@@ -404,7 +422,7 @@
     }
 
     .how {
-      background: #F3E7F5;
+      background: transparent;
     }
 
     .steps {
@@ -439,7 +457,7 @@
 
     .catalog-cta {
       padding: 82px 28px;
-      background: #EBC8E2;
+      background: transparent;
       text-align: center;
     }
 
@@ -464,8 +482,8 @@
     footer {
       padding: 32px 20px;
       text-align: center;
-      background: white;
-      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.24);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     footer .footer-brand {
@@ -478,76 +496,6 @@
       color: var(--muted);
       font-size: 11px;
       margin-top: 7px;
-    }
-
-
-
-    /* Вълнообразни преходи между секциите */
-    .hero, .intro, .how, .catalog-cta {
-      position: relative;
-    }
-
-    .hero {
-      overflow: visible;
-      z-index: 1;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .wave-divider {
-      position: absolute;
-      left: 0;
-      bottom: -49px;
-      display: block;
-      width: 100%;
-      height: clamp(72px, 8vw, 108px);
-      pointer-events: none;
-      z-index: 3;
-      line-height: 0;
-    }
-
-    .wave-divider svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .intro {
-      background: #FFFFFF;
-      padding-top: 125px;
-      z-index: 0;
-    }
-
-    .how {
-      background: #F3E7F5;
-      padding-top: 125px;
-    }
-
-    .catalog-cta {
-      background: #EBC8E2;
-      padding-top: 120px;
-    }
-
-    footer {
-      position: relative;
-    }
-
-    @media (max-width: 800px) {
-      .wave-divider {
-        height: 72px;
-        bottom: -35px;
-      }
-
-      .intro, .how {
-        padding-top: 95px;
-      }
-
-      .catalog-cta {
-        padding-top: 92px;
-      }
     }
 
     @media (max-width: 800px) {
@@ -723,11 +671,6 @@
         </div>
 
       </div>
-      <div class="wave-divider" aria-hidden="true">
-        <svg viewBox="0 0 1440 110" preserveAspectRatio="none" focusable="false">
-          <path fill="#FFFFFF" d="M0,38 C180,76 300,82 470,49 C650,14 770,18 930,48 C1110,82 1260,74 1440,34 L1440,110 L0,110 Z"/>
-        </svg>
-      </div>
     </section>
 
     <section class="section intro">
@@ -761,11 +704,6 @@
           </article>
         </div>
       </div>
-      <div class="wave-divider" aria-hidden="true">
-        <svg viewBox="0 0 1440 110" preserveAspectRatio="none" focusable="false">
-          <path fill="#F3E7F5" d="M0,38 C180,76 300,82 470,49 C650,14 770,18 930,48 C1110,82 1260,74 1440,34 L1440,110 L0,110 Z"/>
-        </svg>
-      </div>
     </section>
 
     <section class="section how" id="how">
@@ -796,11 +734,6 @@
           </article>
         </div>
       </div>
-      <div class="wave-divider" aria-hidden="true">
-        <svg viewBox="0 0 1440 110" preserveAspectRatio="none" focusable="false">
-          <path fill="#EBC8E2" d="M0,38 C180,76 300,82 470,49 C650,14 770,18 930,48 C1110,82 1260,74 1440,34 L1440,110 L0,110 Z"/>
-        </svg>
-      </div>
     </section>
 
     <section class="catalog-cta">
@@ -811,11 +744,6 @@
         която най-добре изразява вашето настроение.
       </p>
       <a href="designs.html" class="button">Открийте своята покана</a>
-      <div class="wave-divider" aria-hidden="true">
-        <svg viewBox="0 0 1440 110" preserveAspectRatio="none" focusable="false">
-          <path fill="#FFFFFF" d="M0,38 C180,76 300,82 470,49 C650,14 770,18 930,48 C1110,82 1260,74 1440,34 L1440,110 L0,110 Z"/>
-        </svg>
-      </div>
     </section>
   </main>
 
