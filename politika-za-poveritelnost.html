@@ -3,225 +3,591 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, follow">
+
   <title>Политика за поверителност | The Story Atelier</title>
+  <meta name="description" content="Политика за поверителност и защита на личните данни на The Story Atelier.">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple: #755092;
+      --deep-purple: #65417f;
+      --pink: #d88bbd;
+      --light-pink: #f6dce9;
+      --light-lilac: #e9dcf7;
+      --text: #604c70;
+      --muted: #897593;
+      --white: #fff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 150px;
+    }
 
     body {
       margin: 0;
-      background: #fffafd;
-      color: #514456;
-      font-family: Montserrat, Arial, sans-serif;
-      line-height: 1.8;
+      color: var(--text);
+      background: #fffaff;
+      font-family: "Montserrat", sans-serif;
+      overflow-x: hidden;
     }
 
-    .page {
-      width: min(900px, calc(100% - 36px));
+    a {
+      color: inherit;
+    }
+
+    .site-header-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+    }
+
+    .announcement {
+      position: relative;
+      padding: 10px 15px;
+      text-align: center;
+      color: #603C79;
+      background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    header {
+      position: relative;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid #E3CDEB;
+      box-shadow: 0 4px 18px rgba(92, 54, 119, 0.07);
+    }
+
+    .nav {
+      max-width: 1180px;
+      min-height: 100px;
       margin: 0 auto;
-      padding: 55px 0 75px;
+      padding: 17px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
     .brand {
-      text-align: center;
-      color: #956ca8;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 25px;
-      letter-spacing: 1px;
-      margin-bottom: 35px;
+      display: inline-block;
+      color: #70438D;
+      text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(27px, 3vw, 37px);
+      font-weight: 600;
+      line-height: 1.05;
     }
 
-    h1, h2 {
-      color: #765487;
-      font-family: "Cormorant Garamond", Georgia, serif;
-      line-height: 1.3;
+    .brand span {
+      display: block;
+      margin-top: 8px;
+      color: #A15F98;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
     }
 
-    h1 {
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 25px;
+      font-size: 12px;
+    }
+
+    .nav-links a {
+      color: #665371;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #c16da9;
+    }
+
+    .nav-links .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 24px;
+      color: #fff;
+      background: #70438D;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: transform 0.2s, background 0.2s;
+      border: none;
+    }
+
+    .nav-links .nav-button:hover {
+      color: #fff;
+      background: #59316F;
+      transform: translateY(-2px);
+    }
+
+    main {
+      min-height: 70vh;
+    }
+
+    .hero {
+      padding: 76px 20px 58px;
       text-align: center;
-      font-size: clamp(32px, 5vw, 46px);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 8% 18%, rgba(209, 174, 235, 0.85), transparent 40%),
+        radial-gradient(ellipse at 90% 82%, rgba(235, 182, 216, 0.85), transparent 43%),
+        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #a15ca3;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      line-height: 1.12;
+    }
+
+    .hero h1 {
+      max-width: 950px;
+      margin: 0 auto;
+      color: #624174;
+      font-size: clamp(38px, 5.5vw, 60px);
+      font-weight: 500;
+      line-height: 1.08;
+    }
+
+    .hero-description {
+      max-width: 700px;
+      margin: 20px auto 0;
+      color: #796586;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .section {
+      width: min(900px, 90%);
+      margin: 0 auto;
+      padding: 55px 0 70px;
+    }
+
+    .policy-updated {
+      margin: 0 0 28px;
+      color: #96849e;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .policy-intro {
+      margin: 0 0 24px;
+      color: #796887;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .policy-notice {
+      margin: 0 0 35px;
+      padding: 19px 22px;
+      color: #755b83;
+      background: linear-gradient(120deg, #f5ecfc, #fff0f8);
+      border: 1px solid #e5cceb;
+      border-left: 4px solid #b98acb;
+      border-radius: 12px;
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .policy-item {
+      margin: 0 0 30px;
+    }
+
+    .policy-item h2 {
+      margin: 0 0 12px;
+      color: #69447f;
+      font-size: clamp(25px, 3.5vw, 32px);
+      font-weight: 500;
+    }
+
+    .policy-item p,
+    .policy-item li {
+      color: #796887;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    .policy-item p {
       margin: 0 0 12px;
     }
 
-    .intro {
-      text-align: center;
-      color: #827587;
-      margin: 0 0 38px;
+    .policy-item ul {
+      margin: 10px 0 14px;
+      padding-left: 23px;
     }
 
-    h2 {
-      font-size: 25px;
-      margin: 32px 0 10px;
+    .policy-item li {
+      padding-left: 3px;
+      margin-bottom: 5px;
     }
 
-    p, li { font-size: 15px; }
-
-    ul { padding-left: 24px; }
-
-    a { color: #9068a5; }
-
-    .notice {
-      background: #f7eff9;
-      border-left: 3px solid #b995ca;
-      padding: 16px 18px;
-      border-radius: 6px;
-      margin-top: 28px;
+    .policy-item a {
+      color: #9257a4;
+      font-weight: 600;
+      overflow-wrap: anywhere;
     }
 
-    .back {
+    .back-link {
       display: inline-block;
-      margin-top: 35px;
+      margin-top: 12px;
       color: #805d91;
+      font-size: 12px;
+      font-weight: 500;
       text-decoration: none;
       border-bottom: 1px solid #cbb5d5;
+      padding-bottom: 4px;
     }
 
-    footer {
-      border-top: 1px solid #eee3ef;
-      margin-top: 55px;
-      padding-top: 22px;
+    .back-link:hover {
+      color: #c16da9;
+    }
+
+    .site-footer {
+      padding: 30px 20px 22px;
       text-align: center;
-      color: #988c9c;
-      font-size: 13px;
+      background: linear-gradient(
+        110deg,
+        #e8d9f7 0%,
+        #f4ddec 50%,
+        #fff4fa 100%
+      );
+      border-top: 1px solid rgba(190, 151, 205, 0.35);
     }
 
-    @media (max-width: 600px) {
-      .page { padding-top: 35px; }
-      h2 { font-size: 22px; }
+    .footer-brand {
+      margin: 0;
+      color: #67417f;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 27px;
+      font-weight: 600;
+    }
+
+    .footer-text {
+      margin: 6px 0 20px;
+      color: #876c96;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-copyright {
+      margin: 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(190, 151, 205, 0.3);
+      color: #8e7c98;
+      font-size: 10px;
+    }
+
+    @media (max-width: 800px) {
+      html {
+        scroll-padding-top: 160px;
+      }
+
+      .nav {
+        flex-direction: column;
+        padding: 15px 18px;
+        gap: 14px;
+        text-align: center;
+        min-height: auto;
+      }
+
+      .brand {
+        white-space: normal;
+        text-align: center;
+      }
+
+      .brand span {
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 17px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      .nav-button {
+        padding: 10px 16px;
+      }
+
+      .hero {
+        padding: 55px 18px 40px;
+      }
+
+      .section {
+        width: 90%;
+        padding: 40px 0 55px;
+      }
+
+      .policy-notice {
+        padding: 16px;
+      }
+
+      .site-footer {
+        padding: 30px 18px 22px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1px;
+        padding: 8px 10px;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="page">
-    <div class="brand">The Story Atelier</div>
 
-    <h1>Политика за поверителност</h1>
-    <p class="intro">Информация за обработването и защитата на личните данни</p>
-
-    <p>
-      В The Story Atelier уважаваме личното пространство на посетителите
-      и клиентите си. В тази политика обясняваме какви лични данни могат
-      да бъдат събирани при изпращане на запитване или поръчка за видео
-      покана, за какви цели се използват и какви права имат физическите лица.
-    </p>
-
-    <div class="notice">
-      <strong>Важно:</strong> Тази страница е работна версия за етапа на
-      разработка. Преди официалното стартиране трябва да бъдат попълнени
-      данните на действителния доставчик на услугата и да се потвърдят
-      всички описани процеси на обработване.
+  <div class="site-header-wrap">
+    <div class="announcement">
+      Вашите емоции. Нашето вдъхновение.
     </div>
 
-    <h2>1. Кой обработва личните данни?</h2>
-    <p>
-      Администраторът на личните данни е лицето, което действително
-      предоставя услугите на The Story Atelier и определя целите и средствата
-      за обработване на личните данни. Идентификационните и контактните му
-      данни ще бъдат публикувани тук преди официалното стартиране.
-    </p>
+    <header>
+      <nav class="nav" aria-label="Основна навигация">
 
-    <h2>2. Какви данни можем да събираме?</h2>
-    <p>В зависимост от съдържанието на изпратената поръчка може да обработваме:</p>
-    <ul>
-      <li>име и фамилия на лицето за контакт;</li>
-      <li>имейл адрес и телефонен номер;</li>
-      <li>имена на младоженците и кумовете;</li>
-      <li>дата, час и място на сватбеното тържество;</li>
-      <li>избран дизайн на видео поканата и инструкции за персонализация;</li>
-      <li>кореспонденция, свързана със запитването, поръчката и корекциите.</li>
-    </ul>
-    <p>
-      Моля, не изпращайте специални категории лични данни или информация
-      за други лица, която не е необходима за изработката на поканата.
-    </p>
+        <a href="index.html" class="brand">
+          The Story Atelier
+          <span>Онлайн покани за специалните моменти</span>
+        </a>
 
-    <h2>3. За какво използваме данните?</h2>
-    <ul>
-      <li>за отговор на запитвания и обработване на поръчки;</li>
-      <li>за изработване и персонализиране на видео покани;</li>
-      <li>за изпращане на готовия продукт и извършване на договорените корекции;</li>
-      <li>за комуникация относно плащане, доставка и обслужване;</li>
-      <li>за изпълнение на приложими законови задължения.</li>
-    </ul>
-    <p>
-      Данните няма да се използват за несвързани цели без подходящо правно
-      основание.
-    </p>
+        <div class="nav-links">
+          <a href="index.html">Начало</a>
+          <a href="designs.html#how">Как работи?</a>
+          <a href="designs.html" class="nav-button">Каталог</a>
+          <a href="contacts.html">Контакти</a>
+        </div>
 
-    <h2>4. Правни основания</h2>
-    <p>
-      В зависимост от конкретната цел обработването може да се основава на
-      предприемане на стъпки по искане на лицето преди сключване на договор,
-      изпълнение на договор, спазване на законово задължение или легитимен
-      интерес, когато приложимото законодателство допуска това.
-      Когато е необходимо съгласие, то ще бъде поискано отделно.
-    </p>
+      </nav>
+    </header>
+  </div>
 
-    <h2>5. Къде се съхраняват данните и кой може да има достъп?</h2>
-    <p>
-      При обработването могат да се използват услуги за съхранение на
-      поръчки, електронна поща и инструменти за създаване и предаване на
-      видео покани. Преди официалното стартиране ще бъдат уточнени
-      действително използваните доставчици, ролите им и приложимите мерки
-      за защита на данните.
-    </p>
-    <p>
-      Данните не се продават. Достъп може да бъде предоставян само когато
-      е необходим за изпълнение на услугата или когато това се изисква от закона.
-    </p>
+  <main>
 
-    <h2>6. Колко дълго съхраняваме данните?</h2>
-    <p>
-      Данните следва да се съхраняват само за периода, необходим за
-      съответната цел, както и за сроковете, изисквани от приложимото
-      законодателство. Конкретните срокове за поръчки, кореспонденция,
-      финансови документи и готови файлове ще бъдат определени преди
-      официалното стартиране.
-    </p>
+    <section class="hero">
+      <p class="eyebrow">The Story Atelier</p>
 
-    <h2>7. Вашите права</h2>
-    <p>
-      При условията на приложимото законодателство имате право да поискате
-      достъп до личните си данни, коригиране, изтриване, ограничаване на
-      обработването, преносимост, както и да възразите срещу определени
-      видове обработване. Когато обработването се основава на съгласие,
-      то може да бъде оттеглено занапред.
-    </p>
-    <p>
-      Имате право и да подадете жалба до
-      <a href="https://cpdp.bg/" target="_blank" rel="noopener noreferrer">
-        Комисията за защита на личните данни
-      </a>.
-      Упражняването на правата зависи от приложимите законови условия.
-    </p>
+      <h1>Политика за поверителност</h1>
 
-    <h2>8. Бисквитки</h2>
-    <p>
-      Сайтът може да използва технически необходими технологии за правилното
-      си функциониране. Информация за действително използваните бисквитки
-      и други подобни технологии ще бъде публикувана в отделната
-      „Политика за бисквитки“.
-    </p>
+      <p class="hero-description">
+        Вашето доверие е важно за нас. Тук можете да научите какви лични
+        данни обработваме във връзка с нашите услуги и как защитаваме
+        информацията, която ни предоставяте.
+      </p>
+    </section>
 
-    <h2>9. Защита на данните</h2>
-    <p>
-      Ще бъдат прилагани подходящи технически и организационни мерки за
-      защита на личните данни срещу неразрешен достъп, загуба, промяна
-      или разкриване.
-    </p>
+    <section class="section">
 
-    <h2>10. Промени в политиката</h2>
-    <p>
-      Политиката може да бъде актуализирана при промяна в услугите,
-      използваните технологии или приложимите законови изисквания.
-      Актуалната версия ще бъде публикувана на тази страница.
-    </p>
+      <p class="policy-updated">
+        Работна версия за етапа на разработка на сайта
+      </p>
 
-    <a class="back" href="index.html">← Обратно към сайта</a>
+      <p class="policy-intro">
+        В тази политика обясняваме какви лични данни могат да бъдат
+        събирани при изпращане на запитване или поръчка за видео покана,
+        за какви цели могат да се използват и какви права имат физическите лица.
+      </p>
 
-    <footer>
-      The Story Atelier · Работна версия на документа
-    </footer>
+      <div class="policy-notice">
+        <strong>Важно:</strong> Тази страница е проект на документ, а не
+        окончателна политика за публикуване при започване на продажби.
+        Преди официалното стартиране трябва да бъдат попълнени данните на
+        действителния доставчик на услугата и да се потвърдят използваните
+        системи, сроковете за съхранение и останалите описани процеси.
+      </div>
+
+      <article class="policy-item">
+        <h2>1. Кой обработва личните данни?</h2>
+        <p>
+          Администраторът на личните данни е лицето, което действително
+          предоставя услугите на The Story Atelier и определя целите и
+          средствата за обработване на личните данни. Идентификационните
+          и контактните му данни трябва да бъдат публикувани тук преди
+          официалното стартиране.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>2. Какви лични данни можем да събираме?</h2>
+        <p>В зависимост от конкретната заявка или поръчка може да бъдат обработвани:</p>
+        <ul>
+          <li>име и фамилия на лицето за контакт;</li>
+          <li>имейл адрес и телефонен номер;</li>
+          <li>имена на младоженците и кумовете;</li>
+          <li>дата, час и място на сватбеното тържество;</li>
+          <li>избран дизайн и инструкции за персонализация на поканата;</li>
+          <li>кореспонденция, свързана със запитването, поръчката и корекциите.</li>
+        </ul>
+        <p>
+          Моля, не изпращайте чувствителни лични данни или информация за
+          други лица, която не е необходима за изработката на поканата.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>3. За какво използваме данните?</h2>
+        <ul>
+          <li>За отговор на запитвания и обработване на поръчки.</li>
+          <li>За изработване и персонализиране на видео покани.</li>
+          <li>За изпращане на готовия продукт и извършване на договорените корекции.</li>
+          <li>За комуникация относно поръчката, плащането и доставката.</li>
+          <li>За изпълнение на приложими законови задължения.</li>
+        </ul>
+        <p>
+          Данните не следва да се използват за несвързани цели без
+          подходящо правно основание.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>4. Правни основания за обработване</h2>
+        <p>
+          В зависимост от конкретната цел обработването може да се основава
+          на предприемане на стъпки по искане на лицето преди сключване на
+          договор, изпълнение на договор, спазване на законово задължение
+          или легитимен интерес, когато приложимото законодателство допуска това.
+        </p>
+        <p>
+          Когато е необходимо съгласие, то ще бъде поискано отделно.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>5. Къде се съхраняват данните и кой има достъп?</h2>
+        <p>
+          При обработването могат да се използват услуги за съхранение на
+          поръчки, електронна поща и инструменти за създаване и предаване
+          на видео покани. Преди официалното стартиране ще бъдат уточнени
+          действително използваните доставчици, ролите им и приложимите мерки
+          за защита на данните.
+        </p>
+        <p>
+          Данните не се продават. Достъп може да бъде предоставян, когато е
+          необходим за изпълнение на услугата или когато това се изисква от закона.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>6. Колко дълго съхраняваме данните?</h2>
+        <p>
+          Данните следва да се съхраняват само за периода, необходим за
+          съответната цел, както и за сроковете, изисквани от приложимото
+          законодателство. Конкретните срокове за поръчки, кореспонденция,
+          финансови документи и готови файлове трябва да бъдат определени
+          преди официалното стартиране.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>7. Вашите права</h2>
+        <p>
+          При условията на приложимото законодателство може да имате право
+          на достъп до личните си данни, коригиране, изтриване, ограничаване
+          на обработването, преносимост и възражение срещу определени
+          видове обработване. Когато обработването се основава на съгласие,
+          то може да бъде оттеглено занапред.
+        </p>
+        <p>
+          Имате право да подадете жалба до
+          <a href="https://cpdp.bg/" target="_blank" rel="noopener noreferrer">
+            Комисията за защита на личните данни
+          </a>.
+          Упражняването на конкретните права зависи от приложимите законови условия.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>8. Бисквитки и подобни технологии</h2>
+        <p>
+          Сайтът може да използва технически необходими технологии за
+          правилното си функциониране. Информация за действително
+          използваните бисквитки и подобни технологии ще бъде публикувана
+          в отделната „Политика за бисквитки“.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>9. Защита на данните</h2>
+        <p>
+          Ще бъдат прилагани подходящи технически и организационни мерки
+          за защита на личните данни срещу неразрешен достъп, загуба,
+          промяна или разкриване.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>10. Промени в политиката</h2>
+        <p>
+          Политиката може да бъде актуализирана при промяна в услугите,
+          използваните технологии или приложимите законови изисквания.
+          Актуалната версия ще бъде публикувана на тази страница.
+        </p>
+      </article>
+
+      <a class="back-link" href="index.html">← Обратно към началната страница</a>
+
+    </section>
+
   </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">The Story Atelier</p>
+    <p class="footer-text">Онлайн покани за специалните моменти</p>
+    <p class="footer-copyright">
+      © 2026 The Story Atelier. Всички права запазени.
+    </p>
+  </footer>
+
 </body>
 </html>
