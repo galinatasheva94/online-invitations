@@ -164,7 +164,9 @@
       text-transform: uppercase;
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
       line-height: 1.12;
@@ -272,39 +274,59 @@
       color: #c16da9;
     }
 
+    /* Футър — еднакъв с останалите страници */
     .site-footer {
-      padding: 30px 20px 22px;
+      padding: 32px 20px;
       text-align: center;
-      background: linear-gradient(
-        110deg,
-        #e8d9f7 0%,
-        #f4ddec 50%,
-        #fff4fa 100%
-      );
-      border-top: 1px solid rgba(190, 151, 205, 0.35);
+      background: #FFFFFF;
+      border-top: 1px solid #E3CDEB;
     }
 
     .footer-brand {
       margin: 0;
-      color: #67417f;
+      color: #755092;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 27px;
+      font-size: 29px;
       font-weight: 600;
+      line-height: 1.2;
     }
 
     .footer-text {
-      margin: 6px 0 20px;
-      color: #876c96;
+      margin: 7px 0 0;
+      color: #897593;
       font-size: 11px;
-      letter-spacing: 0.5px;
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 17px;
+      color: #897593;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #755092;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .footer-copyright {
-      margin: 0;
-      padding-top: 16px;
-      border-top: 1px solid rgba(190, 151, 205, 0.3);
-      color: #8e7c98;
+      margin: 15px 0 0;
+      color: #897593;
       font-size: 10px;
+      line-height: 1.8;
     }
 
     @media (max-width: 800px) {
@@ -358,7 +380,14 @@
       }
 
       .site-footer {
-        padding: 30px 18px 22px;
+        padding: 30px 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .footer-links {
+        gap: 5px 7px;
+        font-size: 9px;
       }
     }
 
@@ -380,7 +409,9 @@
         scroll-behavior: auto;
       }
 
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         transition-duration: 0.01ms !important;
       }
     }
@@ -396,7 +427,6 @@
 
     <header>
       <nav class="nav" aria-label="Основна навигация">
-
         <a href="index.html" class="brand">
           The Story Atelier
           <span>Онлайн покани за специалните моменти</span>
@@ -408,7 +438,6 @@
           <a href="designs.html" class="nav-button">Каталог</a>
           <a href="contacts.html">Контакти</a>
         </div>
-
       </nav>
     </header>
   </div>
@@ -440,7 +469,10 @@
 
       <article class="policy-item">
         <h2>2. Какви лични данни можем да събираме?</h2>
-        <p>В зависимост от конкретната заявка или поръчка може да бъдат обработвани:</p>
+        <p>
+          В зависимост от конкретната заявка или поръчка може да бъдат
+          обработвани:
+        </p>
         <ul>
           <li>име и фамилия на лицето за контакт;</li>
           <li>имейл адрес и телефонен номер;</li>
@@ -487,7 +519,7 @@
         <p>
           При обработването могат да се използват услуги за съхранение на
           поръчки, електронна поща и инструменти за създаване и предаване
-          на видео покани. 
+          на видео покани.
         </p>
         <p>
           Данните не се продават. Достъп може да бъде предоставян, когато е
@@ -500,7 +532,7 @@
         <p>
           Данните следва да се съхраняват само за периода, необходим за
           съответната цел, както и за сроковете, изисквани от приложимото
-          законодателство. 
+          законодателство.
         </p>
       </article>
 
@@ -522,7 +554,9 @@
         </p>
       </article>
 
-      <a class="back-link" href="index.html">← Обратно към началната страница</a>
+      <a class="back-link" href="index.html">
+        ← Обратно към началната страница
+      </a>
 
     </section>
 
@@ -530,7 +564,19 @@
 
   <footer class="site-footer">
     <p class="footer-brand">The Story Atelier</p>
-    <p class="footer-text">Онлайн покани за специалните моменти</p>
+
+    <p class="footer-text">
+      Онлайн покани за специалните моменти
+    </p>
+
+    <nav class="footer-links" aria-label="Правна информация">
+      <a href="obshti-usloviya.html">Общи условия</a>
+      <span aria-hidden="true">|</span>
+      <a href="politika-za-poveritelnost.html">Политика за поверителност</a>
+      <span aria-hidden="true">|</span>
+      <a href="politika-za-biskvitki.html">Политика за бисквитки</a>
+    </nav>
+
     <p class="footer-copyright">
       © 2026 The Story Atelier. Всички права запазени.
     </p>
