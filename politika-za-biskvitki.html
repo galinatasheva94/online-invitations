@@ -3,23 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Политика за бисквитки | The Story Atelier</title>
+  <meta name="description" content="Информация за използването на бисквитки и подобни технологии в The Story Atelier.">
   <meta name="robots" content="noindex, follow">
-  <meta name="description" content="Информация за бисквитките в The Story Atelier.">
-  <title>Политика за бисквитките | The Story Atelier</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     :root {
       --purple: #755092;
       --deep-purple: #65417f;
       --pink: #d88bbd;
+      --light-pink: #f6dce9;
+      --light-lilac: #e9dcf7;
       --text: #604c70;
       --muted: #897593;
+      --white: #fff;
     }
 
     html {
@@ -33,10 +39,11 @@
       background: #fffaff;
       font-family: "Montserrat", sans-serif;
       overflow-x: hidden;
-      line-height: 1.8;
     }
 
-    a { color: inherit; }
+    a {
+      color: inherit;
+    }
 
     .site-header-wrap {
       position: sticky;
@@ -47,6 +54,7 @@
     }
 
     .announcement {
+      position: relative;
       padding: 10px 15px;
       text-align: center;
       color: #603C79;
@@ -56,6 +64,7 @@
     }
 
     header {
+      position: relative;
       background: rgba(255, 255, 255, 0.97);
       border-bottom: 1px solid #E3CDEB;
       box-shadow: 0 4px 18px rgba(92, 54, 119, 0.07);
@@ -89,7 +98,7 @@
       font-family: "Montserrat", sans-serif;
       font-size: 10px;
       font-weight: 400;
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
     }
 
     .nav-links {
@@ -105,27 +114,44 @@
       font-size: 12px;
       font-weight: 500;
       text-decoration: none;
-      transition: color .2s ease;
+      transition: color 0.2s ease;
     }
 
-    .nav-links a:hover { color: #c16da9; }
+    .nav-links a:hover {
+      color: #c16da9;
+    }
 
     .nav-links .nav-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 13px 24px;
-      color: white;
+      color: #fff;
       background: #70438D;
       border-radius: 30px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: transform 0.2s, background 0.2s;
+      border: none;
+    }
+
+    .nav-links .nav-button:hover {
+      color: #fff;
+      background: #59316F;
+      transform: translateY(-2px);
+    }
+
+    main {
+      min-height: 70vh;
     }
 
     .hero {
       padding: 76px 20px 58px;
       text-align: center;
+      overflow: hidden;
       background:
-        radial-gradient(ellipse at 8% 18%, rgba(209,174,235,.85), transparent 40%),
-        radial-gradient(ellipse at 90% 82%, rgba(235,182,216,.85), transparent 43%),
+        radial-gradient(ellipse at 8% 18%, rgba(209, 174, 235, 0.85), transparent 40%),
+        radial-gradient(ellipse at 90% 82%, rgba(235, 182, 216, 0.85), transparent 43%),
         linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
     }
 
@@ -141,79 +167,121 @@
     h1, h2, h3 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
-      line-height: 1.2;
+      line-height: 1.12;
     }
 
     .hero h1 {
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
       color: #624174;
       font-size: clamp(38px, 5.5vw, 60px);
+      font-weight: 500;
+      line-height: 1.08;
     }
 
     .hero-description {
-      max-width: 680px;
+      max-width: 700px;
       margin: 20px auto 0;
       color: #796586;
       font-size: 13px;
       line-height: 1.9;
     }
 
-    .draft-note {
-      max-width: 850px;
-      margin: 30px auto 0;
-      padding: 16px 20px;
-      color: #76558a;
-      background: #f8effb;
-      border: 1px solid #e5d2ef;
-      border-radius: 14px;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .content {
+    .section {
       width: min(900px, 90%);
       margin: 0 auto;
-      padding: 48px 0 65px;
+      padding: 55px 0 70px;
     }
 
-    .content h2 {
-      margin: 34px 0 10px;
-      color: #69447f;
-      font-size: clamp(27px, 3vw, 35px);
+    .policy-updated {
+      margin: 0 0 28px;
+      color: #96849e;
+      font-size: 11px;
+      text-align: center;
     }
 
-    .content h2:first-of-type { margin-top: 0; }
-
-    .content p, .content li {
+    .policy-intro {
+      margin: 0 0 24px;
       color: #796887;
       font-size: 13px;
       line-height: 2;
     }
 
-    .content ul { padding-left: 22px; }
+    .policy-notice {
+      margin: 0 0 35px;
+      padding: 19px 22px;
+      color: #755b83;
+      background: linear-gradient(120deg, #f5ecfc, #fff0f8);
+      border: 1px solid #e5cceb;
+      border-left: 4px solid #b98acb;
+      border-radius: 12px;
+      font-size: 12px;
+      line-height: 1.9;
+    }
 
-    .content a {
+    .policy-item {
+      margin: 0 0 30px;
+    }
+
+    .policy-item h2 {
+      margin: 0 0 12px;
+      color: #69447f;
+      font-size: clamp(25px, 3.5vw, 32px);
+      font-weight: 500;
+    }
+
+    .policy-item p,
+    .policy-item li {
+      color: #796887;
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    .policy-item p {
+      margin: 0 0 12px;
+    }
+
+    .policy-item ul {
+      margin: 10px 0 14px;
+      padding-left: 23px;
+    }
+
+    .policy-item li {
+      padding-left: 3px;
+      margin-bottom: 5px;
+    }
+
+    .policy-item a {
       color: #9257a4;
+      font-weight: 600;
       overflow-wrap: anywhere;
     }
 
     .back-link {
       display: inline-block;
-      margin-top: 28px;
-      padding: 12px 22px;
-      color: white !important;
-      background: #70438D;
-      border-radius: 28px;
-      text-decoration: none;
+      margin-top: 12px;
+      color: #805d91;
       font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid #cbb5d5;
+      padding-bottom: 4px;
+    }
+
+    .back-link:hover {
+      color: #c16da9;
     }
 
     .site-footer {
       padding: 30px 20px 22px;
       text-align: center;
-      background: linear-gradient(110deg, #e8d9f7 0%, #f4ddec 50%, #fff4fa 100%);
-      border-top: 1px solid rgba(190,151,205,.35);
+      background: linear-gradient(
+        110deg,
+        #e8d9f7 0%,
+        #f4ddec 50%,
+        #fff4fa 100%
+      );
+      border-top: 1px solid rgba(190, 151, 205, 0.35);
     }
 
     .footer-brand {
@@ -228,27 +296,57 @@
       margin: 6px 0 20px;
       color: #876c96;
       font-size: 11px;
-      letter-spacing: .5px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 22px;
+      margin: 0 0 20px;
+    }
+
+    .footer-links a {
+      color: #795d88;
+      font-size: 11px;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #c16da9;
     }
 
     .footer-copyright {
       margin: 0;
       padding-top: 16px;
-      border-top: 1px solid rgba(190,151,205,.3);
+      border-top: 1px solid rgba(190, 151, 205, 0.3);
       color: #8e7c98;
       font-size: 10px;
     }
 
     @media (max-width: 800px) {
+      html {
+        scroll-padding-top: 160px;
+      }
+
       .nav {
         flex-direction: column;
         padding: 15px 18px;
         gap: 14px;
         text-align: center;
+        min-height: auto;
       }
 
-      .brand { text-align: center; }
-      .brand span { margin-top: 5px; }
+      .brand {
+        white-space: normal;
+        text-align: center;
+      }
+
+      .brand span {
+        margin-top: 5px;
+        text-align: center;
+      }
 
       .nav-links {
         justify-content: center;
@@ -256,9 +354,30 @@
         gap: 12px 17px;
       }
 
-      .nav-links a { font-size: 11px; }
-      .hero { padding: 55px 18px 40px; }
-      .content { padding: 35px 0 48px; }
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      .nav-button {
+        padding: 10px 16px;
+      }
+
+      .hero {
+        padding: 55px 18px 40px;
+      }
+
+      .section {
+        width: 90%;
+        padding: 40px 0 55px;
+      }
+
+      .policy-notice {
+        padding: 16px;
+      }
+
+      .site-footer {
+        padding: 30px 18px 22px;
+      }
     }
 
     @media (max-width: 430px) {
@@ -268,19 +387,26 @@
         padding: 8px 10px;
       }
 
-      .nav-links { gap: 12px; }
+      .nav-links {
+        gap: 12px;
+        font-size: 11px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html {
+        scroll-behavior: auto;
+      }
+
       *, *::before, *::after {
-        transition-duration: .01ms !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
+
   <div class="site-header-wrap">
     <div class="announcement">
       Вашите емоции. Нашето вдъхновение.
@@ -306,83 +432,213 @@
   <main>
     <section class="hero">
       <p class="eyebrow">The Story Atelier</p>
-      <h1>Политика за бисквитките</h1>
+
+      <h1>Политика за бисквитки</h1>
+
       <p class="hero-description">
-        Информация за бисквитките, които може да се използват при посещение на нашия сайт.
+        Малките технически детайли също имат значение.
+        Тук ще научите какво представляват бисквитките,
+        за какво могат да се използват и как да управлявате
+        настройките им при посещение на нашия сайт.
       </p>
     </section>
 
-      <h2>1. Какво представляват бисквитките?</h2>
-      <p>
-        Бисквитките са малки текстови файлове, които могат да бъдат
-        запазени на вашето устройство при посещение на даден уебсайт.
-        Те могат да подпомагат работата на сайта, да запомнят настройки
-        или да събират информация за използването му.
+    <section class="section">
+
+      <p class="policy-updated">
+        Последна актуализация: 28 октомври 2026 г.
       </p>
 
-      <h2>2. Какви технологии може да използва сайтът?</h2>
-      <p>
-        The Story Atelier е сайт за представяне и заявяване на видео покани.
-        В зависимост от използваните функции и външни услуги сайтът може
-        да осъществява връзки с доставчици, които обработват техническа
-        информация или използват собствени технологии.
-      </p>
-      <ul>
-        <li>
-          <strong>Технически необходими технологии:</strong>
-          могат да са нужни за сигурността, правилното зареждане и
-          функционирането на сайта или негови функции.
-        </li>
-        <li>
-          <strong>Външни услуги:</strong> сайтът зарежда шрифтове от
-          Google Fonts. При това браузърът ви може да се свърже със
-          сървърите на Google. Това само по себе си не означава,
-          че сайтът използва рекламни бисквитки.
-        </li>
-        <li>
-          <strong>Форма за поръчка:</strong> заявките се обработват чрез
-          свързани услуги на Google. Точните технологии и срокове за
-          съхранение следва да бъдат проверени преди официалното стартиране.
-        </li>
-      </ul>
+      <div class="policy-notice">
+        <strong>Накратко:</strong> бисквитките са малки файлове,
+        които могат да се запазват на Вашето устройство при
+        посещение на уебсайт. Те могат да подпомагат работата
+        на сайта, да запомнят настройки или да събират информация
+        за използването му. Не всички бисквитки са задължителни.
+      </div>
 
-      <h2>3. Как можете да управлявате бисквитките?</h2>
-      <p>
-        Можете да преглеждате, ограничавате или изтривате бисквитките
-        чрез настройките на браузъра си. Блокирането на определени
-        технологии може да повлияе на работата на някои функции.
-      </p>
-      <p>
-        Настройките на браузъра не заместват механизъм за съгласие,
-        когато такъв се изисква за конкретните технологии, използвани
-        от сайта.
-      </p>
+      <article class="policy-item">
+        <h2>1. Какво представляват бисквитките?</h2>
 
-      <h2>4. Промени в политиката</h2>
-      <p>
-        Политиката може да бъде актуализирана при промяна на сайта,
-        използваните услуги или приложимите изисквания. Актуалната
-        версия ще бъде публикувана на тази страница.
-      </p>
+        <p>
+          Бисквитките (cookies) са малки текстови файлове,
+          които уебсайтовете могат да съхраняват в браузъра
+          на Вашето устройство. При следващо посещение
+          браузърът може да изпрати тази информация обратно
+          към съответния сайт.
+        </p>
 
-      <h2>5. Контакт</h2>
-      <p>
-        Ако имате въпроси относно тази политика, можете да се свържете
-        с нас чрез страницата <a href="contacts.html">Контакти</a>.
-      </p>
+        <p>
+          Подобни технологии могат да се използват и за
+          запазване или достъп до информация на устройството.
+        </p>
+      </article>
 
-      <p><strong>Последна актуализация:</strong> октомври 2026 г.</p>
+      <article class="policy-item">
+        <h2>2. Какви бисквитки съществуват?</h2>
 
-      <a class="back-link" href="index.html">← Обратно към началото</a>
+        <p>В зависимост от предназначението си бисквитките могат да бъдат:</p>
+
+        <ul>
+          <li>
+            <strong>Строго необходими</strong> – подпомагат
+            основните технически функции и сигурността на сайта.
+          </li>
+          <li>
+            <strong>За предпочитания</strong> – запомнят избрани
+            настройки, когато такава функционалност е налична.
+          </li>
+          <li>
+            <strong>Аналитични</strong> – помагат да се разбере
+            как посетителите използват сайта.
+          </li>
+          <li>
+            <strong>Маркетингови</strong> – могат да се използват
+            за измерване на рекламни кампании или персонализиране
+            на реклами.
+          </li>
+        </ul>
+
+        <p>
+          Това са общи категории. Изброяването им не означава,
+          че The Story Atelier използва всички тях.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>3. Използва ли The Story Atelier бисквитки?</h2>
+
+        <p>
+          Сайтът е създаден като онлайн каталог за персонализирани
+          видео покани. При посещението му браузърът и услугата,
+          която предоставя сайта, могат да обработват техническа
+          информация, необходима за зареждането и сигурността.
+        </p>
+
+        <p>
+          Сайтът зарежда шрифтове чрез Google Fonts. При заявката
+          към външните сървъри могат да бъдат обработвани технически
+          данни, например IP адрес и информация за браузъра.
+          Самото зареждане на шрифтове не означава автоматично,
+          че се използват бисквитки.
+        </p>
+
+        <p>
+          Не следва да се приемат за налични аналитични, рекламни
+          или маркетингови бисквитки, без да е установено, че
+          съответните инструменти действително са внедрени.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>4. Необходимо ли е съгласие?</h2>
+
+        <p>
+          Строго необходимите бисквитки, които са нужни за
+          предоставянето на изрично поискана услуга, могат да
+          бъдат използвани без предварително съгласие, когато
+          са изпълнени законовите условия.
+        </p>
+
+        <p>
+          За бисквитки и подобни технологии, които не са строго
+          необходими, по правило се изисква предварително съгласие,
+          когато приложимото законодателство го предвижда.
+          Отказът от такива технологии трябва да бъде реална
+          възможност.
+        </p>
+
+        <p>
+          Повече информация можете да намерите в
+          <a href="https://cpdp.bg/" target="_blank" rel="noopener noreferrer">
+            сайта на Комисията за защита на личните данни
+          </a>.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>5. Как можете да управлявате бисквитките?</h2>
+
+        <p>
+          Можете да преглеждате, ограничавате или изтривате
+          бисквитките чрез настройките на браузъра си.
+          Обикновено там можете да изберете и дали да получавате
+          предупреждение при съхраняването им.
+        </p>
+
+        <p>
+          Имайте предвид, че блокирането на определени технически
+          бисквитки може да попречи на някои функции на уебсайтовете.
+        </p>
+
+        <p>
+          Изтриването на бисквитките от браузъра не отменя автоматично
+          съхраняването на данни от самостоятелни услуги или приложения.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>6. Външни услуги</h2>
+
+        <p>
+          За предоставянето на сайта и неговите функции могат да
+          се използват външни услуги, например за зареждане на
+          шрифтове или обработване на заявки. Тези услуги могат
+          да обработват техническа информация съгласно собствените
+          си правила и приложимото законодателство.
+        </p>
+
+        <p>
+          За повече информация относно обработването на лични данни
+          прочетете нашата
+          <a href="politika-za-poveritelnost.html">
+            Политика за поверителност
+          </a>.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>7. Промени в политиката</h2>
+
+        <p>
+          Възможно е да актуализираме тази политика при промяна
+          в сайта, използваните технологии или приложимите
+          законови изисквания. Актуалната версия ще бъде публикувана
+          на тази страница.
+        </p>
+      </article>
+
+      <article class="policy-item">
+        <h2>8. Контакт</h2>
+
+        <p>
+          Ако имате въпроси относно тази политика или използването
+          на бисквитки, можете да се свържете с нас чрез страницата
+          <a href="contacts.html">Контакти</a>.
+        </p>
+      </article>
+
+      <a class="back-link" href="index.html">
+        ← Обратно към началната страница
+      </a>
+
     </section>
   </main>
 
   <footer class="site-footer">
     <p class="footer-brand">The Story Atelier</p>
     <p class="footer-text">Онлайн покани за специалните моменти</p>
+
+    <div class="footer-links">
+      <a href="politika-za-poveritelnost.html">Поверителност</a>
+      <a href="politika-za-biskvitki.html">Бисквитки</a>
+      <a href="contacts.html">Контакти</a>
+    </div>
+
     <p class="footer-copyright">
       © 2026 The Story Atelier. Всички права запазени.
     </p>
   </footer>
+
 </body>
 </html>
