@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Информация за бисквитките в The Story Atelier.">
+  <title>Политика за бисквитките | The Story Atelier</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --purple: #755092;
+      --deep-purple: #65417f;
+      --pink: #d88bbd;
+      --text: #604c70;
+      --muted: #897593;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 150px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #fffaff;
+      font-family: "Montserrat", sans-serif;
+      overflow-x: hidden;
+      line-height: 1.8;
+    }
+
+    a { color: inherit; }
+
+    .site-header-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+    }
+
+    .announcement {
+      padding: 10px 15px;
+      text-align: center;
+      color: #603C79;
+      background: linear-gradient(90deg, #D7B5E9, #EBC3DE, #D7B5E9);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid #E3CDEB;
+      box-shadow: 0 4px 18px rgba(92, 54, 119, 0.07);
+    }
+
+    .nav {
+      max-width: 1180px;
+      min-height: 100px;
+      margin: 0 auto;
+      padding: 17px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-block;
+      color: #70438D;
+      text-decoration: none;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(27px, 3vw, 37px);
+      font-weight: 600;
+      line-height: 1.05;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 8px;
+      color: #A15F98;
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 25px;
+      font-size: 12px;
+    }
+
+    .nav-links a {
+      color: #665371;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover { color: #c16da9; }
+
+    .nav-links .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 24px;
+      color: white;
+      background: #70438D;
+      border-radius: 30px;
+    }
+
+    .hero {
+      padding: 76px 20px 58px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 8% 18%, rgba(209,174,235,.85), transparent 40%),
+        radial-gradient(ellipse at 90% 82%, rgba(235,182,216,.85), transparent 43%),
+        linear-gradient(135deg, #EADAF5, #F8E8F3 54%, #E2D0F0);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #a15ca3;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 0 auto;
+      color: #624174;
+      font-size: clamp(38px, 5.5vw, 60px);
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 20px auto 0;
+      color: #796586;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .draft-note {
+      max-width: 850px;
+      margin: 30px auto 0;
+      padding: 16px 20px;
+      color: #76558a;
+      background: #f8effb;
+      border: 1px solid #e5d2ef;
+      border-radius: 14px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .content {
+      width: min(900px, 90%);
+      margin: 0 auto;
+      padding: 48px 0 65px;
+    }
+
+    .content h2 {
+      margin: 34px 0 10px;
+      color: #69447f;
+      font-size: clamp(27px, 3vw, 35px);
+    }
+
+    .content h2:first-of-type { margin-top: 0; }
+
+    .content p, .content li {
+      color: #796887;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .content ul { padding-left: 22px; }
+
+    .content a {
+      color: #9257a4;
+      overflow-wrap: anywhere;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 22px;
+      color: white !important;
+      background: #70438D;
+      border-radius: 28px;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .site-footer {
+      padding: 30px 20px 22px;
+      text-align: center;
+      background: linear-gradient(110deg, #e8d9f7 0%, #f4ddec 50%, #fff4fa 100%);
+      border-top: 1px solid rgba(190,151,205,.35);
+    }
+
+    .footer-brand {
+      margin: 0;
+      color: #67417f;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 27px;
+      font-weight: 600;
+    }
+
+    .footer-text {
+      margin: 6px 0 20px;
+      color: #876c96;
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+
+    .footer-copyright {
+      margin: 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(190,151,205,.3);
+      color: #8e7c98;
+      font-size: 10px;
+    }
+
+    @media (max-width: 800px) {
+      .nav {
+        flex-direction: column;
+        padding: 15px 18px;
+        gap: 14px;
+        text-align: center;
+      }
+
+      .brand { text-align: center; }
+      .brand span { margin-top: 5px; }
+
+      .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 17px;
+      }
+
+      .nav-links a { font-size: 11px; }
+      .hero { padding: 55px 18px 40px; }
+      .content { padding: 35px 0 48px; }
+    }
+
+    @media (max-width: 430px) {
+      .announcement {
+        font-size: 9px;
+        letter-spacing: 1px;
+        padding: 8px 10px;
+      }
+
+      .nav-links { gap: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-header-wrap">
+    <div class="announcement">
+      Вашите емоции. Нашето вдъхновение.
+    </div>
+
+    <header>
+      <nav class="nav" aria-label="Основна навигация">
+        <a href="index.html" class="brand">
+          The Story Atelier
+          <span>Онлайн покани за специалните моменти</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="index.html">Начало</a>
+          <a href="designs.html#how">Как работи?</a>
+          <a href="designs.html" class="nav-button">Каталог</a>
+          <a href="contacts.html">Контакти</a>
+        </div>
+      </nav>
+    </header>
+  </div>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">The Story Atelier</p>
+      <h1>Политика за бисквитките</h1>
+      <p class="hero-description">
+        Информация за бисквитките, които може да се използват при посещение на нашия сайт.
+      </p>
+    </section>
+
+      <h2>1. Какво представляват бисквитките?</h2>
+      <p>
+        Бисквитките са малки текстови файлове, които могат да бъдат
+        запазени на вашето устройство при посещение на даден уебсайт.
+        Те могат да подпомагат работата на сайта, да запомнят настройки
+        или да събират информация за използването му.
+      </p>
+
+      <h2>2. Какви технологии може да използва сайтът?</h2>
+      <p>
+        The Story Atelier е сайт за представяне и заявяване на видео покани.
+        В зависимост от използваните функции и външни услуги сайтът може
+        да осъществява връзки с доставчици, които обработват техническа
+        информация или използват собствени технологии.
+      </p>
+      <ul>
+        <li>
+          <strong>Технически необходими технологии:</strong>
+          могат да са нужни за сигурността, правилното зареждане и
+          функционирането на сайта или негови функции.
+        </li>
+        <li>
+          <strong>Външни услуги:</strong> сайтът зарежда шрифтове от
+          Google Fonts. При това браузърът ви може да се свърже със
+          сървърите на Google. Това само по себе си не означава,
+          че сайтът използва рекламни бисквитки.
+        </li>
+        <li>
+          <strong>Форма за поръчка:</strong> заявките се обработват чрез
+          свързани услуги на Google. Точните технологии и срокове за
+          съхранение следва да бъдат проверени преди официалното стартиране.
+        </li>
+      </ul>
+
+      <h2>3. Как можете да управлявате бисквитките?</h2>
+      <p>
+        Можете да преглеждате, ограничавате или изтривате бисквитките
+        чрез настройките на браузъра си. Блокирането на определени
+        технологии може да повлияе на работата на някои функции.
+      </p>
+      <p>
+        Настройките на браузъра не заместват механизъм за съгласие,
+        когато такъв се изисква за конкретните технологии, използвани
+        от сайта.
+      </p>
+
+      <h2>4. Промени в политиката</h2>
+      <p>
+        Политиката може да бъде актуализирана при промяна на сайта,
+        използваните услуги или приложимите изисквания. Актуалната
+        версия ще бъде публикувана на тази страница.
+      </p>
+
+      <h2>5. Контакт</h2>
+      <p>
+        Ако имате въпроси относно тази политика, можете да се свържете
+        с нас чрез страницата <a href="contacts.html">Контакти</a>.
+      </p>
+
+      <p><strong>Последна актуализация:</strong> октомври 2026 г.</p>
+
+      <a class="back-link" href="index.html">← Обратно към началото</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">The Story Atelier</p>
+    <p class="footer-text">Онлайн покани за специалните моменти</p>
+    <p class="footer-copyright">
+      © 2026 The Story Atelier. Всички права запазени.
+    </p>
+  </footer>
+</body>
+</html>
