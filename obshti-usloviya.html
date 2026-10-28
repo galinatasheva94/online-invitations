@@ -13,7 +13,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     :root {
       --purple: #755092;
@@ -39,7 +41,9 @@
       overflow-x: hidden;
     }
 
-    a { color: inherit; }
+    a {
+      color: inherit;
+    }
 
     .site-header-wrap {
       position: sticky;
@@ -111,7 +115,9 @@
       transition: color 0.2s ease;
     }
 
-    .nav-links a:hover { color: #c16da9; }
+    .nav-links a:hover {
+      color: #c16da9;
+    }
 
     .nav-links .nav-button {
       display: inline-flex;
@@ -133,7 +139,9 @@
       transform: translateY(-2px);
     }
 
-    main { min-height: 70vh; }
+    main {
+      min-height: 70vh;
+    }
 
     .hero {
       padding: 76px 20px 58px;
@@ -154,7 +162,9 @@
       text-transform: uppercase;
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       font-family: "Cormorant Garamond", serif;
       font-weight: 500;
       line-height: 1.12;
@@ -208,7 +218,9 @@
       line-height: 1.9;
     }
 
-    .policy-item { margin: 0 0 30px; }
+    .policy-item {
+      margin: 0 0 30px;
+    }
 
     .policy-item h2 {
       margin: 0 0 12px;
@@ -224,7 +236,9 @@
       line-height: 2;
     }
 
-    .policy-item p { margin: 0 0 12px; }
+    .policy-item p {
+      margin: 0 0 12px;
+    }
 
     .policy-item ul {
       margin: 10px 0 14px;
@@ -253,40 +267,69 @@
       padding-bottom: 4px;
     }
 
-    .back-link:hover { color: #c16da9; }
+    .back-link:hover {
+      color: #c16da9;
+    }
 
+    /* Футър — еднакъв с останалите страници */
     .site-footer {
-      padding: 30px 20px 22px;
+      padding: 32px 20px;
       text-align: center;
-      background: linear-gradient(110deg, #e8d9f7 0%, #f4ddec 50%, #fff4fa 100%);
-      border-top: 1px solid rgba(190, 151, 205, 0.35);
+      background: #FFFFFF;
+      border-top: 1px solid #E3CDEB;
     }
 
     .footer-brand {
       margin: 0;
-      color: #67417f;
+      color: #755092;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 27px;
+      font-size: 29px;
       font-weight: 600;
+      line-height: 1.2;
     }
 
     .footer-text {
-      margin: 6px 0 20px;
-      color: #876c96;
+      margin: 7px 0 0;
+      color: #897593;
       font-size: 11px;
-      letter-spacing: 0.5px;
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 17px;
+      color: #897593;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #755092;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .footer-copyright {
-      margin: 0;
-      padding-top: 16px;
-      border-top: 1px solid rgba(190, 151, 205, 0.3);
-      color: #8e7c98;
+      margin: 15px 0 0;
+      color: #897593;
       font-size: 10px;
+      line-height: 1.8;
     }
 
     @media (max-width: 800px) {
-      html { scroll-padding-top: 160px; }
+      html {
+        scroll-padding-top: 160px;
+      }
 
       .nav {
         flex-direction: column;
@@ -296,7 +339,9 @@
         min-height: auto;
       }
 
-      .brand { text-align: center; }
+      .brand {
+        text-align: center;
+      }
 
       .brand span {
         margin-top: 5px;
@@ -309,20 +354,37 @@
         gap: 12px 17px;
       }
 
-      .nav-links a { font-size: 11px; }
+      .nav-links a {
+        font-size: 11px;
+      }
 
-      .nav-button { padding: 10px 16px; }
+      .nav-button {
+        padding: 10px 16px;
+      }
 
-      .hero { padding: 55px 18px 40px; }
+      .hero {
+        padding: 55px 18px 40px;
+      }
 
       .section {
         width: 90%;
         padding: 40px 0 55px;
       }
 
-      .policy-notice { padding: 16px; }
+      .policy-notice {
+        padding: 16px;
+      }
 
-      .site-footer { padding: 30px 18px 22px; }
+      .site-footer {
+        padding: 30px 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .footer-links {
+        gap: 5px 7px;
+        font-size: 9px;
+      }
     }
 
     @media (max-width: 430px) {
@@ -332,13 +394,19 @@
         padding: 8px 10px;
       }
 
-      .nav-links { gap: 12px; }
+      .nav-links {
+        gap: 12px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html {
+        scroll-behavior: auto;
+      }
 
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         transition-duration: 0.01ms !important;
       }
     }
@@ -381,12 +449,15 @@
     </section>
 
     <section class="section">
+
       <article class="policy-item">
         <h2>1. Общи</h2>
         <p>
-          Тези Общи условия уреждат използването на уебсайта (“Сайтът”), който предлага дигитални покани за съответния повод. 
-          Чрез достъпа и използването на Сайта, вие се съгласявате да спазвате тези условия.
-          Ако не сте съгласни с тях, моля, не използвайте Сайта. The Story Atelier.
+          Тези Общи условия уреждат използването на уебсайта (“Сайтът”),
+          който предлага дигитални покани за съответния повод.
+          Чрез достъпа и използването на Сайта, вие се съгласявате
+          да спазвате тези условия. Ако не сте съгласни с тях,
+          моля, не използвайте Сайта. The Story Atelier.
         </p>
         <p>
           За запитвания можете да използвате посочените детайли в страницата
@@ -518,7 +589,8 @@
         <h2>10. Авторски права и използване на поканите</h2>
         <p>
           Дизайните, визуалните елементи, анимациите и шаблоните,
-          създадени или използвани от The Story Atelier, са защитени от приложимото законодателство за авторското право.
+          създадени или използвани от The Story Atelier, са защитени
+          от приложимото законодателство за авторското право.
         </p>
         <p>
           След получаване на готовата покана клиентът може да я споделя
@@ -571,12 +643,25 @@
           доколкото законът не предвижда друго.
         </p>
       </article>
+
     </section>
   </main>
 
   <footer class="site-footer">
     <p class="footer-brand">The Story Atelier</p>
-    <p class="footer-text">Онлайн покани за специалните моменти</p>
+
+    <p class="footer-text">
+      Онлайн покани за специалните моменти
+    </p>
+
+    <nav class="footer-links" aria-label="Правна информация">
+      <a href="obshti-usloviya.html">Общи условия</a>
+      <span aria-hidden="true">|</span>
+      <a href="politika-za-poveritelnost.html">Политика за поверителност</a>
+      <span aria-hidden="true">|</span>
+      <a href="politika-za-biskvitki.html">Политика за бисквитки</a>
+    </nav>
+
     <p class="footer-copyright">
       © 2026 The Story Atelier. Всички права запазени.
     </p>
