@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -396,29 +395,43 @@
       overflow-wrap: anywhere;
     }
 
-    /* Финално послание */
+    /* Финално послание — лавандулово-розов фон */
 
     .closing-note {
-      padding: 38px 20px 45px;
+      position: relative;
+      padding: 48px 20px 52px;
       text-align: center;
-      background: linear-gradient(
-        110deg,
-        #fff9fd 100%,
-        #fff 50%,
-        #fcf5ff 100%
-      );
+      background:
+        radial-gradient(
+          ellipse at 0% 50%,
+          rgba(207, 177, 235, 0.8),
+          transparent 48%
+        ),
+        radial-gradient(
+          ellipse at 100% 50%,
+          rgba(240, 184, 219, 0.8),
+          transparent 48%
+        ),
+        linear-gradient(
+          110deg,
+          #eadcf7 0%,
+          #f8e8f3 50%,
+          #f0dff8 100%
+        );
+      border-top: 1px solid #ead5f0;
+      border-bottom: 1px solid #ead5f0;
     }
 
     .closing-note p {
       max-width: 650px;
       margin: 0 auto;
-      color: #887391;
+      color: #755d83;
       font-size: 16px;
       line-height: 1.9;
     }
 
     .closing-note strong {
-      color: #755092;
+      color: #65417f;
       font-weight: 600;
     }
 
@@ -551,6 +564,10 @@
 
       .faq-answer {
         padding: 0 17px 18px;
+      }
+
+      .closing-note {
+        padding: 40px 18px 44px;
       }
 
       .site-footer {
@@ -805,7 +822,7 @@
     </nav>
 
     <p class="footer-copyright">
-      © 2026 The Story Atelier · Всички права запазени · 
+      © 2026 The Story Atelier. Всички права запазени.
     </p>
   </footer>
 
