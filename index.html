@@ -481,6 +481,8 @@
       line-height: 1.9;
     }
 
+    /* ФУТЪР */
+
     footer {
       padding: 32px 20px;
       text-align: center;
@@ -498,6 +500,34 @@
       color: var(--muted);
       font-size: 11px;
       margin-top: 7px;
+    }
+
+    footer .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    footer .footer-links a,
+    footer .footer-links span {
+      color: #795d88;
+      font-size: 11px;
+    }
+
+    footer .footer-links a {
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer .footer-links a:hover {
+      color: #c16da9;
+    }
+
+    footer .footer-links span {
+      opacity: 0.65;
     }
 
     @media (max-width: 800px) {
@@ -600,6 +630,15 @@
 
       .section {
         scroll-margin-top: 170px;
+      }
+
+      footer .footer-links {
+        gap: 7px;
+      }
+
+      footer .footer-links a,
+      footer .footer-links span {
+        font-size: 10px;
       }
     }
   </style>
@@ -773,7 +812,17 @@
 
   <footer>
     <div class="footer-brand">The Story Atelier</div>
+
     <p>Онлайн покани за специалните моменти</p>
+
+    <div class="footer-links">
+      <a href="obshti-uslovia.html">Общи условия</a>
+      <span aria-hidden="true">|</span>
+      <a href="politika-za-poveritelnost.html">Политика за поверителност</a>
+      <span aria-hidden="true">|</span>
+      <a href="politika-za-biskvitki.html">Политика за бисквитки</a>
+    </div>
+
     <p>© <span id="year"></span> The Story Atelier · Създадено с любов</p>
   </footer>
 
